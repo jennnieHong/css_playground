@@ -1,0 +1,133 @@
+/* Navigation Styles */
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--bg-tertiary);
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: var(--shadow-xl);
+}
+
+.nav-header {
+  padding: var(--spacing-xl);
+  border-bottom: 1px solid var(--bg-tertiary);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-loading {
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.nav-menu {
+  list-style: none;
+  padding: var(--spacing-md);
+}
+
+.nav-item {
+  margin-bottom: var(--spacing-xs);
+}
+
+.nav-link,
+.nav-category {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.nav-category {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: var(--spacing-md);
+  cursor: default;
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.nav-title {
+  flex: 1;
+}
+
+.nav-submenu {
+  list-style: none;
+  padding-left: var(--spacing-xl);
+  margin-top: var(--spacing-xs);
+}
+
+.nav-submenu .nav-link {
+  font-size: 0.9rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.nav-submenu .nav-icon {
+  font-size: 1rem;
+}
+
+/* Scrollbar Styling */
+.navigation::-webkit-scrollbar {
+  width: 8px;
+}
+
+.navigation::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.navigation::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.navigation::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .navigation {
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+  }
+  
+  .navigation.open {
+    transform: translateX(0);
+  }
+}
