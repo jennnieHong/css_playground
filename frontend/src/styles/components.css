@@ -316,10 +316,12 @@
 }
 
 .live-editor-preview {
-  padding: var(--spacing-lg);
   background: var(--bg-tertiary);
   border-right: 1px solid var(--bg-primary);
-  overflow: auto;
+  /* Padding and overflow moved to inner .preview-viewport logic */
+  padding: 0;
+  overflow: hidden; 
+  /* max-height is controlled by component style or overrides */
   max-height: 400px;
 }
 

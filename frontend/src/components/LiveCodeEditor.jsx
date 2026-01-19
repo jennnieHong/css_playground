@@ -28,7 +28,10 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
   // Apply CSS to the preview area
   useEffect(() => {
     if (styleRef.current) {
-      const scopedCss = appliedCss.replace(/(^|\s|,)(\.[a-zA-Z][\w-]*)/g, `$1#${scopeId} $2`);
+      // Use CSS Nesting for perfect scoping without breaking sibling/descendant selectors
+      const scopedCss = `#${scopeId} {
+        ${appliedCss}
+      }`;
       styleRef.current.textContent = scopedCss;
     }
   }, [appliedCss, scopeId]);
@@ -56,13 +59,13 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
       <div className="live-editor-header">
         {initialHtml && (
           <div className="live-editor-tabs">
-            <button 
+            <button
               className={`tab-btn ${activeTab === 'css' ? 'active' : ''}`}
               onClick={() => setActiveTab('css')}
             >
               CSS
             </button>
-            <button 
+            <button
               className={`tab-btn ${activeTab === 'html' ? 'active' : ''}`}
               onClick={() => setActiveTab('html')}
             >
@@ -71,8 +74,8 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
           </div>
         )}
         <div className="live-editor-actions">
-          <button 
-            className="btn btn-primary live-editor-apply" 
+          <button
+            className="btn btn-primary live-editor-apply"
             onClick={handleApply}
             disabled={!hasChanges}
           >
@@ -83,21 +86,38 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
           </button>
         </div>
       </div>
-      <div 
+      <div
         className="live-editor-content"
         style={height ? { height } : undefined}
       >
-        <div 
-          className="live-editor-preview" 
+        <div
+          className="live-editor-preview"
           id={scopeId}
           style={height ? { height: '100%', maxHeight: 'none' } : undefined}
         >
-          <style ref={styleRef}></style>
-          {initialHtml ? (
-            <div dangerouslySetInnerHTML={{ __html: appliedHtml }} />
-          ) : (
-            preview
-          )}
+          {/* Viewport Simulator: Traps fixed position but stays static */}
+          <div className="preview-viewport" style={{
+            transform: 'translateZ(0)',
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            {/* Scroll Container: Handles content scrolling */}
+            <div className="preview-scroll" style={{
+              width: '100%',
+              height: '100%',
+              overflow: 'auto',
+              padding: 'var(--spacing-lg)'
+            }}>
+              <style ref={styleRef}></style>
+              {initialHtml ? (
+                <div dangerouslySetInnerHTML={{ __html: appliedHtml }} />
+              ) : (
+                preview
+              )}
+            </div>
+          </div>
         </div>
         <div className="live-editor-code">
           {(!initialHtml || activeTab === 'css') && (

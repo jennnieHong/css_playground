@@ -8,6 +8,20 @@ import ResponsiveStudy from './pages/ResponsiveStudy';
 import CustomPropertiesStudy from './pages/CustomPropertiesStudy';
 import CssArchitectureStudy from './pages/CssArchitectureStudy';
 import PositionStudy from './pages/PositionStudy';
+import DisplayStudy from './pages/DisplayStudy';
+import BoxModelStudy from './pages/BoxModelStudy';
+import FloatStudy from './pages/FloatStudy';
+import ColorBackgroundStudy from './pages/ColorBackgroundStudy';
+import TypographyStudy from './pages/TypographyStudy';
+import InteractionStudy from './pages/InteractionStudy';
+import FormStudy from './pages/FormStudy';
+import ContainerQueriesStudy from './pages/ContainerQueriesStudy';
+import StackingStudy from './pages/StackingStudy';
+import PseudoElementStudy from './pages/PseudoElementStudy';
+import AccessibilityStudy from './pages/AccessibilityStudy';
+import PerformanceStudy from './pages/PerformanceStudy';
+import LogicalPropertiesStudy from './pages/LogicalPropertiesStudy';
+import ModernSelectorsStudy from './pages/ModernSelectorsStudy';
 import './styles/main.css';
 import './styles/navigation.css';
 import './styles/components.css';
@@ -28,6 +42,24 @@ function App() {
             <Route path="/custom-properties" element={<CustomPropertiesStudy />} />
             <Route path="/architecture" element={<CssArchitectureStudy />} />
             <Route path="/position" element={<PositionStudy />} />
+            {/* Foundations */}
+            <Route path="/display" element={<DisplayStudy />} />
+            <Route path="/box-model" element={<BoxModelStudy />} />
+            <Route path="/float" element={<FloatStudy />} />
+            <Route path="/logical-properties" element={<LogicalPropertiesStudy />} />
+            {/* Visual & Design */}
+            <Route path="/colors" element={<ColorBackgroundStudy />} />
+            <Route path="/typography" element={<TypographyStudy />} />
+            {/* Interaction */}
+            <Route path="/interaction" element={<InteractionStudy />} />
+            <Route path="/forms" element={<FormStudy />} />
+            <Route path="/accessibility" element={<AccessibilityStudy />} />
+            {/* Advanced */}
+            <Route path="/container-queries" element={<ContainerQueriesStudy />} />
+            <Route path="/stacking" element={<StackingStudy />} />
+            <Route path="/pseudo-elements" element={<PseudoElementStudy />} />
+            <Route path="/performance" element={<PerformanceStudy />} />
+            <Route path="/selectors" element={<ModernSelectorsStudy />} />
           </Routes>
         </main>
       </div>

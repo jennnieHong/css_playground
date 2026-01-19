@@ -1,60 +1,61 @@
-# CSS Study User Guide
+# 📔 CSS Masterclass User Guide
 
-This document details how to use the CSS Study application.
-
-## 🎯 Learning Goal
-To understand core CSS layout and styling concepts by "interacting" with them directly.
-
-## 🖥️ Key Interface
-
-### 1. Navigation
-Select learning topics via the left sidebar menu.
-- **Home**: Introduction page
-- **CSS Basics**: Core modules like Flexbox, Grid, Animation, Responsive, Position
-- **Advanced Topics**: CSS Variables (Custom Properties), Architecture (BEM, etc.)
-
-### 2. Live Code Editor
-The core component of each study page.
-
-- **CSS Tab**: Directly edit specific style code.
-- **HTML Tab**: Modify the HTML structure (tags, classes) of the example. (New Feature!)
-- **Apply Button**: Click to apply your manual code edits. (Enabled only when changes exist)
-- **Reset Button**: Revert to the initial state.
-- **Interactive Controls**: Manipulate buttons/selectors above the editor to automatically update CSS properties and see immediate results.
-
-## 📚 Study Modules Overview
-
-### Flexbox Study
-- `justify-content`: Main axis alignment (flex-start, center, space-between, etc.)
-- `align-items`: Cross axis alignment (stretch, center, etc.)
-- `flex-direction`: Layout direction (row vs column)
-
-### Grid Study
-- `grid-template-columns`: Defining columns (repeat, fr units, etc.)
-- `gap`: Spacing between grid cells
-- `Alignment`: justify-items, align-items
-- `Grid Areas`: Layout using named grid areas
-
-### Animation Study
-- `transition`: Experiment with duration and timing-functions
-- `keyframes`: Animations using @keyframes (Bounce, Rotate, Fade)
-
-### Position Study (New!)
-- **Parent-Child**: Learn the relationship between `relative` parent and `absolute` child (Crucial pattern).
-- **Fixed**: Create elements that stay fixed on screen while scrolling.
-
-### Advanced Topics
-- **Custom Properties**: Usage and scoping of CSS variables (`--var-name`)
-- **Architecture**: Methodologies for large-scale CSS projects
-
-## ❓ Troubleshooting
-
-- **Menu not visible**: 
-  - Ensure the backend server is running (`npm run dev` in backend).
-  - Ensure the database script (`initDb.js`) has been executed.
-- **Code edits not sticking**: 
-  - Make sure to click the `Apply` button.
-  - Check for syntax errors in your CSS/HTML.
+This guide explains how to effectively learn modern CSS using the **CSS Masterclass** application.
 
 ---
-Happy Styling with CSS Study! 🎨
+
+## 🎯 Learning Goal
+The goal is to move beyond passive reading. By **Live Editing** code and using **Interactive Controls**, you will visually understand how each CSS property affects layout and design.
+
+## 🖥️ Interface Overview
+
+### 1. Navigation Tree (Left Side)
+20+ learning topics are organized into 5 logical groups:
+- **CSS Basics**: Core Layout (Flex, Grid, Animation, Responsive, Position)
+- **Advanced Topics**: Advanced Techniques (Container Queries, z-index, Performance, Selectors)
+- **CSS Foundations**: Structural Core (Display, Box Model, Logical Properties, Float)
+- **Visual & Design**: Aesthetic Elements (Colors, Typography)
+- **Interaction**: Engagement (States, Pseudo-classes, Form Styling, A11y)
+
+### 2. Integrated Live Editor (Center)
+- **CSS/HTML Tabs**: Freely edit the styles and structure of examples.
+- **Apply Button**: Instantly reflect your manual changes in the preview.
+- **Reset Button**: Revert to the original exercise code at any time.
+- **Preview**: A real-time sandbox area displaying your rendered code.
+
+---
+
+## 📚 Study Module Highlights
+
+### 📏 Layout & Foundations
+- **Flexbox & Grid**: Master 1D and 2D layout alignment and placement.
+- **Logical Properties**: Learn direction-agnostic spacing (`inline-start`, `block-size`) for global web support.
+- **Box Model (+ aspect-ratio)**: Understand `border-box` importance and how to fix aspect ratios for images/cards.
+- **Position**: Master `relative`/`absolute` relationships and solve fixed position "traps."
+
+### 🎨 Visuals & Interaction
+- **Typography & Writing Mode**: Design typography systems and explore vertical-rl layouts.
+- **Colors & Glassmorphism**: Experiment with modern trends like backdrop filters and complex gradients.
+- **Form Styling**: Remove browser defaults and build accessible, custom form elements.
+- **Interaction & :has()**: Experience the "CSS Game Changer" by controlling parents based on child states.
+
+### 🚀 Performance & Advanced
+- **Performance & Rendering**: Learn to reduce Repaint/Reflow and skip rendering for off-screen elements (`content-visibility`).
+- **Container Queries**: Build components that react to their parent size rather than the viewport.
+- **Modern Selectors**: Precision-manage specificity using `:is()`, `:where()`, and `:not()`.
+- **Stacking Context**: Conquer complex layering issues and `z-index` bugs.
+
+---
+
+## ❓ Troubleshooting & Tips
+
+- **White screen or missing menu?**:
+  - Ensure the backend server (`/backend`) is running.
+  - Ensure you've initialized the DB using `node scripts/resetMenus.js`.
+- **Changes not applying?**:
+  - You must click the **Apply** button to update the preview from code.
+- **Learning Tip**:
+  - Open DevTools (F12), turn on 'Paint flashing' in the Rendering tab, and watch what happens when you interact with the Performance Study module.
+
+---
+Become a CSS Master with practical, hands-on experience! 🚀

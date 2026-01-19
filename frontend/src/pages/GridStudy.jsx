@@ -7,6 +7,8 @@ function GridStudy() {
   const [gap, setGap] = useState('1rem');
   const [justifyItems, setJustifyItems] = useState('stretch');
   const [alignItems, setAlignItems] = useState('stretch');
+  const [wrapperDisplay, setWrapperDisplay] = useState('block');
+  const [autoFlow, setAutoFlow] = useState('row');
 
   return (
     <div className="page-container">
@@ -33,7 +35,7 @@ function GridStudy() {
             <li><code>repeat(auto-fit, minmax(100px, 1fr))</code>: 반응형 패턴입니다. 최소 100px을 보장하되 남는 공간은 늘어납니다.</li>
           </ul>
         </div>
-        
+
         <CssPropertyControls
           properties={[
             {
@@ -181,8 +183,424 @@ function GridStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Grid Auto Flow</h2>
+        <div className="section-description">
+          <p>아이템이 <strong>자동으로 배치되는 방향</strong>을 결정합니다.</p>
+          <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
+            <li><code>row</code>: 행 방향으로 순서대로 배치 (기본값)</li>
+            <li><code>column</code>: 열 방향으로 순서대로 배치</li>
+            <li><code>dense</code>: 빈 공간을 채우도록 재배치 (Masonry 효과)</li>
+          </ul>
+        </div>
+
+        <CssPropertyControls
+          properties={[
+            {
+              name: 'grid-auto-flow',
+              type: 'radio',
+              value: autoFlow,
+              onChange: setAutoFlow,
+              options: ['row', 'column', 'row dense']
+            }
+          ]}
+        />
+
+        <LiveCodeEditor
+          scopeId="grid-auto-flow"
+          height="400px"
+          initialCss={`.grid-demo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  grid-auto-flow: ${autoFlow};
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.grid-item:nth-child(2) {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.grid-item:nth-child(5) {
+  grid-row: span 2;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}`}
+          currentCss={`.grid-demo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  grid-auto-flow: ${autoFlow};
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.grid-item:nth-child(2) {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.grid-item:nth-child(5) {
+  grid-row: span 2;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}`}
+          initialHtml={`<div class="grid-demo">
+  <div class="grid-item">1</div>
+  <div class="grid-item">2 (span 2)</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item">4</div>
+  <div class="grid-item">5 (span 2 rows)</div>
+  <div class="grid-item">6</div>
+  <div class="grid-item">7</div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Display: Contents</h2>
+        <div className="section-description">
+          <p>
+            <code>display: contents</code>를 사용하면 해당 요소를 <strong>레이아웃 트리에서 제거</strong>한 것처럼 동작하게 합니다.<br />
+            자신은 사라지고, 자신의 <strong>자식 요소들이 상위 그리드(또는 플렉스) 컨테이너의 직접적인 자식인 것처럼</strong> 배치됩니다.
+            <br />
+            시맨틱 태그 등 구조적인 이유로 감싸는 태그가 필요하지만, 레이아웃에는 영향을 주지 않아야 할 때 유용합니다.
+          </p>
+        </div>
+
+        <CssPropertyControls
+          properties={[
+            {
+              name: 'Wrapper Display',
+              type: 'radio',
+              value: wrapperDisplay,
+              onChange: setWrapperDisplay,
+              options: ['block', 'contents']
+            }
+          ]}
+        />
+
+        <LiveCodeEditor
+          scopeId="grid-contents"
+          initialCss={`.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-color: #f1f3f5;
+  padding: 1rem;
+}
+
+.item {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.wrapper {
+  display: ${wrapperDisplay}; /* block vs contents */
+  border: 2px dashed #fa5252; /* contents일 때는 이 테두리도 사라집니다! */
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+}`}
+          currentCss={`.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-color: #f1f3f5;
+  padding: 1rem;
+}
+
+.item {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.wrapper {
+  display: ${wrapperDisplay};
+  border: 2px dashed #fa5252;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+}`}
+          initialHtml={`<div class="grid-container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  
+  <!-- Wrapper -->
+  <div class="wrapper">
+    <div class="item">3 (Inside Wrapper)</div>
+    <div class="item">4 (Inside Wrapper)</div>
+  </div>
+  
+  <div class="item">5</div>
+  <div class="item">6</div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: Photo Gallery</h2>
+        <p className="section-description">
+          <code>grid-column</code>과 <code>grid-row</code>로 다양한 크기의 이미지를 배치하는 Masonry 스타일 갤러리입니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="grid-gallery"
+          height="500px"
+          initialCss={`.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 100px;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Featured (large) */
+.gallery-item.featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Tall */
+.gallery-item.tall {
+  grid-row: span 2;
+}
+
+/* Wide */
+.gallery-item.wide {
+  grid-column: span 2;
+}
+
+/* Placeholder colors for demo */
+.gallery-item:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+.gallery-item:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.gallery-item:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.gallery-item:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.gallery-item:nth-child(5) { background: linear-gradient(135deg, #fa709a, #fee140); }
+.gallery-item:nth-child(6) { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+.gallery-item:nth-child(7) { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+.gallery-item:nth-child(8) { background: linear-gradient(135deg, #ffecd2, #fcb69f); }`}
+          initialHtml={`<div class="gallery">
+  <div class="gallery-item featured">📷 Featured</div>
+  <div class="gallery-item">🌅</div>
+  <div class="gallery-item tall">🏔️ Tall</div>
+  <div class="gallery-item">🌸</div>
+  <div class="gallery-item wide">🌊 Wide</div>
+  <div class="gallery-item">🌺</div>
+  <div class="gallery-item">🍃</div>
+  <div class="gallery-item">✨</div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: Dashboard Layout</h2>
+        <p className="section-description">
+          <code>grid-template-areas</code>를 활용한 대시보드 레이아웃입니다. 직관적인 영역 이름으로 배치합니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="grid-dashboard"
+          height="550px"
+          initialCss={`.dashboard {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "sidebar stats stats"
+    "sidebar chart chart"
+    "sidebar footer footer";
+  grid-template-columns: 200px 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr auto;
+  gap: 1rem;
+  height: 400px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-radius: 16px;
+}
+
+.dashboard > div {
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+}
+
+.header {
+  grid-area: header;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.stats {
+  grid-area: stats;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.chart {
+  grid-area: chart;
+  background: rgba(244, 114, 182, 0.2);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+}
+
+.footer {
+  grid-area: footer;
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+  color: #94a3b8;
+}`}
+          initialHtml={`<div class="dashboard">
+  <div class="header">
+    <span>📊 Dashboard</span>
+    <span>👤 User</span>
+  </div>
+  <div class="sidebar">
+    📁 Navigation<br/><br/>
+    • Home<br/>
+    • Analytics<br/>
+    • Settings
+  </div>
+  <div class="stats">
+    <div>📈 1,234</div>
+    <div>👥 5,678</div>
+    <div>💰 $9,012</div>
+  </div>
+  <div class="chart">
+    📉 Chart Area
+  </div>
+  <div class="footer">
+    © 2024 Dashboard Example
+  </div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: Card Grid</h2>
+        <p className="section-description">
+          <code>auto-fit</code>과 <code>minmax</code>를 활용한 완벽한 반응형 카드 그리드입니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="grid-cards"
+          height="450px"
+          initialCss={`.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-radius: 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+
+.card-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.card-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 20px;
+}`}
+          initialHtml={`<div class="card-grid">
+  <div class="card">
+    <div class="card-emoji">🚀</div>
+    <div class="card-title">빠른 성능</div>
+    <div class="card-desc">최적화된 코드로 빛처럼 빠른 로딩</div>
+    <span class="card-badge">NEW</span>
+  </div>
+  <div class="card">
+    <div class="card-emoji">🔒</div>
+    <div class="card-title">보안</div>
+    <div class="card-desc">최신 보안 기술로 데이터 보호</div>
+  </div>
+  <div class="card">
+    <div class="card-emoji">📱</div>
+    <div class="card-title">반응형</div>
+    <div class="card-desc">모든 기기에서 완벽한 경험</div>
+  </div>
+  <div class="card">
+    <div class="card-emoji">🎨</div>
+    <div class="card-title">커스텀</div>
+    <div class="card-desc">원하는 대로 스타일링 가능</div>
+    <span class="card-badge">PRO</span>
+  </div>
+</div>`}
+        />
+      </section>
     </div>
   );
 }
 
 export default GridStudy;
+

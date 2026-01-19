@@ -6,6 +6,7 @@ function PositionStudy() {
   const [position, setPosition] = useState('static');
   const [top, setTop] = useState('auto');
   const [left, setLeft] = useState('auto');
+  const [parentTransform, setParentTransform] = useState('none');
 
   return (
     <div className="page-container">
@@ -71,10 +72,10 @@ function PositionStudy() {
         <h2 className="section-title">Fixed Position (고정 위치)</h2>
         <p className="section-description">
           스크롤을 해도 화면의 특정 위치에 고정되어 있는 요소입니다. (예: 네비게이션 바, '맨 위로' 버튼, 모달 등)
-          <br/>
+          <br />
           아래 예제에서 <strong>Position</strong>을 <code>fixed</code>로 바꾸고 화면을 스크롤해보세요!
         </p>
-        
+
         <CssPropertyControls
           properties={[
             {
@@ -146,8 +147,626 @@ function PositionStudy() {
 </div>`}
         />
       </section>
+
+
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: Modal Overlay (딤드 처리)</h2>
+        <p className="section-description">
+          <code>fixed</code>는 팝업창(모달) 뒤에 깔리는 <strong>어두운 배경(Overlay)</strong>을 만들 때 필수적입니다.<br />
+          <code>top: 0; left: 0; width: 100%; height: 100%</code>를 주면 스크롤과 무관하게 항상 화면 전체를 덮습니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="pos-modal"
+          height="400px"
+          initialCss={`.page-content {
+  padding: 20px;
+  height: 600px; /* 스크롤 생성용 */
+  background: linear-gradient(to bottom, #fff, #f0f0f0);
+}
+
+/* 검은색 반투명 오버레이 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100; /* 콘텐츠보다 위에 배치 */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.close-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #fa5252;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}`}
+          initialHtml={`<div class="page-content">
+  <h2>메인 페이지 콘텐츠</h2>
+  <p>스크롤을 해보세요. 오버레이가 계속 화면을 덮고 있습니다.</p>
+  <p>배경 콘텐츠 1...</p>
+  <p>배경 콘텐츠 2...</p>
+  <p>배경 콘텐츠 3...</p>
+
+  <!-- 오버레이 + 모달 -->
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <h3>⚠️ 알림</h3>
+      <p>이것이 Fixed Position을 활용한 모달입니다.</p>
+      <button class="close-btn">닫기 (예시)</button>
+    </div>
+  </div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: Floating Action Button (FAB)</h2>
+        <p className="section-description">
+          화면 우측 하단에 항상 떠 있는 <strong>채팅 버튼</strong>이나 <strong>맨 위로 가기</strong> 버튼도 <code>fixed</code>를 사용합니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="pos-fab"
+          height="400px"
+          initialCss={`.fab-container {
+  height: 800px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 50;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  background-color: #2563eb;
+}`}
+          initialHtml={`<div class="fab-container">
+  <h3>긴 문서 예시</h3>
+  <p>스크롤을 계속 내려보세요.</p>
+  <p>우측 하단의 + 버튼이 계속 따라옵니다.</p>
+  <div style="height: 100px; background: #e2e8f0; margin: 10px 0;">Content Block 1</div>
+  <div style="height: 100px; background: #cbd5e1; margin: 10px 0;">Content Block 2</div>
+  <div style="height: 100px; background: #94a3b8; margin: 10px 0;">Content Block 3</div>
+  <div style="height: 100px; background: #64748b; margin: 10px 0;">Content Block 4</div>
+  
+  <!-- Floating Action Button -->
+  <button class="fab">+</button>
+</div>`}
+        />
+      </section>
+
+
+
+      <section className="study-section">
+        <h2 className="section-title">주의: Fixed와 부모의 관계 (The Trap)</h2>
+        <div className="section-description">
+          <p>
+            보통 <code>fixed</code> 요소는 부모를 무시하고 <strong>뷰포트(브라우저 창)</strong>를 기준으로 배치됩니다.<br />
+            하지만 <strong>예외</strong>가 있습니다! 부모 요소에 <code>transform</code>, <code>perspective</code>, <code>filter</code> 속성이 하나라도 적용되면,
+            <strong>그 부모가 새로운 기준점(Containing Block)</strong>이 되어버립니다.
+          </p>
+        </div>
+
+        <CssPropertyControls
+          properties={[
+            {
+              name: 'Parent Transform',
+              type: 'radio',
+              value: parentTransform,
+              onChange: setParentTransform,
+              options: ['none', 'translate(0, 0)']
+            }
+          ]}
+        />
+
+        <LiveCodeEditor
+          scopeId="pos-trap"
+          height="300px"
+          initialCss={`.trap-container {
+  margin-top: 50px;
+  width: 100%;
+  height: 200px;
+  background-color: #ffe3e3;
+  border: 4px dashed #fa5252;
+  padding: 20px;
+  
+  /* 이 속성이 켜지면 Fixed의 기준이 뷰포트에서 이 박스로 바뀝니다! */
+  transform: ${parentTransform}; 
+}
+
+.fixed-child {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 50px;
+  background-color: #228be6;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}`}
+          currentCss={`.trap-container {
+  margin-top: 50px;
+  width: 100%;
+  height: 200px;
+  background-color: #ffe3e3;
+  border: 4px dashed #fa5252;
+  padding: 20px;
+  
+  transform: ${parentTransform};
+}
+
+.fixed-child {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 50px;
+  background-color: #228be6;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}`}
+          initialHtml={`<div class="trap-container">
+  <h3>부모 요소 (Parent)</h3>
+  <p>Parent Transform: <strong>${parentTransform}</strong></p>
+  
+  <div class="fixed-child">
+    Fixed Child
+  </div>
+</div>
+
+<p style="margin-top: 1rem; color: #868e96; font-size: 0.9rem;">
+  <strong>Child 위치 확인:</strong><br/>
+  - <strong>none</strong>: 에디터(뷰포트)의 우측 상단 끝에 붙음<br/>
+  - <strong>translate</strong>: 빨간 점선 박스(부모)의 우측 상단 끝에 붙음
+</p>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Sticky Position</h2>
+        <p className="section-description">
+          <code>sticky</code>는 스크롤 위치에 따라 <code>relative</code>와 <code>fixed</code>의 특성을 오가는 하이브리드 포지션입니다.<br />
+          <strong>임계점(예: top: 0)</strong>에 도달하기 전까지는 일반 요소처럼 동작하다가, 도달하면 화면에 고정됩니다.
+          부모 컨테이너(여기서는 에디터 프리뷰 영역) 안에서만 고정된다는 점이 <code>fixed</code>와 다릅니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="pos-sticky"
+          height="400px"
+          initialCss={`.container {
+  height: 1000px;
+  background: linear-gradient(#f8f9fa, #e9ecef);
+  padding: 1rem;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 10px; /* 이 위치에 도달하면 달라붙습니다 */
+  background-color: #845ef7;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.content {
+  margin-top: 2rem;
+  line-height: 1.6;
+  color: #495057;
+}`}
+          currentCss={`.container {
+  height: 1000px;
+  background: linear-gradient(#f8f9fa, #e9ecef);
+  padding: 1rem;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 10px;
+  background-color: #845ef7;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.content {
+  margin-top: 2rem;
+  line-height: 1.6;
+  color: #495057;
+}`}
+          initialHtml={`<div class="container">
+  <p>스크롤을 아래로 내려보세요.</p>
+  <div class="sticky-header">
+    Sticky Header (Top: 10px)
+  </div>
+  <div class="content">
+    <p>sticky 요소는 스크롤이 내려가면서 지정된 위치(top: 10px)에 닿으면 고정됩니다.</p>
+    <p>그리고 부모 요소의 범위를 벗어나면 다시 같이 스크롤되어 사라집니다.</p>
+    <p>Lorem ipsum dolor sit amet...</p>
+    <p>(스크롤을 더 확인하기 위한 여백)</p>
+  </div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">🎯 센터링 방법 비교</h2>
+        <p className="section-description">
+          요소를 완벽하게 가운데 정렬하는 다양한 방법들을 비교해보세요.
+        </p>
+        <LiveCodeEditor
+          scopeId="pos-centering"
+          height="500px"
+          initialCss={`.centering-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #1e293b;
+  border-radius: 16px;
+}
+
+.center-box {
+  height: 150px;
+  background: rgba(255,255,255,0.05);
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: 12px;
+  position: relative;
+}
+
+.center-item {
+  width: 80px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.method-label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* Method 1: Flexbox */
+.method-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Method 2: Grid */
+.method-grid {
+  display: grid;
+  place-items: center;
+}
+
+/* Method 3: Position + Transform */
+.method-transform .center-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Method 4: Margin Auto */
+.method-margin {
+  display: flex;
+}
+.method-margin .center-item {
+  margin: auto;
+}`}
+          initialHtml={`<div class="centering-demo">
+  <div class="center-box method-flex">
+    <div class="center-item">Flexbox</div>
+    <span class="method-label">justify + align</span>
+  </div>
+  <div class="center-box method-grid">
+    <div class="center-item">Grid</div>
+    <span class="method-label">place-items: center</span>
+  </div>
+  <div class="center-box method-transform">
+    <div class="center-item">Position</div>
+    <span class="method-label">top/left + transform</span>
+  </div>
+  <div class="center-box method-margin">
+    <div class="center-item">Margin</div>
+    <span class="method-label">margin: auto</span>
+  </div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Tooltip & Dropdown 예제</h2>
+        <p className="section-description">
+          <code>position: absolute</code>를 활용한 툴팁과 드롭다운 메뉴 구현입니다. 부모에 <code>position: relative</code>가 필요합니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="pos-tooltip"
+          height="400px"
+          initialCss={`.tooltip-demo {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 4rem 2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+/* Tooltip */
+.tooltip-trigger {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background: #1e293b;
+  color: white;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1e293b;
+}
+
+.tooltip-trigger:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-trigger {
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 160px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #1e293b;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #f1f5f9;
+}
+
+.dropdown-menu a:first-child { border-radius: 8px 8px 0 0; }
+.dropdown-menu a:last-child { border-radius: 0 0 8px 8px; }`}
+          initialHtml={`<div class="tooltip-demo">
+  <button class="tooltip-trigger">
+    Hover for Tooltip
+    <div class="tooltip-content">
+      ✨ 이것은 툴팁입니다!
+    </div>
+  </button>
+
+  <div class="dropdown">
+    <button class="dropdown-trigger">
+      Hover for Menu ▾
+    </button>
+    <div class="dropdown-menu">
+      <a href="#">📁 Dashboard</a>
+      <a href="#">⚙️ Settings</a>
+      <a href="#">👤 Profile</a>
+      <a href="#">🚪 Logout</a>
+    </div>
+  </div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Badge & Notification 예제</h2>
+        <p className="section-description">
+          아이콘 우측 상단에 붙는 알림 뱃지 구현입니다. 부모-자식 position 패턴을 활용합니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="pos-badge"
+          height="350px"
+          initialCss={`.badge-demo {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 12px;
+}
+
+.icon-with-badge {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.icon-with-badge:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid #1e293b;
+}
+
+.badge-ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}`}
+          initialHtml={`<div class="badge-demo">
+  <div class="icon-with-badge">
+    🔔
+    <span class="badge">3</span>
+  </div>
+  <div class="icon-with-badge">
+    💬
+    <span class="badge">12</span>
+  </div>
+  <div class="icon-with-badge">
+    📧
+    <span class="badge-dot"></span>
+  </div>
+  <div class="icon-with-badge">
+    ❤️
+    <span class="badge-dot badge-ping" style="background: #ef4444;"></span>
+  </div>
+</div>`}
+        />
+      </section>
     </div>
   );
 }
 
 export default PositionStudy;
+
