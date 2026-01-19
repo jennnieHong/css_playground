@@ -9,7 +9,7 @@ import { useState, useEffect, useRef } from 'react';
  * @param {string} props.initialCss - Initial CSS code
  * @param {string} props.scopeId - Unique ID to scope the styles
  */
-function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId }) {
+function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId, height }) {
   const [draftCss, setDraftCss] = useState(initialCss);
   const [appliedCss, setAppliedCss] = useState(initialCss);
   const [draftHtml, setDraftHtml] = useState(initialHtml || '');
@@ -83,8 +83,15 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId 
           </button>
         </div>
       </div>
-      <div className="live-editor-content">
-        <div className="live-editor-preview" id={scopeId}>
+      <div 
+        className="live-editor-content"
+        style={height ? { height } : undefined}
+      >
+        <div 
+          className="live-editor-preview" 
+          id={scopeId}
+          style={height ? { height: '100%', maxHeight: 'none' } : undefined}
+        >
           <style ref={styleRef}></style>
           {initialHtml ? (
             <div dangerouslySetInnerHTML={{ __html: appliedHtml }} />
@@ -100,6 +107,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId 
               onChange={(e) => setDraftCss(e.target.value)}
               spellCheck="false"
               placeholder="/* Enter your CSS here */"
+              style={height ? { height: '100%', maxHeight: 'none' } : undefined}
             />
           )}
           {initialHtml && activeTab === 'html' && (
@@ -109,6 +117,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId 
               onChange={(e) => setDraftHtml(e.target.value)}
               spellCheck="false"
               placeholder="<!-- Enter your HTML here -->"
+              style={height ? { height: '100%', maxHeight: 'none' } : undefined}
             />
           )}
         </div>

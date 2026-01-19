@@ -96,7 +96,7 @@ function FlexboxStudy() {
   <div class="flex-item">2</div>
   <div class="flex-item">3</div>
 </div>`}
-        />
+          height="300px" />
       </section>
 
       <section className="study-section">
@@ -155,6 +155,7 @@ function FlexboxStudy() {
   <div class="flex-item" style="height: 80px">80px</div>
   <div class="flex-item" style="height: 40px">40px</div>
 </div>`}
+          height="300px"
         />
       </section>
 

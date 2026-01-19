@@ -103,6 +103,7 @@ function PositionStudy() {
 
         <LiveCodeEditor
           scopeId="pos-fixed"
+          height="500px"
           initialCss={`.fixed-demo-box {
   position: ${position};
   top: ${top};
@@ -138,7 +139,7 @@ function PositionStudy() {
           initialHtml={`<div style="min-height: 300px; padding: 20px; border: 1px solid #ddd; position: relative;">
   <p>이 영역 내부 또는 뷰포트를 기준으로 배치됩니다.</p>
   <p>스크롤을 하기 위해 내용을 길게 늘립니다...</p>
-  <div style="height: 500px; background: linear-gradient(to bottom, #f0f9ff, #e0f2fe);"></div>
+  <div style="height: 600px; background: linear-gradient(to bottom, #f0f9ff, #e0f2fe);"></div>
   <div class="fixed-demo-box">
     Fixed Box
   </div>
