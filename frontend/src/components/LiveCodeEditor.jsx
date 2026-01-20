@@ -15,6 +15,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
   const [draftHtml, setDraftHtml] = useState(initialHtml || '');
   const [appliedHtml, setAppliedHtml] = useState(initialHtml || '');
   const [activeTab, setActiveTab] = useState('css'); // 'css' or 'html'
+  const [renderKey, setRenderKey] = useState(0); // For forcing re-renders without using long strings
   const styleRef = useRef(null);
 
   // Sync with external updates (e.g., from UI controls)
@@ -81,6 +82,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
     if (initialHtml) {
       setAppliedHtml(draftHtml);
     }
+    setRenderKey(prev => prev + 1); // Increment to force preview re-render
   };
 
   const [copiedType, setCopiedType] = useState(null); // 'css' or 'html'
@@ -211,9 +213,13 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
             }}>
               <style ref={styleRef}></style>
               {initialHtml ? (
-                <div key={appliedCss + appliedHtml} dangerouslySetInnerHTML={{ __html: appliedHtml }} />
+                /* 
+                  Note: Using dangerouslySetInnerHTML without sanitization is risky in public environments. 
+                  In this playground, it's used for educational purposes with user-provided local content.
+                */
+                <div key={renderKey} dangerouslySetInnerHTML={{ __html: appliedHtml }} />
               ) : (
-                <div key={appliedCss}>{preview}</div>
+                <div key={renderKey}>{preview}</div>
               )}
             </div>
           </div>
