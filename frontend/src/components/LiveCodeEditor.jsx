@@ -52,6 +52,19 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
     }
   };
 
+  const [copiedType, setCopiedType] = useState(null); // 'css' or 'html'
+
+  const handleCopy = async (type) => {
+    const textToCopy = type === 'css' ? appliedCss : appliedHtml;
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopiedType(type);
+      setTimeout(() => setCopiedType(null), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
   const hasChanges = draftCss !== appliedCss || (initialHtml && draftHtml !== appliedHtml);
 
   // Calculate heights based on layout mode
@@ -179,24 +192,42 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
           style={isVerticalLayout && codeHeightStyle ? { height: codeHeightStyle } : undefined}
         >
           {(!initialHtml || activeTab === 'css' || activeTab === 'both') && (
-            <textarea
-              className={`code-textarea ${activeTab === 'both' ? 'half-width' : ''}`}
-              value={draftCss}
-              onChange={(e) => setDraftCss(e.target.value)}
-              spellCheck="false"
-              placeholder="/* Enter your CSS here */"
-              style={codeHeightStyle || activeTab === 'both' ? { height: codeHeightStyle || '100%', maxHeight: 'none' } : undefined}
-            />
+            <div className={`code-editor-wrapper ${activeTab === 'both' ? 'half-width' : ''}`}>
+              <button
+                className="copy-btn"
+                onClick={() => handleCopy('css')}
+                title="Copy CSS"
+              >
+                {copiedType === 'css' ? '✓ Copied!' : '📋 Copy CSS'}
+              </button>
+              <textarea
+                className="code-textarea"
+                value={draftCss}
+                onChange={(e) => setDraftCss(e.target.value)}
+                spellCheck="false"
+                placeholder="/* Enter your CSS here */"
+                style={codeHeightStyle || activeTab === 'both' ? { height: codeHeightStyle || '100%', maxHeight: 'none' } : undefined}
+              />
+            </div>
           )}
           {initialHtml && (activeTab === 'html' || activeTab === 'both') && (
-            <textarea
-              className={`code-textarea ${activeTab === 'both' ? 'half-width' : ''}`}
-              value={draftHtml}
-              onChange={(e) => setDraftHtml(e.target.value)}
-              spellCheck="false"
-              placeholder="<!-- Enter your HTML here -->"
-              style={codeHeightStyle || activeTab === 'both' ? { height: codeHeightStyle || '100%', maxHeight: 'none' } : undefined}
-            />
+            <div className={`code-editor-wrapper ${activeTab === 'both' ? 'half-width' : ''}`}>
+              <button
+                className="copy-btn"
+                onClick={() => handleCopy('html')}
+                title="Copy HTML"
+              >
+                {copiedType === 'html' ? '✓ Copied!' : '📋 Copy HTML'}
+              </button>
+              <textarea
+                className="code-textarea"
+                value={draftHtml}
+                onChange={(e) => setDraftHtml(e.target.value)}
+                spellCheck="false"
+                placeholder="<!-- Enter your HTML here -->"
+                style={codeHeightStyle || activeTab === 'both' ? { height: codeHeightStyle || '100%', maxHeight: 'none' } : undefined}
+              />
+            </div>
           )}
         </div>
       </div>
