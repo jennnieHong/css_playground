@@ -31,8 +31,8 @@ function Navigation({ isCollapsed, onToggle }) {
     return (
       <li key={menu.id} className="nav-item">
         {menu.path ? (
-          <Link 
-            to={menu.path} 
+          <Link
+            to={menu.path}
             className={`nav-link ${isActive ? 'active' : ''}`}
           >
             <span className="nav-icon">{menu.icon}</span>
@@ -44,7 +44,7 @@ function Navigation({ isCollapsed, onToggle }) {
             <span className="nav-title">{menu.title}</span>
           </div>
         )}
-        
+
         {hasChildren && (
           <ul className="nav-submenu">
             {menu.children.map(child => renderMenuItem(child))}
@@ -66,17 +66,34 @@ function Navigation({ isCollapsed, onToggle }) {
   }
 
   return (
-    <nav className={`navigation ${isCollapsed ? 'collapsed' : ''}`}>
-      <div className="nav-header">
-        {!isCollapsed && <h1 className="nav-logo">CSS Study</h1>}
-        <button className="nav-toggle-btn" onClick={onToggle} aria-label="Toggle Navigation">
-          {isCollapsed ? '☰' : '×'}
-        </button>
-      </div>
-      <ul className="nav-menu">
-        {menus.map(menu => renderMenuItem(menu))}
-      </ul>
-    </nav>
+    <>
+      {/* 모바일 메뉴 버튼 */}
+      <button
+        className="mobile-menu-btn"
+        onClick={onToggle}
+        aria-label="Open Menu"
+      >
+        ☰
+      </button>
+
+      {/* 오버레이 (모바일에서 메뉴 열렸을 때) */}
+      <div
+        className={`nav-overlay ${!isCollapsed ? 'active' : ''}`}
+        onClick={onToggle}
+      />
+
+      <nav className={`navigation ${isCollapsed ? 'collapsed' : 'open'}`}>
+        <div className="nav-header">
+          {!isCollapsed && <h1 className="nav-logo">CSS Study</h1>}
+          <button className="nav-toggle-btn" onClick={onToggle} aria-label="Toggle Navigation">
+            {isCollapsed ? '☰' : '×'}
+          </button>
+        </div>
+        <ul className="nav-menu">
+          {menus.map(menu => renderMenuItem(menu))}
+        </ul>
+      </nav>
+    </>
   );
 }
 

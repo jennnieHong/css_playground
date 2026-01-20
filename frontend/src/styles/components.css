@@ -427,6 +427,41 @@
     border-right: none;
     border-bottom: 1px solid var(--bg-primary);
   }
+
+  /* Both 탭에서도 세로 배치 */
+  .live-editor-content.vertical-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  /* Both 탭의 코드 영역도 세로 배치 */
+  .live-editor-code.split-view {
+    flex-direction: column;
+  }
+
+  /* half-width를 모바일에서는 full-width로 */
+  .code-editor-wrapper.half-width {
+    width: 100% !important;
+    flex: 1 1 auto;
+  }
+
+  /* 코드 에디터 높이 조정 */
+  .code-editor-wrapper.half-width .code-textarea {
+    min-height: 200px;
+  }
+
+  /* 액션 버튼 모바일 최적화 */
+  .live-editor-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .live-editor-actions .btn {
+    flex: 1 1 auto;
+    min-width: 100px;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
 }
 
 /* CSS Property Controls Styles */
