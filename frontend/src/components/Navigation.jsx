@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { api } from '../services/api';
 
-function Navigation() {
+function Navigation({ isCollapsed, onToggle }) {
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
@@ -66,9 +66,12 @@ function Navigation() {
   }
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="nav-header">
-        <h1 className="nav-logo">CSS Study</h1>
+        {!isCollapsed && <h1 className="nav-logo">CSS Study</h1>}
+        <button className="nav-toggle-btn" onClick={onToggle} aria-label="Toggle Navigation">
+          {isCollapsed ? '☰' : '×'}
+        </button>
       </div>
       <ul className="nav-menu">
         {menus.map(menu => renderMenuItem(menu))}

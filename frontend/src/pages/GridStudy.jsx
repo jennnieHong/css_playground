@@ -156,30 +156,298 @@ function GridStudy() {
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">Grid Template Areas</h2>
+        <h2 className="section-title">Grid Template Areas (영역 레이아웃)</h2>
+        <div className="section-description">
+          <p>
+            <code>grid-template-areas</code>는 그리드 레이아웃을 <strong>시각적으로 정의</strong>하는 강력한 방법입니다. 
+            문자열로 영역 이름을 작성하여 직관적으로 레이아웃 구조를 표현할 수 있습니다.
+          </p>
+          <ul style={{ marginTop: '0.5rem', lineHeight: '1.8' }}>
+            <li><strong>각 문자열 = 하나의 행(row)</strong></li>
+            <li><strong>공백으로 구분된 각 단어 = 하나의 셀(cell)</strong></li>
+            <li><strong>같은 이름의 셀들이 하나의 영역을 형성</strong></li>
+            <li><strong>점(.) = 빈 셀</strong></li>
+          </ul>
+        </div>
+
         <LiveCodeEditor
-          scopeId="grid-areas"
-          initialCss={`.grid-demo {
+          scopeId="grid-areas-intro"
+          height="550px"
+          initialCss={`/* 1. 그리드 컨테이너에 영역 정의 */
+.grid-demo {
+  display: grid;
+  
+  /* 영역 이름으로 레이아웃 정의 */
+  grid-template-areas:
+    "header header header"   /* 1행: header가 3칸 차지 */
+    "sidebar main main"      /* 2행: sidebar 1칸, main 2칸 */
+    "footer footer footer";  /* 3행: footer가 3칸 차지 */
+  
+  /* 열 크기 정의: 3개 열 */
+  grid-template-columns: 200px 1fr 1fr;
+  
+  /* 행 크기 정의: 3개 행 */
+  grid-template-rows: 80px 200px 60px;
+  
+  gap: 1rem;
+  background: #1e293b;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+/* 2. 각 아이템에 어떤 영역을 차지할지 지정 */
+.header { 
+  grid-area: header; 
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.sidebar { 
+  grid-area: sidebar; 
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.main { 
+  grid-area: main; 
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.footer { 
+  grid-area: footer; 
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}`}
+          initialHtml={`<div class="grid-demo">
+  <div class="header">📌 Header (80px 높이)</div>
+  <div class="sidebar">
+    📁 Sidebar<br/>(200px 높이)<br/>(200px 너비)
+  </div>
+  <div class="main">
+    📄 Main Content<br/>
+    (200px 높이)<br/>
+    (1fr + 1fr = 남은 공간)
+  </div>
+  <div class="footer">🔗 Footer (60px 높이)</div>
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #dbeafe; padding: 1rem; border-radius: 8px; font-size: 0.9rem; line-height: 1.8;">
+  <strong>📐 크기 계산 방법:</strong><br/><br/>
+  
+  <strong>열(Columns) 너비:</strong><br/>
+  → grid-template-columns: 200px 1fr 1fr<br/>
+  → 1열: 200px 고정<br/>
+  → 2~3열: 남은 공간을 1:1로 분할<br/><br/>
+  
+  <strong>행(Rows) 높이:</strong><br/>
+  → grid-template-rows: 80px 200px 60px<br/>
+  → 1행(header): 80px<br/>
+  → 2행(sidebar/main): 200px<br/>
+  → 3행(footer): 60px<br/><br/>
+  
+  <strong>⚠️ 중요:</strong> areas의 행 개수와 rows의 개수가 일치해야 합니다!
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Grid Areas: 높이 자동 계산 (auto)</h2>
+        <p className="section-description">
+          <code>grid-template-rows: auto</code>를 사용하면 <strong>콘텐츠 크기에 맞춰 높이가 자동으로 결정</strong>됩니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="grid-areas-auto"
+          height="550px"
+          initialCss={`.grid-auto-demo {
   display: grid;
   grid-template-areas:
     "header header"
     "sidebar main"
     "footer footer";
-  gap: 1rem;
+  
   grid-template-columns: 200px 1fr;
+  
+  /* auto: 콘텐츠 높이만큼 자동 조정 */
   grid-template-rows: auto 1fr auto;
-  min-height: 300px;
+  
+  min-height: 400px;  /* 최소 높이 지정 */
+  gap: 1rem;
+  background: #0f172a;
+  padding: 1rem;
+  border-radius: 12px;
 }
 
-.header { grid-area: header; background-color: #ff9999; }
-.sidebar { grid-area: sidebar; background-color: #99ff99; }
-.main { grid-area: main; background-color: #9999ff; }
-.footer { grid-area: footer; background-color: #ffff99; }`}
-          initialHtml={`<div class="grid-demo">
-  <div class="grid-item header">Header</div>
-  <div class="grid-item sidebar">Sidebar</div>
-  <div class="grid-item main">Main Content</div>
-  <div class="grid-item footer">Footer</div>
+.header { 
+  grid-area: header; 
+  background: rgba(236, 72, 153, 0.3);
+  border: 2px solid #ec4899;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.sidebar { 
+  grid-area: sidebar; 
+  background: rgba(16, 185, 129, 0.3);
+  border: 2px solid #10b981;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.main { 
+  grid-area: main; 
+  background: rgba(99, 102, 241, 0.3);
+  border: 2px solid #6366f1;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.footer { 
+  grid-area: footer; 
+  background: rgba(100, 116, 139, 0.3);
+  border: 2px solid #64748b;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}`}
+          initialHtml={`<div class="grid-auto-demo">
+  <div class="header">
+    📌 Header (auto → 콘텐츠 높이만큼)
+  </div>
+  <div class="sidebar">
+    📁 Sidebar<br/><br/>
+    (1fr → 남은 공간 차지)
+  </div>
+  <div class="main">
+    📄 Main<br/><br/>
+    여기에 긴 콘텐츠를 추가하면<br/>
+    sidebar와 함께 늘어납니다.<br/>
+    왜냐하면 둘 다 같은 행(2행)에 속하기 때문입니다.
+  </div>
+  <div class="footer">
+    🔗 Footer (auto → 콘텐츠 높이만큼)
+  </div>
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #fef3c7; padding: 1rem; border-radius: 8px; font-size: 0.9rem; line-height: 1.8;">
+  <strong>🎯 auto vs 1fr vs 고정값:</strong><br/><br/>
+  
+  • <strong>auto</strong>: 콘텐츠 크기만큼 (최소 크기)<br/>
+  • <strong>1fr</strong>: 남은 공간을 차지 (유연한 크기)<br/>
+  • <strong>200px</strong>: 정확히 200px (고정 크기)<br/><br/>
+  
+  <strong>💡 패턴:</strong> grid-template-rows: auto 1fr auto<br/>
+  → 헤더/푸터는 콘텐츠만큼, 메인은 남은 공간 전부!
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">Grid Areas: 빈 공간 (.) 사용하기</h2>
+        <p className="section-description">
+          점(.)을 사용하여 <strong>빈 셀</strong>을 만들 수 있습니다. 불규칙한 레이아웃 구성에 유용합니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="grid-areas-empty"
+          height="500px"
+          initialCss={`.grid-empty-demo {
+  display: grid;
+  grid-template-areas:
+    "logo . . search"      /* 로고 왼쪽, 검색 오른쪽, 중간 빈 공간 */
+    "sidebar content content content"
+    ". footer footer .";   /* 양옆 빈 공간, 중앙에 footer */
+  
+  grid-template-columns: 150px 1fr 1fr 150px;
+  grid-template-rows: 60px 250px 60px;
+  gap: 1rem;
+  background: #1e293b;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.logo { 
+  grid-area: logo; 
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.search { 
+  grid-area: search; 
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.sidebar { 
+  grid-area: sidebar; 
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.content { 
+  grid-area: content; 
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.footer { 
+  grid-area: footer; 
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}`}
+          initialHtml={`<div class="grid-empty-demo">
+  <div class="logo">🎨 LOGO</div>
+  <div class="search">🔍 Search</div>
+  <div class="sidebar">📁 Menu</div>
+  <div class="content">📄 Main Content Area</div>
+  <div class="footer">© 2024 Footer</div>
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #d1fae5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; line-height: 1.8;">
+  <strong>📍 빈 셀(.) 활용:</strong><br/><br/>
+  
+  1행: [logo] [.] [.] [search]<br/>
+  → 로고와 검색 사이가 비어있음<br/><br/>
+  
+  2행: [sidebar] [content 3칸]<br/><br/>
+  
+  3행: [.] [footer 2칸] [.]<br/>
+  → footer가 중앙에 위치<br/><br/>
+  
+  <strong>💡 Tip:</strong> 점(.)으로 레이아웃에 여백을 만들 수 있습니다!
 </div>`}
         />
       </section>

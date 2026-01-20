@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
@@ -22,16 +23,23 @@ import AccessibilityStudy from './pages/AccessibilityStudy';
 import PerformanceStudy from './pages/PerformanceStudy';
 import LogicalPropertiesStudy from './pages/LogicalPropertiesStudy';
 import ModernSelectorsStudy from './pages/ModernSelectorsStudy';
+import UnitsStudy from './pages/UnitsStudy';
 import './styles/main.css';
 import './styles/navigation.css';
 import './styles/components.css';
 import './styles/pages.css';
 
 function App() {
+  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavCollapsed(prev => !prev);
+  };
+
   return (
     <Router>
-      <div className="app-container">
-        <Navigation />
+      <div className={`app-container ${isNavCollapsed ? 'nav-collapsed' : ''}`}>
+        <Navigation isCollapsed={isNavCollapsed} onToggle={toggleNav} />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -50,6 +58,7 @@ function App() {
             {/* Visual & Design */}
             <Route path="/colors" element={<ColorBackgroundStudy />} />
             <Route path="/typography" element={<TypographyStudy />} />
+            <Route path="/units" element={<UnitsStudy />} />
             {/* Interaction */}
             <Route path="/interaction" element={<InteractionStudy />} />
             <Route path="/forms" element={<FormStudy />} />

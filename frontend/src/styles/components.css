@@ -331,6 +331,11 @@
   background: var(--bg-primary);
 }
 
+.live-editor-code.split-view {
+  flex-direction: row;
+  gap: 1px;
+}
+
 .code-textarea {
   flex: 1;
   width: 100%;
@@ -346,6 +351,12 @@
   resize: vertical;
   outline: none;
   tab-size: 2;
+}
+
+.code-textarea.half-width {
+  width: 50%;
+  flex: 1;
+  resize: none;
 }
 
 .code-textarea:focus {

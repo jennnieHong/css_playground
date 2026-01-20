@@ -50,6 +50,7 @@
 
   /* Layout */
   --nav-width: 280px;
+  --nav-width-collapsed: 60px;
   --header-height: 60px;
 }
 
@@ -86,6 +87,11 @@ pre {
   padding: var(--spacing-xl);
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   min-height: 100vh;
+  transition: margin-left var(--transition-base);
+}
+
+.app-container.nav-collapsed .main-content {
+  margin-left: var(--nav-width-collapsed);
 }
 
 /* Utility Classes */

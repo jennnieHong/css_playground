@@ -66,6 +66,12 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
               CSS
             </button>
             <button
+              className={`tab-btn ${activeTab === 'both' ? 'active' : ''}`}
+              onClick={() => setActiveTab('both')}
+            >
+              Both
+            </button>
+            <button
               className={`tab-btn ${activeTab === 'html' ? 'active' : ''}`}
               onClick={() => setActiveTab('html')}
             >
@@ -119,10 +125,10 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
             </div>
           </div>
         </div>
-        <div className="live-editor-code">
-          {(!initialHtml || activeTab === 'css') && (
+        <div className={`live-editor-code ${activeTab === 'both' ? 'split-view' : ''}`}>
+          {(!initialHtml || activeTab === 'css' || activeTab === 'both') && (
             <textarea
-              className="code-textarea"
+              className={`code-textarea ${activeTab === 'both' ? 'half-width' : ''}`}
               value={draftCss}
               onChange={(e) => setDraftCss(e.target.value)}
               spellCheck="false"
@@ -130,9 +136,9 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
               style={height ? { height: '100%', maxHeight: 'none' } : undefined}
             />
           )}
-          {initialHtml && activeTab === 'html' && (
+          {initialHtml && (activeTab === 'html' || activeTab === 'both') && (
             <textarea
-              className="code-textarea"
+              className={`code-textarea ${activeTab === 'both' ? 'half-width' : ''}`}
               value={draftHtml}
               onChange={(e) => setDraftHtml(e.target.value)}
               spellCheck="false"
