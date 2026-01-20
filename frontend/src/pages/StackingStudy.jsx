@@ -5,276 +5,170 @@ import CssPropertyControls from '../components/CssPropertyControls';
 function StackingStudy() {
   const [zIndex1, setZIndex1] = useState('1');
   const [zIndex2, setZIndex2] = useState('2');
+  const [isolationMode, setIsolationMode] = useState('auto');
 
   return (
     <div className="page-container">
       <div className="page-header">
         <h1 className="page-title">Stacking & Layers</h1>
-        <p className="page-subtitle">Understanding z-index and stacking contexts</p>
+        <p className="page-subtitle">층층이 쌓이는 CSS의 우선순위와 계층 구조 정복</p>
       </div>
 
       <section className="study-section">
-        <h2 className="section-title">Z-Index란?</h2>
+        <h2 className="section-title">Z-Index와 쌓임 맥락 (Stacking Context)</h2>
         <div className="section-description">
           <p>
-            <code>z-index</code>는 요소의 <strong>쌓임 순서</strong>를 제어합니다.
-            하지만 항상 예상대로 작동하지 않는데, 이는 <strong>Stacking Context</strong> 때문입니다.
+            단순히 <code>z-index</code> 숫자만 높인다고 해결되지 않는 이유, 바로 <strong>쌓임 맥락</strong> 때문입니다.
+            모든 요소는 자신만의 계층(Layer)에 갇혀 있으며, 부모의 계층을 뛰어넘을 수 없습니다.
           </p>
-          <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
-            <li>숫자가 클수록 위로 올라옴</li>
-            <li>음수 값도 가능 (뒤로 보냄)</li>
-            <li><strong>position이 static이 아닐 때만</strong> 작동</li>
-          </ul>
         </div>
-      </section>
-
-      <section className="study-section">
-        <h2 className="section-title">Z-Index 기본 동작</h2>
-        <p className="section-description">
-          position과 함께 사용하여 요소의 쌓임 순서를 제어합니다.
-        </p>
 
         <CssPropertyControls
           properties={[
             {
-              name: 'Box 1 z-index',
+              name: 'Parent Isolation',
               type: 'radio',
-              value: zIndex1,
-              onChange: setZIndex1,
-              options: ['1', '5', '10', '999']
-            },
-            {
-              name: 'Box 2 z-index',
-              type: 'radio',
-              value: zIndex2,
-              onChange: setZIndex2,
-              options: ['1', '2', '5', '10']
+              value: isolationMode,
+              onChange: setIsolationMode,
+              options: [
+                { value: 'auto', label: 'Default (Mixed)' },
+                { value: 'isolate', label: 'isolation: isolate' }
+              ]
             }
           ]}
         />
 
         <LiveCodeEditor
-          scopeId="z-index-basic"
-          height="350px"
-          initialCss={`.box {
+          scopeId="stacking-context-deep"
+          previewHeight="450px"
+          codeHeight="600px"
+          initialCss={`.parent {
   position: relative;
-  width: 200px;
-  height: 150px;
-  padding: 1rem;
-  color: #ffffff;
-  font-weight: 600;
-  display: flex;
-  align-items: flex-start;
-  border-radius: 8px;
+  background: #f1f5f9;
+  padding: 40px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  /* isolation 속성은 새로운 쌓임 맥락을 생성하는 가장 깨끗한 방법입니다 */
+  isolation: ${isolationMode}; 
 }
 
-.box1 {
-  background: #3b82f6;
-  z-index: ${zIndex1};
-  margin-left: 0;
-}
-
-.box2 {
+.child-999 {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  z-index: 999;
   background: #ef4444;
-  z-index: ${zIndex2};
-  margin-left: 100px;
-  margin-top: -100px;
-}`}
-          currentCss={`.box {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.outside-10 {
   position: relative;
-  width: 200px;
-  height: 150px;
-  padding: 1rem;
-  color: #ffffff;
-  font-weight: 600;
-  display: flex;
-  align-items: flex-start;
-  border-radius: 8px;
-}
-
-.box1 {
+  z-index: 10;
   background: #3b82f6;
-  z-index: ${zIndex1};
-  margin-left: 0;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: -40px;
 }
 
-.box2 {
-  background: #ef4444;
-  z-index: ${zIndex2};
-  margin-left: 100px;
-  margin-top: -100px;
-}`}
-          initialHtml={`<div>
-  <div class="box box1">Box 1 (z: ${zIndex1})</div>
-  <div class="box box2">Box 2 (z: ${zIndex2})</div>
+.label { font-weight: bold; margin-bottom: 5px; }`}
+          initialHtml={`<div class="parent">
+  <div class="label">Parent Section</div>
+  <div class="child-999">I am z-index: 999!</div>
+  <p>내부 자식은 999라는 큰 숫자를 가졌습니다.</p>
 </div>
 
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  z-index가 높은 박스가 위로 올라옵니다!
+<div class="outside-10">
+  <div class="label">Outside Box (z-index: 10)</div>
+  <p>나는 고작 10이지만, 상황에 따라 999 위에 올라갈 수도 있습니다.</p>
+</div>
+
+<div class="info-box" style="margin-top: 2rem;">
+  <strong>실습 가이드:</strong><br/>
+  1. <strong>Default</strong> 상태: 부모가 맥락을 만들지 않아, 내부의 999가 외부의 10보다 위로 올라옵니다.<br/>
+  2. <strong>isolation: isolate</strong> 선택: 부모가 새로운 층을 형성합니다. 이제 내부 999는 "부모 층" 안에서만 의미가 있고, 밖의 10보다 아래로 내려갑니다.
 </div>`}
         />
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">Stacking Context (쌓임 맥락)</h2>
+        <h2 className="section-title">Cascading Layers (@layer)</h2>
         <div className="section-description">
           <p>
-            <strong>Stacking Context</strong>는 z-index의 "범위"를 만듭니다.
-            새로운 Stacking Context가 생성되면, 내부의 z-index는 외부와 독립적입니다.
+            <code>@layer</code>는 명시도(Specificity) 전쟁을 끝내기 위해 등장한 최신 기능입니다.
+            코드의 위치나 선택자의 복잡도와 상관없이, <strong>레이어 선언 순서</strong>에 따라 우선순위가 결정됩니다.
           </p>
-          <p style={{ marginTop: '0.5rem' }}>
-            <strong>Stacking Context를 만드는 조건:</strong>
-          </p>
-          <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
-            <li>position: fixed/sticky</li>
-            <li>position: absolute/relative + z-index (auto 아님)</li>
-            <li>opacity &lt; 1</li>
-            <li>transform, filter 등</li>
-          </ul>
         </div>
 
         <LiveCodeEditor
-          scopeId="stacking-context"
-          height="450px"
-          initialCss={`/* 부모 A: 새로운 Stacking Context 생성 */
-.parent-a {
-  position: relative;
-  z-index: 1;
-  background: #dbeafe;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+          scopeId="cascade-layers"
+          previewHeight="400px"
+          codeHeight="600px"
+          initialCss={`/* 1. 레이어 순서 정의 (뒤에 선언된 레이어가 무조건 이김) */
+@layer base, theme, custom;
+
+/* 2. 각 레이어에 스타일 작성 */
+@layer theme {
+  .btn-layer {
+    background: #10b981; /* 초록색 */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+  }
 }
 
-.parent-a .child {
-  position: relative;
-  z-index: 9999; /* 아무리 높아도 부모 A 안에 갇힘! */
-  background: #3b82f6;
-  color: #ffffff;
-  padding: 1rem;
-  margin-top: -50px;
-  border-radius: 6px;
-  font-weight: 600;
+@layer base {
+  /* 명시도가 훨씬 높지만(ID 사용), base 레이어이므로 theme 레이어에게 집니다! */
+  #main-button.btn-layer {
+    background: #ef4444; /* 빨간색 */
+    padding: 50px; /* 적용 안 됨 */
+  }
 }
 
-/* 부모 B: z-index 2 (부모 A보다 위) */
-.parent-b {
-  position: relative;
-  z-index: 2;
-  background: #fecaca;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: -80px;
+@layer custom {
+  /* 가장 마지막 레이어가 최종 승자 */
+  .btn-layer:hover {
+    background: #3b82f6;
+    transform: translateY(-2px);
+  }
 }
 
-.parent-b .child {
-  background: #ef4444;
-  color: #ffffff;
-  padding: 1rem;
-  border-radius: 6px;
-  font-weight: 600;
-}`}
-          initialHtml={`<div>
-  <div class="parent-a">
-    <strong style="color: #1e3a8a;">Parent A (z: 1)</strong>
-    <div class="child">
-      Child (z: 9999)<br/>
-      <small>하지만 Parent B 아래에 있음!</small>
-    </div>
-  </div>
+.btn-layer { transition: 0.3s; cursor: pointer; font-weight: bold; }`}
+          initialHtml={`<div style="background: white; padding: 3rem; border-radius: 12px; text-align: center;">
+  <button id="main-button" class="btn-layer">
+    @layer 버튼
+  </button>
   
-  <div class="parent-b">
-    <strong style="color: #7f1d1d;">Parent B (z: 2)</strong>
-    <div class="child">Child</div>
-  </div>
+  <p style="margin-top: 1.5rem; color: #64748b; font-size: 0.9rem;">
+    ID 선택자(#main-button)로 빨간색을 입혔음에도 불구하고,<br/>
+    나중에 선언된 <code>theme</code> 레이어의 초록색이 적용되었습니다!
+  </p>
 </div>
 
-<div style="margin-top: 1rem; color: #1e293b; background: #fef3c7; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>핵심:</strong> Parent A의 자식이 z-index: 9999여도,<br/>
-  Parent A 자체가 z-index: 1이므for Parent B(z: 2) 아래에 갇힙니다!
+<div class="info-box">
+  이제 <code>!important</code>를 남발할 필요가 없습니다. <br/>
+  서드파티 라이브러리 스타일은 <code>base</code>에, 우리 스타일은 <code>theme</code>에 넣으면 깔끔하게 관리됩니다.
 </div>`}
         />
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">실전: Modal Layering</h2>
-        <p className="section-description">
-          모달, 드롭다운, 툴팁 등에서 적절한 z-index 값을 사용하는 시스템
-        </p>
-
-        <LiveCodeEditor
-          scopeId="modal-layering"
-          height="400px"
-          initialCss={`:root {
-  --z-base: 1;
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal-backdrop: 1040;
-  --z-modal: 1050;
-  --z-popover: 1060;
-  --z-tooltip: 1070;
-}
-
-.layer-demo {
-  position: relative;
-  height: 250px;
-  background: #f8fafc;
-  border-radius: 8px;
-}
-
-.modal-backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: var(--z-modal-backdrop);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal {
-  z-index: var(--z-modal);
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  color: #1e293b;
-}
-
-.tooltip {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: var(--z-tooltip);
-  background: #1e293b;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-}`}
-          initialHtml={`<div class="layer-demo">
-  <div class="modal-backdrop">
-    <div class="modal">
-      <h3 style="margin: 0 0 0.5rem 0;">Modal (z: 1050)</h3>
-      <p style="margin: 0;">Always on top of backdrop</p>
-    </div>
-  </div>
-  
-  <div class="tooltip">
-    Tooltip (z: 1070)
-  </div>
-</div>
-
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>Best Practice:</strong> CSS 변수로 z-index 시스템을 정의하여<br/>
-  일관성과 유지보수성을 확보하세요!
-</div>`}
-        />
+        <h2 className="section-title">Z-index를 대하는 올바른 자세</h2>
+        <div className="section-description">
+          <p>숫자를 무작정 키우는 대신, 시스템으로 관리하세요.</p>
+          <div className="concept-box" style={{ background: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: '12px' }}>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              <li>✅ <strong>의미 있는 상수 사용</strong>: <code>z-index: 9999</code> 대신 <code>var(--z-modal)</code> 사용</li>
+              <li>✅ <strong>낮은 숫자 유지</strong>: 1, 10, 20 정도로도 충분합니다.</li>
+              <li>✅ <strong>isolation 사용</strong>: 컴포넌트 단위로 맥락을 끊어주어 외부 영향을 차단하세요.</li>
+              <li>✅ <strong>컴포넌트 바깥으로 빼기</strong>: 모달처럼 무조건 위에 있어야 하면 DOM 구조상 <code>body</code> 바로 아래에 위치시키는 것이 가장 안전합니다.</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   );

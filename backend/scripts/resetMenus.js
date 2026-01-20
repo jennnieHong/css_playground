@@ -35,40 +35,45 @@ db.serialize(() => {
     { title: 'CSS Basics', path: null, parent_id: null, order_index: 1, icon: '🎨' },
     { title: 'Flexbox Study', path: '/flexbox', parent_id: 1, order_index: 1, icon: '📦' },
     { title: 'Grid Study', path: '/grid', parent_id: 1, order_index: 2, icon: '⚡' },
-    { title: 'Animation Study', path: '/animation', parent_id: 1, order_index: 3, icon: '🎬' },
-    { title: 'Responsive Study', path: '/responsive', parent_id: 1, order_index: 4, icon: '📱' },
-    { title: 'Position Study', path: '/position', parent_id: 1, order_index: 5, icon: '📍' },
+    { title: 'Responsive Study', path: '/responsive', parent_id: 1, order_index: 3, icon: '📱' },
+    { title: 'Position Study', path: '/position', parent_id: 1, order_index: 4, icon: '📍' },
 
     // Advanced Topics Group
     { title: 'Advanced Topics', path: null, parent_id: null, order_index: 2, icon: '🚀' },
-    { title: 'Custom Properties', path: '/custom-properties', parent_id: 7, order_index: 1, icon: '🎛️' },
-    { title: 'CSS Architecture', path: '/architecture', parent_id: 7, order_index: 2, icon: '🏗️' },
-    { title: 'Container Queries', path: '/container-queries', parent_id: 7, order_index: 3, icon: '📦' },
-    { title: 'Stacking & Layers', path: '/stacking', parent_id: 7, order_index: 4, icon: '📚' },
-    { title: 'Pseudo Elements', path: '/pseudo-elements', parent_id: 7, order_index: 5, icon: '::' },
-    { title: 'Performance & Rendering', path: '/performance', parent_id: 7, order_index: 6, icon: '⚡' },
-    { title: 'Modern Selectors', path: '/selectors', parent_id: 7, order_index: 7, icon: '🎯' },
+    { title: 'Custom Properties', path: '/custom-properties', parent_id: 6, order_index: 1, icon: '🎛️' },
+    { title: 'CSS Architecture', path: '/architecture', parent_id: 6, order_index: 2, icon: '🏗️' },
+    { title: 'Container Queries', path: '/container-queries', parent_id: 6, order_index: 3, icon: '📦' },
+    { title: 'Stacking & Layers', path: '/stacking', parent_id: 6, order_index: 4, icon: '📚' },
+    { title: 'Pseudo Elements', path: '/pseudo-elements', parent_id: 6, order_index: 5, icon: '::' },
+    { title: 'Performance & Rendering', path: '/performance', parent_id: 6, order_index: 6, icon: '⚡' },
+    { title: 'Modern Selectors', path: '/selectors', parent_id: 6, order_index: 7, icon: '🎯' },
 
     // CSS Foundations Group
     { title: 'CSS Foundations', path: null, parent_id: null, order_index: 3, icon: '🏛️' },
-    { title: 'Display Study', path: '/display', parent_id: 15, order_index: 1, icon: '📐' },
-    { title: 'Box Model Study', path: '/box-model', parent_id: 15, order_index: 2, icon: '📦' },
-    { title: 'Float & Clear Study', path: '/float', parent_id: 15, order_index: 3, icon: '🌊' },
-    { title: 'Logical Properties', path: '/logical-properties', parent_id: 15, order_index: 4, icon: '🌐' },
+    { title: 'Display Study', path: '/display', parent_id: 14, order_index: 1, icon: '📐' },
+    { title: 'Box Model Study', path: '/box-model', parent_id: 14, order_index: 2, icon: '📦' },
+    { title: 'Float & Clear Study', path: '/float', parent_id: 14, order_index: 3, icon: '🌊' },
+    { title: 'Logical Properties', path: '/logical-properties', parent_id: 14, order_index: 4, icon: '🌐' },
 
     // Visual & Design Group
     { title: 'Visual & Design', path: null, parent_id: null, order_index: 4, icon: '🎨' },
-    { title: 'Colors & Backgrounds', path: '/colors', parent_id: 20, order_index: 1, icon: '🌈' },
-    { title: 'Typography', path: '/typography', parent_id: 20, order_index: 2, icon: '✍️' },
-    { title: 'Units & Sizing', path: '/units', parent_id: 20, order_index: 3, icon: '📏' },
-    { title: 'Height & Sizing', path: '/height', parent_id: 20, order_index: 4, icon: '📐' },
-    { title: 'CSS Animations', path: '/animations', parent_id: 20, order_index: 5, icon: '✨' },
+    { title: 'Colors & Backgrounds', path: '/colors', parent_id: 19, order_index: 1, icon: '🌈' },
+    { title: 'Typography', path: '/typography', parent_id: 19, order_index: 2, icon: '✍️' },
+    { title: 'Units & Sizing', path: '/units', parent_id: 19, order_index: 3, icon: '📏' },
+    { title: 'Height & Sizing', path: '/height', parent_id: 19, order_index: 4, icon: '📐' },
+    { title: 'CSS Animations (New)', path: '/animation-new', parent_id: 19, order_index: 5, icon: '✨' },
+    { title: 'Animation (Old)', path: '/animation-old', parent_id: 19, order_index: 6, icon: '🎬' },
+    { title: 'Hiding Methods', path: '/hiding', parent_id: 19, order_index: 7, icon: '👻' },
 
     // Interaction Group
     { title: 'Interaction', path: null, parent_id: null, order_index: 5, icon: '👆' },
     { title: 'States & Pseudo-classes', path: '/interaction', parent_id: 26, order_index: 1, icon: '🔄' },
     { title: 'Form Styling', path: '/forms', parent_id: 26, order_index: 2, icon: '📝' },
-    { title: 'Accessibility (A11y)', path: '/accessibility', parent_id: 26, order_index: 3, icon: '♿' }
+    { title: 'Accessibility (A11y)', path: '/accessibility', parent_id: 26, order_index: 3, icon: '♿' },
+
+    // Master Mission Group
+    { title: 'Master Mission', path: null, parent_id: null, order_index: 6, icon: '🚩' },
+    { title: 'Master Challenge', path: '/challenge', parent_id: 30, order_index: 1, icon: '🏆' }
   ];
 
   console.log('\nAdding all menus...\n');

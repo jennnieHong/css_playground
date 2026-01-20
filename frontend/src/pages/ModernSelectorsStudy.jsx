@@ -163,6 +163,142 @@ section h3 {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">:has() - 부모 선택자의 혁명</h2>
+        <div className="section-description">
+          <p>
+            <code>:has()</code>는 오랫동안 기다려온 <strong>부모 선택자</strong>입니다.
+            특정 자식이나 요소를 포함하고 있는 부모를 선택할 수 있게 해줍니다.
+          </p>
+          <div className="info-box">
+            💡 <strong>주요 활용 처:</strong><br />
+            • 이미지 캡션이 있는 피드 아이템만 스타일 변경<br />
+            • 체크박스가 체크된 폼 그룹의 배경색 변경<br />
+            • 특정 버튼이 포함된 내비게이션 바 높이 조절
+          </div>
+        </div>
+
+        <LiveCodeEditor
+          scopeId="selector-has"
+          previewHeight="450px"
+          codeHeight="600px"
+          initialCss={`/* 1. 이미지가 포함된 카드만 보더 추가 */
+.card:has(img) {
+  border: 2px solid #667eea;
+}
+
+/* 2. 체크된 체크박스가 있는 필드셋 배경 변경 */
+.form-group:has(input:checked) {
+  background: #eef2ff;
+  border-color: #667eea;
+}
+
+/* 3. 특정 요소가 호버될 때 인접 요소 스타일 (Relational) */
+.nav-item:has(+ .nav-item:hover) {
+  transform: translateX(-10px);
+}
+
+.card {
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.nav-list { display: flex; gap: 1rem; margin-top: 1rem; }
+.nav-item {
+  padding: 0.5rem 1rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav-item:hover { background: #667eea; color: white; }`}
+          initialHtml={`<div class="card">
+  <h4>카드 1 (이미지 없음)</h4>
+  <p>이 카드는 이미지가 없어 강조되지 않습니다.</p>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/50" style="border-radius: 4px;"/>
+  <h4>카드 2 (이미지 있음)</h4>
+  <p>이미지가 포함되어 <code>:has(img)</code> 선택자가 작동합니다!</p>
+</div>
+
+<div class="form-group">
+  <label style="cursor: pointer;">
+    <input type="checkbox"> 이 옵션을 선택하면 부모의 배경이 바뀝니다.
+  </label>
+</div>
+
+<div class="nav-list">
+  <div class="nav-item">Menu A</div>
+  <div class="nav-item">Menu B</div>
+  <div class="nav-item">Menu C</div>
+</div>
+<p style="font-size: 0.8rem; margin-top: 10px;">↑ Menu B에 마우스를 올려보세요. 앞의 Menu A가 반응합니다!</p>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">:nth-child() of S - 정교한 필터링</h2>
+        <div className="section-description">
+          <p>
+            기존 <code>:nth-child</code>는 모든 형제 중 순서를 찾았지만,
+            최신 문법인 <code>of selector</code>를 사용하면 특정 선택자에 해당하는 요소들 중에서만 순서를 찾습니다.
+          </p>
+        </div>
+
+        <LiveCodeEditor
+          scopeId="selector-nth-of"
+          previewHeight="350px"
+          codeHeight="450px"
+          initialCss={`/* 'active' 클래스를 가진 요소들 중에서 2번째 것만 선택 */
+.item:nth-child(2 of .active) {
+  background: #f5576c;
+  color: white;
+  transform: scale(1.1);
+}
+
+.item {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.active {
+  background: #eef2ff;
+  border-color: #667eea;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}`}
+          initialHtml={`<div class="list">
+  <div class="item active">1. Active A</div>
+  <div class="item">2. Normal</div>
+  <div class="item active">3. Active B (이게 2번째 Active)</div>
+  <div class="item">4. Normal</div>
+  <div class="item active">5. Active C</div>
+</div>
+
+<div class="info-box">
+  기존 방식이라면 3번 요소는 전체 중 '3번째'라 선택되지 않았겠지만, 
+  <code>2 of .active</code> 구문을 쓰면 활성화된 것들 중 순서를 정확히 찾아냅니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

@@ -1,6 +1,18 @@
+import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import CssPropertyControls from '../components/CssPropertyControls';
 
 function AnimationsStudy() {
+  // Transition states
+  const [transDuration, setTransDuration] = useState('0.4s');
+  const [transTiming, setTransTiming] = useState('ease');
+
+  // Animation states
+  const [animDuration, setAnimDuration] = useState('1s');
+  const [animTiming, setAnimTiming] = useState('ease-in-out');
+  const [animIteration, setAnimIteration] = useState('infinite');
+  const [animDirection, setAnimDirection] = useState('normal');
+
   return (
     <div className="page-container">
       <div className="page-header">
@@ -19,6 +31,25 @@ function AnimationsStudy() {
             • <code>animation</code>: A → B 복잡한 단계 (끝나면 원래대로 스냅되거나 멈춤)
           </p>
         </div>
+
+        <CssPropertyControls
+          properties={[
+            {
+              name: 'transition-duration',
+              type: 'radio',
+              value: transDuration,
+              onChange: setTransDuration,
+              options: ['0.2s', '0.4s', '1s', '2s']
+            },
+            {
+              name: 'transition-timing-function',
+              type: 'select',
+              value: transTiming,
+              onChange: setTransTiming,
+              options: ['ease', 'linear', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(0.68, -0.6, 0.32, 1.6)']
+            }
+          ]}
+        />
 
         <LiveCodeEditor
           scopeId="transition-vs-animation"
@@ -48,7 +79,7 @@ function AnimationsStudy() {
 /* 1. Transition: 상태 변화를 부드럽게 왕복 */
 .transition-box {
   background: #667eea;
-  transition: transform 0.4s ease;
+  transition: transform ${transDuration} ${transTiming};
 }
 .transition-box:hover {
   transform: rotate(45deg) scale(1.1);
@@ -63,7 +94,7 @@ function AnimationsStudy() {
   background: #f5576c;
 }
 .animation-box:hover {
-  animation: rotateAnim 0.4s ease forwards;
+  animation: rotateAnim ${transDuration} ${transTiming} forwards;
 }
 
 .label {
@@ -85,11 +116,10 @@ function AnimationsStudy() {
 
 <div class="info-box">
   <strong>직접 비교해보세요:</strong><br/>
-  1. 두 박스에 마우스를 올렸다 <strong>순식간에 떼어보세요.</strong><br/>
-  2. <strong>Transition(파랑)</strong>: 돌아올 때도 부드럽게 제자리로 수렴합니다.<br/>
-  3. <strong>Animation(빨강)</strong>: 마우스를 떼는 순간 동작이 중단되고 원래대로 "탁!" 하고 스냅됩니다.<br/>
-  <br/>
-  💡 그래서 hover 효과는 대개 <strong>Transition</strong>을 선호합니다!
+  1. 위 옵션 버튼으로 <strong>시간(Duration)</strong>과 <strong>속도 곡선(Timing)</strong>을 바꿔보세요.<br/>
+  2. 두 박스에 마우스를 올렸다 <strong>순식간에 떼어보세요.</strong><br/>
+  3. <strong>Transition(파랑)</strong>: 돌아올 때도 부드럽게 제자리로 수렴합니다.<br/>
+  4. <strong>Animation(빨강)</strong>: 마우스를 떼는 순간 동작이 중단되고 원래대로 "탁!" 하고 스냅됩니다.
 </div>`}
         />
       </section >
@@ -217,201 +247,264 @@ function AnimationsStudy() {
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">@keyframes: 애니메이션 정의하기</h2>
-        <div className="section-description">
-          <p>
-            <code>@keyframes</code>는 애니메이션의 각 단계를 정의합니다.
-          </p>
-          <ul className="description-list">
-            <li>
-              <strong>0% (from)</strong>: 시작 상태
-            </li>
-            <li>
-              <strong>100% (to)</strong>: 끝 상태
-            </li>
-            <li>
-              <strong>중간 단계</strong>: 50%, 75% 등 원하는 시점 추가 가능
-            </li>
-          </ul>
-        </div>
-
-        <LiveCodeEditor
-          scopeId="keyframes-basic"
-          previewHeight="300px"
-          codeHeight="400px"
-          initialCss={`/* @keyframes로 애니메이션 정의 */
-@keyframes slideIn {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.box {
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 12px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  
-  /* 애니메이션 적용 */
-  animation: slideIn 1s ease-out;
-}`}
-          initialHtml={`<div class="box">
-  슬라이드 인!
-</div>
-
-<div class="info-box">
-  <strong>작동 방식:</strong><br/>
-  1. @keyframes로 "slideIn" 애니메이션 정의<br/>
-  2. animation 속성으로 적용<br/>
-  3. 1초 동안 왼쪽에서 슬라이드 인
-</div>`}
-        />
-      </section>
-
-      <section className="study-section">
         <h2 className="section-title">스피너 만들기 (실전 예제)</h2>
         <div className="section-description">
           <p>
-            회전하는 로딩 스피너를 만들어봅시다. 실제 네비게이션에서 사용하는 것과 동일합니다!
+            로딩 중임을 알리는 다양한 스피너 스타일을 만들어봅시다. 실제 많은 서비스에서 사용하는 패턴들입니다.
           </p>
           <p className="highlight-box">
-            💡 <strong>핵심</strong>: <code>animation: spin 0.8s linear infinite</code><br />
-            • 0.8초 동안 회전<br />
-            • linear: 일정한 속도<br />
-            • infinite: 무한 반복
+            💡 <strong>핵심</strong>: <code>animation: spin 0.8s linear infinite</code> (회전) 또는 <code>dots 1.4s infinite</code> (박동)
           </p>
         </div>
 
         <LiveCodeEditor
-          scopeId="spinner-animation"
-          previewHeight="350px"
-          codeHeight="500px"
-          initialCss={`/* 회전 애니메이션 정의 */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+          scopeId="spinner-variations"
+          previewHeight="400px"
+          codeHeight="600px"
+          initialCss={`@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.spinner-container {
+@keyframes dots {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+.spinners {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  gap: 1rem;
   padding: 2rem;
-  background: #f8f9fa;
+  background: #1e293b;
   border-radius: 12px;
 }
 
-.spinner {
-  border: 4px solid rgba(102, 126, 234, 0.2);
-  border-top: 4px solid #667eea;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 0.8s linear infinite;
+.spinner-box {
+  text-align: center;
+  color: white;
 }
 
-.loading-text {
-  color: #64748b;
-  font-weight: 500;
-}`}
-          initialHtml={`<div class="spinner-container">
-  <div class="spinner"></div>
-  <div class="loading-text">Loading...</div>
-</div>
+.spinner-label {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
 
-<div class="info-box">
-  <strong>스피너 만드는 법:</strong><br/>
-  1. 원형 요소 (border-radius: 50%)<br/>
-  2. 상단만 색상 다르게<br/>
-  3. rotate(360deg) 애니메이션<br/>
-  4. infinite로 무한 반복
+/* 1. Border Spinner (기본) */
+.spinner-border {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 2. Dual Ring (이중 링) */
+.spinner-dual {
+  width: 40px;
+  height: 40px;
+  border: 4px solid transparent;
+  border-top-color: #10b981;
+  border-bottom-color: #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 3. Dots (도트 점프) */
+.spinner-dots {
+  display: flex;
+  gap: 6px;
+}
+.spinner-dots div {
+  width: 12px;
+  height: 12px;
+  background: #f59e0b;
+  border-radius: 50%;
+  animation: dots 1.4s ease-in-out infinite;
+}
+.spinner-dots div:nth-child(2) { animation-delay: 0.16s; }
+.spinner-dots div:nth-child(3) { animation-delay: 0.32s; }`}
+          initialHtml={`<div class="spinners">
+  <div class="spinner-box">
+    <div class="spinner-border"></div>
+    <div class="spinner-label">Border</div>
+  </div>
+  <div class="spinner-box">
+    <div class="spinner-dual"></div>
+    <div class="spinner-label">Dual Ring</div>
+  </div>
+  <div class="spinner-box">
+    <div class="spinner-dots">
+      <div></div><div></div><div></div>
+    </div>
+    <div class="spinner-label">Dots</div>
+  </div>
 </div>`}
         />
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">animation 속성들</h2>
+        <h2 className="section-title">🎬 애니메이션 비교 갤러리</h2>
         <div className="section-description">
           <p>
-            <code>animation</code>은 여러 속성을 축약한 것입니다.
+            자주 쓰이는 다양한 애니메이션 효과들을 한눈에 비교해보세요.
           </p>
-          <ul className="description-list">
-            <li>
-              <strong>animation-name</strong>: @keyframes 이름
-            </li>
-            <li>
-              <strong>animation-duration</strong>: 지속 시간 (1s, 500ms)
-            </li>
-            <li>
-              <strong>animation-timing-function</strong>: 속도 곡선 (linear, ease, ease-in-out)
-            </li>
-            <li>
-              <strong>animation-delay</strong>: 시작 지연 시간
-            </li>
-            <li>
-              <strong>animation-iteration-count</strong>: 반복 횟수 (1, 3, infinite)
-            </li>
-            <li>
-              <strong>animation-direction</strong>: 방향 (normal, reverse, alternate)
-            </li>
-          </ul>
         </div>
-
         <LiveCodeEditor
-          scopeId="animation-properties"
-          previewHeight="400px"
-          codeHeight="550px"
-          initialCss={`@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
+          scopeId="anim-gallery"
+          previewHeight="500px"
+          codeHeight="600px"
+          initialCss={`@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@keyframes rotate { to { transform: rotate(360deg); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #1e1e2e, #2d2d44);
+  border-radius: 16px;
 }
 
-.bounce-box {
-  width: 100px;
-  height: 100px;
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: white;
+}
+
+.gallery-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.gallery-label { font-size: 0.85rem; color: #a1a1aa; }
+
+.bounce-anim .gallery-icon { animation: bounce 1s infinite; }
+.pulse-anim .gallery-icon { animation: pulse 1s infinite; }
+.shake-anim .gallery-icon { animation: shake 0.5s infinite; }
+.rotate-anim .gallery-icon { animation: rotate 2s linear infinite; }
+.float-anim .gallery-icon { animation: float 3s ease-in-out infinite; }`}
+          initialHtml={`<div class="gallery">
+  <div class="gallery-item bounce-anim">
+    <div class="gallery-icon">🚀</div>
+    <div class="gallery-label">Bounce</div>
+  </div>
+  <div class="gallery-item pulse-anim">
+    <div class="gallery-icon">❤️</div>
+    <div class="gallery-label">Pulse</div>
+  </div>
+  <div class="gallery-item shake-anim">
+    <div class="gallery-icon">🔔</div>
+    <div class="gallery-label">Shake</div>
+  </div>
+  <div class="gallery-item rotate-anim">
+    <div class="gallery-icon">⚙️</div>
+    <div class="gallery-label">Rotate</div>
+  </div>
+  <div class="gallery-item float-anim">
+    <div class="gallery-icon">🎈</div>
+    <div class="gallery-label">Float</div>
+  </div>
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">animation 속성 조절 (Interactive)</h2>
+        <div className="section-description">
+          <p>
+            <code>animation</code> 속성을 직접 조절하며 어떻게 움직임이 변하는지 확인해보세요.
+          </p>
+        </div>
+
+        <CssPropertyControls
+          properties={[
+            {
+              name: 'animation-duration',
+              type: 'radio',
+              value: animDuration,
+              onChange: setAnimDuration,
+              options: ['0.5s', '1s', '2s', '3s']
+            },
+            {
+              name: 'animation-timing-function',
+              type: 'select',
+              value: animTiming,
+              onChange: setAnimTiming,
+              options: ['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(0.175, 0.885, 0.32, 1.275)']
+            },
+            {
+              name: 'animation-iteration-count',
+              type: 'radio',
+              value: animIteration,
+              onChange: setAnimIteration,
+              options: ['1', '3', 'infinite']
+            },
+            {
+              name: 'animation-direction',
+              type: 'select',
+              value: animDirection,
+              onChange: setAnimDirection,
+              options: ['normal', 'reverse', 'alternate', 'alternate-reverse']
+            }
+          ]}
+        />
+
+        <LiveCodeEditor
+          scopeId="animation-properties-interactive"
+          previewHeight="400px"
+          codeHeight="550px"
+          initialCss={`@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  25% { transform: rotate(-10deg) translateX(-10px); }
+  75% { transform: rotate(10deg) translateX(10px); }
+}
+
+.wiggle-box {
+  width: 120px;
+  height: 120px;
   background: linear-gradient(135deg, #f093fb, #f5576c);
   border-radius: 12px;
-  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 auto;
   
-  /* 축약형 */
-  animation: bounce 1s ease-in-out infinite;
-  
-  /* 풀어쓰면: */
-  /* animation-name: bounce; */
-  /* animation-duration: 1s; */
-  /* animation-timing-function: ease-in-out; */
-  /* animation-iteration-count: infinite; */
+  /* 위 옵션 버튼들에 연동됩니다 */
+  animation-name: wiggle;
+  animation-duration: ${animDuration};
+  animation-timing-function: ${animTiming};
+  animation-iteration-count: ${animIteration};
+  animation-direction: ${animDirection};
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  min-height: 250px;
   background: #f8f9fa;
   border-radius: 12px;
 }`}
           initialHtml={`<div class="container">
-  <div class="bounce-box"></div>
+  <div class="wiggle-box">🎭</div>
 </div>
 
 <div class="info-box">
-  <strong>bounce 애니메이션:</strong><br/>
-  • 0%: 원래 위치<br/>
-  • 50%: 30px 위로<br/>
-  • 100%: 다시 원래 위치<br/>
-  • infinite로 계속 반복
+  <strong>직접 조절해보세요:</strong><br/>
+  • <strong>Duration</strong>: 애니메이션이 한 주기 도는 시간<br/>
+  • <strong>Timing</strong>: 속도 감속/가속 (Cubic-bezier는 팅기는 효과가 있습니다)<br/>
+  • <strong>Iteration</strong>: 반복 횟수<br/>
+  • <strong>Direction</strong>: 정방향, 역방향, 왔다갔다(Alternate) 등
 </div>`}
         />
       </section>
@@ -471,7 +564,7 @@ function AnimationsStudy() {
   color: white;
   font-weight: 600;
   animation: fadeOut 2s ease-out forwards;
-}`}
+} `}
           initialHtml={`<div class="fade-container">
   <div class="fade-in-box">Fade In</div>
   <div class="fade-out-box">Fade Out</div>
@@ -545,7 +638,7 @@ function AnimationsStudy() {
 
 .pulse-btn:hover {
   animation: pulse 0.6s ease-in-out infinite;
-}`}
+} `}
           initialHtml={`<div class="hover-container">
   <button class="shake-btn">Hover me (Shake)</button>
   <button class="pulse-btn">Hover me (Pulse)</button>
@@ -628,7 +721,7 @@ function AnimationsStudy() {
 .card-back {
   background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
   transform: rotateY(180deg); /* 뒤집힌 상태로 대기 */
-}`}
+} `}
           initialHtml={`<div class="card-container">
   <div class="flip-card">
     <div class="flip-card-inner">

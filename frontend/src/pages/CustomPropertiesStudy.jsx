@@ -129,6 +129,105 @@ function CustomPropertiesStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">다크 모드 구현 (Theming)</h2>
+        <div className="section-description">
+          <p>
+            CSS 변수를 활용한 가장 대표적인 사례가 바로 다크 모드입니다.
+            상위 요소의 클래스나 속성이 바뀔 때 변수 값만 한꺼번에 교체하는 원리입니다.
+          </p>
+        </div>
+
+        <div className="info-box">
+          <strong>💡 핵심 전략:</strong><br />
+          1. <code>:root</code>에 기본(Light) 색상 변수를 정의한다.<br />
+          2. 특정 클래스(예: <code>.dark-mode</code>) 내부에서 해당 변수 값을 재정의한다.<br />
+          3. 컴포넌트들은 변수 이름만 사용하여 스타일을 지정한다.
+        </div>
+
+        <LiveCodeEditor
+          scopeId="dark-mode-demo"
+          previewHeight="450px"
+          codeHeight="650px"
+          initialCss={`.theme-container {
+  /* 1. 라이트 모드 변수 정의 */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-sub: #64748b;
+  --accent: #667eea;
+  
+  padding: 3rem;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  min-height: 250px;
+  border-radius: 12px;
+  transition: all 0.4s ease; /* 전환을 부드럽게! */
+}
+
+/* 2. 다크 모드 변수 재정의 */
+.theme-container.dark-mode {
+  --bg-page: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --accent: #818cf8;
+}
+
+.profile-card {
+  background-color: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.profile-name {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.profile-bio {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+}
+
+.toggle-btn {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.toggle-btn:hover {
+  opacity: 0.9;
+}`}
+          initialHtml={`<div id="target-container" class="theme-container">
+  <div class="profile-card">
+    <h3 class="profile-name">김테크 님 ✨</h3>
+    <p class="profile-bio">CSS 변수로 만드는 환상적인 다크모드 세계에 오신 것을 환영합니다!</p>
+  </div>
+  
+  <button class="toggle-btn" onclick="document.getElementById('target-container').classList.toggle('dark-mode')">
+    테마 전환하기 🌗
+  </button>
+</div>
+
+<div class="info-box" style="margin-top: 2rem;">
+  <strong>확인해보세요:</strong><br/>
+  • [테마 전환하기] 버튼을 누를 때마다 클래스가 바뀌며 변수값이 업데이트됩니다.<br/>
+  • <code>transition</code> 덕분에 배경색과 글자색이 부드럽게 페이드 됩니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

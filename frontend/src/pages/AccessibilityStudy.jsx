@@ -9,31 +9,86 @@ function AccessibilityStudy() {
     <div className="page-container">
       <div className="page-header">
         <h1 className="page-title">Accessibility (A11y)</h1>
-        <p className="page-subtitle">Ensuring your web content is usable by everyone</p>
+        <p className="page-subtitle">모든 사용자를 위한 포용적인 웹 인터페이스 설계</p>
       </div>
 
       <section className="study-section">
         <h2 className="section-title">CSS와 웹 접근성</h2>
         <div className="section-description">
           <p>
-            웹 접근성은 장애 여부와 상관없이 <strong>모든 사용자가 동등하게</strong> 웹에 접근할 수 있게 하는 것입니다. 
+            웹 접근성은 장애 여부와 상관없이 <strong>모든 사용자가 동등하게</strong> 웹에 접근할 수 있게 하는 것입니다.
             CSS는 시각적 대비, 포커스 상태 제어 등을 통해 접근성을 개선하는 데 핵심적인 역할을 합니다.
           </p>
-          <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
-            <li><strong>시각적 대비</strong>: 텍스트와 배경의 충분한 대비 (WCAG 기준)</li>
-            <li><strong>포커스 표시</strong>: 키보드 사용자를 위한 명확한 인디케이터</li>
-            <li><strong>상태 표시</strong>: 시각적 장식만이 아닌 상태 정보 전달</li>
-            <li><strong>사용자 선호도</strong>: 다크모드, 애니메이션 감소 유무 대응</li>
+          <ul className="description-list">
+            <li><strong>시각적 대비</strong>: 텍스트와 배경의 충분한 대비 (WCAG AA 이상 권장)</li>
+            <li><strong>포커스 표시</strong>: 키보드 사용자가 현재 위치를 알 수 있는 명확한 인디케이터</li>
+            <li><strong>사용자 선호도</strong>: 다크모드, 애니메이션 감소 유무 등 시스템 설정 대응</li>
+            <li><strong>의미론적 마크업</strong>: 적절한 태그와 ARIA 속성 사용</li>
           </ul>
         </div>
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">:focus-visible (키보드 사용자 배려)</h2>
-        <p className="section-description">
-          마우스 클릭 시에는 포커스 링을 숨기고, <strong>키보드 Tab 이동 시에만</strong> 명확한 포커스 스타일을 보여줍니다.
-        </p>
+        <h2 className="section-title">Semantic HTML vs Div Soup</h2>
+        <div className="section-description">
+          <p>
+            올바른 태그(예: <code>&lt;button&gt;</code>)를 쓰는 것만으로도 수많은 접근성 문제를 자동으로 해결할 수 있습니다.
+          </p>
+        </div>
+        <LiveCodeEditor
+          scopeId="a11y-semantic-vs-div"
+          previewHeight="350px"
+          codeHeight="500px"
+          initialCss={`.btn-base {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 5px;
+  font-weight: bold;
+}
 
+.real-button {
+  background: #667eea;
+  color: white;
+  border: none;
+}
+
+.fake-button {
+  background: #cbd5e1;
+  color: #1e293b;
+}
+
+/* 포커스 스타일 */
+.real-button:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+`}
+          initialHtml={`<div style="background: white; padding: 2rem; border-radius: 8px;">
+  <button class="btn-base real-button" onclick="alert('Real Button!')">
+    진짜 버튼 (button 태그)
+  </button>
+  
+  <div class="btn-base fake-button" onclick="alert('Fake Button!')">
+    가짜 버튼 (div 태그)
+  </div>
+</div>
+
+<div class="info-box" style="margin-top: 2rem;">
+  <strong>실습해보세요:</strong><br/>
+  1. <strong>Tab 키</strong>를 눌러보세요. 진짜 버튼만 포커스가 잡힙니다.<br/>
+  2. 진짜 버튼에 포커스 후 <strong>Enter</strong>를 쳐보세요. 클릭 이벤트가 발생합니다.<br/>
+  3. 가짜 버튼은 키보드로 접근 자체가 불가능하며, <code>tabindex</code>와 <code>keydown</code> 핸들러를 일일이 직접 구현해야 합니다.
+</div>`}
+        />
+      </section>
+
+      <section className="study-section">
+        <h2 className="section-title">:focus-visible (키보드 배려)</h2>
+        <div className="section-description">
+          <p>마우스 클릭 시에는 포커스 링을 숨기고, <strong>Tab 이동 시에만</strong> 인디케이터를 보여주어 디자인과 접근성을 모두 잡습니다.</p>
+        </div>
         <CssPropertyControls
           properties={[
             {
@@ -48,189 +103,104 @@ function AccessibilityStudy() {
             }
           ]}
         />
-
         <LiveCodeEditor
-          scopeId="focus-visible-a11y"
-          height="350px"
+          scopeId="focus-visible-demo"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.a11y-btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   background: #3b82f6;
   color: white;
   border: none;
   border-radius: 6px;
-  font-weight: 600;
   cursor: pointer;
-  margin: 0.5rem;
 }
 
 ${focusStyle === 'custom' ? `
-/* 키보드로 접근할 때만 강력한 포커스 표시 */
+/* 키보드 접근 시에만 작동 */
 .a11y-btn:focus-visible {
   outline: 4px solid #f59e0b;
   outline-offset: 4px;
 }
-
-/* 마우스 클릭 시에는 포커스 링 제거 */
-.a11y-btn:focus:not(:focus-visible) {
-  outline: none;
-}
 ` : ''}`}
           initialHtml={`<div style="background: white; padding: 2rem; border-radius: 8px;">
-  <button class="a11y-btn">Try Tab Navigation</button>
-  <button class="a11y-btn">Another Button</button>
-</div>
-
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>테스트 방법:</strong><br/>
-  1. 마우스로 버튼을 클릭해보세요.<br/>
-  2. <strong>Tab 키</strong>를 눌러 버튼 사이를 이동해보세요.
+  <button class="a11y-btn">Tab으로 이동해보세요</button>
 </div>`}
         />
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">Color Contrast (명도 대비)</h2>
-        <p className="section-description">
-          텍스트와 배경 사이의 명도 대비는 최소 <strong>4.5:1</strong> (AA 등급) 이상이어야 합니다.
-        </p>
-
+        <h2 className="section-title">ARIA States (aria-expanded)</h2>
+        <div className="section-description">
+          <p>보조 공학 기기(스크린 리더)에게 요소의 <strong>현재 상태(열림/닫힘 등)</strong>를 명확히 전달합니다.</p>
+        </div>
         <LiveCodeEditor
-          scopeId="contrast-a11y"
-          height="350px"
-          initialCss={`.contrast-box {
-  padding: 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.bad-contrast {
+          scopeId="a11y-aria-states"
+          previewHeight="350px"
+          codeHeight="500px"
+          initialCss={`.accordion-btn {
+  width: 100%;
+  padding: 1rem;
   background: #f1f5f9;
-  color: #94a3b8; /* 대비 2.1:1 (탈락) */
-}
-
-.good-contrast {
-  background: #f1f5f9;
-  color: #1e293b; /* 대비 13:1 (통과) */
-}
-
-.wcag-marker {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  margin-left: 0.5rem;
-}
-
-.fail { background: #fee2e2; color: #ef4444; }
-.pass { background: #dcfce7; color: #10b981; }`}
-          initialHtml={`<div style="background: white; padding: 1.5rem; border-radius: 8px;">
-  <div class="contrast-box bad-contrast">
-    Low Contrast Text <span class="wcag-marker fail">FAIL (WCAG AA)</span>
-  </div>
-  
-  <div class="contrast-box good-contrast">
-    High Contrast Text <span class="wcag-marker pass">PASS (WCAG AAA)</span>
-  </div>
-</div>
-
-<div style="margin-top: 1rem; color: #1e293b; background: #fef3c7; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  저시력자나 고령자를 위해 명확한 색상 대비를 사용하는 것은 필수입니다.
-</div>`}
-        />
-      </section>
-
-      <section className="study-section">
-        <h2 className="section-title">Screen Reader Only (텍스트 숨기기)</h2>
-        <p className="section-description">
-          시각적으로는 숨기되, <strong>스크린 리더(음성 읽기 도구)</strong> 사용자에게는 정보를 제공해야 할 때 사용합니다.
-        </p>
-
-        <LiveCodeEditor
-          scopeId="sr-only-a11y"
-          height="400px"
-          initialCss={`.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.icon-button {
-  width: 48px;
-  height: 48px;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  text-align: left;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   cursor: pointer;
-  font-size: 1.5rem;
 }
 
-.icon-button:hover { background: #e2e8f0; }`}
-          initialHtml={`<div style="background: white; padding: 2rem; border-radius: 8px; display: flex; gap: 1rem; align-items: center;">
-  <button class="icon-button" title="Close">
-    ✕
-    <span class="sr-only">닫기 (Close Context)</span>
+.content {
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+}
+
+/* 상태에 따른 시각적 표시 */
+.accordion-btn[aria-expanded="true"] span::after { content: '▲'; }
+.accordion-btn[aria-expanded="false"] span::after { content: '▼'; }
+
+.hidden { display: none; }`}
+          initialHtml={`<div class="accordion">
+  <button class="accordion-btn" aria-expanded="false" onclick="
+    const isOpen = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !isOpen);
+    document.getElementById('acc-content').classList.toggle('hidden');
+  ">
+    <span>질문: 접근성이란 무엇인가요?</span>
+    <span></span>
   </button>
-  
-  <p style="color: #64748b; margin: 0;">
-    버튼 내부의 텍스트가 눈에는 보이지 않지만,<br/> 
-    스크린 리더는 "닫기"라고 읽어줍니다.
-  </p>
+  <div id="acc-content" class="content hidden">
+    차별 없이 누구나 정보를 이용할 수 있는 상태를 말합니다.
+  </div>
 </div>
 
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <code>display: none</code>을 사용하면 스크린 리더도 읽지 못하므로 주의하세요!
+<div class="info-box">
+  <code>aria-expanded</code> 값은 시각적인 변화뿐만 아니라, 스크린 리더가 "버튼, 축소됨" 또는 "버튼, 확장됨"이라고 읽어주게 하여 사용자에게 구조를 알려줍니다.
 </div>`}
         />
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">User Preference (사용자 선호도)</h2>
-        <p className="section-description">
-          다크모드 선호나 애니메이션 감소 요청 등 시스템 설정을 존중합니다.
-        </p>
-
+        <h2 className="section-title">User Preference (미디어 쿼리)</h2>
+        <div className="section-description">
+          <p>사용자의 시스템 설정을 존중하여 배려심 깊은 UI를 만듭니다.</p>
+        </div>
         <LiveCodeEditor
-          scopeId="media-features-a11y"
-          height="400px"
-          initialCss={`/* 1. 다크 모드 대응 */
-@media (prefers-color-scheme: dark) {
-  .theme-box {
-    background: #1e293b !important;
-    color: #f1f5f9 !important;
-  }
-}
-
-/* 2. 애니메이션 감소 선호 대응 */
+          scopeId="a11y-user-pref"
+          previewHeight="350px"
+          codeHeight="500px"
+          initialCss={`/* 1. 애니메이션 줄이기 설정 대응 */
 @media (prefers-reduced-motion: reduce) {
   .motion-box {
     animation: none !important;
-    transition: none !important;
   }
 }
 
-.theme-box {
-  padding: 1.5rem;
-  background: #ffffff;
-  color: #1e293b;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  margin-bottom: 1rem;
-}
-
 .motion-box {
-  width: 80px;
-  height: 80px;
-  background: #3b82f6;
+  width: 100px;
+  height: 100px;
+  background: #667eea;
   border-radius: 12px;
   animation: bounce 2s infinite;
 }
@@ -239,20 +209,12 @@ ${focusStyle === 'custom' ? `
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }`}
-          initialHtml={`<div style="background: #f8fafc; padding: 2rem; border-radius: 8px;">
-  <div class="theme-box">
-    🖥️ 시스템 설정에 따라 테마가 바뀝니다 (Light/Dark)
-  </div>
-  
+          initialHtml={`<div style="background: white; padding: 2rem; border-radius: 8px;">
   <div class="motion-box"></div>
   <p style="margin-top: 1rem; color: #64748b;">
-    OS의 '애니메이션 줄이기' 설정이 켜져있으면 위 박스가 멈춥니다.
+    OS 설정에서 '애니메이션 감소'를 켜면 이 상자는 멈춥니다.<br/>
+    (어지럼증 예방)
   </p>
-</div>
-
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>prefers-color-scheme</strong>: 테마 설정 감지<br/>
-  <strong>prefers-reduced-motion</strong>: 어지럼증을 느끼는 사용자를 위한 애니메이션 제어
 </div>`}
         />
       </section>

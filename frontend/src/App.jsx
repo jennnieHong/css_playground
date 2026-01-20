@@ -4,7 +4,6 @@ import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import FlexboxStudy from './pages/FlexboxStudy';
 import GridStudy from './pages/GridStudy';
-import AnimationStudy from './pages/AnimationStudy';
 import ResponsiveStudy from './pages/ResponsiveStudy';
 import CustomPropertiesStudy from './pages/CustomPropertiesStudy';
 import CssArchitectureStudy from './pages/CssArchitectureStudy';
@@ -23,9 +22,12 @@ import AccessibilityStudy from './pages/AccessibilityStudy';
 import PerformanceStudy from './pages/PerformanceStudy';
 import LogicalPropertiesStudy from './pages/LogicalPropertiesStudy';
 import ModernSelectorsStudy from './pages/ModernSelectorsStudy';
+import PracticeChallenge from './pages/PracticeChallenge';
 import HeightStudy from './pages/HeightStudy';
-import AnimationsStudy from './pages/AnimationsStudy';
+import AnimationStudy from './pages/AnimationStudy';
+import AnimationsStudy2 from './pages/AnimationsStudy2';
 import UnitsStudy from './pages/UnitsStudy';
+import HidingMethodsStudy from './pages/HidingMethodsStudy';
 import './styles/main.css';
 import './styles/navigation.css';
 import './styles/components.css';
@@ -47,7 +49,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/flexbox" element={<FlexboxStudy />} />
             <Route path="/grid" element={<GridStudy />} />
-            <Route path="/animation" element={<AnimationStudy />} />
+            <Route path="/animation-old" element={<AnimationStudy />} />
+            <Route path="/animation-new" element={<AnimationsStudy2 />} />
             <Route path="/responsive" element={<ResponsiveStudy />} />
             <Route path="/custom-properties" element={<CustomPropertiesStudy />} />
             <Route path="/architecture" element={<CssArchitectureStudy />} />
@@ -62,7 +65,8 @@ function App() {
             <Route path="/typography" element={<TypographyStudy />} />
             <Route path="/units" element={<UnitsStudy />} />
             <Route path="/height" element={<HeightStudy />} />
-            <Route path="/animations" element={<AnimationsStudy />} />
+            <Route path="/animations" element={<AnimationsStudy2 />} />
+            <Route path="/hiding" element={<HidingMethodsStudy />} />
             {/* Interaction */}
             <Route path="/interaction" element={<InteractionStudy />} />
             <Route path="/forms" element={<FormStudy />} />
@@ -73,6 +77,7 @@ function App() {
             <Route path="/pseudo-elements" element={<PseudoElementStudy />} />
             <Route path="/performance" element={<PerformanceStudy />} />
             <Route path="/selectors" element={<ModernSelectorsStudy />} />
+            <Route path="/challenge" element={<PracticeChallenge />} />
           </Routes>
         </main>
       </div>
