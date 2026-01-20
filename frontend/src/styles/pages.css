@@ -415,3 +415,40 @@
     font-size: 1.5rem;
   }
 }
+
+/* Description Content Styles */
+.description-list {
+  margin-top: 0.5rem;
+  line-height: 1.8;
+}
+
+.description-list li {
+  margin-bottom: 0.5rem;
+}
+
+.example-text {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.highlight-box {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.info-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  color: #856404;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.info-box strong {
+  color: #664d03;
+}

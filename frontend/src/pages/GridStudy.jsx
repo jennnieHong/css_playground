@@ -159,7 +159,7 @@ function GridStudy() {
         <h2 className="section-title">Grid Template Areas (영역 레이아웃)</h2>
         <div className="section-description">
           <p>
-            <code>grid-template-areas</code>는 그리드 레이아웃을 <strong>시각적으로 정의</strong>하는 강력한 방법입니다. 
+            <code>grid-template-areas</code>는 그리드 레이아웃을 <strong>시각적으로 정의</strong>하는 강력한 방법입니다.
             문자열로 영역 이름을 작성하여 직관적으로 레이아웃 구조를 표현할 수 있습니다.
           </p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.8' }}>
@@ -622,7 +622,8 @@ function GridStudy() {
         </p>
         <LiveCodeEditor
           scopeId="grid-gallery"
-          height="500px"
+          previewHeight="600px"
+          codeHeight="500px"
           initialCss={`.gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

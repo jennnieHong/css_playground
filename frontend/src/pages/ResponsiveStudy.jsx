@@ -18,7 +18,7 @@ function ResponsiveStudy() {
           <p>
             반응형 디자인은 단순히 Media Query를 넘어 더 정교한 기술로 진화했습니다:
           </p>
-          <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
+          <ul className="description-list">
             <li><strong>Media Queries</strong>: 뷰포트 크기 기반 (전통적)</li>
             <li><strong>Fluid Units</strong>: %, vw, vh로 유연한 크기</li>
             <li><strong>clamp()</strong>: 최소/최대 값을 가진 유동적 크기</li>
@@ -124,19 +124,44 @@ function ResponsiveStudy() {
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">min() & max()</h2>
-        <p className="section-description">
-          여러 값 중 최소/최대값을 선택합니다. 반응형 레이아웃에 매우 유용합니다.
-        </p>
+        <h2 className="section-title">min() & max() - 조건부 크기 제어</h2>
+        <div className="section-description">
+          <p>
+            <code>min()</code>과 <code>max()</code>는 여러 값 중에서 자동으로 선택해주는 똑똑한 함수입니다.
+          </p>
+          <ul className="description-list">
+            <li>
+              <strong>min(A, B)</strong>: A와 B 중 <strong>작은 값</strong>을 선택
+              <br />
+              <span className="example-text">
+                → 예: <code>width: min(90vw, 600px)</code> = "화면이 작으면 90vw, 크면 600px로 제한"
+              </span>
+            </li>
+            <li>
+              <strong>max(A, B)</strong>: A와 B 중 <strong>큰 값</strong>을 선택
+              <br />
+              <span className="example-text">
+                → 예: <code>min-height: max(300px, 50vh)</code> = "최소 300px는 보장, 화면이 크면 50vh"
+              </span>
+            </li>
+          </ul>
+          <p className="highlight-box">
+            💡 <strong>핵심 개념</strong>: 미디어 쿼리 없이도 "최대 너비 제한" 또는 "최소 높이 보장"을 구현할 수 있습니다!
+          </p>
+        </div>
 
         <LiveCodeEditor
           scopeId="min-max"
           previewHeight="700px" codeHeight="500px"
           initialCss={`.min-max-demo {
-  /* 뷰포트의 90% 또는 600px 중 작은 값 */
+  /* min(): 두 값 중 작은 값 선택 */
+  /* 작은 화면: 90vw (화면의 90%) */
+  /* 큰 화면: 600px (최대 너비 제한) */
   width: min(90vw, 600px);
   
-  /* 최소 높이: 300px 또는 뷰포트 높이의 50% 중 큰 값 */
+  /* max(): 두 값 중 큰 값 선택 */
+  /* 작은 화면: 300px (최소 높이 보장) */
+  /* 큰 화면: 50vh (화면 높이의 50%) */
   min-height: max(300px, 50vh);
   
   margin: 0 auto;
@@ -148,15 +173,25 @@ function ResponsiveStudy() {
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  text-align: center;
+  flex-direction: column;
+  gap: 1rem;
 }`}
           initialHtml={`<div class="min-max-demo">
-  width: min(90vw, 600px)<br/>
-  min-height: max(300px, 50vh)
+  <div>
+    <strong>width: min(90vw, 600px)</strong><br/>
+    → 화면 너비의 90% 또는 600px 중 작은 값
+  </div>
+  <div>
+    <strong>min-height: max(300px, 50vh)</strong><br/>
+    → 300px 또는 화면 높이의 50% 중 큰 값
+  </div>
 </div>
 
 <div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>min():</strong> 작은 화면에서는 90vw, 큰 화면에서는 600px로 제한<br/>
-  <strong>max():</strong> 최소한 300px는 유지
+  <strong>브라우저 크기를 조절해보세요!</strong><br/>
+  • 작은 화면: 너비가 화면에 맞춰 줄어들고, 높이는 최소 300px 유지<br/>
+  • 큰 화면: 너비는 600px로 제한되고, 높이는 화면의 50%로 증가
 </div>`}
         />
       </section>

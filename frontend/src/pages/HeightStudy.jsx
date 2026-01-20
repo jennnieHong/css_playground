@@ -1,0 +1,340 @@
+import LiveCodeEditor from '../components/LiveCodeEditor';
+
+function HeightStudy() {
+    return (
+        <div className="page-container">
+            <div className="page-header">
+                <h1 className="page-title">Height & Sizing</h1>
+                <p className="page-subtitle">Container 높이 계산 규칙: %, px, auto, vh의 차이점</p>
+            </div>
+
+            <section className="study-section">
+                <h2 className="section-title">높이 단위 기본</h2>
+                <div className="section-description">
+                    <p>
+                        CSS에서 높이를 설정하는 방법은 여러 가지가 있으며, 각각 다르게 동작합니다.
+                    </p>
+                    <ul className="description-list">
+                        <li><strong>px (픽셀)</strong>: 고정된 절대 크기</li>
+                        <li><strong>% (퍼센트)</strong>: 부모 요소의 높이를 기준으로 계산</li>
+                        <li><strong>vh (뷰포트 높이)</strong>: 브라우저 창 높이의 백분율</li>
+                        <li><strong>auto (자동)</strong>: 내부 콘텐츠에 맞춰 자동 계산</li>
+                    </ul>
+                </div>
+
+                <LiveCodeEditor
+                    scopeId="height-units"
+                    previewHeight="500px"
+                    codeHeight="400px"
+                    initialCss={`.container {
+  border: 3px solid #667eea;
+  margin-bottom: 1rem;
+  background: #f8f9fa;
+}
+
+.px-height {
+  height: 200px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.vh-height {
+  height: 30vh;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.auto-height {
+  height: auto;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  padding: 2rem;
+  font-weight: 600;
+  text-align: center;
+}`}
+                    initialHtml={`<div class="container">
+  <div class="px-height">
+    height: 200px (고정 크기)
+  </div>
+</div>
+
+<div class="container">
+  <div class="vh-height">
+    height: 30vh (뷰포트의 30%)
+  </div>
+</div>
+
+<div class="container">
+  <div class="auto-height">
+    height: auto<br/>
+    (내용물에 맞춰 자동 조정)
+  </div>
+</div>`}
+                />
+            </section>
+
+            <section className="study-section">
+                <h2 className="section-title">퍼센트 높이의 함정</h2>
+                <div className="section-description">
+                    <p>
+                        <strong>중요:</strong> <code>height: 50%</code>가 작동하려면 <strong>부모 요소에 명시적인 높이</strong>가 있어야 합니다!
+                    </p>
+                    <p className="highlight-box">
+                        💡 <strong>핵심 규칙</strong>: 부모가 <code>height: auto</code>면 자식의 <code>%</code> 높이는 무시됩니다.
+                    </p>
+                </div>
+
+                <LiveCodeEditor
+                    scopeId="percent-height"
+                    previewHeight="600px"
+                    codeHeight="500px"
+                    initialCss={`/* ❌ 작동하지 않음: 부모에 높이 없음 */
+.parent-no-height {
+  border: 3px dashed #e74c3c;
+  background: #ffe6e6;
+  margin-bottom: 2rem;
+}
+
+.child-percent-fail {
+  height: 50%;
+  background: #e74c3c;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* ✅ 작동함: 부모에 명시적 높이 */
+.parent-with-height {
+  height: 300px;
+  border: 3px solid #27ae60;
+  background: #e8f8f5;
+  margin-bottom: 2rem;
+}
+
+.child-percent-success {
+  height: 50%;
+  background: #27ae60;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}`}
+                    initialHtml={`<div class="parent-no-height">
+  <div class="child-percent-fail">
+    ❌ height: 50% (작동 안 함)<br/>
+    부모에 높이가 없어서 무시됨
+  </div>
+</div>
+
+<div class="parent-with-height">
+  <div class="child-percent-success">
+    ✅ height: 50% (150px)<br/>
+    부모 높이(300px)의 50%
+  </div>
+</div>`}
+                />
+            </section>
+
+            <section className="study-section">
+                <h2 className="section-title">Auto 높이: 자식 요소의 합</h2>
+                <div className="section-description">
+                    <p>
+                        <code>height: auto</code>인 컨테이너는 <strong>자식 요소들의 높이 합</strong>으로 자동 계산됩니다.
+                    </p>
+                    <ul className="description-list">
+                        <li>자식들이 <code>px</code>, <code>rem</code> 등 절대 단위 → 합산</li>
+                        <li>자식이 <code>margin</code>을 가지면 → 마진도 포함</li>
+                        <li>자식이 <code>position: absolute</code> → 높이 계산에서 제외</li>
+                    </ul>
+                </div>
+
+                <LiveCodeEditor
+                    scopeId="auto-height"
+                    previewHeight="600px"
+                    codeHeight="500px"
+                    initialCss={`.auto-container {
+  height: auto;
+  border: 3px solid #3498db;
+  background: #ebf5fb;
+  padding: 1rem;
+}
+
+.child-box {
+  height: 80px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.child-box:last-child {
+  margin-bottom: 0;
+}
+
+.info-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+}`}
+                    initialHtml={`<div class="auto-container">
+  <div class="child-box">Box 1 (80px)</div>
+  <div class="child-box">Box 2 (80px)</div>
+  <div class="child-box">Box 3 (80px)</div>
+</div>
+
+<div class="info-box">
+  <strong>컨테이너 높이 계산:</strong><br/>
+  80px + 1rem(margin) + 80px + 1rem + 80px + 2rem(padding) = 자동 계산
+</div>`}
+                />
+            </section>
+
+            <section className="study-section">
+                <h2 className="section-title">Flexbox에서의 높이</h2>
+                <div className="section-description">
+                    <p>
+                        Flexbox는 높이 계산 방식이 다릅니다. <code>flex-grow</code>와 <code>flex-shrink</code>로 유연하게 조절됩니다.
+                    </p>
+                </div>
+
+                <LiveCodeEditor
+                    scopeId="flex-height"
+                    previewHeight="600px"
+                    codeHeight="500px"
+                    initialCss={`.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  border: 3px solid #9b59b6;
+  background: #f4ecf7;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.flex-fixed {
+  height: 100px;
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.flex-grow {
+  flex-grow: 1;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+}`}
+                    initialHtml={`<div class="flex-container">
+  <div class="flex-fixed">
+    고정 높이: 100px
+  </div>
+  <div class="flex-grow">
+    flex-grow: 1<br/>
+    (남은 공간 모두 차지)
+  </div>
+  <div class="flex-fixed">
+    고정 높이: 100px
+  </div>
+</div>`}
+                />
+            </section>
+
+            <section className="study-section">
+                <h2 className="section-title">100% 높이가 안 될 때</h2>
+                <div className="section-description">
+                    <p>
+                        가장 흔한 실수: <code>height: 100%</code>를 사용했는데 작동하지 않는 경우
+                    </p>
+                    <p className="highlight-box">
+                        💡 <strong>해결책</strong>: 모든 부모 요소에 <code>height: 100%</code>를 설정하거나, <code>vh</code> 단위를 사용하세요.
+                    </p>
+                </div>
+
+                <LiveCodeEditor
+                    scopeId="full-height"
+                    previewHeight="600px"
+                    codeHeight="500px"
+                    initialCss={`/* ❌ 작동 안 함 */
+.wrong-full-height {
+  height: 100%;
+  background: #e74c3c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* ✅ 해결책 1: vh 사용 */
+.correct-vh {
+  height: 50vh;
+  background: linear-gradient(135deg, #27ae60, #229954);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+/* ✅ 해결책 2: 부모에 명시적 높이 */
+.parent-explicit {
+  height: 300px;
+  border: 3px solid #3498db;
+  background: #ebf5fb;
+}
+
+.child-100-percent {
+  height: 100%;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}`}
+                    initialHtml={`<div class="wrong-full-height">
+  ❌ height: 100% (작동 안 함)
+</div>
+
+<div class="correct-vh">
+  ✅ height: 50vh (뷰포트의 50%)
+</div>
+
+<div class="parent-explicit">
+  <div class="child-100-percent">
+    ✅ height: 100% (부모가 300px)
+  </div>
+</div>`}
+                />
+            </section>
+        </div>
+    );
+}
+
+export default HeightStudy;

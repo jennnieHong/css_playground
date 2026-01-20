@@ -60,12 +60,14 @@ db.serialize(() => {
     { title: 'Visual & Design', path: null, parent_id: null, order_index: 4, icon: '🎨' },
     { title: 'Colors & Backgrounds', path: '/colors', parent_id: 20, order_index: 1, icon: '🌈' },
     { title: 'Typography', path: '/typography', parent_id: 20, order_index: 2, icon: '✍️' },
+    { title: 'Units & Sizing', path: '/units', parent_id: 20, order_index: 3, icon: '📏' },
+    { title: 'Height & Sizing', path: '/height', parent_id: 20, order_index: 4, icon: '📐' },
 
     // Interaction Group
     { title: 'Interaction', path: null, parent_id: null, order_index: 5, icon: '👆' },
-    { title: 'States & Pseudo-classes', path: '/interaction', parent_id: 23, order_index: 1, icon: '🔄' },
-    { title: 'Form Styling', path: '/forms', parent_id: 23, order_index: 2, icon: '📝' },
-    { title: 'Accessibility (A11y)', path: '/accessibility', parent_id: 23, order_index: 3, icon: '♿' }
+    { title: 'States & Pseudo-classes', path: '/interaction', parent_id: 25, order_index: 1, icon: '🔄' },
+    { title: 'Form Styling', path: '/forms', parent_id: 25, order_index: 2, icon: '📝' },
+    { title: 'Accessibility (A11y)', path: '/accessibility', parent_id: 25, order_index: 3, icon: '♿' }
   ];
 
   console.log('\nAdding all menus...\n');
@@ -76,7 +78,7 @@ db.serialize(() => {
   `);
 
   initialMenus.forEach((menu, index) => {
-    stmt.run(menu.title, menu.path, menu.parent_id, menu.order_index, menu.icon, function(err) {
+    stmt.run(menu.title, menu.path, menu.parent_id, menu.order_index, menu.icon, function (err) {
       if (err) {
         console.error(`Error inserting ${menu.title}:`, err);
       } else {
@@ -91,7 +93,7 @@ db.serialize(() => {
     } else {
       console.log('\n✅ Database reset complete!');
       console.log('✅ All menus added successfully!\n');
-      console.log('📋 Total: 5 groups, 17 study pages\n');
+      console.log('📋 Total: 5 groups, 19 study pages\n');
     }
 
     db.close((err) => {
