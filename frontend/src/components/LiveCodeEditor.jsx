@@ -28,10 +28,41 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
   // Apply CSS to the preview area
   useEffect(() => {
     if (styleRef.current) {
+      // Helper to extract at-rules (like @keyframes) that cannot be nested
+      const extractAtRules = (css) => {
+        let keyframes = '';
+        let other = '';
+        let remaining = css;
+        const keyframeRegex = /@keyframes\s+[\w-]+\s*\{/g;
+        let match;
+        let lastIndex = 0;
+
+        while ((match = keyframeRegex.exec(remaining)) !== null) {
+          other += remaining.substring(lastIndex, match.index);
+          let braceCount = 1;
+          let i = match.index + match[0].length;
+          while (i < remaining.length && braceCount > 0) {
+            if (remaining[i] === '{') braceCount++;
+            else if (remaining[i] === '}') braceCount--;
+            i++;
+          }
+          keyframes += remaining.substring(match.index, i) + '\n';
+          lastIndex = i;
+        }
+        other += remaining.substring(lastIndex);
+        return { keyframes, other };
+      };
+
+      const { keyframes, other } = extractAtRules(appliedCss);
+
       // Use CSS Nesting for perfect scoping without breaking sibling/descendant selectors
-      const scopedCss = `#${scopeId} {
-        ${appliedCss}
-      }`;
+      // But keep @keyframes at the top level
+      const scopedCss = `
+        ${keyframes}
+        #${scopeId} {
+          ${other}
+        }
+      `;
       styleRef.current.textContent = scopedCss;
     }
   }, [appliedCss, scopeId]);
@@ -180,9 +211,9 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
             }}>
               <style ref={styleRef}></style>
               {initialHtml ? (
-                <div dangerouslySetInnerHTML={{ __html: appliedHtml }} />
+                <div key={appliedCss + appliedHtml} dangerouslySetInnerHTML={{ __html: appliedHtml }} />
               ) : (
-                preview
+                <div key={appliedCss}>{preview}</div>
               )}
             </div>
           </div>

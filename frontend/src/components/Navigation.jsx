@@ -60,7 +60,10 @@ function Navigation({ isCollapsed, onToggle }) {
         <div className="nav-header">
           <h1 className="nav-logo">CSS Study</h1>
         </div>
-        <div className="nav-loading">Loading...</div>
+        <div className="nav-loading">
+          <div className="spinner"></div>
+          <span>Loading...</span>
+        </div>
       </nav>
     );
   }

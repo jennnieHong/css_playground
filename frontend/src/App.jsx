@@ -24,6 +24,7 @@ import PerformanceStudy from './pages/PerformanceStudy';
 import LogicalPropertiesStudy from './pages/LogicalPropertiesStudy';
 import ModernSelectorsStudy from './pages/ModernSelectorsStudy';
 import HeightStudy from './pages/HeightStudy';
+import AnimationsStudy from './pages/AnimationsStudy';
 import UnitsStudy from './pages/UnitsStudy';
 import './styles/main.css';
 import './styles/navigation.css';
@@ -61,6 +62,7 @@ function App() {
             <Route path="/typography" element={<TypographyStudy />} />
             <Route path="/units" element={<UnitsStudy />} />
             <Route path="/height" element={<HeightStudy />} />
+            <Route path="/animations" element={<AnimationsStudy />} />
             {/* Interaction */}
             <Route path="/interaction" element={<InteractionStudy />} />
             <Route path="/forms" element={<FormStudy />} />

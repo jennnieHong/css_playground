@@ -62,12 +62,13 @@ db.serialize(() => {
     { title: 'Typography', path: '/typography', parent_id: 20, order_index: 2, icon: '✍️' },
     { title: 'Units & Sizing', path: '/units', parent_id: 20, order_index: 3, icon: '📏' },
     { title: 'Height & Sizing', path: '/height', parent_id: 20, order_index: 4, icon: '📐' },
+    { title: 'CSS Animations', path: '/animations', parent_id: 20, order_index: 5, icon: '✨' },
 
     // Interaction Group
     { title: 'Interaction', path: null, parent_id: null, order_index: 5, icon: '👆' },
-    { title: 'States & Pseudo-classes', path: '/interaction', parent_id: 25, order_index: 1, icon: '🔄' },
-    { title: 'Form Styling', path: '/forms', parent_id: 25, order_index: 2, icon: '📝' },
-    { title: 'Accessibility (A11y)', path: '/accessibility', parent_id: 25, order_index: 3, icon: '♿' }
+    { title: 'States & Pseudo-classes', path: '/interaction', parent_id: 26, order_index: 1, icon: '🔄' },
+    { title: 'Form Styling', path: '/forms', parent_id: 26, order_index: 2, icon: '📝' },
+    { title: 'Accessibility (A11y)', path: '/accessibility', parent_id: 26, order_index: 3, icon: '♿' }
   ];
 
   console.log('\nAdding all menus...\n');
