@@ -9,7 +9,7 @@ import { useState, useEffect, useRef } from 'react';
  * @param {string} props.initialCss - Initial CSS code
  * @param {string} props.scopeId - Unique ID to scope the styles
  */
-function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId, height }) {
+function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId, height, previewHeight, codeHeight }) {
   const [draftCss, setDraftCss] = useState(initialCss);
   const [appliedCss, setAppliedCss] = useState(initialCss);
   const [draftHtml, setDraftHtml] = useState(initialHtml || '');
@@ -54,6 +54,55 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
 
   const hasChanges = draftCss !== appliedCss || (initialHtml && draftHtml !== appliedHtml);
 
+  // Calculate heights based on layout mode
+  // Priority: previewHeight/codeHeight > height > defaults
+  const isVerticalLayout = activeTab === 'both';
+  let containerHeight, previewHeightStyle, codeHeightStyle;
+
+  if (isVerticalLayout) {
+    // Vertical layout: stack preview and code vertically
+    if (previewHeight || codeHeight) {
+      // Individual heights specified (takes priority)
+      const previewPx = previewHeight ? parseInt(previewHeight) : 300; // default 300px
+      const codePx = codeHeight ? parseInt(codeHeight) : 300; // default 300px
+      containerHeight = `${previewPx + codePx}px`;
+      previewHeightStyle = previewHeight || '300px';
+      codeHeightStyle = codeHeight || '300px';
+    } else if (height) {
+      // General height: split 50/50
+      containerHeight = height;
+      previewHeightStyle = '50%';
+      codeHeightStyle = '50%';
+    } else {
+      // No heights: use CSS defaults
+      containerHeight = undefined;
+      previewHeightStyle = undefined;
+      codeHeightStyle = undefined;
+    }
+  } else {
+    // Horizontal layout: preview and code side by side
+    if (previewHeight || codeHeight) {
+      // Individual heights specified (takes priority)
+      const previewPx = previewHeight ? parseInt(previewHeight) : 0;
+      const codePx = codeHeight ? parseInt(codeHeight) : 0;
+      const maxHeight = Math.max(previewPx, codePx);
+      containerHeight = `${maxHeight}px`;
+      // Both areas use the same max height in horizontal layout
+      previewHeightStyle = `${maxHeight}px`;
+      codeHeightStyle = `${maxHeight}px`;
+    } else if (height) {
+      // General height: both areas fill 100%
+      containerHeight = height;
+      previewHeightStyle = '100%';
+      codeHeightStyle = '100%';
+    } else {
+      // No heights: use CSS defaults
+      containerHeight = undefined;
+      previewHeightStyle = undefined;
+      codeHeightStyle = undefined;
+    }
+  }
+
   return (
     <div className="live-editor-container">
       <div className="live-editor-header">
@@ -93,13 +142,13 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
         </div>
       </div>
       <div
-        className="live-editor-content"
-        style={height ? { height } : undefined}
+        className={`live-editor-content ${activeTab === 'both' ? 'vertical-layout' : ''}`}
+        style={containerHeight ? { height: containerHeight } : undefined}
       >
         <div
           className="live-editor-preview"
           id={scopeId}
-          style={height ? { height: '100%', maxHeight: 'none' } : undefined}
+          style={previewHeightStyle ? { height: previewHeightStyle, maxHeight: 'none' } : undefined}
         >
           {/* Viewport Simulator: Traps fixed position but stays static */}
           <div className="preview-viewport" style={{
@@ -125,7 +174,10 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
             </div>
           </div>
         </div>
-        <div className={`live-editor-code ${activeTab === 'both' ? 'split-view' : ''}`}>
+        <div
+          className={`live-editor-code ${activeTab === 'both' ? 'split-view' : ''}`}
+          style={isVerticalLayout && codeHeightStyle ? { height: codeHeightStyle } : undefined}
+        >
           {(!initialHtml || activeTab === 'css' || activeTab === 'both') && (
             <textarea
               className={`code-textarea ${activeTab === 'both' ? 'half-width' : ''}`}
@@ -133,7 +185,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
               onChange={(e) => setDraftCss(e.target.value)}
               spellCheck="false"
               placeholder="/* Enter your CSS here */"
-              style={height ? { height: '100%', maxHeight: 'none' } : undefined}
+              style={codeHeightStyle || activeTab === 'both' ? { height: codeHeightStyle || '100%', maxHeight: 'none' } : undefined}
             />
           )}
           {initialHtml && (activeTab === 'html' || activeTab === 'both') && (
@@ -143,7 +195,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
               onChange={(e) => setDraftHtml(e.target.value)}
               spellCheck="false"
               placeholder="<!-- Enter your HTML here -->"
-              style={height ? { height: '100%', maxHeight: 'none' } : undefined}
+              style={codeHeightStyle || activeTab === 'both' ? { height: codeHeightStyle || '100%', maxHeight: 'none' } : undefined}
             />
           )}
         </div>

@@ -59,6 +59,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -85,6 +86,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -107,6 +109,7 @@
     opacity: 0;
     transform: scale(0.9) translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -278,7 +281,7 @@
 
 .tab-btn:hover {
   color: var(--text-primary);
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .tab-btn.active {
@@ -320,7 +323,7 @@
   border-right: 1px solid var(--bg-primary);
   /* Padding and overflow moved to inner .preview-viewport logic */
   padding: 0;
-  overflow: hidden; 
+  overflow: hidden;
   /* max-height is controlled by component style or overrides */
   max-height: 400px;
 }
@@ -363,12 +366,26 @@
   background: var(--bg-secondary);
 }
 
+.live-editor-content.vertical-layout {
+  grid-template-columns: 1fr;
+}
+
+.vertical-layout .live-editor-preview {
+  border-right: none;
+  border-bottom: 1px solid var(--bg-primary);
+  min-height: 300px;
+}
+
+.vertical-layout .live-editor-code {
+  min-height: 250px;
+}
+
 /* Responsive adjustments for live editor */
 @media (max-width: 768px) {
   .live-editor-content {
     grid-template-columns: 1fr;
   }
-  
+
   .live-editor-preview {
     border-right: none;
     border-bottom: 1px solid var(--bg-primary);

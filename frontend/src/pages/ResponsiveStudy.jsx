@@ -80,14 +80,13 @@ function ResponsiveStudy() {
         <h2 className="section-title">clamp() - 반응형의 게임 체인저</h2>
         <div className="section-description">
           <p>
-            <code>clamp(최소값, 선호값, 최대값)</code>은 반응형 타이포그래피의 혁명입니다.<br/>
+            <code>clamp(최소값, 선호값, 최대값)</code>은 반응형 타이포그래피의 혁명입니다.<br />
             Media Query 없이 유동적인 크기를 만들 수 있습니다!
           </p>
         </div>
 
         <LiveCodeEditor
           scopeId="clamp-demo"
-          height="400px"
           initialCss={`.clamp-demo {
   /* 최소 16px, 뷰포트 기준 유동, 최대 32px */
   font-size: clamp(1rem, 2vw + 1rem, 2rem);
@@ -132,7 +131,7 @@ function ResponsiveStudy() {
 
         <LiveCodeEditor
           scopeId="min-max"
-          height="350px"
+          previewHeight="700px" codeHeight="500px"
           initialCss={`.min-max-demo {
   /* 뷰포트의 90% 또는 600px 중 작은 값 */
   width: min(90vw, 600px);
@@ -185,12 +184,11 @@ function ResponsiveStudy() {
         />
 
         <LiveCodeEditor
-          scopeId="fluid-units"
-          height="350px"
+          scopeId="fluid-units" codeHeight="350px"
           initialCss={`.fluid-demo {
-  ${fluidUnit === 'rem' ? 'width: 20rem; height: 10rem;' : 
-    fluidUnit === 'vw' ? 'width: 50vw; height: 20vw;' : 
-    'width: 50vw; height: 30vh;'}
+  ${fluidUnit === 'rem' ? 'width: 20rem; height: 10rem;' :
+              fluidUnit === 'vw' ? 'width: 50vw; height: 20vw;' :
+                'width: 50vw; height: 30vh;'}
   
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #ffffff;
@@ -202,9 +200,9 @@ function ResponsiveStudy() {
   margin: 0 auto;
 }`}
           currentCss={`.fluid-demo {
-  ${fluidUnit === 'rem' ? 'width: 20rem; height: 10rem;' : 
-    fluidUnit === 'vw' ? 'width: 50vw; height: 20vw;' : 
-    'width: 50vw; height: 30vh;'}
+  ${fluidUnit === 'rem' ? 'width: 20rem; height: 10rem;' :
+              fluidUnit === 'vw' ? 'width: 50vw; height: 20vw;' :
+                'width: 50vw; height: 30vh;'}
   
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #ffffff;
@@ -216,9 +214,9 @@ function ResponsiveStudy() {
   margin: 0 auto;
 }`}
           initialHtml={`<div class="fluid-demo">
-  ${fluidUnit === 'rem' ? 'Fixed Size (rem)' : 
-    fluidUnit === 'vw' ? 'Viewport Width (vw)' : 
-    'Viewport Height (vh)'}
+  ${fluidUnit === 'rem' ? 'Fixed Size (rem)' :
+              fluidUnit === 'vw' ? 'Viewport Width (vw)' :
+                'Viewport Height (vh)'}
 </div>
 
 <div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
@@ -235,7 +233,7 @@ function ResponsiveStudy() {
 
         <LiveCodeEditor
           scopeId="responsive-grid"
-          height="450px"
+          codeHeight="550px"
           initialCss={`.responsive-grid {
   display: grid;
   /* auto-fit: 자동으로 열 개수 조정 */

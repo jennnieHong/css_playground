@@ -2,7 +2,7 @@
 
 /* Page Container */
 .page-container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   animation: pageSlideIn 0.5s ease;
 }
@@ -12,6 +12,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -300,9 +301,12 @@
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
@@ -317,6 +321,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -327,9 +332,12 @@
 }
 
 @keyframes fadeInOut {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 1;
   }
@@ -398,11 +406,11 @@
   .example-container {
     grid-template-columns: 1fr;
   }
-  
+
   .page-title {
     font-size: 2rem;
   }
-  
+
   .section-title {
     font-size: 1.5rem;
   }
