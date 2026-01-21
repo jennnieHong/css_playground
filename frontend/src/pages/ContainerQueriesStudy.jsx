@@ -30,7 +30,14 @@ function ContainerQueriesStudy() {
       <section className="study-section">
         <h2 className="section-title">기본 메커니즘: Containment</h2>
         <div className="section-description">
-          <p>컨테이너 쿼리를 쓰려면 부모를 <strong>기준점</strong>으로 정의해야 합니다.</p>
+          <p>컨테이너 쿼리를 쓰려면 부모를 <strong>기준점(Container)</strong>으로 정의해야 하며, 브라우저는 다음과 같은 규칙으로 기준을 찾습니다.</p>
+          <div className="info-box" style={{ background: '#f8fafc', borderLeft: '4px solid #3b82f6', marginTop: '1rem' }}>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', lineHeight: '1.8' }}>
+              <li><strong>기준점 선언</strong>: 조상 요소에 <code>container-type: inline-size</code>를 설정해야 합니다.</li>
+              <li><strong>가장 가까운 조상 탐색</strong>: <code>@container</code>는 DOM 트리를 타고 상승하며 <strong>가장 가까운 컨테이너 요소</strong>를 자동으로 찾아 크기를 측정합니다.</li>
+              <li><strong>이름 기반 탐색</strong>: <code>@container이름 (min-width: 450px)</code>처럼 이름을 지정하면, 여러 컨테이너가 겹쳐 있어도 정확히 해당 이름을 가진 조상을 찾아갑니다.</li>
+            </ul>
+          </div>
         </div>
 
         <CssPropertyControls
@@ -53,6 +60,50 @@ function ContainerQueriesStudy() {
           previewHeight="450px"
           codeHeight="600px"
           initialCss={`.parent-box {
+  /* 1. 컨테이너 타입을 정의합니다 (주로 inline-size) */
+  container-type: inline-size;
+  container-name: card-wrapper;
+  
+  width: ${cardLayout === 'column' ? '300px' : '650px'};
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.4s ease;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 6px;
+}
+
+/* 2. 컨테이너 크기에 따른 쿼리 작성 */
+@container card-wrapper (min-width: 450px) {
+  .card {
+    flex-direction: row; /* 넓어지면 가로로 배치 */
+    align-items: center;
+  }
+  .image {
+    width: 200px;
+    aspect-ratio: 1;
+  }
+  .desc { font-size: 1.1rem; }
+}
+
+.title { margin: 0; color: #1e293b; }
+.desc { margin: 0.5rem 0 0; color: #64748b; font-size: 0.9rem; }`}
+          currentCss={`.parent-box {
   /* 1. 컨테이너 타입을 정의합니다 (주로 inline-size) */
   container-type: inline-size;
   container-name: card-wrapper;
