@@ -25,7 +25,8 @@ function ModernSelectorsStudy() {
 
         <LiveCodeEditor
           scopeId="selector-is"
-          height="450px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`/* 기존 방식 */
 section h1, 
 section h2, 
@@ -77,7 +78,8 @@ section h3 {
 
         <LiveCodeEditor
           scopeId="selector-where"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`/* 우선순위 0: 누구나 쉽게 이길 수 있음 */
 :where(.header, .footer) p {
   color: #94a3b8;
@@ -120,7 +122,8 @@ section h3 {
 
         <LiveCodeEditor
           scopeId="selector-not"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.tag {
   display: inline-block;
   padding: 4px 12px;

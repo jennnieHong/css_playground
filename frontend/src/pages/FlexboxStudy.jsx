@@ -102,7 +102,7 @@ function FlexboxStudy() {
   <div class="flex-item">2</div>
   <div class="flex-item">3</div>
 </div>`}
-          height="300px" />
+        />
       </section>
 
       <section className="study-section">
@@ -163,7 +163,6 @@ function FlexboxStudy() {
   <div class="flex-item" style="height: 80px">80px</div>
   <div class="flex-item" style="height: 40px">40px</div>
 </div>`}
-          height="300px"
         />
       </section>
 
@@ -396,7 +395,6 @@ function FlexboxStudy() {
   <div class="flex-item">Item 5</div>
   <div class="flex-item">Item 6</div>
 </div>`}
-          height="350px"
         />
       </section>
 
@@ -444,7 +442,6 @@ function FlexboxStudy() {
   <div class="flex-item">C</div>
   <div class="flex-item">D</div>
 </div>`}
-          height="250px"
         />
       </section>
 
@@ -518,7 +515,6 @@ function FlexboxStudy() {
   <div class="flex-item">7</div>
   <div class="flex-item">8</div>
 </div>`}
-          height="400px"
         />
       </section>
 

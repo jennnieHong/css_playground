@@ -50,7 +50,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="px-demo"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.px-demo {
   font-size: ${fontSize};
   padding: 20px;
@@ -117,7 +118,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="rem-demo"
-          height="500px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`:root {
   font-size: 16px; /* 기본 루트 크기 */
 }
@@ -178,7 +180,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="em-demo"
-          height="500px"
+          previewHeight="350px"
+          codeHeight="450px"
           initialCss={`.em-parent {
   font-size: 20px;  /* 부모 폰트 크기 */
   background: white;
@@ -255,7 +258,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="viewport-demo"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="350px"
           initialCss={`.vw-demo {
   width: 50vw;  /* 뷰포트 너비의 50% */
   background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
@@ -326,7 +330,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="percentage-demo"
-          height="500px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.percent-parent {
   width: 400px;
   padding: 1.5rem;
@@ -413,7 +418,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="comparison-demo"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="450px"
           initialCss={`.comparison-container {
   padding: 2rem;
   background: white;
@@ -487,7 +493,8 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="clamp-demo"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="350px"
           initialCss={`.clamp-container {
   padding: 2rem;
   background: white;

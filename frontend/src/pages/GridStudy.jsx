@@ -62,6 +62,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-basic"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.grid-demo {
   display: grid;
   grid-template-columns: ${gridTemplateColumns};
@@ -124,6 +126,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-alignment"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.grid-demo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -172,7 +176,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-areas-intro"
-          height="550px"
+          previewHeight="250px"
+          codeHeight="500px"
           initialCss={`/* 1. 그리드 컨테이너에 영역 정의 */
 .grid-demo {
   display: grid;
@@ -270,7 +275,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-areas-auto"
-          height="550px"
+          previewHeight="300px"
+          codeHeight="450px"
           initialCss={`.grid-auto-demo {
   display: grid;
   grid-template-areas:
@@ -366,7 +372,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-areas-empty"
-          height="500px"
+          previewHeight="300px"
+          codeHeight="450px"
           initialCss={`.grid-empty-demo {
   display: grid;
   grid-template-areas:
@@ -477,7 +484,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-auto-flow"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.grid-demo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -555,6 +563,8 @@ function GridStudy() {
 
         <LiveCodeEditor
           scopeId="grid-contents"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`.grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -699,7 +709,8 @@ function GridStudy() {
         </p>
         <LiveCodeEditor
           scopeId="grid-dashboard"
-          height="550px"
+          previewHeight="450px"
+          codeHeight="550px"
           initialCss={`.dashboard {
   display: grid;
   grid-template-areas:
@@ -791,7 +802,8 @@ function GridStudy() {
         </p>
         <LiveCodeEditor
           scopeId="grid-cards"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="450px"
           initialCss={`.card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

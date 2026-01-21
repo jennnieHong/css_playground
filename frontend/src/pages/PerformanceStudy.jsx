@@ -30,7 +30,8 @@ function PerformanceStudy() {
 
         <LiveCodeEditor
           scopeId="rendering-pipeline"
-          height="450px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`/* Layout 유발 속성 (비권장 애니메이션) */
 .box-layout {
   position: relative;
@@ -87,7 +88,8 @@ function PerformanceStudy() {
 
         <LiveCodeEditor
           scopeId="content-visibility"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="350px"
           initialCss={`.heavy-item {
   /* 화면 밖에 있을 때 렌더링 비용을 거의 0으로 만듬 */
   content-visibility: auto;
@@ -142,7 +144,8 @@ function PerformanceStudy() {
 
         <LiveCodeEditor
           scopeId="will-change"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.accelerated-box {
   width: 100px;
   height: 100px;

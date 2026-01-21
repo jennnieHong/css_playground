@@ -55,7 +55,8 @@ function ColorBackgroundStudy() {
 
         <LiveCodeEditor
           scopeId="color-formats"
-          height="300px"
+          previewHeight="200px"
+          codeHeight="250px"
           initialCss={`.color-box {
   background-color: ${colorExamples[colorFormat]};
   width: 100%;
@@ -117,7 +118,8 @@ function ColorBackgroundStudy() {
 
         <LiveCodeEditor
           scopeId="opacity-demo"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.bg-layer {
   position: relative;
   width: 100%;
@@ -204,7 +206,8 @@ function ColorBackgroundStudy() {
 
         <LiveCodeEditor
           scopeId="gradients"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.gradient-box {
   width: 100%;
   height: 200px;
@@ -262,7 +265,8 @@ function ColorBackgroundStudy() {
 
         <LiveCodeEditor
           scopeId="background-props"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="400px"
           initialCss={`.bg-demo {
   width: 100%;
   height: 300px;
@@ -310,7 +314,8 @@ function ColorBackgroundStudy() {
 
         <LiveCodeEditor
           scopeId="glassmorphism"
-          height="400px"
+          previewHeight="350px"
+          codeHeight="350px"
           initialCss={`.glass-container {
   position: relative;
   width: 100%;
@@ -368,7 +373,8 @@ function ColorBackgroundStudy() {
         </p>
         <LiveCodeEditor
           scopeId="gradient-gallery"
-          height="500px"
+          previewHeight="400px"
+          codeHeight="450px"
           initialCss={`.gradient-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -450,7 +456,8 @@ function ColorBackgroundStudy() {
         </p>
         <LiveCodeEditor
           scopeId="box-shadow-gallery"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="450px"
           initialCss={`.shadow-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -538,7 +545,8 @@ function ColorBackgroundStudy() {
         </p>
         <LiveCodeEditor
           scopeId="card-styles"
-          height="550px"
+          previewHeight="450px"
+          codeHeight="550px"
           initialCss={`.card-comparison {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

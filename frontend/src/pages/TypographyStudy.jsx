@@ -55,7 +55,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="font-family"
-          height="350px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.text-demo {
   font-family: ${fontFamily};
   font-size: 1.1rem;
@@ -125,7 +126,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="font-weight-size"
-          height="350px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.weight-demo {
   font-weight: ${fontWeight};
   font-size: ${fontSize};
@@ -187,7 +189,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="line-height"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.line-height-demo {
   line-height: ${lineHeight};
   font-size: 16px;
@@ -243,7 +246,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="text-align"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.align-demo {
   text-align: ${textAlign};
   color: #1e293b;
@@ -293,7 +297,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="text-overflow"
-          height="400px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`/* 한 줄 말줄임 */
 .ellipsis-single {
   width: 250px;
@@ -351,7 +356,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="typography-system"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`:root {
   --font-size-xs: 0.75rem;   /* 12px */
   --font-size-sm: 0.875rem;  /* 14px */
@@ -397,7 +403,8 @@ function TypographyStudy() {
         </p>
         <LiveCodeEditor
           scopeId="text-shadow-gallery"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="450px"
           initialCss={`.shadow-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -466,7 +473,8 @@ function TypographyStudy() {
         </p>
         <LiveCodeEditor
           scopeId="typo-decoration"
-          height="400px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.deco-demo {
   font-size: 1.5rem;
   font-weight: 600;
@@ -509,7 +517,8 @@ function TypographyStudy() {
         </p>
         <LiveCodeEditor
           scopeId="word-break-demo"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="350px"
           initialCss={`.break-container {
   display: flex;
   flex-direction: column;
@@ -568,7 +577,8 @@ function TypographyStudy() {
 
         <LiveCodeEditor
           scopeId="writing-mode-demo"
-          height="400px"
+          previewHeight="350px"
+          codeHeight="350px"
           initialCss={`.vertical-text {
   /* 세로 쓰기: 오른쪽에서 왼쪽으로 줄 바꿈 */
   writing-mode: vertical-rl;

@@ -41,7 +41,8 @@ function BoxModelStudy() {
 
         <LiveCodeEditor
           scopeId="box-model-visual"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.box-model-demo {
   /* Content 영역 */
   width: 200px;
@@ -130,7 +131,8 @@ function BoxModelStudy() {
 
         <LiveCodeEditor
           scopeId="box-sizing"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.sized-box {
   box-sizing: ${boxSizing};
   
@@ -212,7 +214,8 @@ function BoxModelStudy() {
 
         <LiveCodeEditor
           scopeId="margin-collapse"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="350px"
           initialCss={`.collapse-box {
   width: 100%;
   padding: 1rem;
@@ -280,7 +283,8 @@ function BoxModelStudy() {
         </p>
         <LiveCodeEditor
           scopeId="outline-vs-border"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.box-container {
   display: flex;
   gap: 2rem;
@@ -330,7 +334,8 @@ function BoxModelStudy() {
         </p>
         <LiveCodeEditor
           scopeId="shadow-comparison"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.shadow-demo-grid {
   display: flex;
   gap: 3rem;
@@ -379,7 +384,8 @@ function BoxModelStudy() {
 
         <LiveCodeEditor
           scopeId="global-box-sizing"
-          height="250px"
+          previewHeight="150px"
+          codeHeight="200px"
           initialCss={`/* 전역 설정 (프로젝트 시작 시 추가) */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -415,7 +421,8 @@ function BoxModelStudy() {
 
         <LiveCodeEditor
           scopeId="aspect-ratio-demo"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="350px"
           initialCss={`.ratio-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

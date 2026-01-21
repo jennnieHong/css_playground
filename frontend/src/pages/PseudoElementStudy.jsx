@@ -31,7 +31,8 @@ function PseudoElementStudy() {
 
         <LiveCodeEditor
           scopeId="pseudo-basic"
-          height="350px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.quote {
   position: relative;
   padding: 1.5rem 2rem;
@@ -79,7 +80,8 @@ function PseudoElementStudy() {
 
         <LiveCodeEditor
           scopeId="pseudo-icons"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`.badge {
   display: inline-flex;
   align-items: center;
@@ -149,7 +151,8 @@ function PseudoElementStudy() {
 
         <LiveCodeEditor
           scopeId="selection"
-          height="300px"
+          previewHeight="200px"
+          codeHeight="250px"
           initialCss={`::selection {
   background-color: #3b82f6;
   color: #ffffff;
@@ -189,7 +192,8 @@ function PseudoElementStudy() {
 
         <LiveCodeEditor
           scopeId="ribbon-demo"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.card-with-ribbon {
   position: relative;
   background: #ffffff;

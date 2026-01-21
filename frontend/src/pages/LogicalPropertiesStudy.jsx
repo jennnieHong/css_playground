@@ -49,7 +49,8 @@ function LogicalPropertiesStudy() {
 
         <LiveCodeEditor
           scopeId="logical-spacing"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.demo-container {
   direction: ${direction};
   background: white;
@@ -139,7 +140,8 @@ function LogicalPropertiesStudy() {
 
         <LiveCodeEditor
           scopeId="logical-sizes"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.size-box {
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
@@ -184,7 +186,8 @@ function LogicalPropertiesStudy() {
 
         <LiveCodeEditor
           scopeId="logical-inset"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.floating-badge {
   position: absolute;
   background: #ef4444;

@@ -52,7 +52,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="input-styling"
           scopeId="input-styling"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`${inputStyle === 'default' ? `
 .input-demo {
   /* 브라우저 기본 스타일 */
@@ -194,7 +195,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="custom-checkbox"
           scopeId="custom-checkbox"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`/* 기본 체크박스 숨기기 */
 .custom-checkbox {
   position: relative;
@@ -285,7 +287,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="custom-radio"
           scopeId="custom-radio"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.custom-radio {
   position: relative;
   display: inline-flex;
@@ -375,7 +378,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="validation-states"
           scopeId="validation-states"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.validated-input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -458,7 +462,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="floating-labels"
           scopeId="floating-labels"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.floating-group {
   position: relative;
   margin-top: 1.5rem;
@@ -523,7 +528,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="field-customization"
           scopeId="field-customization"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.custom-select {
   appearance: none; /* 브라우저 기본 화살표 제거 */
   width: 100%;
@@ -585,7 +591,8 @@ function FormStudy() {
         <LiveCodeEditor
           key="login-form"
           scopeId="login-form"
-          height="500px"
+          previewHeight="450px"
+          codeHeight="550px"
           initialCss={`.login-form {
   max-width: 400px;
   background: #ffffff;

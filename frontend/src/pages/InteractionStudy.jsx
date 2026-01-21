@@ -38,7 +38,8 @@ function InteractionStudy() {
 
         <LiveCodeEditor
           scopeId="basic-states"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`.interactive-btn {
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -97,7 +98,8 @@ function InteractionStudy() {
 
         <LiveCodeEditor
           scopeId="focus-visible"
-          height="350px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.focus-demo {
   padding: 1rem 1.5rem;
   margin: 0.5rem;
@@ -145,7 +147,8 @@ function InteractionStudy() {
 
         <LiveCodeEditor
           scopeId="disabled-state"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.form-btn {
   padding: 0.75rem 1.5rem;
   margin: 0.5rem;
@@ -204,7 +207,8 @@ function InteractionStudy() {
 
         <LiveCodeEditor
           scopeId="has-selector"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="400px"
           initialCss={`/* 체크박스가 체크되면 카드 배경색 변경 */
 .card {
   padding: 1.5rem;
@@ -272,7 +276,8 @@ function InteractionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="custom-scrollbar"
-          height="450px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.scroll-container {
   max-height: 200px;
   overflow-y: scroll;
@@ -323,7 +328,8 @@ function InteractionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="accent-color-demo"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.accent-pink {
   accent-color: #f093fb;
 }
@@ -372,7 +378,8 @@ input {
         </p>
         <LiveCodeEditor
           scopeId="3d-flip-card"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="450px"
           initialCss={`.flip-card {
   background-color: transparent;
   width: 250px;
@@ -461,7 +468,8 @@ input {
 
         <LiveCodeEditor
           scopeId="cursor-demo"
-          height="300px"
+          previewHeight="150px"
+          codeHeight="250px"
           initialCss={`.cursor-box {
   cursor: ${cursorType};
   padding: 2rem;
@@ -515,7 +523,8 @@ input {
 
         <LiveCodeEditor
           scopeId="pointer-events"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.overlay {
   position: relative;
   background: #dbeafe;
@@ -604,7 +613,8 @@ input {
 
         <LiveCodeEditor
           scopeId="user-select"
-          height="350px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.selectable {
   padding: 1rem;
   margin: 0.5rem 0;

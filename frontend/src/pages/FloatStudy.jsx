@@ -48,7 +48,8 @@ function FloatStudy() {
 
         <LiveCodeEditor
           scopeId="float-basic"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="300px"
           initialCss={`.float-box {
   float: ${floatValue};
   width: 150px;
@@ -124,7 +125,8 @@ function FloatStudy() {
 
         <LiveCodeEditor
           scopeId="clear-demo"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="400px"
           initialCss={`.float-left {
   float: left;
   width: 120px;
@@ -226,7 +228,8 @@ function FloatStudy() {
 
         <LiveCodeEditor
           scopeId="clearfix"
-          height="450px"
+          previewHeight="350px"
+          codeHeight="450px"
           initialCss={`/* 문제: Float된 자식의 높이가 무시됨 */
 .parent-problem {
   background-color: #fee2e2;
@@ -292,7 +295,8 @@ function FloatStudy() {
 
         <LiveCodeEditor
           scopeId="float-practical"
-          height="400px"
+          previewHeight="350px"
+          codeHeight="400px"
           initialCss={`.article {
   background: #ffffff;
   padding: 1.5rem;

@@ -51,7 +51,8 @@ function DisplayStudy() {
 
         <LiveCodeEditor
           scopeId="display-basic"
-          height="350px"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.demo-box {
   display: ${displayValue};
   width: 200px;
@@ -110,7 +111,8 @@ function DisplayStudy() {
 
         <LiveCodeEditor
           scopeId="display-inline"
-          height="300px"
+          previewHeight="200px"
+          codeHeight="250px"
           initialCss={`.inline-demo {
   display: ${inlineDisplayValue};
   width: 150px;
@@ -168,7 +170,8 @@ function DisplayStudy() {
 
         <LiveCodeEditor
           scopeId="display-none"
-          height="300px"
+          previewHeight="200px"
+          codeHeight="250px"
           initialCss={`.box {
   width: 150px;
   height: 100px;
@@ -221,7 +224,8 @@ function DisplayStudy() {
         </p>
         <LiveCodeEditor
           scopeId="hiding-methods-comparison"
-          height="500px"
+          previewHeight="300px"
+          codeHeight="450px"
           initialCss={`.grid-hiding {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -298,7 +302,8 @@ function DisplayStudy() {
 
         <LiveCodeEditor
           scopeId="display-contents"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="300px"
           initialCss={`.grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

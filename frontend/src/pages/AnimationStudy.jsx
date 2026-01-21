@@ -62,6 +62,8 @@ function AnimationStudy() {
 
         <LiveCodeEditor
           scopeId="anim-transition"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`.anim-item {
   transition: all ${duration} ${timingFunction};
 }
@@ -90,6 +92,8 @@ function AnimationStudy() {
         <h2 className="section-title">Keyframe Animation</h2>
         <LiveCodeEditor
           scopeId="anim-bounce"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`@keyframes bounce {
   0%, 100% { 
     transform: translateY(0); 
@@ -114,6 +118,8 @@ function AnimationStudy() {
         <h2 className="section-title">Rotate Animation</h2>
         <LiveCodeEditor
           scopeId="anim-rotate"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`@keyframes rotate {
   from { 
     transform: rotate(0deg); 
@@ -139,6 +145,8 @@ function AnimationStudy() {
         <h2 className="section-title">Fade Animation</h2>
         <LiveCodeEditor
           scopeId="anim-fade"
+          previewHeight="200px"
+          codeHeight="300px"
           initialCss={`@keyframes fadeInOut {
   0%, 100% { 
     opacity: 0.3; 
@@ -166,6 +174,8 @@ function AnimationStudy() {
         </p>
         <LiveCodeEditor
           scopeId="anim-pulse"
+          previewHeight="200px"
+          codeHeight="350px"
           initialCss={`@keyframes pulse {
   0%, 100% { 
     transform: scale(1);
@@ -196,6 +206,8 @@ function AnimationStudy() {
         </p>
         <LiveCodeEditor
           scopeId="anim-shake"
+          previewHeight="200px"
+          codeHeight="350px"
           initialCss={`@keyframes shake {
   0%, 100% { transform: translateX(0); }
   10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
@@ -221,7 +233,8 @@ function AnimationStudy() {
         </p>
         <LiveCodeEditor
           scopeId="anim-slide"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`@keyframes slideInRight {
   from { 
     transform: translateX(100%);
@@ -272,7 +285,8 @@ function AnimationStudy() {
         </p>
         <LiveCodeEditor
           scopeId="anim-loading"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="500px"
           initialCss={`@keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -376,6 +390,8 @@ function AnimationStudy() {
 
         <LiveCodeEditor
           scopeId="anim-iteration"
+          previewHeight="200px"
+          codeHeight="350px"
           initialCss={`@keyframes wiggle {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-10deg); }
@@ -411,7 +427,8 @@ function AnimationStudy() {
         </p>
         <LiveCodeEditor
           scopeId="anim-gallery"
-          height="550px"
+          previewHeight="450px"
+          codeHeight="550px"
           initialCss={`@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }

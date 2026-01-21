@@ -38,6 +38,8 @@ function PositionStudy() {
 
         <LiveCodeEditor
           scopeId="pos-parent-child"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.parent {
   position: relative; /* 기준점 역할 */
   width: 300px;
@@ -104,7 +106,8 @@ function PositionStudy() {
 
         <LiveCodeEditor
           scopeId="pos-fixed"
-          height="500px"
+          previewHeight="400px"
+          codeHeight="450px"
           initialCss={`.fixed-demo-box {
   position: ${position};
   top: ${top};
@@ -158,7 +161,8 @@ function PositionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="pos-modal"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="450px"
           initialCss={`.page-content {
   padding: 20px;
   height: 600px; /* 스크롤 생성용 */
@@ -225,7 +229,8 @@ function PositionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="pos-fab"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="350px"
           initialCss={`.fab-container {
   height: 800px;
   padding: 20px;
@@ -299,7 +304,8 @@ function PositionStudy() {
 
         <LiveCodeEditor
           scopeId="pos-trap"
-          height="300px"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.trap-container {
   margin-top: 50px;
   width: 100%;
@@ -380,7 +386,8 @@ function PositionStudy() {
 
         <LiveCodeEditor
           scopeId="pos-sticky"
-          height="400px"
+          previewHeight="350px"
+          codeHeight="350px"
           initialCss={`.container {
   height: 1000px;
   background: linear-gradient(#f8f9fa, #e9ecef);
@@ -449,7 +456,8 @@ function PositionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="pos-centering"
-          height="500px"
+          previewHeight="350px"
+          codeHeight="550px"
           initialCss={`.centering-demo {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -546,7 +554,8 @@ function PositionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="pos-tooltip"
-          height="400px"
+          previewHeight="300px"
+          codeHeight="550px"
           initialCss={`.tooltip-demo {
   display: flex;
   justify-content: center;
@@ -678,7 +687,8 @@ function PositionStudy() {
         </p>
         <LiveCodeEditor
           scopeId="pos-badge"
-          height="350px"
+          previewHeight="250px"
+          codeHeight="500px"
           initialCss={`.badge-demo {
   display: flex;
   justify-content: center;

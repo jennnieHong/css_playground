@@ -62,6 +62,8 @@ function CustomPropertiesStudy() {
 
         <LiveCodeEditor
           scopeId="css-variables"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`.variable-demo {
   --primary-color: ${primaryColor};
   --border-radius: ${borderRadius};

@@ -35,7 +35,8 @@ function ResponsiveStudy() {
 
         <LiveCodeEditor
           scopeId="media-queries"
-          height="400px"
+          previewHeight="250px"
+          codeHeight="400px"
           initialCss={`/* Mobile First 접근 */
 .responsive-box {
   width: 100%;
@@ -87,6 +88,8 @@ function ResponsiveStudy() {
 
         <LiveCodeEditor
           scopeId="clamp-demo"
+          previewHeight="250px"
+          codeHeight="350px"
           initialCss={`.clamp-demo {
   /* 최소 16px, 뷰포트 기준 유동, 최대 32px */
   font-size: clamp(1rem, 2vw + 1rem, 2rem);
@@ -152,7 +155,8 @@ function ResponsiveStudy() {
 
         <LiveCodeEditor
           scopeId="min-max"
-          previewHeight="700px" codeHeight="500px"
+          previewHeight="450px"
+          codeHeight="450px"
           initialCss={`.min-max-demo {
   /* min(): 두 값 중 작은 값 선택 */
   /* 작은 화면: 90vw (화면의 90%) */
@@ -219,7 +223,9 @@ function ResponsiveStudy() {
         />
 
         <LiveCodeEditor
-          scopeId="fluid-units" codeHeight="350px"
+          scopeId="fluid-units"
+          previewHeight="350px"
+          codeHeight="350px"
           initialCss={`.fluid-demo {
   ${fluidUnit === 'rem' ? 'width: 20rem; height: 10rem;' :
               fluidUnit === 'vw' ? 'width: 50vw; height: 20vw;' :
@@ -268,6 +274,7 @@ function ResponsiveStudy() {
 
         <LiveCodeEditor
           scopeId="responsive-grid"
+          previewHeight="350px"
           codeHeight="550px"
           initialCss={`.responsive-grid {
   display: grid;
