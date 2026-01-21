@@ -79,6 +79,54 @@ function AnimationsStudy() {
 /* 1. Transition: 상태 변화를 부드럽게 왕복 */
 .transition-box {
   background: #667eea;
+  transition: transform 0.4s ease;
+}
+.transition-box:hover {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* 2. Animation: 정의된 흐름대로 실행 */
+@keyframes rotateAnim {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(45deg) scale(1.1); }
+}
+.animation-box {
+  background: #f5576c;
+}
+.animation-box:hover {
+  animation: rotateAnim 0.4s ease forwards;
+}
+
+.label {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #64748b;
+}`}
+          currentCss={`.compare-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.box {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* 1. Transition: 상태 변화를 부드럽게 왕복 */
+.transition-box {
+  background: #667eea;
   transition: transform ${transDuration} ${transTiming};
 }
 .transition-box:hover {
@@ -461,6 +509,41 @@ function AnimationsStudy() {
           previewHeight="400px"
           codeHeight="550px"
           initialCss={`@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  25% { transform: rotate(-10deg) translateX(-10px); }
+  75% { transform: rotate(10deg) translateX(10px); }
+}
+
+.wiggle-box {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 auto;
+  
+  /* 위 옵션 버튼들에 연동됩니다 */
+  animation-name: wiggle;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}`}
+          currentCss={`@keyframes wiggle {
   0%, 100% { transform: rotate(0deg) translateX(0); }
   25% { transform: rotate(-10deg) translateX(-10px); }
   75% { transform: rotate(10deg) translateX(10px); }
