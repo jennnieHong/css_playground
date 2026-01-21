@@ -224,6 +224,82 @@ function LogicalPropertiesStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 다국어 지원 글로벌 카드</h2>
+        <p className="section-description">
+          물리적 속성(Left/Right) 대신 논리적 속성(Start/End)을 사용하여 LTR과 RTL 환경 모두에 완벽히 대응하는 카드입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="logical-practical-card"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`/* 컨테이너의 direction에 따라 방향이 전환됩니다 */
+.global-card {
+  direction: ltr; /* rtl로 바꿔보세요! */
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  
+  /* 예전 방식: margin-right: 1.5rem; */
+  /* 논리적 방식: (flex gap이 있으므로 생략 가능하나 학습용으로 기재) */
+  margin-inline-end: 0.5rem;
+}
+
+.content {
+  flex-grow: 1;
+  /* 텍스트 시작 지점에 브랜드 컬러 라인 추가 */
+  border-inline-start: 4px solid #6366f1;
+  padding-inline-start: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #1e293b;
+}
+
+.text {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+`}
+          initialHtml={`<div class="global-card">
+  <div class="avatar">👤</div>
+  <div class="content">
+    <h3 class="title">Global User</h3>
+    <p class="text">
+      이 카드는 논리적 속성을 사용합니다. CSS 코드 상단의 <code>direction: ltr</code>를 
+      <code>rtl</code>로 변경해보세요. 모든 여백과 테두리 방향이 거울처럼 반전됩니다.
+    </p>
+  </div>
+</div>
+
+<div style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 실전 팁:</strong> 최근의 글로벌 웹 서비스들은 <code>Left/Right</code> 대신 
+  <code>inline-start / inline-end</code> 사용을 강력히 권장하고 있습니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

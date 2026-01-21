@@ -206,6 +206,96 @@ function CssArchitectureStudy() {
           </div>
         </div>
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: BEM 기반 네비게이션 대시보드</h2>
+        <p className="section-description">
+          BEM 명명 규칙을 철저히 따라 구조와 기능이 명확히 분리된 컴포넌트 설계 방식입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="architecture-practical-bem"
+          previewHeight="450px"
+          codeHeight="550px"
+          initialCss={`.sidebar {
+  /* Block */
+  width: 250px;
+  background: #1e293b;
+  color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sidebar__item {
+  /* Element */
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar__item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar__item--active {
+  /* Modifier */
+  background: #3b82f6;
+  font-weight: bold;
+}
+
+.sidebar__icon {
+  /* Element */
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+.sidebar__status {
+  /* Element */
+  margin-left: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.sidebar__status--online {
+  /* Modifier */
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16,185,129,0.5);
+}
+`}
+          initialHtml={`<div class="sidebar">
+  <div class="sidebar__item sidebar__item--active">
+    <span class="sidebar__icon">📊</span>
+    <span class="sidebar__text">Dashboard</span>
+    <span class="sidebar__status sidebar__status--online"></span>
+  </div>
+  
+  <div class="sidebar__item">
+    <span class="sidebar__icon">📁</span>
+    <span class="sidebar__text">Projects</span>
+    <span class="sidebar__status"></span>
+  </div>
+
+  <div class="sidebar__item">
+    <span class="sidebar__icon">⚙️</span>
+    <span class="sidebar__text">Settings</span>
+    <span class="sidebar__status"></span>
+  </div>
+</div>
+
+<div class="info-box" style="margin-top: 1.5rem;">
+  <strong>💡 BEM 구조 분석:</strong><br/>
+  • <strong>Block</strong>: <code>.sidebar</code> (전체 틀)<br/>
+  • <strong>Element</strong>: <code>.sidebar__item</code>, <code>.sidebar__icon</code><br/>
+  • <strong>Modifier</strong>: <code>.sidebar__item--active</code>, <code>.sidebar__status--online</code>
+</div>`}
+        />
+      </section>
     </div>
   );
 }

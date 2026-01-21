@@ -200,8 +200,74 @@ function HidingMethodsStudy() {
                     </ul>
                 </div>
             </section>
-        </div>
-    );
+            <section className="study-section">
+        <h2 className="section-title">실전 예제: 애니메이션 토글 카드</h2>
+        <p className="section-description">
+          <code>display: none</code>은 애니메이션이 불가능합니다. 
+          부드러운 전환을 위해 <code>opacity</code>와 <code>visibility</code>를 조합하는 기법을 확인하세요.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="hiding-practical-toggle"
+          previewHeight="400px"
+          codeHeight="500px"
+          initialCss={`.toggle-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.magic-box {
+  width: 200px;
+  height: 100px;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  margin: 1.5rem auto;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  
+  /* 💡 핵심: 부드러운 숨기기 설정 */
+  transition: all 0.5s ease;
+}
+
+/* 체크박스가 체크되지 않았을 때 (기본 상태) 숨김 */
+input[id="toggle"]:not(:checked) ~ .magic-box {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+}
+
+.toggle-label {
+  padding: 0.75rem 1.5rem;
+  background: #1e293b;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+`}
+          initialHtml={`<div class="toggle-container">
+  <input type="checkbox" id="toggle" style="display: none;" />
+  <label for="toggle" class="toggle-label">상자 나타나기 / 숨기기</label>
+  
+  <div class="magic-box">
+    I am Visible! ✨
+  </div>
+</div>
+
+<div class="info-box" style="margin-top: 1.5rem;">
+  <strong>💡 왜 display: none을 안 쓰나요?</strong><br/>
+  <code>display: none</code>은 상태가 바뀌는 순간 물리적으로 사라지기 때문에 애니메이션(transition)이 작동하지 않습니다.<br/>
+  <strong>opacity + visibility</strong> 조합은 시각적으로 부드럽게 사라지면서도, 숨겨진 후에는 클릭 등을 막을 수 있어 가장 선호되는 방식입니다.
+</div>`}
+        />
+      </section>
+    </div>
+  );
 }
 
 export default HidingMethodsStudy;

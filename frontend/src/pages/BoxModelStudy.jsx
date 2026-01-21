@@ -487,6 +487,90 @@ function BoxModelStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 제품 카드 레이아웃</h2>
+        <p className="section-description">
+          Box-sizing, Padding, Border, Aspect-ratio를 모두 활용하여 일정한 크기를 유지하는 제품 카드를 만듭니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="box-model-practical"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`* { box-sizing: border-box; }
+
+.product-card {
+  width: 280px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.content {
+  padding: 20px;
+}
+
+.category {
+  font-size: 0.75rem;
+  color: #6366f1;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+}
+
+.price-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #475569;
+}
+`}
+          initialHtml={`<div class="product-card">
+  <div class="image-container">🎧</div>
+  <div class="content">
+    <span class="category">Electronics</span>
+    <h3 class="title">Premium Wireless Headphones</h3>
+    <div class="price-tag">$299.00</div>
+  </div>
+</div>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 핵심 포인트:</strong><br/>
+  • <strong>aspect-ratio</strong>: 가로 너비만 바뀌어도 이미지 영역 비율이 일정하게 유지됨<br/>
+  • <strong>border-box</strong>: <code>padding: 20px</code>를 추가해도 카드의 전체 너비(280px)가 변하지 않음<br/>
+  • <strong>border</strong>: 실선 테두리가 카드의 경계를 명확하게 해줌
+</p>`}
+        />
+      </section>
     </div>
   );
 }

@@ -497,6 +497,80 @@ function AnimationStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 알림 배지 & 장바구니 애니메이션</h2>
+        <p className="section-description">
+          사용자의 시선을 끌어야 하는 알림 배지에 <code>pulse</code>와 <code>bounce</code>를 조합하여 생동감을 불어넣습니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="animation-practical-badge"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`.cart-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 2.5rem;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ef4444;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid white;
+  
+  /* 배지 강조 애니메이션 */
+  animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.cart-wrapper:hover .cart-icon {
+  animation: cart-bounce 0.5s ease-in-out infinite;
+}
+
+@keyframes cart-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px) rotate(-5deg); }
+}
+`}
+          initialHtml={`<div style="background: #f8fafc; padding: 3rem; display: flex; justify-content: center; border-radius: 12px;">
+  <div class="cart-wrapper">
+    <div class="cart-icon">🛒</div>
+    <div class="badge">3</div>
+  </div>
+</div>
+
+<div class="info-box" style="margin-top: 1.5rem;">
+  <strong>💡 실전 팁:</strong><br/>
+  • <strong>배지(Badge)</strong>: <code>pulse</code> 효과로 새로운 소식이 있음을 은은하게 알립니다.<br/>
+  • <strong>호버(Hover)</strong>: 사용자가 아이콘에 마우스를 올렸을 때 <code>bounce</code> 효과를 주어 피드백을 강화합니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

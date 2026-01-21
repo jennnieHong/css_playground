@@ -302,6 +302,98 @@ section h3 {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 스마트 폼 레이아웃</h2>
+        <p className="section-description">
+          <code>:has()</code>와 <code>:not()</code>을 조합하여 자바스크립트 없이도 입력 상태에 반응하는 인터랙티브 폼입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="modern-practical-form"
+          previewHeight="450px"
+          codeHeight="500px"
+          initialCss={`.smart-form {
+  max-width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.field-group {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px solid #f1f5f9;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+/* 1. 입력이 완료된(placeholder가 숨겨진) 그룹 강조 */
+.field-group:has(input:not(:placeholder-shown)) {
+  border-color: #6366f1;
+  background: #f8faff;
+}
+
+/* 2. 유효하지 않은 입력이 있는 그룹 표시 */
+.field-group:has(input:invalid:not(:placeholder-shown)) {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.smart-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #475569;
+}
+
+.smart-form input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+}
+
+/* 폼 전체 상태에 따른 버튼 제어 (실험적) */
+.smart-form:has(input:invalid) button {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+`}
+          initialHtml={`<form class="smart-form">
+  <div class="field-group">
+    <label>Email Address</label>
+    <input type="email" placeholder="email@example.com" required>
+  </div>
+
+  <div class="field-group">
+    <label>Username</label>
+    <input type="text" placeholder="At least 3 characters" minlength="3" required>
+  </div>
+
+  <button type="submit">Complete Sign Up</button>
+</form>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 선택자 조합의 힘:</strong><br/>
+  • <code>:has(input:invalid)</code>를 통해 자식의 유효성 상태를 부모 레벨에서 감지할 수 있습니다.<br/>
+  • 자바스크립트 도움 없이도 CSS만으로 폼 유효성 UI를 구현할 수 있게 되었습니다.
+</p>`}
+        />
+      </section>
     </div>
   );
 }

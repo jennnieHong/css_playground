@@ -333,6 +333,65 @@ function HeightStudy() {
 </div>`}
                 />
             </section>
+
+            <section className="study-section">
+                <h2 className="section-title">실전 예제: 풀스크린 히어로 섹션</h2>
+                <p className="section-description">
+                    <code>100vh</code>(또는 최신 <code>100dvh</code>)를 활용하여 화면을 가득 채우는 첫 화면 레이아웃입니다.
+                </p>
+
+                <LiveCodeEditor
+                    scopeId="height-practical-hero"
+                    previewHeight="450px"
+                    codeHeight="450px"
+                    initialCss={`.hero-section {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+              url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1000');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-section h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  animation: bounce 2s infinite;
+  font-size: 2rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}`}
+                    initialHtml={`<div class="hero-section">
+  <h1>Nature is Beautiful</h1>
+  <p>Discover the unseen beauty of our planet through our lens.</p>
+  <div class="scroll-indicator">↓</div>
+</div>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 높이 활용 팁:</strong><br/>
+  • <strong>100vh</strong>: 뷰포트 높이의 100%를 의미합니다.<br/>
+  • <strong>dvh (Dynamic Viewport Height)</strong>: 모바일 브라우저의 주소창 유무에 따라 동적으로 변하는 높이 단위입니다. 
+</p>`}
+                />
+            </section>
         </div>
     );
 }

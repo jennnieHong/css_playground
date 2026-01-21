@@ -173,6 +173,85 @@ function PerformanceStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 고성능 스켈레톤 UI</h2>
+        <p className="section-description">
+          데이터를 불러오는 동안 사용자에게 시각적 피드백을 주는 스켈레톤 UI입니다. 
+          <code>transform</code>과 <code>opacity</code>만을 사용하여 CPU 부하 없이 부드러운 애니메이션을 제공합니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="performance-practical-skeleton"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`.skeleton-card {
+  width: 300px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-box {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 160px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-text.short {
+  width: 60%;
+}
+
+/* 💡 핵심: Composite 단계만 사용하는 무한 루프 애니메이션 */
+.skeleton-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.5) 50%, 
+    rgba(255,255,255,0) 100%
+  );
+  /* background-position 대신 transform을 사용하면 훨씬 빠릅니다 */
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+`}
+          initialHtml={`<div class="skeleton-card">
+  <div class="skeleton-box skeleton-image"></div>
+  <div class="skeleton-box skeleton-text"></div>
+  <div class="skeleton-box skeleton-text"></div>
+  <div class="skeleton-box skeleton-text short"></div>
+</div>
+
+<div class="info-box" style="margin-top: 1.5rem;">
+  <strong>💡 성능 최적화 팁:</strong><br/>
+  이 애니메이션은 <code>transform</code> 속성만 사용하여 <strong>Composite</strong> 단계에서 처리됩니다.<br/>
+  복잡한 페이지에서 수십 개의 스켈레톤이 동시에 움직여도 브라우저가 버벅이지 않는 이유입니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

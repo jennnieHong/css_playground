@@ -170,6 +170,110 @@ function StackingStudy() {
           </div>
         </div>
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 모달 & 드롭다운 계층 관리</h2>
+        <p className="section-description">
+          시스템화된 Z-index와 <code>isolation</code>을 활용하여 복잡한 레이어 간의 충돌을 방지하는 구조입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="stacking-practical-system"
+          previewHeight="500px"
+          codeHeight="550px"
+          initialCss={`:root {
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 500;
+  --z-toast: 1000;
+}
+
+.app-shell {
+  height: 300px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-header {
+  height: 60px;
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 150px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: var(--z-dropdown);
+  display: block; /* 실습을 위해 항상 노출 */
+}
+
+/* 모달 레이어 */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 80%;
+}
+`}
+          initialHtml={`<div class="app-shell">
+  <header class="sticky-header">
+    <div class="dropdown-container">
+      <strong>Navigation</strong>
+      <div class="dropdown-menu">
+        Menu Items...
+      </div>
+    </div>
+  </header>
+  
+  <div style="padding: 20px;">
+    Main content area with lots of text...
+  </div>
+
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <h3>Modal Title</h3>
+      <p>모달은 헤더(200)와 드롭다운(100)보다 높은 z-index(500)를 가져야 합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 시스템 관리 전략:</strong><br/>
+  • <strong>z-index 상수화</strong>: 숫자를 직접 쓰지 말고 <code>--z-sticky</code>처럼 변수로 관리하세요.<br/>
+  • <strong>간격 유지</strong>: 1, 2, 3 대신 100, 200, 500처럼 간격을 두면 나중에 사이에 새로운 레이어를 넣기 좋습니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

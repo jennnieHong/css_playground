@@ -652,6 +652,95 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 모바일 앱 히어로 섹션</h2>
+        <p className="section-description">
+          그라데이션, 글래스모피즘, 복합 배경 이미지를 활용한 트렌디한 히어로 섹션입니다.
+        </p>
+        <LiveCodeEditor
+          scopeId="color-practical-hero"
+          previewHeight="450px"
+          codeHeight="500px"
+          initialCss={`.hero-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  background: 
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.5), transparent 400px),
+    radial-gradient(circle at bottom left, rgba(244, 63, 94, 0.4), transparent 400px),
+    #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.15)"/></svg>');
+}
+
+.hero-content {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-logo {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.8));
+}
+
+h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.cta-button {
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+`}
+          initialHtml={`<div class="hero-container">
+  <div class="hero-content">
+    <div class="hero-logo">🚀</div>
+    <h2>Design Future</h2>
+    <p>배경 그라데이션과 글래스모피즘 효과가 결합된 현대적인 UI 기법을 확인해보세요.</p>
+    <button class="cta-button">Get Started</button>
+  </div>
+</div>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  • <strong>복합 레이어</strong>: 여러 개의 radial-gradient를 겹쳐 깊이감 있는 배경 연출<br/>
+  • <strong>Glassmorphism</strong>: <code>backdrop-filter</code>와 미세한 <code>border</code>로 유리 질감 완성<br/>
+  • <strong>drop-shadow</strong>: 로고 아이콘에 네온 효과 부여
+</p>`}
+        />
+      </section>
     </div>
   );
 }

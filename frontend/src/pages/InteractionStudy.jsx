@@ -651,6 +651,87 @@ input {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 마이크로 인터랙션 버튼 시스템</h2>
+        <p className="section-description">
+          호버, 클릭, 로딩 상태를 직관적으로 전달하는 정교한 인터랙션 버튼입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="interaction-practical-btn"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`.magic-btn {
+  position: relative;
+  padding: 1rem 2.5rem;
+  background: #1e293b;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.magic-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.magic-btn:hover {
+  background: #3b82f6;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.magic-btn:hover::before {
+  left: 100%;
+}
+
+.magic-btn:active {
+  transform: scale(0.95);
+}
+
+.magic-btn .icon {
+  transition: transform 0.3s ease;
+}
+
+.magic-btn:hover .icon {
+  transform: translateX(5px) rotate(15deg);
+}
+`}
+          initialHtml={`<div style="background: white; padding: 3rem; display: flex; justify-content: center; border-radius: 12px;">
+  <button class="magic-btn">
+    Get Started
+    <span class="icon">🚀</span>
+  </button>
+</div>
+
+<div class="info-box" style="margin-top: 1.5rem;">
+  <strong>💡 인터랙션 요소:</strong><br/>
+  1. <strong>Shimmer</strong>: 호버 시 <code>::before</code>가 왼쪽에서 오른쪽으로 흐릅니다.<br/>
+  2. <strong>Scale</strong>: 클릭(active) 시 살짝 작아졌다가 돌아오며 누르는 재미를 줍니다.<br/>
+  3. <strong>Icon Animation</strong>: 호버 시 아이콘만 따로 움직여 활력을 더합니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

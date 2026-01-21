@@ -616,6 +616,108 @@ function TypographyStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 뉴스 기사 레이아웃</h2>
+        <p className="section-description">
+          제목 계층 구조, 줄 간격, 자간, 그리고 말줄임 효과를 조합한 실용적인 기사 레이아웃입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="typo-practical-article"
+          previewHeight="500px"
+          codeHeight="550px"
+          initialCss={`.article-container {
+  max-width: 500px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.article-category {
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.article-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.article-meta {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.article-excerpt {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #334155;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.article-content {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.read-more {
+  margin-top: 24px;
+  display: inline-block;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s;
+}
+
+.read-more:hover {
+  border-bottom-color: #2563eb;
+}
+`}
+          initialHtml={`<article class="article-container">
+  <span class="article-category">Technology</span>
+  <h1 class="article-title">The Future of Web Typography: Better and Faster</h1>
+  
+  <div class="article-meta">
+    By <strong>John Doe</strong> • Jan 21, 2026
+  </div>
+
+  <p class="article-excerpt">
+    현대적인 웹 타이포그래피는 단순히 글꼴을 고르는 것을 넘어, 성능과 가독성의 완벽한 조화를 추구합니다.
+  </p>
+
+  <div class="article-content">
+    적절한 line-height(1.8)와 자간 조절은 기나긴 본문 텍스트를 읽는 사용자의 피로도를 획기적으로 낮춰줍니다. 
+    또한 <code>letter-spacing</code>을 미세하게 조정하여(특히 한글에서) 판독성을 높일 수 있습니다.
+  </div>
+
+  <a href="#" class="read-more">Read Full Story →</a>
+</article>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 타이포그래피 팁:</strong><br/>
+  • <strong>letter-spacing</strong>: 한글은 글자 사이가 약간 좁을 때 눈이 더 편안합니다 (-0.02em ~ -0.05em 추천)<br/>
+  • <strong>line-height</strong>: 본문은 1.6~1.8배가 가장 가독성이 좋으며, 제목은 1.2배 정도로 좁히는 것이 강렬합니다.
+</p>`}
+        />
+      </section>
     </div>
   );
 }

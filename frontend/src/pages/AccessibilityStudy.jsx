@@ -218,6 +218,88 @@ ${focusStyle === 'custom' ? `
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 스크린 리더 전용 텍스트 & 고대비 모드</h2>
+        <p className="section-description">
+          시각적으로는 숨기되 스크린 리더는 읽을 수 있는 <code>sr-only</code> 클래스와, 고대비 환경을 위한 스타일링 기법입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="a11y-practical-sr-only"
+          previewHeight="400px"
+          codeHeight="500px"
+          initialCss={`.social-links {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #1e293b;
+  transition: 0.2s;
+}
+
+.social-icon:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+/* 💡 핵심: 스크린 리더 전용 유틸리티 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 고대비 모드 지원 */
+@media (forced-colors: active) {
+  .social-icon {
+    outline: 2px solid CanvasText;
+  }
+}
+`}
+          initialHtml={`<div class="social-links">
+  <a href="#" class="social-icon">
+    <span>FB</span>
+    <span class="sr-only">페이스북으로 공유하기</span>
+  </a>
+  
+  <a href="#" class="social-icon">
+    <span>TW</span>
+    <span class="sr-only">트위터로 공유하기</span>
+  </a>
+
+  <a href="#" class="social-icon">
+    <span>IG</span>
+    <span class="sr-only">인스타그램으로 공유하기</span>
+  </a>
+</div>
+
+<div class="info-box" style="margin-top: 1.5rem;">
+  <strong>💡 왜 sr-only가 필요한가요?</strong><br/>
+  아이콘만 있는 버튼은 시각장애인이 보조공학기기를 사용할 때 어떤 동작을 하는지 알 수 없습니다. 
+  비표시 텍스트를 제공하여 "인스타그램으로 공유하기"라는 의미를 전달해야 합니다.
+</div>`}
+        />
+      </section>
     </div>
   );
 }

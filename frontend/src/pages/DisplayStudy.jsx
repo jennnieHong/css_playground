@@ -295,54 +295,88 @@ function DisplayStudy() {
       </section>
 
       <section className="study-section">
-        <h2 className="section-title">Display: Contents</h2>
+        <h2 className="section-title">실전 예제: Semantic Wrapper in Grid</h2>
         <p className="section-description">
-          요소 자체는 레이아웃에서 사라지고, 자식 요소만 남습니다. (Grid Study에서도 다룬 개념입니다)
+          데이터 구조상 래퍼(Wrapper)가 필요한 상황에서도 그리드 레이아웃을 망가뜨리지 않고 자식들을 직접 부모 그리드에 참여시킬 수 있습니다.
         </p>
 
         <LiveCodeEditor
-          scopeId="display-contents"
-          previewHeight="250px"
-          codeHeight="300px"
-          initialCss={`.grid-container {
+          scopeId="display-contents-practical"
+          previewHeight="300px"
+          codeHeight="400px"
+          initialCss={`.grid-form {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  background-color: #f1f3f5;
-  padding: 1rem;
+  grid-template-columns: 120px 1fr;
+  gap: 15px;
+  max-width: 500px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.item {
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 4px;
-  color: #1e293b;
+/* 이 래퍼들이 display: contents가 없으면 그리드 1:1 대응이 깨집니다 */
+.field-group {
+  display: contents; /* 이 줄을 주석처리하면 레이아웃이 깨집니다 */
 }
 
-/* wrapper를 주석 처리/해제 해보세요 */
-.wrapper {
-  /* display: contents; */
-  border: 3px dashed #fa5252;
-  background-color: rgba(255, 0, 0, 0.1);
-}`}
-          initialHtml={`<div class="grid-container">
-  <div class="item">1</div>
-  <div class="item">2</div>
-  
-  <!-- Wrapper with display: contents -->
-  <div class="wrapper">
-    <div class="item">3 (in wrapper)</div>
-    <div class="item">4 (in wrapper)</div>
+.label {
+  font-weight: bold;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.helper-text {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 4px;
+}
+`}
+          initialHtml={`<div class="grid-form">
+  <!-- Group 1 -->
+  <div class="field-group">
+    <div class="label">Username</div>
+    <div class="input-container">
+      <input type="text" placeholder="Enter username">
+      <span class="helper-text">Must be unique</span>
+    </div>
   </div>
-  
-  <div class="item">5</div>
+
+  <!-- Group 2 -->
+  <div class="field-group">
+    <div class="label">Email</div>
+    <div class="input-container">
+      <input type="email" placeholder="Enter email">
+    </div>
+  </div>
+
+  <!-- Group 3 -->
+  <div class="field-group">
+    <div class="label">Password</div>
+    <div class="input-container">
+      <input type="password" placeholder="Min 8 characters">
+      <span class="helper-text">Use symbols for security</span>
+    </div>
+  </div>
 </div>
 
-<p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
-  <strong>Try</strong>: CSS 에디터에서 <code>display: contents;</code> 주석을 해제해보세요!<br/>
-  wrapper의 빨간 테두리와 배경이 사라지고, 자식들이 직접 그리드에 참여합니다.
+<p style="margin-top: 1.5rem; color: #1e293b; background: #e0f2fe; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 실무 팁:</strong><br/>
+  프레임워크(React 등)에서 룩업 데이터나 공통 로직을 위해 컴포넌트를 나눌 때, <code>div</code>로 감싸야만 하는 경우가 있습니다.<br/>
+  이때 <code>display: contents;</code>를 활용하면 불필요한 레이아웃 레벨을 제거할 수 있습니다.
 </p>`}
         />
       </section>

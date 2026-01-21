@@ -241,6 +241,83 @@ function PseudoElementStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 커스텀 리스트 불렛</h2>
+        <p className="section-description">
+          기본적인 리스트 스타일 대신 <code>::before</code>를 사용하여 창의적이고 세련된 불렛 포인트를 만듭니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="pseudo-practical-list"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`.custom-list {
+  list-style: none; /* 기본 불렛 제거 */
+  padding: 0;
+  max-width: 400px;
+}
+
+.custom-list li {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.custom-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+.custom-list li::after {
+  content: "✓";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.custom-list li strong {
+  display: block;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+`}
+          initialHtml={`<ul class="custom-list">
+  <li>
+    <strong>Consistent Design</strong>
+    모든 브라우저에서 동일한 디자인의 리스트 아이콘을 보장합니다.
+  </li>
+  <li>
+    <strong>Smooth Animations</strong>
+    가상 요소는 CSS transition을 통해 세련된 애니메이션 효과를 줄 수 있습니다.
+  </li>
+  <li>
+    <strong>No Extra HTML</strong>
+    아이콘 이미지를 별도로 추가할 필요 없이 CSS만으로 유지보수가 가능합니다.
+  </li>
+</ul>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 가상 요소 활용 팁:</strong><br/>
+  하나의 <code>li</code>에 <code>::before</code>(원 배경)와 <code>::after</code>(체크 표시)를 모두 사용하여 복잡한 아이콘을 표현할 수 있습니다.
+</p>`}
+        />
+      </section>
     </div>
   );
 }

@@ -552,6 +552,75 @@ function UnitsStudy() {
 </div>`}
         />
       </section>
+
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 반응형 컨텐츠 카드</h2>
+        <p className="section-description">
+          <code>clamp()</code>를 활용하여 미디어 쿼리 없이도 브라우저 너비에 따라 폰트와 여백이 유동적으로 변하는 카드입니다.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="units-practical-card"
+          previewHeight="400px"
+          codeHeight="450px"
+          initialCss={`.responsive-card {
+  /* 너비: 300px ~ 100% ~ 500px */
+  width: clamp(300px, 90%, 500px);
+  margin: 2rem auto;
+  background: white;
+  border-radius: clamp(12px, 3vw, 24px);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.header-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.body {
+  /* 여백도 창 크기에 따라 유동적 */
+  padding: clamp(1.5rem, 5vw, 3rem);
+}
+
+.title {
+  /* 폰트 크기: 최소 1.25rem, 최대 2rem */
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #475569;
+}
+`}
+          initialHtml={`<div class="responsive-card">
+  <div class="header-img">⛰️</div>
+  <div class="body">
+    <h3 class="title">Flexible Design</h3>
+    <p class="desc">
+      이 카드는 clamp() 함수 하나만으로 모바일과 데스크탑 양쪽에서 
+      최적의 레이아웃을 보여줍니다. 브라우저의 가로 너비를 줄였다 늘였다 해보세요!
+    </p>
+  </div>
+</div>
+
+<p style="margin-top: 1.5rem; color: #1e293b; background: #fef3c7; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 핵심 단위 활용:</strong><br/>
+  • <strong>clamp()</strong>: 미디어 쿼리 중복을 줄여주는 강력한 modern CSS 기법<br/>
+  • <strong>rem</strong>: 접근성을 고려한 텍스트 크기 기준<br/>
+  • <strong>aspect-ratio</strong>: 이미지 영역의 비율 고정
+</p>`}
+        />
+      </section>
     </div>
   );
 }
