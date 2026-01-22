@@ -1,8 +1,13 @@
+/**
+ * ContainerQueriesStudy.jsx
+ * 뷰포트가 아닌 부모 요소의 크기에 반응하는 컨테이너 쿼리(Container Queries) 실습 페이지
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function ContainerQueriesStudy() {
+  // 상태 관리: 컨테이너 박스의 너비 전환 (column, row)
   const [cardLayout, setCardLayout] = useState('column');
 
   return (
@@ -12,6 +17,7 @@ function ContainerQueriesStudy() {
         <p className="page-subtitle">뷰포트를 넘어 요소 중심의 반응형 디자인으로</p>
       </div>
 
+      {/* 섹션 1: 컨테이너 쿼리의 등장 배경과 필요성 */}
       <section className="study-section">
         <h2 className="section-title">미디어 쿼리의 한계를 극복하다</h2>
         <div className="section-description">
@@ -27,6 +33,7 @@ function ContainerQueriesStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 컨테이너 기준점 선언 및 탐색 메커니즘 */}
       <section className="study-section">
         <h2 className="section-title">기본 메커니즘: Containment</h2>
         <div className="section-description">
@@ -164,6 +171,7 @@ function ContainerQueriesStudy() {
         />
       </section>
 
+      {/* 섹션 3: 컨테이너 크기에 비례하는 상대 단위 (CQ Units) */}
       <section className="study-section">
         <h2 className="section-title">CQ Units: 컨테이너 전용 단위</h2>
         <div className="section-description">
@@ -212,6 +220,7 @@ function ContainerQueriesStudy() {
         />
       </section>
 
+      {/* 섹션 4: 그리드 시스템 내에서의 컴포넌트 독립성 확보 */}
       <section className="study-section">
         <h2 className="section-title">실전 활용: 그리드와의 시너지</h2>
         <div className="section-description">

@@ -1,8 +1,15 @@
+/**
+ * BoxModelStudy 페이지 컴포넌트
+ * CSS 박스 모델(Content, Padding, Border, Margin)과 box-sizing 속성을 학습하는 페이지입니다.
+ * 주요 개념: Box Model 구성, box-sizing (content-box vs border-box), Margin Collapse, Outline, aspect-ratio
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function BoxModelStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 박스 모델의 각 요소들을 동적으로 조절하기 위한 상태값들입니다.
   const [boxSizing, setBoxSizing] = useState('content-box');
   const [padding, setPadding] = useState('20px');
   const [border, setBorder] = useState('5px');
@@ -10,10 +17,13 @@ function BoxModelStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Box Model Study</h1>
         <p className="page-subtitle">Understanding the CSS Box Model - the foundation of layout</p>
       </div>
+
+      {/* Box Model 기초 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">Box Model이란?</h2>
@@ -33,6 +43,7 @@ function BoxModelStudy() {
         </div>
       </section>
 
+      {/* 실습 섹션: Box Model 시각화 (개발자 도식) */}
       <section className="study-section">
         <h2 className="section-title">Box Model 시각화</h2>
         <p className="section-description">
@@ -91,6 +102,7 @@ function BoxModelStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Box-Sizing 비교 (가장 중요한 레이아웃 설정) */}
       <section className="study-section">
         <h2 className="section-title">Box-Sizing: Content-Box vs Border-Box</h2>
         <div className="section-description">
@@ -187,6 +199,7 @@ function BoxModelStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Margin Collapse (마진 상쇄 현상) */}
       <section className="study-section">
         <h2 className="section-title">Margin Collapse (마진 상쇄)</h2>
         <div className="section-description">
@@ -276,6 +289,7 @@ function BoxModelStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Outline vs Border (레이아웃 영향도 비교) */}
       <section className="study-section">
         <h2 className="section-title">Outline vs Border</h2>
         <p className="section-description">
@@ -327,6 +341,7 @@ function BoxModelStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Shadow Comparison (box-shadow vs drop-shadow) */}
       <section className="study-section">
         <h2 className="section-title">Shadow Comparison</h2>
         <p className="section-description">
@@ -376,6 +391,7 @@ function BoxModelStudy() {
         />
       </section>
 
+      {/* 팁 섹션: 전역 Box-Sizing (Best Practice) */}
       <section className="study-section">
         <h2 className="section-title">실전 Tip: 전역 Box-Sizing 설정</h2>
         <p className="section-description">
@@ -410,6 +426,7 @@ function BoxModelStudy() {
 </p>`}
         />
       </section>
+      {/* 실습 섹션: aspect-ratio (현대적인 비율 제어) */}
       <section className="study-section">
         <h2 className="section-title">aspect-ratio (비율 제어)</h2>
         <div className="section-description">
@@ -488,6 +505,7 @@ function BoxModelStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 제품 카드 레이아웃 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 제품 카드 레이아웃</h2>
         <p className="section-description">

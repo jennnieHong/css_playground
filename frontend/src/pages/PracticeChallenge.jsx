@@ -1,39 +1,44 @@
+/**
+ * PracticeChallenge.jsx
+ * 지금까지 배운 모든 CSS 기술(BEM, Flexbox/Grid, Variables, Container Queries 등)을 활용한 종합 실습 챌린지 페이지
+ */
 import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function PracticeChallenge() {
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <h1 className="page-title">Master Challenge</h1>
-                <p className="page-subtitle">지금까지 배운 모든 기술을 총동원하여 최고의 컴포넌트를 완성하세요!</p>
-            </div>
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <h1 className="page-title">Master Challenge</h1>
+        <p className="page-subtitle">지금까지 배운 모든 기술을 총동원하여 최고의 컴포넌트를 완성하세요!</p>
+      </div>
 
-            <section className="study-section">
-                <h2 className="section-title">최종 미션: 스마트 프로필 카드</h2>
-                <div className="section-description">
-                    <p>
-                        아래의 요구사항을 충족하는 <strong>Smart Profile Card</strong>를 완성하는 것이 여러분의 마지막 미션입니다.
-                        단순히 모양을 맞추는 것을 넘어, 코드의 구조와 접근성, 반응형 대응까지 고려해야 합니다.
-                    </p>
+      {/* 섹션 1: 모든 핵심 CSS 기법을 적용해 보는 종합 마스터 챌린지 */}
+      <section className="study-section">
+        <h2 className="section-title">최종 미션: 스마트 프로필 카드</h2>
+        <div className="section-description">
+          <p>
+            아래의 요구사항을 충족하는 <strong>Smart Profile Card</strong>를 완성하는 것이 여러분의 마지막 미션입니다.
+            단순히 모양을 맞추는 것을 넘어, 코드의 구조와 접근성, 반응형 대응까지 고려해야 합니다.
+          </p>
 
-                    <div className="concept-box" style={{ background: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                        <h4 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>📋 요구사항 체크리스트:</h4>
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
-                            <li>✅ <strong>Architecture</strong>: <code>card</code>, <code>card__header</code> 등 BEM 명명 규칙을 적용하세요.</li>
-                            <li>✅ <strong>Layout</strong>: 카드 내부 배치를 위해 Flexbox 또는 Grid를 활용하세요.</li>
-                            <li>✅ <strong>Variables</strong>: <code>--bg-color</code>, <code>--text-color</code> 등 변수를 정의하고 다크모드에 대응하세요.</li>
-                            <li>✅ <strong>Responsive</strong>: Media Query 대신 <strong>Container Queries</strong>를 사용하여 좁은 공간과 넓은 공간 모두에 대응하세요.</li>
-                            <li>✅ <strong>Animation</strong>: 카드에 마우스를 올릴 때 부드러운 <code>transition</code>이나 <code>animation</code>을 추가하세요.</li>
-                            <li>✅ <strong>Accessibility</strong>: 아이콘 버튼에 <code>sr-only</code>를 사용하여 스크린 리더 환경을 배려하세요.</li>
-                        </ul>
-                    </div>
-                </div>
+          <div className="concept-box" style={{ background: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+            <h4 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>📋 요구사항 체크리스트:</h4>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              <li>✅ <strong>Architecture</strong>: <code>card</code>, <code>card__header</code> 등 BEM 명명 규칙을 적용하세요.</li>
+              <li>✅ <strong>Layout</strong>: 카드 내부 배치를 위해 Flexbox 또는 Grid를 활용하세요.</li>
+              <li>✅ <strong>Variables</strong>: <code>--bg-color</code>, <code>--text-color</code> 등 변수를 정의하고 다크모드에 대응하세요.</li>
+              <li>✅ <strong>Responsive</strong>: Media Query 대신 <strong>Container Queries</strong>를 사용하여 좁은 공간과 넓은 공간 모두에 대응하세요.</li>
+              <li>✅ <strong>Animation</strong>: 카드에 마우스를 올릴 때 부드러운 <code>transition</code>이나 <code>animation</code>을 추가하세요.</li>
+              <li>✅ <strong>Accessibility</strong>: 아이콘 버튼에 <code>sr-only</code>를 사용하여 스크린 리더 환경을 배려하세요.</li>
+            </ul>
+          </div>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="master-challenge"
-                    previewHeight="500px"
-                    codeHeight="700px"
-                    initialCss={`/* 1. 프로젝트 변수 정의 (다크모드 대응 포함) */
+        <LiveCodeEditor
+          scopeId="master-challenge"
+          previewHeight="500px"
+          codeHeight="700px"
+          initialCss={`/* 1. 프로젝트 변수 정의 (다크모드 대응 포함) */
 :root {
   --card-bg: #ffffff;
   --text-main: #1e293b;
@@ -111,7 +116,7 @@ function PracticeChallenge() {
   white-space: nowrap;
   border-width: 0;
 }`}
-                    initialHtml={`<div class="profile-wrapper">
+          initialHtml={`<div class="profile-wrapper">
   <article class="card">
     <div class="card__header">
       <div class="card__avatar"></div>
@@ -139,10 +144,10 @@ function PracticeChallenge() {
   이 예제를 바탕으로 본인만의 포트폴리오 카드 컴포넌트를 만들어보세요. <br/>
   CSS 애니메이션, 다크모드, 논리적 속성 등을 더 추가하여 완성도를 높일 수 있습니다.
 </div>`}
-                />
-            </section>
-        </div>
-    );
+        />
+      </section>
+    </div>
+  );
 }
 
 export default PracticeChallenge;

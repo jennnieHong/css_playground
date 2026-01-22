@@ -1,8 +1,13 @@
+/**
+ * FloatStudy.jsx
+ * 고전적인 레이아웃 기법인 Float 및 해제(Clear) 실습 페이지
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function FloatStudy() {
+  // 상태 관리: float 방향 및 clear 설정
   const [floatValue, setFloatValue] = useState('none');
   const [clearValue, setClearValue] = useState('none');
 
@@ -13,11 +18,12 @@ function FloatStudy() {
         <p className="page-subtitle">Classic layout technique - still useful for wrapping text around elements</p>
       </div>
 
+      {/* 섹션 1: Float 속성의 개념과 역사적 배경 */}
       <section className="study-section">
         <h2 className="section-title">Float이란?</h2>
         <div className="section-description">
           <p>
-            <code>float</code>는 원래 <strong>잡지 레이아웃처럼 텍스트가 이미지를 감싸도록</strong> 하기 위해 만들어졌습니다.<br/>
+            <code>float</code>는 원래 <strong>잡지 레이아웃처럼 텍스트가 이미지를 감싸도록</strong> 하기 위해 만들어졌습니다.<br />
             Flexbox와 Grid가 등장하기 전에는 레이아웃의 주요 도구였지만, 현재는 주로 텍스트 래핑(wrapping)에 사용됩니다.
           </p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -28,6 +34,7 @@ function FloatStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: Float의 기본 동작 및 텍스트 래핑 피드백 */}
       <section className="study-section">
         <h2 className="section-title">Float 기본 동작</h2>
         <p className="section-description">
@@ -98,6 +105,7 @@ function FloatStudy() {
         />
       </section>
 
+      {/* 섹션 3: 흐름을 제어하는 Clear 속성 */}
       <section className="study-section">
         <h2 className="section-title">Clear 속성</h2>
         <div className="section-description">
@@ -218,6 +226,7 @@ function FloatStudy() {
         />
       </section>
 
+      {/* 섹션 4: 부모 요소의 높이 붕괴 방지 기법 (Clearfix) */}
       <section className="study-section">
         <h2 className="section-title">Clearfix - 부모 높이 문제 해결</h2>
         <div className="section-description">
@@ -287,6 +296,7 @@ function FloatStudy() {
         />
       </section>
 
+      {/* 섹션 5: 실무 활용 - 이미지와 텍스트의 조화로운 배치 */}
       <section className="study-section">
         <h2 className="section-title">실전 사용: 이미지 + 텍스트 래핑</h2>
         <p className="section-description">

@@ -1,12 +1,20 @@
+/**
+ * PseudoElementStudy 페이지 컴포넌트
+ * CSS 가상 요소(::before, ::after, ::selection 등)를 활용한 장식 및 기능 구현을 학습하는 페이지입니다.
+ * 주요 개념: content 속성, 가상 요소를 활용한 아이콘/리본/불렛 제작, 선택 영역 스타일링
+ */
 import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function PseudoElementStudy() {
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Pseudo Elements</h1>
         <p className="page-subtitle">::before, ::after, and decorative magic</p>
       </div>
+
+      {/* 기초 섹션: Pseudo Elements 개념 정의 */}
 
       <section className="study-section">
         <h2 className="section-title">Pseudo Elements란?</h2>
@@ -23,6 +31,7 @@ function PseudoElementStudy() {
         </div>
       </section>
 
+      {/* 실습 섹션: ::before & ::after (기본 활용 및 인용구 예제) */}
       <section className="study-section">
         <h2 className="section-title">::before와 ::after 기본</h2>
         <p className="section-description">
@@ -72,6 +81,7 @@ function PseudoElementStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 가상 요소를 활용한 아이콘 및 데코레이션 */}
       <section className="study-section">
         <h2 className="section-title">아이콘 & 장식</h2>
         <p className="section-description">
@@ -143,6 +153,7 @@ function PseudoElementStudy() {
         />
       </section>
 
+      {/* 실습 섹션: ::selection (사용자 선택 영역 스타일링) */}
       <section className="study-section">
         <h2 className="section-title">::selection - 텍스트 선택 스타일</h2>
         <p className="section-description">
@@ -184,6 +195,7 @@ function PseudoElementStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 실무 디자인 패턴 - 리본 효과 구현 */}
       <section className="study-section">
         <h2 className="section-title">실전: Ribbon & 장식</h2>
         <p className="section-description">
@@ -242,6 +254,7 @@ function PseudoElementStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 커스텀 리스트 불렛 (::before & ::after 조합) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 커스텀 리스트 불렛</h2>
         <p className="section-description">

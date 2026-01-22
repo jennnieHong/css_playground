@@ -1,8 +1,13 @@
+/**
+ * CustomPropertiesStudy.jsx
+ * CSS 사용자 정의 속성(Custom Properties/Variables) 및 동적 테마링 실습 페이지
+ */
 import { useState } from 'react';
-import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function CustomPropertiesStudy() {
+  // 상태 관리: 주색상, 테두리 반경, 글꼴 크기 동적 제어
   const [primaryColor, setPrimaryColor] = useState('#3b82f6');
   const [borderRadius, setBorderRadius] = useState('8px');
   const [fontSize, setFontSize] = useState('16px');
@@ -14,6 +19,7 @@ function CustomPropertiesStudy() {
         <p className="page-subtitle">재사용 가능한 값을 정의하여 스타일 관리를 효율적으로</p>
       </div>
 
+      {/* 섹션 1: CSS 변수(Custom Properties)의 개념 */}
       <section className="study-section">
         <h2 className="section-title">CSS 변수란?</h2>
         <p className="section-description">
@@ -22,6 +28,7 @@ function CustomPropertiesStudy() {
         </p>
       </section>
 
+      {/* 섹션 2: JavaScript와 연동된 동적 테마링 실습 */}
       <section className="study-section">
         <h2 className="section-title">동적 테마링 예제</h2>
         <p className="section-description">
@@ -132,6 +139,7 @@ function CustomPropertiesStudy() {
         />
       </section>
 
+      {/* 섹션 3: 변수 재정의를 통한 다크 모드(Theming) 구현 기법 */}
       <section className="study-section">
         <h2 className="section-title">다크 모드 구현 (Theming)</h2>
         <div className="section-description">

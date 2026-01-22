@@ -1,3 +1,8 @@
+/**
+ * CssArchitectureStudy.jsx
+ * 대규모 프로젝트를 위한 CSS 아키텍처 및 설계 전략 실습 페이지
+ */
+import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function CssArchitectureStudy() {
@@ -8,6 +13,7 @@ function CssArchitectureStudy() {
         <p className="page-subtitle">대규모 프로젝트를 위한 체계적인 스타일 관리 전략</p>
       </div>
 
+      {/* 섹션 1: CSS 아키텍처의 필요성과 유지보수성 */}
       <section className="study-section">
         <h2 className="section-title">왜 아키텍처가 중요한가요?</h2>
         <div className="section-description">
@@ -23,6 +29,7 @@ function CssArchitectureStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: BEM (Block, Element, Modifier) 방법론 */}
       <section className="study-section">
         <h2 className="section-title">BEM: 직관적인 명명 규칙</h2>
         <div className="section-description">
@@ -98,6 +105,7 @@ function CssArchitectureStudy() {
         />
       </section>
 
+      {/* 섹션 3: SMACSS (Scalable and Modular Architecture for CSS) */}
       <section className="study-section">
         <h2 className="section-title">SMACSS: 스타일의 5가지 범주</h2>
         <div className="section-description">
@@ -137,6 +145,7 @@ function CssArchitectureStudy() {
         </div>
       </section>
 
+      {/* 섹션 4: ITCSS (Inverted Triangle CSS)와 명시도 관리 */}
       <section className="study-section">
         <h2 className="section-title">ITCSS: 명시도 관리의 끝판왕</h2>
         <div className="section-description">
@@ -156,6 +165,7 @@ function CssArchitectureStudy() {
         </div>
       </section>
 
+      {/* 섹션 5: 유틸리티 우선(Utility-First) 접근 방식 */}
       <section className="study-section">
         <h2 className="section-title">현대적인 구조: Utility-First</h2>
         <div className="section-description">
@@ -183,6 +193,7 @@ function CssArchitectureStudy() {
         />
       </section>
 
+      {/* 섹션 6: Sass 7-1 패턴을 활용한 폴더 구조화 */}
       <section className="study-section">
         <h2 className="section-title">실전 관리: 7-1 폴더 패턴</h2>
         <div className="section-description">
@@ -207,6 +218,7 @@ function CssArchitectureStudy() {
         </div>
       </section>
 
+      {/* 섹션 7: 종합 실습 - BEM 기반 사이드바 컴포넌트 설계 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: BEM 기반 네비게이션 대시보드</h2>
         <p className="section-description">

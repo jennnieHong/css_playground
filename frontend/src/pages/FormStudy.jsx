@@ -1,8 +1,13 @@
+/**
+ * FormStudy.jsx
+ * 고급 폼 스타일링 및 사용자 정의 컨트롤 실습 페이지
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function FormStudy() {
+  // 상태 관리: 입력 필드 스타일 전환 (modern, minimal, default)
   const [inputStyle, setInputStyle] = useState('modern');
 
   return (
@@ -12,6 +17,7 @@ function FormStudy() {
         <p className="page-subtitle">Creating beautiful and accessible form controls</p>
       </div>
 
+      {/* 섹션 1: 폼 스타일링 개요 */}
       <section className="study-section">
         <h2 className="section-title">폼 스타일링의 중요성</h2>
         <div className="section-description">
@@ -27,6 +33,7 @@ function FormStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 텍스트 입력 필드(Input) 스타일링 */}
       <section className="study-section">
         <h2 className="section-title">Input 기본 스타일링</h2>
         <p className="section-description">
@@ -186,6 +193,7 @@ function FormStudy() {
         />
       </section>
 
+      {/* 섹션 3: 가상 요소를 활용한 커스텀 체크박스 */}
       <section className="study-section">
         <h2 className="section-title">Custom Checkbox</h2>
         <p className="section-description">
@@ -278,6 +286,7 @@ function FormStudy() {
         />
       </section>
 
+      {/* 섹션 4: 가상 요소를 활용한 커스텀 라디오 버튼 */}
       <section className="study-section">
         <h2 className="section-title">Custom Radio Buttons</h2>
         <p className="section-description">
@@ -369,6 +378,7 @@ function FormStudy() {
         />
       </section>
 
+      {/* 섹션 5: 브라우저 기본 유효성 검사 상태 활용 */}
       <section className="study-section">
         <h2 className="section-title">Form Validation States</h2>
         <p className="section-description">
@@ -454,6 +464,7 @@ function FormStudy() {
         />
       </section>
 
+      {/* 섹션 6: 플레이스홀더를 활용한 플로팅 라벨 기법 */}
       <section className="study-section">
         <h2 className="section-title">Floating Labels</h2>
         <p className="section-description">
@@ -520,6 +531,7 @@ function FormStudy() {
         />
       </section>
 
+      {/* 섹션 7: Dropdown 및 Range 슬라이더 커스터마이징 */}
       <section className="study-section">
         <h2 className="section-title">Custom Select & Range</h2>
         <p className="section-description">
@@ -582,6 +594,7 @@ function FormStudy() {
         />
       </section>
 
+      {/* 섹션 8: 종합 실습 - 현대적인 로그인 폼 구현 */}
       <section className="study-section">
         <h2 className="section-title">실전: 현대적인 로그인 폼</h2>
         <p className="section-description">

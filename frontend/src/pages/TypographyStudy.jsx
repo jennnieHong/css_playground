@@ -1,8 +1,15 @@
+/**
+ * TypographyStudy 페이지 컴포넌트
+ * 웹 타이포그래피의 기본 요소(글꼴, 크기, 두께, 줄 간격)와 고급 텍스트 효과를 학습하는 페이지입니다.
+ * 주요 개념: Font Family, Weight/Size 계층 구조, Line Height 가독성, Text Overflow(말줄임), Text Shadow, Writing Mode
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function TypographyStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 타이포그래피 속성들의 실시간 변화를 제어하기 위한 상태값들입니다.
   const [fontFamily, setFontFamily] = useState('sans-serif');
   const [fontWeight, setFontWeight] = useState('400');
   const [fontSize, setFontSize] = useState('16px');
@@ -11,10 +18,13 @@ function TypographyStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Typography Study</h1>
         <p className="page-subtitle">Mastering fonts, text styling, and readable typography</p>
       </div>
+
+      {/* Typography 기초 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">Typography의 중요성</h2>
@@ -30,6 +40,7 @@ function TypographyStudy() {
         </div>
       </section>
 
+      {/* 실습 섹션: Font Family (글꼴 선택 및 폴백) */}
       <section className="study-section">
         <h2 className="section-title">Font Family (글꼴)</h2>
         <p className="section-description">
@@ -94,6 +105,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Font Weight & Size (시각적 위계 설정) */}
       <section className="study-section">
         <h2 className="section-title">Font Weight & Size</h2>
         <p className="section-description">
@@ -162,6 +174,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Line Height (가독성의 핵심, 줄 간격) */}
       <section className="study-section">
         <h2 className="section-title">Line Height (줄 간격)</h2>
         <div className="section-description">
@@ -226,6 +239,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Text Align & Transform (정렬 및 대소문자) */}
       <section className="study-section">
         <h2 className="section-title">Text Align & Transform</h2>
         <p className="section-description">
@@ -289,6 +303,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실무 패턴 섹션: Text Overflow (말줄임표 처리 기법) */}
       <section className="study-section">
         <h2 className="section-title">Text Overflow (Ellipsis)</h2>
         <p className="section-description">
@@ -348,6 +363,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 디자인 가이드 섹션: 타이포그래피 시스템 (Best Practice) */}
       <section className="study-section">
         <h2 className="section-title">실전: 타이포그래피 시스템</h2>
         <p className="section-description">
@@ -396,6 +412,7 @@ function TypographyStudy() {
 </div>`}
         />
       </section>
+      {/* 실습 섹션: Text Shadow (텍스트 특수 효과 갤러리) */}
       <section className="study-section">
         <h2 className="section-title">Text Shadow Gallery</h2>
         <p className="section-description">
@@ -466,6 +483,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Advanced Decoration (밑줄 offset 등 최신 속성) */}
       <section className="study-section">
         <h2 className="section-title">Advanced Decoration</h2>
         <p className="section-description">
@@ -510,6 +528,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Word Break & Wrap (긴 단어 및 언어별 줄바꿈 대응) */}
       <section className="study-section">
         <h2 className="section-title">Word Break & Wrap</h2>
         <p className="section-description">
@@ -569,6 +588,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Writing Mode (동아시아 세로쓰기 대응) */}
       <section className="study-section">
         <h2 className="section-title">writing-mode (텍스트 방향)</h2>
         <p className="section-description">
@@ -617,6 +637,7 @@ function TypographyStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 뉴스 기사 레이아웃 (종합 실습) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 뉴스 기사 레이아웃</h2>
         <p className="section-description">
@@ -717,8 +738,8 @@ function TypographyStudy() {
   • <strong>line-height</strong>: 본문은 1.6~1.8배가 가장 가독성이 좋으며, 제목은 1.2배 정도로 좁히는 것이 강렬합니다.
 </p>`}
         />
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }
 

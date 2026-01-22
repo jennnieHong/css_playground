@@ -1,8 +1,15 @@
+/**
+ * PositionStudy 페이지 컴포넌트
+ * CSS 포지셔닝(static, relative, absolute, fixed, sticky)을 학습하는 페이지입니다.
+ * 주요 개념: 부모-자식 관계 제어, Fixed 트랩, Sticky 활용, 센터링 기법, 툴팁/뱃지 구현
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function PositionStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 포지셔닝 속성값의 변화를 실시간으로 관찰하기 위한 상태들입니다.
   const [position, setPosition] = useState('static');
   const [top, setTop] = useState('auto');
   const [left, setLeft] = useState('auto');
@@ -10,10 +17,13 @@ function PositionStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Position Study</h1>
         <p className="page-subtitle">요소의 위치를 결정하는 Position 속성 정복하기</p>
       </div>
+
+      {/* Position 속성 기초 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">Position 속성 이해하기</h2>
@@ -29,6 +39,7 @@ function PositionStudy() {
         </div>
       </section>
 
+      {/* 실습 섹션: 부모-자식 관계 (Relative & Absolute 패턴) */}
       <section className="study-section">
         <h2 className="section-title">Parent-Child 관계 (Relative vs Absolute)</h2>
         <p className="section-description">
@@ -70,6 +81,7 @@ function PositionStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Fixed Position (화면 고정) */}
       <section className="study-section">
         <h2 className="section-title">Fixed Position (고정 위치)</h2>
         <p className="section-description">
@@ -152,7 +164,7 @@ function PositionStudy() {
       </section>
 
 
-
+      {/* 실무 응용 섹션: 모달 오버레이 (Fixed 활용) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: Modal Overlay (딤드 처리)</h2>
         <p className="section-description">
@@ -222,6 +234,7 @@ function PositionStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 플로팅 버튼 (Fixed 활용) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: Floating Action Button (FAB)</h2>
         <p className="section-description">
@@ -279,7 +292,7 @@ function PositionStudy() {
       </section>
 
 
-
+      {/* 주의 사항 센션: Fixed 포지션의 함정 (The Trap) */}
       <section className="study-section">
         <h2 className="section-title">주의: Fixed와 부모의 관계 (The Trap)</h2>
         <div className="section-description">
@@ -376,6 +389,7 @@ function PositionStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Sticky Position (하이브리드 배치) */}
       <section className="study-section">
         <h2 className="section-title">Sticky Position</h2>
         <p className="section-description">
@@ -449,6 +463,7 @@ function PositionStudy() {
         />
       </section>
 
+      {/* 비교 섹션: 다양한 수평/수직 중앙 정렬 기법 */}
       <section className="study-section">
         <h2 className="section-title">🎯 센터링 방법 비교</h2>
         <p className="section-description">
@@ -547,6 +562,7 @@ function PositionStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 툴팁 및 드롭다운 (Absolute 활용) */}
       <section className="study-section">
         <h2 className="section-title">Tooltip & Dropdown 예제</h2>
         <p className="section-description">
@@ -680,6 +696,7 @@ function PositionStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 알림 뱃지 (Absolute 활용) */}
       <section className="study-section">
         <h2 className="section-title">Badge & Notification 예제</h2>
         <p className="section-description">
@@ -779,4 +796,3 @@ function PositionStudy() {
 }
 
 export default PositionStudy;
-

@@ -1,3 +1,8 @@
+/**
+ * Home 페이지 컴포넌트
+ * CSS Study 애플리케이션의 메인 랜딩 페이지입니다.
+ * 프로젝트 소개, 학습 가이드, 그리고 주요 공용 컴포넌트(Alert, Confirm, SearchPopup)의 데모를 제공합니다.
+ */
 import { useState } from 'react';
 import Tabs from '../components/Tabs';
 import Alert from '../components/Alert';
@@ -5,15 +10,25 @@ import Confirm from '../components/Confirm';
 import SearchPopup from '../components/SearchPopup';
 
 function Home() {
+  // --- 상태 관리 (State Management) ---
+  // 공용 UI 컴포넌트들의 표시 여부를 제어하는 상태들입니다.
   const [showAlert, setShowAlert] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
+  /**
+   * Confirm 창에서 '확인'을 눌렀을 때의 핸들러
+   * Confirm 창을 닫고 Alert 창을 띄웁니다.
+   */
   const handleConfirm = () => {
     setShowConfirm(false);
     setShowAlert(true);
   };
 
+  /**
+   * 탭 구성을 정의하는 배열
+   * 각 객체는 id, label(탭 이름), content(렌더링될 JSX)를 포함합니다.
+   */
   const tabs = [
     {
       id: 1,
@@ -79,20 +94,26 @@ function Home() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">CSS Study</h1>
         <p className="page-subtitle">모던 CSS를 마스터하세요</p>
       </div>
 
+      {/* 탭 기반 컨텐츠 영역 */}
       <Tabs tabs={tabs} />
 
+      {/* --- 조건부 렌더링 (Modals/Popups) --- */}
+
+      {/* 알림창 (Alert) */}
       {showAlert && (
-        <Alert 
-          message="Alert 컴포넌트가 정상적으로 작동합니다!" 
-          onClose={() => setShowAlert(false)} 
+        <Alert
+          message="Alert 컴포넌트가 정상적으로 작동합니다!"
+          onClose={() => setShowAlert(false)}
         />
       )}
 
+      {/* 확인창 (Confirm) */}
       {showConfirm && (
         <Confirm
           message="이 작업을 계속하시겠습니까?"
@@ -101,6 +122,7 @@ function Home() {
         />
       )}
 
+      {/* 검색창 (SearchPopup) */}
       {showSearch && (
         <SearchPopup
           onClose={() => setShowSearch(false)}
@@ -112,3 +134,4 @@ function Home() {
 }
 
 export default Home;
+

@@ -1,3 +1,7 @@
+/**
+ * ModernSelectorsStudy.jsx
+ * 현대적인 CSS 선택자(:is, :where, :not, :has 등) 활용 실습 페이지
+ */
 import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function ModernSelectorsStudy() {
@@ -8,6 +12,7 @@ function ModernSelectorsStudy() {
         <p className="page-subtitle">Writing cleaner, more descriptive selectors with :is(), :where(), and :not()</p>
       </div>
 
+      {/* 섹션 1: 현대적 선택자를 이용한 가독성 및 유지보수 개선 */}
       <section className="study-section">
         <h2 className="section-title">가독성과 유지보수</h2>
         <div className="section-description">
@@ -17,6 +22,7 @@ function ModernSelectorsStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 중복 제거를 위한 :is() 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:is() - 선택자 그룹화</h2>
         <p className="section-description">
@@ -70,6 +76,7 @@ section h3 {
         />
       </section>
 
+      {/* 섹션 3: 명시도 영향을 주지 않는 :where() 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:where() - 제로 명시도 (Zero Specificity)</h2>
         <p className="section-description">
@@ -114,6 +121,7 @@ section h3 {
         />
       </section>
 
+      {/* 섹션 4: 특정 요소를 제외하는 :not() 부정 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:not() - 부정 선택자</h2>
         <p className="section-description">
@@ -167,6 +175,7 @@ section h3 {
         />
       </section>
 
+      {/* 섹션 5: 관계 기반 선택의 혁명, :has() 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:has() - 부모 선택자의 혁명</h2>
         <div className="section-description">
@@ -252,6 +261,7 @@ section h3 {
         />
       </section>
 
+      {/* 섹션 6: 특정 조건 내에서의 순서 필터링 (nth-child of S) */}
       <section className="study-section">
         <h2 className="section-title">:nth-child() of S - 정교한 필터링</h2>
         <div className="section-description">
@@ -303,6 +313,7 @@ section h3 {
         />
       </section>
 
+      {/* 섹션 7: 실전 활용 - CSS만으로 구현하는 지능형 폼 레이아웃 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 스마트 폼 레이아웃</h2>
         <p className="section-description">

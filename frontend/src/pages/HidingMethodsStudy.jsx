@@ -1,58 +1,63 @@
+/**
+ * HidingMethodsStudy.jsx
+ * 요소를 숨기는 다양한 CSS 기법(display, visibility, opacity 등) 실습 페이지
+ */
 import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function HidingMethodsStudy() {
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <h1 className="page-title">CSS Hiding Methods</h1>
-                <p className="page-subtitle">요소를 숨기는 다양한 기법과 그 차이점 이해하기</p>
-            </div>
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <h1 className="page-title">CSS Hiding Methods</h1>
+        <p className="page-subtitle">요소를 숨기는 다양한 기법과 그 차이점 이해하기</p>
+      </div>
 
-            <section className="study-section">
-                <h2 className="section-title">대표적인 3가지 방법 비교</h2>
-                <div className="section-description">
-                    <p>
-                        가장 많이 사용되는 세 가지 기술은 레이아웃에 미치는 영향과 사용자 인터랙션 가능 여부가 완전히 다릅니다.
-                    </p>
-                    <div className="table-container" style={{ overflowX: 'auto', marginBottom: '1.5rem' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-                            <thead>
-                                <tr style={{ borderBottom: '2px solid #e2e8f0', textAlign: 'left' }}>
-                                    <th style={{ padding: '0.75rem' }}>속성</th>
-                                    <th style={{ padding: '0.75rem' }}>공간 차지</th>
-                                    <th style={{ padding: '0.75rem' }}>클릭 가능</th>
-                                    <th style={{ padding: '0.75rem' }}>특징</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style={{ borderBottom: '1px solid #edf2f7' }}>
-                                    <td style={{ padding: '0.75rem' }}><code>display: none</code></td>
-                                    <td style={{ padding: '0.75rem' }}>X</td>
-                                    <td style={{ padding: '0.75rem' }}>X</td>
-                                    <td style={{ padding: '0.75rem' }}>DOM에서는 존재하지만 렌더 트리에서 제거됨</td>
-                                </tr>
-                                <tr style={{ borderBottom: '1px solid #edf2f7' }}>
-                                    <td style={{ padding: '0.75rem' }}><code>visibility: hidden</code></td>
-                                    <td style={{ padding: '0.75rem' }}>O</td>
-                                    <td style={{ padding: '0.75rem' }}>X</td>
-                                    <td style={{ padding: '0.75rem' }}>공간은 유지하되 모습만 감춤 (투명 인간)</td>
-                                </tr>
-                                <tr style={{ borderBottom: '1px solid #edf2f7' }}>
-                                    <td style={{ padding: '0.75rem' }}><code>opacity: 0</code></td>
-                                    <td style={{ padding: '0.75rem' }}>O</td>
-                                    <td style={{ padding: '0.75rem' }}>O</td>
-                                    <td style={{ padding: '0.75rem' }}>투명할 뿐, 모든 인터랙션과 접근성 유지</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+      {/* 섹션 1: 주요 숨기기 속성(display, visibility, opacity) 비교 */}
+      <section className="study-section">
+        <h2 className="section-title">대표적인 3가지 방법 비교</h2>
+        <div className="section-description">
+          <p>
+            가장 많이 사용되는 세 가지 기술은 레이아웃에 미치는 영향과 사용자 인터랙션 가능 여부가 완전히 다릅니다.
+          </p>
+          <div className="table-container" style={{ overflowX: 'auto', marginBottom: '1.5rem' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+              <thead>
+                <tr style={{ borderBottom: '2px solid #e2e8f0', textAlign: 'left' }}>
+                  <th style={{ padding: '0.75rem' }}>속성</th>
+                  <th style={{ padding: '0.75rem' }}>공간 차지</th>
+                  <th style={{ padding: '0.75rem' }}>클릭 가능</th>
+                  <th style={{ padding: '0.75rem' }}>특징</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: '1px solid #edf2f7' }}>
+                  <td style={{ padding: '0.75rem' }}><code>display: none</code></td>
+                  <td style={{ padding: '0.75rem' }}>X</td>
+                  <td style={{ padding: '0.75rem' }}>X</td>
+                  <td style={{ padding: '0.75rem' }}>DOM에서는 존재하지만 렌더 트리에서 제거됨</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #edf2f7' }}>
+                  <td style={{ padding: '0.75rem' }}><code>visibility: hidden</code></td>
+                  <td style={{ padding: '0.75rem' }}>O</td>
+                  <td style={{ padding: '0.75rem' }}>X</td>
+                  <td style={{ padding: '0.75rem' }}>공간은 유지하되 모습만 감춤 (투명 인간)</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #edf2f7' }}>
+                  <td style={{ padding: '0.75rem' }}><code>opacity: 0</code></td>
+                  <td style={{ padding: '0.75rem' }}>O</td>
+                  <td style={{ padding: '0.75rem' }}>O</td>
+                  <td style={{ padding: '0.75rem' }}>투명할 뿐, 모든 인터랙션과 접근성 유지</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="hiding-comparison"
-                    previewHeight="450px"
-                    codeHeight="600px"
-                    initialCss={`.container {
+        <LiveCodeEditor
+          scopeId="hiding-comparison"
+          previewHeight="450px"
+          codeHeight="600px"
+          initialCss={`.container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -102,7 +107,7 @@ function HidingMethodsStudy() {
   cursor: pointer;
 }
 .btn:hover { background: #f1f5f9; }`}
-                    initialHtml={`<div class="container">
+          initialHtml={`<div class="container">
   <p><strong>1. display: none (박스 1을 숨김)</strong></p>
   <div class="item-group">
     <div class="box target hidden-none">박스 1</div>
@@ -129,24 +134,25 @@ function HidingMethodsStudy() {
   💡 <strong>opacity: 0의 특징:</strong><br/>
   박스 5의 위치를 마우스로 클릭해보세요. 안 보이지만 <code>alert</code> 창이 뜹니다! 인터랙션이 여전히 살아있음을 알 수 있습니다.
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">스크린 리더 전용 숨기기 (sr-only)</h2>
-                <div className="section-description">
-                    <p>
-                        디자인상으로는 숨겨야 하지만, 시각 장애인을 위한 스크린 리더는 읽어야 하는 정보(예: 아이콘 버튼의 텍스트 설명)에 사용합니다.
-                    </p>
-                    <p className="highlight-box">
-                        ⚠️ <code>display: none</code>이나 <code>visibility: hidden</code>을 쓰면 스크린 리더도 읽지 못합니다!
-                    </p>
-                </div>
-                <LiveCodeEditor
-                    scopeId="sr-only-method"
-                    previewHeight="300px"
-                    codeHeight="450px"
-                    initialCss={`.sr-only {
+      {/* 섹션 2: 웹 접근성을 고려한 시각적 숨기기 (sr-only) */}
+      <section className="study-section">
+        <h2 className="section-title">스크린 리더 전용 숨기기 (sr-only)</h2>
+        <div className="section-description">
+          <p>
+            디자인상으로는 숨겨야 하지만, 시각 장애인을 위한 스크린 리더는 읽어야 하는 정보(예: 아이콘 버튼의 텍스트 설명)에 사용합니다.
+          </p>
+          <p className="highlight-box">
+            ⚠️ <code>display: none</code>이나 <code>visibility: hidden</code>을 쓰면 스크린 리더도 읽지 못합니다!
+          </p>
+        </div>
+        <LiveCodeEditor
+          scopeId="sr-only-method"
+          previewHeight="300px"
+          codeHeight="450px"
+          initialCss={`.sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -175,7 +181,7 @@ function HidingMethodsStudy() {
 .icon-button:hover {
   background: #764ba2;
 }`}
-                    initialHtml={`<button class="icon-button">
+          initialHtml={`<button class="icon-button">
   <span>🔍</span>
   <span class="sr-only">검색하기</span>
 </button>
@@ -185,25 +191,27 @@ function HidingMethodsStudy() {
   돋보기 아이콘만 보이지만, 실제 스크린 리더는 "검색하기 버튼"이라고 정확히 읽어줍니다. 
   <code>.sr-only</code> 클래스는 요소를 아주 작게(1px) 만들고 화면 밖으로 밀어내어 시각적으로만 보이지 않게 합니다.
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">요약 및 추천 활용처</h2>
-                <div className="section-description">
-                    <ul className="description-list">
-                        <li><strong>특정 레이아웃을 아예 제거할 때</strong>: <code>display: none</code> (가장 흔함)</li>
-                        <li><strong>요소의 크기를 유지하면서 빈 공간을 남길 때</strong>: <code>visibility: hidden</code></li>
-                        <li><strong>페이드 인/아웃 애니메이션을 만들 때</strong>: <code>opacity</code> (0 ↔ 1)</li>
-                        <li><strong>웹 접근성을 준수하며 숨길 때</strong>: <code>sr-only</code> 기법</li>
-                        <li><strong>단축키 적용 등 기능은 살려두어야 할 때</strong>: <code>opacity: 0</code> 또는 <code>position: absolute; left: -9999px;</code></li>
-                    </ul>
-                </div>
-            </section>
-            <section className="study-section">
+      {/* 섹션 3: 상황별 숨기기 기법 요약 및 활용 가이드 */}
+      <section className="study-section">
+        <h2 className="section-title">요약 및 추천 활용처</h2>
+        <div className="section-description">
+          <ul className="description-list">
+            <li><strong>특정 레이아웃을 아예 제거할 때</strong>: <code>display: none</code> (가장 흔함)</li>
+            <li><strong>요소의 크기를 유지하면서 빈 공간을 남길 때</strong>: <code>visibility: hidden</code></li>
+            <li><strong>페이드 인/아웃 애니메이션을 만들 때</strong>: <code>opacity</code> (0 ↔ 1)</li>
+            <li><strong>웹 접근성을 준수하며 숨길 때</strong>: <code>sr-only</code> 기법</li>
+            <li><strong>단축키 적용 등 기능은 살려두어야 할 때</strong>: <code>opacity: 0</code> 또는 <code>position: absolute; left: -9999px;</code></li>
+          </ul>
+        </div>
+      </section>
+      {/* 섹션 4: 실전 예제 - 애니메이션이 가능한 숨기기 토글 구현 */}
+      <section className="study-section">
         <h2 className="section-title">실전 예제: 애니메이션 토글 카드</h2>
         <p className="section-description">
-          <code>display: none</code>은 애니메이션이 불가능합니다. 
+          <code>display: none</code>은 애니메이션이 불가능합니다.
           부드러운 전환을 위해 <code>opacity</code>와 <code>visibility</code>를 조합하는 기법을 확인하세요.
         </p>
 

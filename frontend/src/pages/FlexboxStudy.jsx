@@ -1,9 +1,15 @@
+/**
+ * FlexboxStudy 페이지 컴포넌트
+ * CSS Flexbox 레이아웃의 다양한 속성들을 인터랙티브하게 학습할 수 있는 페이지입니다.
+ * 주요 속성: justify-content, align-items, flex-direction, flex-wrap, gap, align-content, flex (grow/shrink/basis)
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function FlexboxStudy() {
-  // State for properties
+  // --- 상태 관리 (State Management) ---
+  // Flexbox 레이아웃 제어를 위한 CSS 속성 값들을 상태로 관리합니다.
   const [justifyContent, setJustifyContent] = useState('flex-start');
   const [alignItems, setAlignItems] = useState('stretch');
   const [flexDirection, setFlexDirection] = useState('row');
@@ -13,10 +19,13 @@ function FlexboxStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Flexbox Study</h1>
         <p className="page-subtitle">유연한 레이아웃을 만드는 Flexbox</p>
       </div>
+
+      {/* Flexbox 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">Flexbox란?</h2>
@@ -25,6 +34,7 @@ function FlexboxStudy() {
         </p>
       </section>
 
+      {/* 실습 섹션: 기본 예제 */}
       <section className="study-section">
         <h2 className="section-title">기본 예제</h2>
         <LiveCodeEditor
@@ -42,6 +52,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Justify Content (수평 정렬) */}
       <section className="study-section">
         <h2 className="section-title">Justify Content</h2>
         <div className="section-description">
@@ -105,6 +116,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Align Items (수직 정렬) */}
       <section className="study-section">
         <h2 className="section-title">Align Items</h2>
         <div className="section-description">
@@ -166,6 +178,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Baseline 정렬 (심화) */}
       <section className="study-section">
         <h2 className="section-title">Baseline 정렬: 텍스트 기준선 맞추기</h2>
         <div className="section-description">
@@ -281,6 +294,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Flex Direction (축 방향) */}
       <section className="study-section">
         <h2 className="section-title">Flex Direction</h2>
         <div className="section-description">
@@ -334,6 +348,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Flex Wrap (줄바꿈) */}
       <section className="study-section">
         <h2 className="section-title">Flex Wrap</h2>
         <div className="section-description">
@@ -398,6 +413,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Gap (간격) */}
       <section className="study-section">
         <h2 className="section-title">Gap (간격)</h2>
         <div className="section-description">
@@ -445,6 +461,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Align Content (여러 줄 정렬) */}
       <section className="study-section">
         <h2 className="section-title">Align Content</h2>
         <div className="section-description">
@@ -518,6 +535,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Flex 축약 속성 */}
       <section className="study-section">
         <h2 className="section-title">flex 축약 속성: 1 1 200px의 의미</h2>
         <div className="section-description">
@@ -649,6 +667,7 @@ function FlexboxStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Flex-grow vs Flex-shrink */}
       <section className="study-section">
         <h2 className="section-title">flex-grow vs flex-shrink: 공간 차지의 비밀</h2>
         <div className="section-description">

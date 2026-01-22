@@ -1,19 +1,28 @@
+/**
+ * StackingStudy 페이지 컴포넌트
+ * CSS의 Z-index, 쌓임 맥락(Stacking Context), 그리고 Cascading Layers(@layer)를 학습하는 페이지입니다.
+ * 주요 개념: Stacking Context 생성 조건, isolation: isolate, @layer를 이용한 명시도 관리
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function StackingStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 실시간으로 z-index와 isolation 모드를 변경하며 층위 변화를 확인하기 위한 상태입니다.
   const [zIndex1, setZIndex1] = useState('1');
   const [zIndex2, setZIndex2] = useState('2');
   const [isolationMode, setIsolationMode] = useState('auto');
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Stacking & Layers</h1>
         <p className="page-subtitle">층층이 쌓이는 CSS의 우선순위와 계층 구조 정복</p>
       </div>
 
+      {/* 실습 섹션: Z-Index와 쌓임 맥락 (Stacking Context) */}
       <section className="study-section">
         <h2 className="section-title">Z-Index와 쌓임 맥락 (Stacking Context)</h2>
         <div className="section-description">
@@ -94,6 +103,7 @@ function StackingStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Cascading Layers (@layer) */}
       <section className="study-section">
         <h2 className="section-title">Cascading Layers (@layer)</h2>
         <div className="section-description">
@@ -156,6 +166,7 @@ function StackingStudy() {
         />
       </section>
 
+      {/* 이론 및 가이드 섹션: Z-index 관리 가이드 */}
       <section className="study-section">
         <h2 className="section-title">Z-index를 대하는 올바른 자세</h2>
         <div className="section-description">
@@ -171,6 +182,7 @@ function StackingStudy() {
         </div>
       </section>
 
+      {/* 실무 예제 섹션: 모달 및 드롭다운의 Z-index 시스템화 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 모달 & 드롭다운 계층 관리</h2>
         <p className="section-description">

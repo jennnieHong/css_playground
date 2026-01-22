@@ -1,8 +1,15 @@
+/**
+ * GridStudy 페이지 컴포넌트
+ * CSS Grid 레이아웃의 기본 개념과 고급 활용법(Grid Areas 등)을 학습할 수 있는 페이지입니다.
+ * 주요 속성: grid-template-columns, gap, justify-items, align-items, grid-template-areas, grid-auto-flow, display: contents
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function GridStudy() {
+  // --- 상태 관리 (State Management) ---
+  // Grid 레이아웃의 동적 변화를 관찰하기 위해 각 속성들을 상태로 관리합니다.
   const [gridTemplateColumns, setGridTemplateColumns] = useState('repeat(3, 1fr)');
   const [gap, setGap] = useState('1rem');
   const [justifyItems, setJustifyItems] = useState('stretch');
@@ -12,10 +19,13 @@ function GridStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Grid Study</h1>
         <p className="page-subtitle">강력한 2차원 레이아웃 시스템</p>
       </div>
+
+      {/* Grid 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">CSS Grid란?</h2>
@@ -24,6 +34,7 @@ function GridStudy() {
         </p>
       </section>
 
+      {/* 실습 섹션: 기본 그리드 설정 */}
       <section className="study-section">
         <h2 className="section-title">기본 그리드</h2>
         <div className="section-description">
@@ -91,6 +102,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 그리드 아이템 정렬 (Alignment) */}
       <section className="study-section">
         <h2 className="section-title">Alignment</h2>
         <div className="section-description">
@@ -159,6 +171,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Grid Areas (시각적 레이아웃 정의) */}
       <section className="study-section">
         <h2 className="section-title">Grid Template Areas (영역 레이아웃)</h2>
         <div className="section-description">
@@ -267,6 +280,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Grid Areas 요소를 활용한 자동 높이 계산 */}
       <section className="study-section">
         <h2 className="section-title">Grid Areas: 높이 자동 계산 (auto)</h2>
         <p className="section-description">
@@ -364,6 +378,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Grid Areas 빈 공간 정의 (.) */}
       <section className="study-section">
         <h2 className="section-title">Grid Areas: 빈 공간 (.) 사용하기</h2>
         <p className="section-description">
@@ -459,6 +474,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 그리드 자동 흐름 (Auto Flow) */}
       <section className="study-section">
         <h2 className="section-title">Grid Auto Flow</h2>
         <div className="section-description">
@@ -538,6 +554,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Display: Contents (레이아웃 트리 최적화) */}
       <section className="study-section">
         <h2 className="section-title">Display: Contents</h2>
         <div className="section-description">
@@ -625,6 +642,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: Photo Gallery (복합 배치) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: Photo Gallery</h2>
         <p className="section-description">
@@ -702,6 +720,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: Dashboard Layout (영역 활용) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: Dashboard Layout</h2>
         <p className="section-description">
@@ -795,6 +814,7 @@ function GridStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: Card Grid (반응형 패턴) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: Card Grid</h2>
         <p className="section-description">

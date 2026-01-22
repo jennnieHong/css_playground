@@ -1,16 +1,26 @@
+/**
+ * ResponsiveStudy 페이지 컴포넌트
+ * 미디어 쿼리, 유동적 단위(%, vw, vh), 현대적인 반응형 함수(clamp, min, max) 등을 학습하는 페이지입니다.
+ * 주요 개념: Mobile First, Responsive Typography, Fluid Layout, Grid auto-fit
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function ResponsiveStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 유동적 단위(rem, vw, vh)의 변화를 실시간으로 테스트하기 위한 상태입니다.
   const [fluidUnit, setFluidUnit] = useState('rem');
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Responsive Design</h1>
         <p className="page-subtitle">Modern techniques: Media Queries, clamp(), fluid units, Container Queries</p>
       </div>
+
+      {/* 기초 섹션: 반응형 디자인의 역사와 진화 */}
 
       <section className="study-section">
         <h2 className="section-title">반응형 디자인 진화</h2>
@@ -77,6 +87,7 @@ function ResponsiveStudy() {
         />
       </section>
 
+      {/* 실습 섹션: clamp() (미디어 쿼리 없는 반응형 타이포그래피) */}
       <section className="study-section">
         <h2 className="section-title">clamp() - 반응형의 게임 체인저</h2>
         <div className="section-description">
@@ -126,6 +137,7 @@ function ResponsiveStudy() {
         />
       </section>
 
+      {/* 실습 섹션: min() & max() (조건부 레이아웃 제어) */}
       <section className="study-section">
         <h2 className="section-title">min() & max() - 조건부 크기 제어</h2>
         <div className="section-description">
@@ -200,6 +212,7 @@ function ResponsiveStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Fluid Units (뷰포트 기반 유동 단위) */}
       <section className="study-section">
         <h2 className="section-title">Fluid Units (%, vw, vh)</h2>
         <p className="section-description">
@@ -266,6 +279,7 @@ function ResponsiveStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 반응형 카드 그리드 (실무 패턴) */}
       <section className="study-section">
         <h2 className="section-title">실전: 반응형 카드 그리드</h2>
         <p className="section-description">

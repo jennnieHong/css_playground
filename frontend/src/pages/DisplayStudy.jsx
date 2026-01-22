@@ -1,18 +1,28 @@
+/**
+ * DisplayStudy 페이지 컴포넌트
+ * CSS display 속성(block, inline, inline-block, none, contents)과 시각적 제어(visibility)를 학습하는 페이지입니다.
+ * 주요 개념: Block vs Inline 차이, 외부 디스플레이 제어, 요소 숨기기 기법(none vs hidden vs sr-only), display: contents 활용 실무
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function DisplayStudy() {
+  // --- 상태 관리 (State Management) ---
+  // display 속성값의 실시간 변화를 처리하기 위한 상태들입니다.
   const [displayValue, setDisplayValue] = useState('block');
   const [inlineDisplayValue, setInlineDisplayValue] = useState('inline');
   const [visibilityValue, setVisibilityValue] = useState('block');
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Display Study</h1>
         <p className="page-subtitle">Understanding how elements are displayed and laid out</p>
       </div>
+
+      {/* Display 속성 기초 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">Display 속성이란?</h2>
@@ -31,6 +41,7 @@ function DisplayStudy() {
         </div>
       </section>
 
+      {/* 실습 섹션: Block vs Inline (기본 흐름 제어) */}
       <section className="study-section">
         <h2 className="section-title">Block vs Inline</h2>
         <p className="section-description">
@@ -91,6 +102,7 @@ function DisplayStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Inline 요소의 박스 모델 제한 확인 */}
       <section className="study-section">
         <h2 className="section-title">Inline 요소의 특성</h2>
         <p className="section-description">
@@ -146,6 +158,7 @@ function DisplayStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 요소 숨기기 방식 비교 (차지하는 공간 중심) */}
       <section className="study-section">
         <h2 className="section-title">Display: None vs Visibility: Hidden</h2>
         <p className="section-description">
@@ -217,6 +230,7 @@ function DisplayStudy() {
         />
       </section>
 
+      {/* 비교 섹션: 접근성 및 현대적인 숨김 처리 기법 */}
       <section className="study-section">
         <h2 className="section-title">Hiding Methods (요즘 숨기기 방식)</h2>
         <p className="section-description">
@@ -294,6 +308,7 @@ function DisplayStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: display: contents를 활용한 불필요한 래퍼 제거 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: Semantic Wrapper in Grid</h2>
         <p className="section-description">
@@ -379,8 +394,8 @@ input {
   이때 <code>display: contents;</code>를 활용하면 불필요한 레이아웃 레벨을 제거할 수 있습니다.
 </p>`}
         />
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }
 

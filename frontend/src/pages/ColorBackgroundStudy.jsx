@@ -1,8 +1,15 @@
+/**
+ * ColorBackgroundStudy 페이지 컴포넌트
+ * CSS 색상 표현 방식(Hex, RGB, HSL)과 배경(Gradient, Image) 및 그림자 효과를 학습하는 페이지입니다.
+ * 주요 개념: 색상 포맷, Opacity vs Alpha, 그라데이션 종류, Glassmorphism, Box Shadow 갤러리
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function ColorBackgroundStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 색상 포맷, 투명도, 그라데이션 타입의 실시간 변화를 제어합니다.
   const [colorFormat, setColorFormat] = useState('hex');
   const [opacity, setOpacity] = useState('1');
   const [gradientType, setGradientType] = useState('linear-gradient');
@@ -17,10 +24,13 @@ function ColorBackgroundStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Colors & Backgrounds</h1>
         <p className="page-subtitle">Mastering color formats, gradients, and visual styling</p>
       </div>
+
+      {/* 색상 포맷 기초 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">색상 표현 방법</h2>
@@ -97,7 +107,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 실습 섹션: Opacity vs Alpha 투명도 제어 */}
       <section className="study-section">
         <h2 className="section-title">Opacity (투명도)</h2>
         <p className="section-description">
@@ -181,7 +191,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 실습 섹션: Gradients (선형, 원형, 원뿔형 그라데이션) */}
       <section className="study-section">
         <h2 className="section-title">Gradients (그라데이션)</h2>
         <p className="section-description">
@@ -256,7 +266,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 실습 섹션: Background 세부 속성 (size, position, repeat) */}
       <section className="study-section">
         <h2 className="section-title">Background 속성들</h2>
         <p className="section-description">
@@ -305,7 +315,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 디자인 트렌드 섹션: Glassmorphism (유리 효과 구현) */}
       <section className="study-section">
         <h2 className="section-title">실전: Glass Morphism</h2>
         <p className="section-description">
@@ -365,7 +375,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 갤러리 섹션: 인기 그라데이션 조합 모음 */}
       <section className="study-section">
         <h2 className="section-title">🎨 그라데이션 갤러리</h2>
         <p className="section-description">
@@ -448,7 +458,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 갤러리 섹션: 다양한 Box Shadow 스타일 비교 */}
       <section className="study-section">
         <h2 className="section-title">Box Shadow 비교</h2>
         <p className="section-description">
@@ -537,7 +547,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 비교 섹션: 여러 디자인 트렌드별 카드 스타일 (Flat, Neumorphism 등) */}
       <section className="study-section">
         <h2 className="section-title">카드 스타일 비교</h2>
         <p className="section-description">
@@ -652,7 +662,7 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </section>
-
+      {/* 실무 응용 섹션: 영감을 주는 히어로 섹션 디자인 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 모바일 앱 히어로 섹션</h2>
         <p className="section-description">

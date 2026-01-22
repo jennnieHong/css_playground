@@ -1,8 +1,13 @@
+/**
+ * LogicalPropertiesStudy.jsx
+ * 다국어 및 글 흐름(RTL/LTR)에 대응하는 논리적 속성(Logical Properties) 실습 페이지
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function LogicalPropertiesStudy() {
+  // 상태 관리: 읽기 방향 (ltr: 왼쪽에서 오른쪽, rtl: 오른쪽에서 왼쪽)
   const [direction, setDirection] = useState('ltr');
 
   return (
@@ -12,11 +17,12 @@ function LogicalPropertiesStudy() {
         <p className="page-subtitle">Writing direction-agnostic layouts for the global web</p>
       </div>
 
+      {/* 섹션 1: 논리적 속성(Logical)과 물리적 속성(Physical)의 개념 차이 */}
       <section className="study-section">
         <h2 className="section-title">논리적 속성이란? (Logical vs Physical)</h2>
         <div className="section-description">
           <p>
-            기존의 <code>top, right, bottom, left</code>는 물리적인 방향을 의미합니다. 
+            기존의 <code>top, right, bottom, left</code>는 물리적인 방향을 의미합니다.
             하지만 세계에는 오른쪽에서 왼쪽(RTL)으로 읽는 언어도 있습니다.
           </p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -26,6 +32,7 @@ function LogicalPropertiesStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 흐름 기반의 여백 설정 (Margin & Padding) */}
       <section className="study-section">
         <h2 className="section-title">Margin & Padding (Logical)</h2>
         <p className="section-description">
@@ -132,6 +139,7 @@ function LogicalPropertiesStudy() {
         />
       </section>
 
+      {/* 섹션 3: 흐름 기반의 크기 설정 (inline-size & block-size) */}
       <section className="study-section">
         <h2 className="section-title">Size (Logical)</h2>
         <p className="section-description">
@@ -178,6 +186,7 @@ function LogicalPropertiesStudy() {
         />
       </section>
 
+      {/* 섹션 4: 논리적 위치 지정 (inset) */}
       <section className="study-section">
         <h2 className="section-title">Inset (Logical Position)</h2>
         <p className="section-description">
@@ -225,6 +234,7 @@ function LogicalPropertiesStudy() {
         />
       </section>
 
+      {/* 섹션 5: 실전 예제 - RTL/LTR에 완벽히 대응하는 글로벌 디자인 카드 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 다국어 지원 글로벌 카드</h2>
         <p className="section-description">

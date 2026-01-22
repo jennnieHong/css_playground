@@ -1,32 +1,37 @@
+/**
+ * HeightStudy.jsx
+ * 요소의 높이 계산 방식(px, %, auto, vh)과 높이 붕괴 해결 방안 실습 페이지
+ */
 import LiveCodeEditor from '../components/LiveCodeEditor';
 
 function HeightStudy() {
-    return (
-        <div className="page-container">
-            <div className="page-header">
-                <h1 className="page-title">Height & Sizing</h1>
-                <p className="page-subtitle">Container 높이 계산 규칙: %, px, auto, vh의 차이점</p>
-            </div>
+  return (
+    <div className="page-container">
+      <div className="page-header">
+        <h1 className="page-title">Height & Sizing</h1>
+        <p className="page-subtitle">Container 높이 계산 규칙: %, px, auto, vh의 차이점</p>
+      </div>
 
-            <section className="study-section">
-                <h2 className="section-title">높이 단위 기본</h2>
-                <div className="section-description">
-                    <p>
-                        CSS에서 높이를 설정하는 방법은 여러 가지가 있으며, 각각 다르게 동작합니다.
-                    </p>
-                    <ul className="description-list">
-                        <li><strong>px (픽셀)</strong>: 고정된 절대 크기</li>
-                        <li><strong>% (퍼센트)</strong>: 부모 요소의 높이를 기준으로 계산</li>
-                        <li><strong>vh (뷰포트 높이)</strong>: 브라우저 창 높이의 백분율</li>
-                        <li><strong>auto (자동)</strong>: 내부 콘텐츠에 맞춰 자동 계산</li>
-                    </ul>
-                </div>
+      {/* 섹션 1: 다양한 높이 단위(px, %, vh, auto)의 특성 이해 */}
+      <section className="study-section">
+        <h2 className="section-title">높이 단위 기본</h2>
+        <div className="section-description">
+          <p>
+            CSS에서 높이를 설정하는 방법은 여러 가지가 있으며, 각각 다르게 동작합니다.
+          </p>
+          <ul className="description-list">
+            <li><strong>px (픽셀)</strong>: 고정된 절대 크기</li>
+            <li><strong>% (퍼센트)</strong>: 부모 요소의 높이를 기준으로 계산</li>
+            <li><strong>vh (뷰포트 높이)</strong>: 브라우저 창 높이의 백분율</li>
+            <li><strong>auto (자동)</strong>: 내부 콘텐츠에 맞춰 자동 계산</li>
+          </ul>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="height-units"
-                    previewHeight="500px"
-                    codeHeight="400px"
-                    initialCss={`.container {
+        <LiveCodeEditor
+          scopeId="height-units"
+          previewHeight="500px"
+          codeHeight="400px"
+          initialCss={`.container {
   border: 3px solid #667eea;
   margin-bottom: 1rem;
   background: #f8f9fa;
@@ -60,7 +65,7 @@ function HeightStudy() {
   font-weight: 600;
   text-align: center;
 }`}
-                    initialHtml={`<div class="container">
+          initialHtml={`<div class="container">
   <div class="px-height">
     height: 200px (고정 크기)
   </div>
@@ -78,25 +83,26 @@ function HeightStudy() {
     (내용물에 맞춰 자동 조정)
   </div>
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">퍼센트 높이의 함정</h2>
-                <div className="section-description">
-                    <p>
-                        <strong>중요:</strong> <code>height: 50%</code>가 작동하려면 <strong>부모 요소에 명시적인 높이</strong>가 있어야 합니다!
-                    </p>
-                    <p className="highlight-box">
-                        💡 <strong>핵심 규칙</strong>: 부모가 <code>height: auto</code>면 자식의 <code>%</code> 높이는 무시됩니다.
-                    </p>
-                </div>
+      {/* 섹션 2: 퍼센트(%) 높이가 적용되지 않는 이유와 조건 */}
+      <section className="study-section">
+        <h2 className="section-title">퍼센트 높이의 함정</h2>
+        <div className="section-description">
+          <p>
+            <strong>중요:</strong> <code>height: 50%</code>가 작동하려면 <strong>부모 요소에 명시적인 높이</strong>가 있어야 합니다!
+          </p>
+          <p className="highlight-box">
+            💡 <strong>핵심 규칙</strong>: 부모가 <code>height: auto</code>면 자식의 <code>%</code> 높이는 무시됩니다.
+          </p>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="percent-height"
-                    previewHeight="600px"
-                    codeHeight="500px"
-                    initialCss={`/* ❌ 작동하지 않음: 부모에 높이 없음 */
+        <LiveCodeEditor
+          scopeId="percent-height"
+          previewHeight="600px"
+          codeHeight="500px"
+          initialCss={`/* ❌ 작동하지 않음: 부모에 높이 없음 */
 .parent-no-height {
   border: 3px dashed #e74c3c;
   background: #ffe6e6;
@@ -128,7 +134,7 @@ function HeightStudy() {
   justify-content: center;
   font-weight: 600;
 }`}
-                    initialHtml={`<div class="parent-no-height">
+          initialHtml={`<div class="parent-no-height">
   <div class="child-percent-fail">
     ❌ height: 50% (작동 안 함)<br/>
     부모에 높이가 없어서 무시됨
@@ -141,27 +147,28 @@ function HeightStudy() {
     부모 높이(300px)의 50%
   </div>
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">Auto 높이: 자식 요소의 합</h2>
-                <div className="section-description">
-                    <p>
-                        <code>height: auto</code>인 컨테이너는 <strong>자식 요소들의 높이 합</strong>으로 자동 계산됩니다.
-                    </p>
-                    <ul className="description-list">
-                        <li>자식들이 <code>px</code>, <code>rem</code> 등 절대 단위 → 합산</li>
-                        <li>자식이 <code>margin</code>을 가지면 → 마진도 포함</li>
-                        <li>자식이 <code>position: absolute</code> → 높이 계산에서 제외</li>
-                    </ul>
-                </div>
+      {/* 섹션 3: 콘텐츠에 따라 결정되는 자동(Auto) 높이 계산 원리 */}
+      <section className="study-section">
+        <h2 className="section-title">Auto 높이: 자식 요소의 합</h2>
+        <div className="section-description">
+          <p>
+            <code>height: auto</code>인 컨테이너는 <strong>자식 요소들의 높이 합</strong>으로 자동 계산됩니다.
+          </p>
+          <ul className="description-list">
+            <li>자식들이 <code>px</code>, <code>rem</code> 등 절대 단위 → 합산</li>
+            <li>자식이 <code>margin</code>을 가지면 → 마진도 포함</li>
+            <li>자식이 <code>position: absolute</code> → 높이 계산에서 제외</li>
+          </ul>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="auto-height"
-                    previewHeight="600px"
-                    codeHeight="500px"
-                    initialCss={`.auto-container {
+        <LiveCodeEditor
+          scopeId="auto-height"
+          previewHeight="600px"
+          codeHeight="500px"
+          initialCss={`.auto-container {
   height: auto;
   border: 3px solid #3498db;
   background: #ebf5fb;
@@ -191,7 +198,7 @@ function HeightStudy() {
   border-left: 4px solid #ffc107;
   border-radius: 4px;
 }`}
-                    initialHtml={`<div class="auto-container">
+          initialHtml={`<div class="auto-container">
   <div class="child-box">Box 1 (80px)</div>
   <div class="child-box">Box 2 (80px)</div>
   <div class="child-box">Box 3 (80px)</div>
@@ -201,22 +208,23 @@ function HeightStudy() {
   <strong>컨테이너 높이 계산:</strong><br/>
   80px + 1rem(margin) + 80px + 1rem + 80px + 2rem(padding) = 자동 계산
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">Flexbox에서의 높이</h2>
-                <div className="section-description">
-                    <p>
-                        Flexbox는 높이 계산 방식이 다릅니다. <code>flex-grow</code>와 <code>flex-shrink</code>로 유연하게 조절됩니다.
-                    </p>
-                </div>
+      {/* 섹션 4: 유연한 레이아웃 환경(Flexbox)에서의 높이 동작 */}
+      <section className="study-section">
+        <h2 className="section-title">Flexbox에서의 높이</h2>
+        <div className="section-description">
+          <p>
+            Flexbox는 높이 계산 방식이 다릅니다. <code>flex-grow</code>와 <code>flex-shrink</code>로 유연하게 조절됩니다.
+          </p>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="flex-height"
-                    previewHeight="600px"
-                    codeHeight="500px"
-                    initialCss={`.flex-container {
+        <LiveCodeEditor
+          scopeId="flex-height"
+          previewHeight="600px"
+          codeHeight="500px"
+          initialCss={`.flex-container {
   display: flex;
   flex-direction: column;
   height: 400px;
@@ -247,7 +255,7 @@ function HeightStudy() {
   font-weight: 600;
   border-radius: 8px;
 }`}
-                    initialHtml={`<div class="flex-container">
+          initialHtml={`<div class="flex-container">
   <div class="flex-fixed">
     고정 높이: 100px
   </div>
@@ -259,25 +267,26 @@ function HeightStudy() {
     고정 높이: 100px
   </div>
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">100% 높이가 안 될 때</h2>
-                <div className="section-description">
-                    <p>
-                        가장 흔한 실수: <code>height: 100%</code>를 사용했는데 작동하지 않는 경우
-                    </p>
-                    <p className="highlight-box">
-                        💡 <strong>해결책</strong>: 모든 부모 요소에 <code>height: 100%</code>를 설정하거나, <code>vh</code> 단위를 사용하세요.
-                    </p>
-                </div>
+      {/* 섹션 5: 전체 높이(Full Height) 구현 시 발생하는 일반적인 문제와 해결책 */}
+      <section className="study-section">
+        <h2 className="section-title">100% 높이가 안 될 때</h2>
+        <div className="section-description">
+          <p>
+            가장 흔한 실수: <code>height: 100%</code>를 사용했는데 작동하지 않는 경우
+          </p>
+          <p className="highlight-box">
+            💡 <strong>해결책</strong>: 모든 부모 요소에 <code>height: 100%</code>를 설정하거나, <code>vh</code> 단위를 사용하세요.
+          </p>
+        </div>
 
-                <LiveCodeEditor
-                    scopeId="full-height"
-                    previewHeight="600px"
-                    codeHeight="500px"
-                    initialCss={`/* ❌ 작동 안 함 */
+        <LiveCodeEditor
+          scopeId="full-height"
+          previewHeight="600px"
+          codeHeight="500px"
+          initialCss={`/* ❌ 작동 안 함 */
 .wrong-full-height {
   height: 100%;
   background: #e74c3c;
@@ -318,7 +327,7 @@ function HeightStudy() {
   justify-content: center;
   font-weight: 600;
 }`}
-                    initialHtml={`<div class="wrong-full-height">
+          initialHtml={`<div class="wrong-full-height">
   ❌ height: 100% (작동 안 함)
 </div>
 
@@ -331,20 +340,21 @@ function HeightStudy() {
     ✅ height: 100% (부모가 300px)
   </div>
 </div>`}
-                />
-            </section>
+        />
+      </section>
 
-            <section className="study-section">
-                <h2 className="section-title">실전 예제: 풀스크린 히어로 섹션</h2>
-                <p className="section-description">
-                    <code>100vh</code>(또는 최신 <code>100dvh</code>)를 활용하여 화면을 가득 채우는 첫 화면 레이아웃입니다.
-                </p>
+      {/* 섹션 6: 실전 예제 - vh 단위를 활용한 화면 가득 찬 히어로 섹션 */}
+      <section className="study-section">
+        <h2 className="section-title">실전 예제: 풀스크린 히어로 섹션</h2>
+        <p className="section-description">
+          <code>100vh</code>(또는 최신 <code>100dvh</code>)를 활용하여 화면을 가득 채우는 첫 화면 레이아웃입니다.
+        </p>
 
-                <LiveCodeEditor
-                    scopeId="height-practical-hero"
-                    previewHeight="450px"
-                    codeHeight="450px"
-                    initialCss={`.hero-section {
+        <LiveCodeEditor
+          scopeId="height-practical-hero"
+          previewHeight="450px"
+          codeHeight="450px"
+          initialCss={`.hero-section {
   width: 100%;
   height: 100vh;
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
@@ -379,7 +389,7 @@ function HeightStudy() {
   40% {transform: translateY(-10px);}
   60% {transform: translateY(-5px);}
 }`}
-                    initialHtml={`<div class="hero-section">
+          initialHtml={`<div class="hero-section">
   <h1>Nature is Beautiful</h1>
   <p>Discover the unseen beauty of our planet through our lens.</p>
   <div class="scroll-indicator">↓</div>
@@ -390,10 +400,10 @@ function HeightStudy() {
   • <strong>100vh</strong>: 뷰포트 높이의 100%를 의미합니다.<br/>
   • <strong>dvh (Dynamic Viewport Height)</strong>: 모바일 브라우저의 주소창 유무에 따라 동적으로 변하는 높이 단위입니다. 
 </p>`}
-                />
-            </section>
-        </div>
-    );
+        />
+      </section>
+    </div>
+  );
 }
 
 export default HeightStudy;

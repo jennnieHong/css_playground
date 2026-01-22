@@ -1,8 +1,13 @@
+/**
+ * AccessibilityStudy.jsx
+ * 웹 접근성(A11y) 강화를 위한 CSS 기법 실습 페이지
+*/
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function AccessibilityStudy() {
+  // 상태 관리: 포커스 스타일 전환 (browser default, custom)
   const [focusStyle, setFocusStyle] = useState('browser');
 
   return (
@@ -12,6 +17,7 @@ function AccessibilityStudy() {
         <p className="page-subtitle">모든 사용자를 위한 포용적인 웹 인터페이스 설계</p>
       </div>
 
+      {/* 섹션 1: CSS를 통한 웹 접근성 개선 개요 */}
       <section className="study-section">
         <h2 className="section-title">CSS와 웹 접근성</h2>
         <div className="section-description">
@@ -28,6 +34,7 @@ function AccessibilityStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 의미론적 마크업(Semantic HTML)의 중요성 */}
       <section className="study-section">
         <h2 className="section-title">Semantic HTML vs Div Soup</h2>
         <div className="section-description">
@@ -84,6 +91,7 @@ function AccessibilityStudy() {
         />
       </section>
 
+      {/* 섹션 3: 키보드 사용자를 위한 명확한 포커스 표시 */}
       <section className="study-section">
         <h2 className="section-title">:focus-visible (키보드 배려)</h2>
         <div className="section-description">
@@ -129,6 +137,7 @@ ${focusStyle === 'custom' ? `
         />
       </section>
 
+      {/* 섹션 4: 스크린 리더를 위한 ARIA 상태 정보 전달 */}
       <section className="study-section">
         <h2 className="section-title">ARIA States (aria-expanded)</h2>
         <div className="section-description">
@@ -181,6 +190,7 @@ ${focusStyle === 'custom' ? `
         />
       </section>
 
+      {/* 섹션 5: 사용자 시스템 설정(애니메이션 감소 등) 대응 */}
       <section className="study-section">
         <h2 className="section-title">User Preference (미디어 쿼리)</h2>
         <div className="section-description">
@@ -219,6 +229,7 @@ ${focusStyle === 'custom' ? `
         />
       </section>
 
+      {/* 섹션 6: 실전 기법 - 스크린 리더 전용 텍스트 및 고대비 지원 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 스크린 리더 전용 텍스트 & 고대비 모드</h2>
         <p className="section-description">

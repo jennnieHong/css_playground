@@ -1,8 +1,13 @@
+/**
+ * InteractionStudy.jsx
+ * CSS 인터랙션 및 상태(Pseudo-classes) 관리 실습 페이지
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function InteractionStudy() {
+  // 상태 관리: 커서 타입 및 포인터 이벤트 제어
   const [cursorType, setCursorType] = useState('pointer');
   const [pointerEvents, setPointerEvents] = useState('auto');
 
@@ -13,6 +18,7 @@ function InteractionStudy() {
         <p className="page-subtitle">Making interfaces responsive to user interaction</p>
       </div>
 
+      {/* 섹션 1: 사용자 상호작용 개요 */}
       <section className="study-section">
         <h2 className="section-title">사용자 상호작용이란?</h2>
         <div className="section-description">
@@ -30,6 +36,7 @@ function InteractionStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 기본 의사 클래스 (:hover, :active, :focus) */}
       <section className="study-section">
         <h2 className="section-title">:hover, :active, :focus</h2>
         <p className="section-description">
@@ -87,6 +94,7 @@ function InteractionStudy() {
         />
       </section>
 
+      {/* 섹션 3: 접근성을 고려한 :focus-visible */}
       <section className="study-section">
         <h2 className="section-title">:focus-visible (현대적 접근)</h2>
         <div className="section-description">
@@ -139,6 +147,7 @@ function InteractionStudy() {
         />
       </section>
 
+      {/* 섹션 4: 활성/비활성 상태 (:disabled, :enabled) */}
       <section className="study-section">
         <h2 className="section-title">:disabled & :enabled</h2>
         <p className="section-description">
@@ -191,6 +200,7 @@ function InteractionStudy() {
         />
       </section>
 
+      {/* 섹션 5: 부모 선택자 :has()의 강력한 활용 */}
       <section className="study-section">
         <h2 className="section-title">:has() - The Game Changer! 🚀</h2>
         <div className="section-description">
@@ -269,6 +279,7 @@ function InteractionStudy() {
         />
       </section>
 
+      {/* 섹션 6: 사용자 정의 스크롤바 디자인 */}
       <section className="study-section">
         <h2 className="section-title">Custom Scrollbar</h2>
         <p className="section-description">
@@ -321,6 +332,7 @@ function InteractionStudy() {
         />
       </section>
 
+      {/* 섹션 7: 브랜드 컬러 적용 (accent-color) */}
       <section className="study-section">
         <h2 className="section-title">Accent Color</h2>
         <p className="section-description">
@@ -371,6 +383,7 @@ input {
         />
       </section>
 
+      {/* 섹션 8: Perspective를 활용한 3D 카드 플립 */}
       <section className="study-section">
         <h2 className="section-title">3D Flip Card Effect</h2>
         <p className="section-description">
@@ -442,6 +455,7 @@ input {
         />
       </section>
 
+      {/* 섹션 9: 사용자 경험을 완성하는 Cursor 속성 */}
       <section className="study-section">
         <h2 className="section-title">Cursor 속성</h2>
         <p className="section-description">
@@ -503,6 +517,7 @@ input {
         />
       </section>
 
+      {/* 섹션 10: 이벤트 제어 (pointer-events) */}
       <section className="study-section">
         <h2 className="section-title">pointer-events</h2>
         <p className="section-description">
@@ -605,6 +620,7 @@ input {
         />
       </section>
 
+      {/* 섹션 11: 텍스트 선택 제어 (user-select) */}
       <section className="study-section">
         <h2 className="section-title">user-select</h2>
         <p className="section-description">
@@ -652,6 +668,7 @@ input {
         />
       </section>
 
+      {/* 섹션 12: 실전 마이크로 인터랙션 버튼 시스템 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 마이크로 인터랙션 버튼 시스템</h2>
         <p className="section-description">

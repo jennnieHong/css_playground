@@ -1,4 +1,10 @@
+/**
+ * PerformanceStudy.jsx
+ * CSS 성능 최적화 및 렌더링 파이프라인 실습 페이지
+ */
+import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import CssPropertyControls from '../components/CssPropertyControls';
 
 function PerformanceStudy() {
   return (
@@ -8,6 +14,7 @@ function PerformanceStudy() {
         <p className="page-subtitle">Optimizing CSS for smooth 60FPS experiences</p>
       </div>
 
+      {/* 섹션 1: 브라우저 렌더링 파이프라인의 이해 */}
       <section className="study-section">
         <h2 className="section-title">브라우저 렌더링 파이프라인</h2>
         <div className="section-description">
@@ -22,6 +29,7 @@ function PerformanceStudy() {
         </div>
       </section>
 
+      {/* 섹션 2: 성능을 고려한 애니메이션 속성 선택 (Layout vs Composite) */}
       <section className="study-section">
         <h2 className="section-title">Layout vs Composite 애니메이션</h2>
         <p className="section-description">
@@ -80,6 +88,7 @@ function PerformanceStudy() {
         />
       </section>
 
+      {/* 섹션 3: 렌더링 성능의 혁신, content-visibility */}
       <section className="study-section">
         <h2 className="section-title">content-visibility (렌더링 스킵)</h2>
         <p className="section-description">
@@ -136,6 +145,7 @@ function PerformanceStudy() {
         />
       </section>
 
+      {/* 섹션 4: 브라우저에 최적화 힌트 제공 (will-change) */}
       <section className="study-section">
         <h2 className="section-title">will-change (GPU 힌트)</h2>
         <p className="section-description">
@@ -174,10 +184,11 @@ function PerformanceStudy() {
         />
       </section>
 
+      {/* 섹션 5: 실무 최적화 예제 - 고성능 스켈레톤 UI */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 고성능 스켈레톤 UI</h2>
         <p className="section-description">
-          데이터를 불러오는 동안 사용자에게 시각적 피드백을 주는 스켈레톤 UI입니다. 
+          데이터를 불러오는 동안 사용자에게 시각적 피드백을 주는 스켈레톤 UI입니다.
           <code>transform</code>과 <code>opacity</code>만을 사용하여 CPU 부하 없이 부드러운 애니메이션을 제공합니다.
         </p>
 

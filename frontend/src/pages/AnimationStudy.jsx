@@ -1,18 +1,28 @@
+/**
+ * AnimationStudy 페이지 컴포넌트
+ * CSS Transition과 Keyframe 애니메이션의 기본 및 실무 활용 사례를 학습하는 페이지입니다.
+ * 주요 개념: Transition timing-function, @keyframes 정의, 반응형 애니메이션, 로딩 스피너 구현
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function AnimationStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 애니메이션 속성(지속 시간, 타이밍 함수, 반복 횟수)의 실시간 변화를 제어합니다.
   const [duration, setDuration] = useState('0.3s');
   const [timingFunction, setTimingFunction] = useState('ease');
   const [animationIterationCount, setAnimationIterationCount] = useState('infinite');
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">Animation Study</h1>
         <p className="page-subtitle">CSS로 생동감 있는 애니메이션 만들기</p>
       </div>
+
+      {/* Animation 기초 정의 섹션 */}
 
       <section className="study-section">
         <h2 className="section-title">CSS 애니메이션이란?</h2>
@@ -21,6 +31,7 @@ function AnimationStudy() {
         </p>
       </section>
 
+      {/* 실습 섹션: Transition (상태 변화 연출) */}
       <section className="study-section">
         <h2 className="section-title">Transition</h2>
         <div className="section-description">
@@ -88,6 +99,7 @@ function AnimationStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Keyframe Animation (기본 바운스 효과) */}
       <section className="study-section">
         <h2 className="section-title">Keyframe Animation</h2>
         <LiveCodeEditor
@@ -114,6 +126,7 @@ function AnimationStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Rotate Animation (회전 효과) */}
       <section className="study-section">
         <h2 className="section-title">Rotate Animation</h2>
         <LiveCodeEditor
@@ -139,8 +152,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실습 섹션: Fade Animation (페이드 인/아웃) */}
       <section className="study-section">
         <h2 className="section-title">Fade Animation</h2>
         <LiveCodeEditor
@@ -165,8 +179,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실습 섹션: Pulse Animation (심장 박동 강조 효과) */}
       <section className="study-section">
         <h2 className="section-title">Pulse Animation</h2>
         <p className="section-description">
@@ -197,8 +212,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실습 섹션: Shake Animation (경고/에러 떨림 효과) */}
       <section className="study-section">
         <h2 className="section-title">Shake Animation</h2>
         <p className="section-description">
@@ -224,8 +240,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실습 섹션: Slide Animation (슬라이드 인/아웃) */}
       <section className="study-section">
         <h2 className="section-title">Slide Animation</h2>
         <p className="section-description">
@@ -276,8 +293,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실습 섹션: Loading Spinner (다양한 로딩 효과 구현) */}
       <section className="study-section">
         <h2 className="section-title">Loading Spinner</h2>
         <p className="section-description">
@@ -368,8 +386,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실습 섹션: Animation 속성 조절 (반복 횟수 제어) */}
       <section className="study-section">
         <h2 className="section-title">Animation 속성 조절</h2>
         <p className="section-description">
@@ -418,8 +437,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 갤러리 섹션: 애니메이션 비교 갤러리 */}
       <section className="study-section">
         <h2 className="section-title">🎬 애니메이션 비교 갤러리</h2>
         <p className="section-description">
@@ -496,8 +516,9 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </section >
 
+      {/* 실무 응용 섹션: 알림 배지 & 장바구니 애니메이션 (종합 예제) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 알림 배지 & 장바구니 애니메이션</h2>
         <p className="section-description">

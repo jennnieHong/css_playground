@@ -1,23 +1,33 @@
+/**
+ * UnitsStudy 페이지 컴포넌트
+ * CSS의 다양한 단위 시스템(절대 단위 px, 상대 단위 rem/em, 뷰포트 단위 vh/vw, % 등)을 학습하는 페이지입니다.
+ * 주요 개념: rem vs em 차이점, 브라우저 폰트 스케일링, Viewport Units 활용, Modern clamp() 함수
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function UnitsStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 실시간으로 폰트 크기와 단위를 변경하며 시각적 변화를 관찰하기 위한 상태입니다.
   const [fontSize, setFontSize] = useState('16px');
   const [unitType, setUnitType] = useState('rem');
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">CSS Units Study</h1>
         <p className="page-subtitle">CSS 단위 시스템 완벽 가이드 - px, rem, em, vh, vw, % 마스터하기</p>
       </div>
 
+      {/* 기초 섹션: CSS Units 전체 개요 및 분류 */}
+
       <section className="study-section">
         <h2 className="section-title">📏 CSS Units 개요</h2>
         <div className="section-description">
           <p>
-            CSS에는 크기를 지정하는 다양한 단위가 있습니다. 올바른 단위 선택은 반응형 디자인과 
+            CSS에는 크기를 지정하는 다양한 단위가 있습니다. 올바른 단위 선택은 반응형 디자인과
             접근성에 큰 영향을 미칩니다.
           </p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.8' }}>
@@ -29,10 +39,11 @@ function UnitsStudy() {
         </div>
       </section>
 
+      {/* 실습 섹션: px (절대 단위의 특징과 한계) */}
       <section className="study-section">
         <h2 className="section-title">Absolute Units: px (픽셀)</h2>
         <p className="section-description">
-          <code>px</code>는 가장 많이 사용되는 절대 단위입니다. 화면의 물리적 픽셀에 대응하며, 
+          <code>px</code>는 가장 많이 사용되는 절대 단위입니다. 화면의 물리적 픽셀에 대응하며,
           정확한 크기 제어가 필요할 때 사용합니다.
         </p>
 
@@ -109,10 +120,11 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: rem (루트 기준 상대 단위 - 권장 방식) */}
       <section className="study-section">
         <h2 className="section-title">Relative Units: rem (Root EM)</h2>
         <p className="section-description">
-          <code>rem</code>은 루트 요소(html)의 font-size를 기준으로 한 상대 단위입니다. 
+          <code>rem</code>은 루트 요소(html)의 font-size를 기준으로 한 상대 단위입니다.
           브라우저 기본값은 보통 16px이므로, <strong>1rem = 16px</strong>입니다.
         </p>
 
@@ -171,10 +183,11 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: em (부모 기준 상대 단위 - 중첩 주의) */}
       <section className="study-section">
         <h2 className="section-title">Relative Units: em</h2>
         <p className="section-description">
-          <code>em</code>은 부모 요소의 font-size를 기준으로 하는 상대 단위입니다. 
+          <code>em</code>은 부모 요소의 font-size를 기준으로 하는 상대 단위입니다.
           중첩되면 값이 곱해져서 예상과 다른 결과가 나올 수 있으니 주의가 필요합니다.
         </p>
 
@@ -249,10 +262,11 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: vh & vw (뷰포트 환경 기준 단위) */}
       <section className="study-section">
         <h2 className="section-title">Viewport Units: vh, vw (뷰포트)</h2>
         <p className="section-description">
-          <code>vh</code>와 <code>vw</code>는 뷰포트(브라우저 창)의 크기를 기준으로 합니다. 
+          <code>vh</code>와 <code>vw</code>는 뷰포트(브라우저 창)의 크기를 기준으로 합니다.
           <strong>1vh = 뷰포트 높이의 1%</strong>, <strong>1vw = 뷰포트 너비의 1%</strong>
         </p>
 
@@ -321,10 +335,11 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: % (부모 요소 비례 가변 단위) */}
       <section className="study-section">
         <h2 className="section-title">Percentage: % (퍼센트)</h2>
         <p className="section-description">
-          <code>%</code>는 부모 요소를 기준으로 하는 상대 단위입니다. 
+          <code>%</code>는 부모 요소를 기준으로 하는 상대 단위입니다.
           속성에 따라 기준이 달라지므로 주의가 필요합니다.
         </p>
 
@@ -392,6 +407,7 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 갤러리 섹션: 단위 비교 종합 및 실무 모범 사례 (Best Practices) */}
       <section className="study-section">
         <h2 className="section-title">🎯 실전: 단위 비교 및 Best Practices</h2>
         <p className="section-description">
@@ -484,10 +500,11 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: Modern CSS - clamp()를 활용한 가변 타이포그래피 */}
       <section className="study-section">
         <h2 className="section-title">Modern: clamp() 함수</h2>
         <p className="section-description">
-          <code>clamp(최소값, 선호값, 최대값)</code>는 반응형 타이포그래피의 핵심 기술입니다. 
+          <code>clamp(최소값, 선호값, 최대값)</code>는 반응형 타이포그래피의 핵심 기술입니다.
           min, max 없이 부드럽게 크기가 조정됩니다.
         </p>
 
@@ -553,6 +570,7 @@ function UnitsStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 반응형 컨텐츠 카드 (종합 단위 활용 예제) */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 반응형 컨텐츠 카드</h2>
         <p className="section-description">

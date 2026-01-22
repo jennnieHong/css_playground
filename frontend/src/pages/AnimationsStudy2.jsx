@@ -1,8 +1,15 @@
+/**
+ * AnimationsStudy2 페이지 컴포넌트
+ * CSS Animation의 심화 개념(Trigger, Interactive 속성, 3D transform 등)을 학습하는 페이지입니다.
+ * 주요 개념: Transition vs Animation 차이점, Animation Trigger 조건, @keyframes 고급 활용, Card Flip 효과
+ */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 
 function AnimationsStudy() {
+  // --- 상태 관리 (State Management) ---
+  // 실시간으로 애니메이션 속성을 변경하며 변화를 관찰하기 위한 상태입니다.
   // Transition states
   const [transDuration, setTransDuration] = useState('0.4s');
   const [transTiming, setTransTiming] = useState('ease');
@@ -15,10 +22,13 @@ function AnimationsStudy() {
 
   return (
     <div className="page-container">
+      {/* 페이지 헤더 영역 */}
       <div className="page-header">
         <h1 className="page-title">CSS Animations Study</h1>
         <p className="page-subtitle">@keyframes와 animation으로 생동감 있는 UI 만들기</p>
       </div>
+
+      {/* 실습 섹션: Transition vs Animation 비교 */}
       <section className="study-section">
         <h2 className="section-title">CSS 애니메이션이란?</h2>
         <div className="section-description">
@@ -170,8 +180,9 @@ function AnimationsStudy() {
   4. <strong>Animation(빨강)</strong>: 마우스를 떼는 순간 동작이 중단되고 원래대로 "탁!" 하고 스냅됩니다.
 </div>`}
         />
-      </section >
+      </section>
 
+      {/* 실습 섹션: 애니메이션 트리거 (실행 시점) 조건 */}
       <section className="study-section">
         <h2 className="section-title">애니메이션은 언제 작동할까?</h2>
         <div className="section-description">
@@ -392,6 +403,7 @@ function AnimationsStudy() {
         />
       </section>
 
+      {/* 갤러리 섹션: 다양한 애니메이션 효과 비교 */}
       <section className="study-section">
         <h2 className="section-title">🎬 애니메이션 비교 갤러리</h2>
         <div className="section-description">
@@ -463,6 +475,7 @@ function AnimationsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 애니메이션 속성 조절 (대화형 인터페이스) */}
       <section className="study-section">
         <h2 className="section-title">animation 속성 조절 (Interactive)</h2>
         <div className="section-description">
@@ -592,6 +605,7 @@ function AnimationsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 페이드 인/아웃 효과 */}
       <section className="study-section">
         <h2 className="section-title">페이드 인/아웃</h2>
         <div className="section-description">
@@ -662,6 +676,7 @@ function AnimationsStudy() {
         />
       </section>
 
+      {/* 실습 섹션: 호버 기반 애니메이션 연출 */}
       <section className="study-section">
         <h2 className="section-title">호버 애니메이션</h2>
         <div className="section-description">
@@ -736,6 +751,7 @@ function AnimationsStudy() {
         />
       </section>
 
+      {/* 실무 응용 섹션: 3D 카드 플립 효과 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 카드 플립</h2>
         <div className="section-description">
