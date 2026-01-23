@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function TypographyStudy() {
   // --- 상태 관리 (State Management) ---
@@ -19,10 +20,10 @@ function TypographyStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Typography Study</h1>
-        <p className="page-subtitle">Mastering fonts, text styling, and readable typography</p>
-      </div>
+      <PageHeader
+        title="Typography Study"
+        subtitle="Mastering fonts, text styling, and readable typography"
+      />
 
       {/* Typography 기초 정의 섹션 */}
 

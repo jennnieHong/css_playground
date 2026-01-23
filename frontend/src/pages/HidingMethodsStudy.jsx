@@ -3,14 +3,15 @@
  * 요소를 숨기는 다양한 CSS 기법(display, visibility, opacity 등) 실습 페이지
  */
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function HidingMethodsStudy() {
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">CSS Hiding Methods</h1>
-        <p className="page-subtitle">요소를 숨기는 다양한 기법과 그 차이점 이해하기</p>
-      </div>
+      <PageHeader
+        title="CSS Hiding Methods"
+        subtitle="요소를 숨기는 다양한 기법과 그 차이점 이해하기"
+      />
 
       {/* 섹션 1: 주요 숨기기 속성(display, visibility, opacity) 비교 */}
       <section className="study-section">

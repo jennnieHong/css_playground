@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function GridStudy() {
   // --- 상태 관리 (State Management) ---
@@ -20,10 +21,10 @@ function GridStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Grid Study</h1>
-        <p className="page-subtitle">강력한 2차원 레이아웃 시스템</p>
-      </div>
+      <PageHeader
+        title="Grid Study"
+        subtitle="강력한 2차원 레이아웃 시스템"
+      />
 
       {/* Grid 정의 섹션 */}
 

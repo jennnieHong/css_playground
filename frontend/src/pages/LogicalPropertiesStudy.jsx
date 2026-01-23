@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function LogicalPropertiesStudy() {
   // 상태 관리: 읽기 방향 (ltr: 왼쪽에서 오른쪽, rtl: 오른쪽에서 왼쪽)
@@ -12,10 +13,10 @@ function LogicalPropertiesStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Logical Properties</h1>
-        <p className="page-subtitle">Writing direction-agnostic layouts for the global web</p>
-      </div>
+      <PageHeader
+        title="Logical Properties"
+        subtitle="Writing direction-agnostic layouts for the global web"
+      />
 
       {/* 섹션 1: 논리적 속성(Logical)과 물리적 속성(Physical)의 개념 차이 */}
       <section className="study-section">

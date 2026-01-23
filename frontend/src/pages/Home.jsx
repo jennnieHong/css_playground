@@ -8,6 +8,7 @@ import Tabs from '../components/Tabs';
 import Alert from '../components/Alert';
 import Confirm from '../components/Confirm';
 import SearchPopup from '../components/SearchPopup';
+import PageHeader from '../components/PageHeader';
 
 function Home() {
   // --- 상태 관리 (State Management) ---
@@ -95,10 +96,10 @@ function Home() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">CSS Study</h1>
-        <p className="page-subtitle">모던 CSS를 마스터하세요</p>
-      </div>
+      <PageHeader
+        title="CSS Study"
+        subtitle="모던 CSS를 마스터하세요"
+      />
 
       {/* 탭 기반 컨텐츠 영역 */}
       <Tabs tabs={tabs} />

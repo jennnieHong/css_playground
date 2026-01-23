@@ -4,14 +4,15 @@
  */
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function CssArchitectureStudy() {
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">CSS Architecture</h1>
-        <p className="page-subtitle">대규모 프로젝트를 위한 체계적인 스타일 관리 전략</p>
-      </div>
+      <PageHeader
+        title="CSS Architecture"
+        subtitle="대규모 프로젝트를 위한 체계적인 스타일 관리 전략"
+      />
 
       {/* 섹션 1: CSS 아키텍처의 필요성과 유지보수성 */}
       <section className="study-section">

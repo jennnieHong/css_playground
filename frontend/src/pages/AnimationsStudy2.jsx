@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function AnimationsStudy() {
   // --- 상태 관리 (State Management) ---
@@ -23,10 +24,10 @@ function AnimationsStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">CSS Animations Study</h1>
-        <p className="page-subtitle">@keyframes와 animation으로 생동감 있는 UI 만들기</p>
-      </div>
+      <PageHeader
+        title="CSS Animations Study"
+        subtitle="@keyframes와 animation으로 생동감 있는 UI 만들기"
+      />
 
       {/* 실습 섹션: Transition vs Animation 비교 */}
       <section className="study-section">

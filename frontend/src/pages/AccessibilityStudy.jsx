@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function AccessibilityStudy() {
   // 상태 관리: 포커스 스타일 전환 (browser default, custom)
@@ -12,10 +13,10 @@ function AccessibilityStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Accessibility (A11y)</h1>
-        <p className="page-subtitle">모든 사용자를 위한 포용적인 웹 인터페이스 설계</p>
-      </div>
+      <PageHeader
+        title="Accessibility (A11y)"
+        subtitle="모든 사용자를 위한 포용적인 웹 인터페이스 설계"
+      />
 
       {/* 섹션 1: CSS를 통한 웹 접근성 개선 개요 */}
       <section className="study-section">

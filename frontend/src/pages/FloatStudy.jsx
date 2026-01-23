@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function FloatStudy() {
   // 상태 관리: float 방향 및 clear 설정
@@ -13,10 +14,10 @@ function FloatStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Float & Clear Study</h1>
-        <p className="page-subtitle">Classic layout technique - still useful for wrapping text around elements</p>
-      </div>
+      <PageHeader
+        title="Float & Clear Study"
+        subtitle="Classic layout technique - still useful for wrapping text around elements"
+      />
 
       {/* 섹션 1: Float 속성의 개념과 역사적 배경 */}
       <section className="study-section">

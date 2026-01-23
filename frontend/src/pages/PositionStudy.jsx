@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function PositionStudy() {
   // --- 상태 관리 (State Management) ---
@@ -18,10 +19,10 @@ function PositionStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Position Study</h1>
-        <p className="page-subtitle">요소의 위치를 결정하는 Position 속성 정복하기</p>
-      </div>
+      <PageHeader
+        title="Position Study"
+        subtitle="요소의 위치를 결정하는 Position 속성 정복하기"
+      />
 
       {/* Position 속성 기초 정의 섹션 */}
 

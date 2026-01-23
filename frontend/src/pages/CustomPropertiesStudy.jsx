@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import CssPropertyControls from '../components/CssPropertyControls';
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function CustomPropertiesStudy() {
   // 상태 관리: 주색상, 테두리 반경, 글꼴 크기 동적 제어
@@ -14,10 +15,10 @@ function CustomPropertiesStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">CSS Custom Properties (Variables)</h1>
-        <p className="page-subtitle">재사용 가능한 값을 정의하여 스타일 관리를 효율적으로</p>
-      </div>
+      <PageHeader
+        title="CSS Custom Properties (Variables)"
+        subtitle="재사용 가능한 값을 정의하여 스타일 관리를 효율적으로"
+      />
 
       {/* 섹션 1: CSS 변수(Custom Properties)의 개념 */}
       <section className="study-section">

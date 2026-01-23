@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function InteractionStudy() {
   // 상태 관리: 커서 타입 및 포인터 이벤트 제어
@@ -13,10 +14,10 @@ function InteractionStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">States & Pseudo-classes</h1>
-        <p className="page-subtitle">Making interfaces responsive to user interaction</p>
-      </div>
+      <PageHeader
+        title="States & Pseudo-classes"
+        subtitle="Making interfaces responsive to user interaction"
+      />
 
       {/* 섹션 1: 사용자 상호작용 개요 */}
       <section className="study-section">

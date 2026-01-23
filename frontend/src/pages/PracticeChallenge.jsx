@@ -3,14 +3,15 @@
  * 지금까지 배운 모든 CSS 기술(BEM, Flexbox/Grid, Variables, Container Queries 등)을 활용한 종합 실습 챌린지 페이지
  */
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function PracticeChallenge() {
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Master Challenge</h1>
-        <p className="page-subtitle">지금까지 배운 모든 기술을 총동원하여 최고의 컴포넌트를 완성하세요!</p>
-      </div>
+      <PageHeader
+        title="Master Challenge"
+        subtitle="지금까지 배운 모든 기술을 총동원하여 최고의 컴포넌트를 완성하세요!"
+      />
 
       {/* 섹션 1: 모든 핵심 CSS 기법을 적용해 보는 종합 마스터 챌린지 */}
       <section className="study-section">

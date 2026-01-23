@@ -5,14 +5,15 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function PerformanceStudy() {
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Performance & Rendering</h1>
-        <p className="page-subtitle">Optimizing CSS for smooth 60FPS experiences</p>
-      </div>
+      <PageHeader
+        title="Performance & Rendering"
+        subtitle="Optimizing CSS for smooth 60FPS experiences"
+      />
 
       {/* 섹션 1: 브라우저 렌더링 파이프라인의 이해 */}
       <section className="study-section">

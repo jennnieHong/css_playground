@@ -3,14 +3,15 @@
  * 현대적인 CSS 선택자(:is, :where, :not, :has 등) 활용 실습 페이지
  */
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function ModernSelectorsStudy() {
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Modern Selectors</h1>
-        <p className="page-subtitle">Writing cleaner, more descriptive selectors with :is(), :where(), and :not()</p>
-      </div>
+      <PageHeader
+        title="Modern Selectors"
+        subtitle="Writing cleaner, more descriptive selectors with :is(), :where(), and :not()"
+      />
 
       {/* 섹션 1: 현대적 선택자를 이용한 가독성 및 유지보수 개선 */}
       <section className="study-section">

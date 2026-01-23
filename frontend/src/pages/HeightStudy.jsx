@@ -3,14 +3,15 @@
  * 요소의 높이 계산 방식(px, %, auto, vh)과 높이 붕괴 해결 방안 실습 페이지
  */
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function HeightStudy() {
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Height & Sizing</h1>
-        <p className="page-subtitle">Container 높이 계산 규칙: %, px, auto, vh의 차이점</p>
-      </div>
+      <PageHeader
+        title="Height & Sizing"
+        subtitle="Container 높이 계산 규칙: %, px, auto, vh의 차이점"
+      />
 
       {/* 섹션 1: 다양한 높이 단위(px, %, vh, auto)의 특성 이해 */}
       <section className="study-section">

@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function FlexboxStudy() {
   // --- 상태 관리 (State Management) ---
@@ -20,10 +21,10 @@ function FlexboxStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Flexbox Study</h1>
-        <p className="page-subtitle">유연한 레이아웃을 만드는 Flexbox</p>
-      </div>
+      <PageHeader
+        title="Flexbox Study"
+        subtitle="유연한 레이아웃을 만드는 Flexbox"
+      />
 
       {/* Flexbox 정의 섹션 */}
 

@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function DisplayStudy() {
   // --- 상태 관리 (State Management) ---
@@ -17,10 +18,10 @@ function DisplayStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Display Study</h1>
-        <p className="page-subtitle">Understanding how elements are displayed and laid out</p>
-      </div>
+      <PageHeader
+        title="Display Study"
+        subtitle="Understanding how elements are displayed and laid out"
+      />
 
       {/* Display 속성 기초 정의 섹션 */}
 

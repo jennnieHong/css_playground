@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function FormStudy() {
   // 상태 관리: 입력 필드 스타일 전환 (modern, minimal, default)
@@ -12,10 +13,10 @@ function FormStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Form Styling</h1>
-        <p className="page-subtitle">Creating beautiful and accessible form controls</p>
-      </div>
+      <PageHeader
+        title="Form Styling"
+        subtitle="Creating beautiful and accessible form controls"
+      />
 
       {/* 섹션 1: 폼 스타일링 개요 */}
       <section className="study-section">

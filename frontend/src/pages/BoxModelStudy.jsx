@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function BoxModelStudy() {
   // --- 상태 관리 (State Management) ---
@@ -18,10 +19,10 @@ function BoxModelStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Box Model Study</h1>
-        <p className="page-subtitle">Understanding the CSS Box Model - the foundation of layout</p>
-      </div>
+      <PageHeader
+        title="Box Model Study"
+        subtitle="Understanding the CSS Box Model - the foundation of layout"
+      />
 
       {/* Box Model 기초 정의 섹션 */}
 

@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function UnitsStudy() {
   // --- 상태 관리 (State Management) ---
@@ -16,10 +17,10 @@ function UnitsStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">CSS Units Study</h1>
-        <p className="page-subtitle">CSS 단위 시스템 완벽 가이드 - px, rem, em, vh, vw, % 마스터하기</p>
-      </div>
+      <PageHeader
+        title="CSS Units Study"
+        subtitle="CSS 단위 시스템 완벽 가이드 - px, rem, em, vh, vw, % 마스터하기"
+      />
 
       {/* 기초 섹션: CSS Units 전체 개요 및 분류 */}
 

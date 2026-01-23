@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function ColorBackgroundStudy() {
   // --- 상태 관리 (State Management) ---
@@ -25,10 +26,10 @@ function ColorBackgroundStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Colors & Backgrounds</h1>
-        <p className="page-subtitle">Mastering color formats, gradients, and visual styling</p>
-      </div>
+      <PageHeader
+        title="Colors & Backgrounds"
+        subtitle="Mastering color formats, gradients, and visual styling"
+      />
 
       {/* 색상 포맷 기초 섹션 */}
 

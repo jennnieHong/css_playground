@@ -4,15 +4,16 @@
  * 주요 개념: content 속성, 가상 요소를 활용한 아이콘/리본/불렛 제작, 선택 영역 스타일링
  */
 import LiveCodeEditor from '../components/LiveCodeEditor';
+import PageHeader from '../components/PageHeader';
 
 function PseudoElementStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Pseudo Elements</h1>
-        <p className="page-subtitle">::before, ::after, and decorative magic</p>
-      </div>
+      <PageHeader
+        title="Pseudo Elements"
+        subtitle="::before, ::after, and decorative magic"
+      />
 
       {/* 기초 섹션: Pseudo Elements 개념 정의 */}
 

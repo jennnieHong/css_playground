@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function ContainerQueriesStudy() {
   // 상태 관리: 컨테이너 박스의 너비 전환 (column, row)
@@ -12,10 +13,10 @@ function ContainerQueriesStudy() {
 
   return (
     <div className="page-container">
-      <div className="page-header">
-        <h1 className="page-title">Container Queries</h1>
-        <p className="page-subtitle">뷰포트를 넘어 요소 중심의 반응형 디자인으로</p>
-      </div>
+      <PageHeader
+        title="Container Queries"
+        subtitle="뷰포트를 넘어 요소 중심의 반응형 디자인으로"
+      />
 
       {/* 섹션 1: 컨테이너 쿼리의 등장 배경과 필요성 */}
       <section className="study-section">

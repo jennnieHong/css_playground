@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function ResponsiveStudy() {
   // --- 상태 관리 (State Management) ---
@@ -15,10 +16,10 @@ function ResponsiveStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Responsive Design</h1>
-        <p className="page-subtitle">Modern techniques: Media Queries, clamp(), fluid units, Container Queries</p>
-      </div>
+      <PageHeader
+        title="Responsive Design"
+        subtitle="Modern techniques: Media Queries, clamp(), fluid units, Container Queries"
+      />
 
       {/* 기초 섹션: 반응형 디자인의 역사와 진화 */}
 

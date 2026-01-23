@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
+import PageHeader from '../components/PageHeader';
 
 function StackingStudy() {
   // --- 상태 관리 (State Management) ---
@@ -17,10 +18,10 @@ function StackingStudy() {
   return (
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
-      <div className="page-header">
-        <h1 className="page-title">Stacking & Layers</h1>
-        <p className="page-subtitle">층층이 쌓이는 CSS의 우선순위와 계층 구조 정복</p>
-      </div>
+      <PageHeader
+        title="Stacking & Layers"
+        subtitle="층층이 쌓이는 CSS의 우선순위와 계층 구조 정복"
+      />
 
       {/* 실습 섹션: Z-Index와 쌓임 맥락 (Stacking Context) */}
       <section className="study-section">
