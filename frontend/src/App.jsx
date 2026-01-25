@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
+import HeaderSearch from './components/HeaderSearch';
 import Home from './pages/Home';
+import SearchResults from './pages/SearchResults';
 import FlexboxStudy from './pages/FlexboxStudy';
 import GridStudy from './pages/GridStudy';
 import ResponsiveStudy from './pages/ResponsiveStudy';
@@ -33,6 +35,7 @@ import './styles/navigation.css';
 import './styles/components.css';
 import './styles/pages.css';
 
+
 function App() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
@@ -45,8 +48,12 @@ function App() {
       <div className={`app-container ${isNavCollapsed ? 'nav-collapsed' : ''}`}>
         <Navigation isCollapsed={isNavCollapsed} onToggle={toggleNav} />
         <main className="main-content">
+          <header className="main-header">
+            <HeaderSearch />
+          </header>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/search" element={<SearchResults />} />
             <Route path="/flexbox" element={<FlexboxStudy />} />
             <Route path="/grid" element={<GridStudy />} />
             <Route path="/animation-old" element={<AnimationStudy />} />
