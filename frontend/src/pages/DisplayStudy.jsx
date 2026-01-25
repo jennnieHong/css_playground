@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function DisplayStudy() {
   // --- 상태 관리 (State Management) ---
@@ -25,8 +26,7 @@ function DisplayStudy() {
 
       {/* Display 속성 기초 정의 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">Display 속성이란?</h2>
+      <CollapsibleSection title="Display 속성이란?" >
         <div className="section-description">
           <p>
             <code>display</code> 속성은 요소가 <strong>화면에 어떻게 렌더링되는지</strong>를 결정합니다.<br />
@@ -40,11 +40,10 @@ function DisplayStudy() {
             <li><code>contents</code>: 요소 자체는 사라지고 자식만 렌더링</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Block vs Inline (기본 흐름 제어) */}
-      <section className="study-section">
-        <h2 className="section-title">Block vs Inline</h2>
+      <CollapsibleSection title="Block vs Inline">
         <p className="section-description">
           가장 기본적이고 중요한 두 가지 display 값입니다.
         </p>
@@ -101,11 +100,10 @@ function DisplayStudy() {
   • <strong>inline-block</strong>: 한 줄에 배치되지만 크기 조정 가능
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Inline 요소의 박스 모델 제한 확인 */}
-      <section className="study-section">
-        <h2 className="section-title">Inline 요소의 특성</h2>
+      <CollapsibleSection title="Inline 요소의 특성">
         <p className="section-description">
           <code>inline</code> 요소는 텍스트처럼 동작합니다. width/height를 무시하고, 위아래 margin도 적용되지 않습니다.
         </p>
@@ -157,11 +155,10 @@ function DisplayStudy() {
   <strong>inline-block</strong>일 때: 모든 박스 모델 속성 적용 가능
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 요소 숨기기 방식 비교 (차지하는 공간 중심) */}
-      <section className="study-section">
-        <h2 className="section-title">Display: None vs Visibility: Hidden</h2>
+      <CollapsibleSection title="Display: None vs Visibility: Hidden">
         <p className="section-description">
           요소를 숨기는 두 가지 방법의 차이점을 확인하세요.
         </p>
@@ -229,11 +226,10 @@ function DisplayStudy() {
   <strong>visibility: hidden</strong>: 요소는 안보이지만 공간은 유지됨
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 비교 섹션: 접근성 및 현대적인 숨김 처리 기법 */}
-      <section className="study-section">
-        <h2 className="section-title">Hiding Methods (요즘 숨기기 방식)</h2>
+      <CollapsibleSection title="Hiding Methods (요즘 숨기기 방식)">
         <p className="section-description">
           요소를 숨기는 방식에는 여러 가지가 있으며, 각각 레이아웃과 접근성에 미치는 영향이 다릅니다.
         </p>
@@ -307,11 +303,10 @@ function DisplayStudy() {
   • <strong>SR-Only</strong>: 접근성을 위해 매우 중요한 기법 (버튼 라벨 등)
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: display: contents를 활용한 불필요한 래퍼 제거 */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: Semantic Wrapper in Grid</h2>
+      <CollapsibleSection title="실전 예제: Semantic Wrapper in Grid">
         <p className="section-description">
           데이터 구조상 래퍼(Wrapper)가 필요한 상황에서도 그리드 레이아웃을 망가뜨리지 않고 자식들을 직접 부모 그리드에 참여시킬 수 있습니다.
         </p>
@@ -395,7 +390,7 @@ input {
   이때 <code>display: contents;</code>를 활용하면 불필요한 레이아웃 레벨을 제거할 수 있습니다.
 </p>`}
         />
-      </section >
+      </CollapsibleSection>
     </div >
   );
 }

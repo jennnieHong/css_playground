@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function AnimationsStudy() {
   // --- 상태 관리 (State Management) ---
@@ -30,8 +31,7 @@ function AnimationsStudy() {
       />
 
       {/* 실습 섹션: Transition vs Animation 비교 */}
-      <section className="study-section">
-        <h2 className="section-title">CSS 애니메이션이란?</h2>
+      <CollapsibleSection title="실습 섹션: Transition vs Animation 비교">
         <div className="section-description">
           <p>
             CSS 애니메이션은 요소의 스타일을 시간에 따라 변화시켜 움직임을 만듭니다.
@@ -40,6 +40,43 @@ function AnimationsStudy() {
             💡 <strong>Transition vs Animation</strong><br />
             • <code>transition</code>: A ↔ B 자동 왕복 (호버 해제 시에도 부드럽게 복귀)<br />
             • <code>animation</code>: A → B 복잡한 단계 (끝나면 원래대로 스냅되거나 멈춤)
+          </p>
+          <div style={{ marginTop: '1rem', background: '#e0f2fe', padding: '1rem', borderRadius: '8px', fontSize: '0.9rem' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', color: '#0369a1' }}>🤔 실무에서의 쓰임새는 이렇게 갈립니다</h4>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div style={{ background: 'white', padding: '0.8rem', borderRadius: '6px', border: '1px solid #bfdbfe' }}>
+                <strong style={{ display: 'block', color: '#2563eb', marginBottom: '0.5rem' }}>Transition을 쓰는 경우</strong>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#334155' }}>
+                  <li>버튼 hover 효과</li>
+                  <li>Dropdown 열고 닫기</li>
+                  <li>Input focus 강조</li>
+                  <li>토글 스위치 UI</li>
+                </ul>
+                <div style={{ marginTop: '0.5rem', fontWeight: 'bold', color: '#1e40af', fontSize: '0.85rem' }}>👉 “사용자 입력에 즉각 반응”</div>
+              </div>
+              <div style={{ background: 'white', padding: '0.8rem', borderRadius: '6px', border: '1px solid #bfdbfe' }}>
+                <strong style={{ display: 'block', color: '#db2777', marginBottom: '0.5rem' }}>Animation을 쓰는 경우</strong>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#334155' }}>
+                  <li>로딩 스피너 (Spin/Loading)</li>
+                  <li>Skeleton UI (Loading state)</li>
+                  <li>반복되는 장식 효과 (Pulse)</li>
+                  <li>페이지 로드 시 자동 재생 동작</li>
+                </ul>
+                <div style={{ marginTop: '0.5rem', fontWeight: 'bold', color: '#9d174d', fontSize: '0.85rem' }}>👉 “시간이 흐른다는 느낌”</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '1.5rem', background: '#fff5f5', padding: '1rem', borderLeft: '4px solid #f56565', borderRadius: '4px' }}>
+          <h4 style={{ margin: '0 0 0.5rem 0', color: '#c53030' }}>🔥 핵심 질문: 왜 Transition으로 스피너를 못 만들까요?</h4>
+          <p style={{ margin: 0, fontSize: '0.95rem', lineHeight: '1.6', color: '#4a5568' }}>
+            <strong>1. "시작과 끝"이 있어야만 함 (Trigger 필수)</strong><br />
+            Transition은 반드시 <code>State A</code>에서 <code>State B</code>로 변하는 <strong>사건</strong>이 필요합니다. (hover, class change 등)<br />
+            반면 스피너는 사건 없이 <strong>혼자서 영원히</strong> 돌아야 합니다.<br /><br />
+            <strong>2. "Loop(반복)" 속성이 없음</strong><br />
+            Transition은 목적지에 도착하면 <strong>끝</strong>입니다. 다시 처음으로 돌아가서 실행하려면 누군가(JS나 사용자)가 상태를 강제로 되돌려야 합니다.<br />
+            Animation은 <code>infinite</code> 속성 하나로 스스로 무한 반복합니다.
           </p>
         </div>
 
@@ -181,11 +218,153 @@ function AnimationsStudy() {
   4. <strong>Animation(빨강)</strong>: 마우스를 떼는 순간 동작이 중단되고 원래대로 "탁!" 하고 스냅됩니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
+
+      {/* 실습 섹션: Timing Functions (속도 곡선) */}
+      <CollapsibleSection title="Timing Functions (속도 곡선) 이해하기">
+        <div className="section-description">
+          <p>
+            <code>animation-timing-function</code> (또는 <code>transition-timing-function</code>)은
+            <strong>시간 변화 곡선(Time-Variation Curve)</strong>을 정의합니다.<br />
+            같은 시간(Duration) 동안 이동하더라도, <strong>가속도</strong>가 다르면 전혀 다른 느낌을 줍니다.
+          </p>
+        </div>
+
+        <LiveCodeEditor
+          scopeId="timing-functions-race"
+          previewHeight="400px"
+          codeHeight="500px"
+          initialCss={`/* 2초 동안 왼쪽에서 오른쪽으로 이동 */
+@keyframes race {
+  from { left: 0; }
+  to { left: calc(100% - 50px); }
+}
+
+.track {
+  position: relative;
+  height: 50px;
+  background: #e2e8f0;
+  margin-bottom: 25px;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+.racer {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  
+  /* 공통 애니메이션 설정 */
+  animation-name: race;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* 각기 다른 속도 곡선 적용 */
+.linear { 
+  animation-timing-function: linear; 
+  background: #ef4444; /* Red */
+}
+
+.ease { 
+  /* 기본값. 시작은 빠르고 끝은 천천히 */
+  animation-timing-function: ease; 
+  background: #f59e0b; /* Orange */
+}
+
+.ease-in { 
+  /* 천천히 시작해서 가속 */
+  animation-timing-function: ease-in; 
+  background: #10b981; /* Green */
+}
+
+.ease-out { 
+  /* 빠르게 시작해서 감속 (브레이크 느낌) */
+  animation-timing-function: ease-out; 
+  background: #6366f1; /* Indigo */
+}
+
+.cubic {
+  /* 커스텀 베지에 곡선: 뒤로 갔다 앞으로 팅겨나감 */
+  animation-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  background: #8b5cf6; /* Purple */
+}
+
+.label-text {
+  position: absolute;
+  top: -20px;
+  left: 5px;
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+}`}
+          initialHtml={`<div style="padding: 1rem;">
+  <!-- 1. Linear: 등속도 -->
+  <div class="track">
+    <div class="label-text">linear <span style="font-weight:normal; font-size:0.7em; color:#94a3b8;">cubic-bezier(0, 0, 1, 1)</span></div>
+    <div class="racer linear">1</div>
+  </div>
+
+  <!-- 2. Ease: 자연스러움 (기본값) -->
+  <div class="track">
+    <div class="label-text">ease <span style="font-weight:normal; font-size:0.7em; color:#94a3b8;">cubic-bezier(0.25, 0.1, 0.25, 1.0)</span></div>
+    <div class="racer ease">2</div>
+  </div>
+
+  <!-- 3. Ease-In: 가속 (출발!) -->
+  <div class="track">
+    <div class="label-text">ease-in <span style="font-weight:normal; font-size:0.7em; color:#94a3b8;">cubic-bezier(0.42, 0, 1.0, 1.0)</span></div>
+    <div class="racer ease-in">3</div>
+  </div>
+
+  <!-- 4. Ease-Out: 감속 (도착!) -->
+  <div class="track">
+    <div class="label-text">ease-out <span style="font-weight:normal; font-size:0.7em; color:#94a3b8;">cubic-bezier(0, 0, 0.58, 1.0)</span></div>
+    <div class="racer ease-out">4</div>
+  </div>
+  
+  <!-- 5. Cubic Bezier: 텐션감 -->
+  <div class="track">
+    <div class="label-text">cubic-bezier (팅겨나가는 효과)</div>
+    <div class="racer cubic">5</div>
+  </div>
+</div>`}
+        />
+
+        <div style={{ marginTop: '1.5rem', background: '#f1f5f9', padding: '1rem', borderRadius: '8px', fontSize: '0.9rem', color: '#334155' }}>
+          <strong>💡 Shorthand 팁:</strong> 아래 두 코드는 완전히 동일합니다.
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '0.5rem' }}>
+            <div style={{ background: '#e2e8f0', padding: '0.5rem', borderRadius: '4px' }}>
+              <div style={{ color: '#64748b', fontSize: '0.8rem', marginBottom: '4px' }}>/* 개별 속성 */</div>
+              <code style={{ fontSize: '0.85rem' }}>
+                animation-name: race;<br />
+                animation-duration: 2s;<br />
+                animation-iteration-count: infinite;<br />
+                animation-direction: alternate;
+              </code>
+            </div>
+            <div style={{ background: '#e2e8f0', padding: '0.5rem', borderRadius: '4px' }}>
+              <div style={{ color: '#64748b', fontSize: '0.8rem', marginBottom: '4px' }}>/* Shorthand */</div>
+              <code style={{ fontSize: '0.85rem' }}>
+                animation: race 2s ease 0s infinite alternate;
+              </code>
+            </div>
+          </div>
+        </div>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 애니메이션 트리거 (실행 시점) 조건 */}
-      <section className="study-section">
-        <h2 className="section-title">애니메이션은 언제 작동할까?</h2>
+      <CollapsibleSection title="실습 섹션: 애니메이션 트리거 (실행 시점) 조건">
         <div className="section-description">
           <p>
             CSS 애니메이션이 실제로 **실행되는 시점**을 이해하는 것이 중요합니다.
@@ -304,10 +483,9 @@ function AnimationsStudy() {
   <strong>Apply 버튼을 눌러 다시 실행해보세요!</strong>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
-      <section className="study-section">
-        <h2 className="section-title">스피너 만들기 (실전 예제)</h2>
+      <CollapsibleSection title="스피너 만들기 (실전 예제)">
         <div className="section-description">
           <p>
             로딩 중임을 알리는 다양한 스피너 스타일을 만들어봅시다. 실제 많은 서비스에서 사용하는 패턴들입니다.
@@ -357,7 +535,7 @@ function AnimationsStudy() {
   border: 4px solid rgba(255,255,255,0.1);
   border-top-color: #3b82f6;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1s ease infinite;
 }
 
 /* 2. Dual Ring (이중 링) */
@@ -402,11 +580,10 @@ function AnimationsStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 갤러리 섹션: 다양한 애니메이션 효과 비교 */}
-      <section className="study-section">
-        <h2 className="section-title">🎬 애니메이션 비교 갤러리</h2>
+      <CollapsibleSection title="🎬 애니메이션 비교 갤러리">
         <div className="section-description">
           <p>
             자주 쓰이는 다양한 애니메이션 효과들을 한눈에 비교해보세요.
@@ -474,11 +651,10 @@ function AnimationsStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 애니메이션 속성 조절 (대화형 인터페이스) */}
-      <section className="study-section">
-        <h2 className="section-title">animation 속성 조절 (Interactive)</h2>
+      <CollapsibleSection title="animation 속성 조절 (Interactive)">
         <div className="section-description">
           <p>
             <code>animation</code> 속성을 직접 조절하며 어떻게 움직임이 변하는지 확인해보세요.
@@ -604,11 +780,10 @@ function AnimationsStudy() {
   • <strong>Direction</strong>: 정방향, 역방향, 왔다갔다(Alternate) 등
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 페이드 인/아웃 효과 */}
-      <section className="study-section">
-        <h2 className="section-title">페이드 인/아웃</h2>
+      <CollapsibleSection title="실습 섹션: 페이드 인/아웃 효과">
         <div className="section-description">
           <p>
             투명도를 조절하여 부드럽게 나타나고 사라지는 효과를 만듭니다.
@@ -675,11 +850,10 @@ function AnimationsStudy() {
   • forwards: 애니메이션 끝 상태 유지
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 호버 기반 애니메이션 연출 */}
-      <section className="study-section">
-        <h2 className="section-title">호버 애니메이션</h2>
+      <CollapsibleSection title="실습 섹션: 호버 기반 애니메이션 연출">
         <div className="section-description">
           <p>
             마우스를 올렸을 때 애니메이션을 실행할 수 있습니다.
@@ -750,11 +924,10 @@ function AnimationsStudy() {
   • pulse: 크기 변화 (무한 반복)
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 3D 카드 플립 효과 */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 카드 플립</h2>
+      <CollapsibleSection title="실전 예제: 카드 플립">
         <div className="section-description">
           <p>
             3D 회전 효과로 카드를 뒤집는 애니메이션입니다.
@@ -844,7 +1017,7 @@ function AnimationsStudy() {
   3. <strong>Inner</strong> 판을 한꺼번에 뒤집어버리기!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div >
   );
 }

@@ -9,28 +9,37 @@ import { useState, useEffect, useRef } from 'react';
  * @param {string} props.initialCss - Initial CSS code
  * @param {string} props.scopeId - Unique ID to scope the styles
  */
-function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId, height, previewHeight, codeHeight }) {
-  const [draftCss, setDraftCss] = useState(initialCss);
-  const [appliedCss, setAppliedCss] = useState(initialCss);
+function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentHtml, scopeId, height, previewHeight, codeHeight }) {
+  const [draftCss, setDraftCss] = useState(initialCss || '');
+  const [appliedCss, setAppliedCss] = useState(initialCss || '');
   const [draftHtml, setDraftHtml] = useState(initialHtml || '');
   const [appliedHtml, setAppliedHtml] = useState(initialHtml || '');
   const [activeTab, setActiveTab] = useState('css'); // 'css' or 'html'
   const [renderKey, setRenderKey] = useState(0); // For forcing re-renders without using long strings
   const styleRef = useRef(null);
 
-  // Sync with external updates (e.g., from UI controls)
+  // Sync with external CSS updates
   useEffect(() => {
-    if (currentCss) {
+    if (currentCss !== undefined) {
       setDraftCss(currentCss);
       setAppliedCss(currentCss);
     }
   }, [currentCss]);
+
+  // Sync with external HTML updates
+  useEffect(() => {
+    if (currentHtml !== undefined) {
+      setDraftHtml(currentHtml);
+      setAppliedHtml(currentHtml);
+    }
+  }, [currentHtml]);
 
   // Apply CSS to the preview area
   useEffect(() => {
     if (styleRef.current) {
       // Helper to extract at-rules (like @keyframes) that cannot be nested
       const extractAtRules = (css) => {
+        if (!css) return { keyframes: '', other: '' };
         let keyframes = '';
         let other = '';
         let remaining = css;
@@ -69,11 +78,14 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
   }, [appliedCss, scopeId]);
 
   const handleReset = () => {
-    setDraftCss(initialCss);
-    setAppliedCss(initialCss);
-    if (initialHtml) {
-      setDraftHtml(initialHtml);
-      setAppliedHtml(initialHtml);
+    const resetCss = currentCss !== undefined ? currentCss : initialCss;
+    setDraftCss(resetCss);
+    setAppliedCss(resetCss);
+
+    if (initialHtml || currentHtml) {
+      const resetHtml = currentHtml !== undefined ? currentHtml : initialHtml;
+      setDraftHtml(resetHtml);
+      setAppliedHtml(resetHtml);
     }
   };
 
@@ -98,7 +110,10 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
     }
   };
 
-  const hasChanges = draftCss !== appliedCss || (initialHtml && draftHtml !== appliedHtml);
+  // Decide if we should show HTML features
+  const hasHtml = initialHtml || currentHtml;
+
+  const hasChanges = draftCss !== appliedCss || (hasHtml && draftHtml !== appliedHtml);
 
   // Calculate heights based on layout mode
   // Priority: previewHeight/codeHeight > height > defaults
@@ -152,7 +167,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
   return (
     <div className="live-editor-container">
       <div className="live-editor-header">
-        {initialHtml && (
+        {hasHtml && (
           <div className="live-editor-tabs">
             <button
               className={`tab-btn ${activeTab === 'css' ? 'active' : ''}`}
@@ -212,7 +227,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
               padding: 'var(--spacing-lg)'
             }}>
               <style ref={styleRef}></style>
-              {initialHtml ? (
+              {hasHtml ? (
                 /* 
                   Note: Using dangerouslySetInnerHTML without sanitization is risky in public environments. 
                   In this playground, it's used for educational purposes with user-provided local content.
@@ -228,7 +243,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
           className={`live-editor-code ${activeTab === 'both' ? 'split-view' : ''}`}
           style={isVerticalLayout && codeHeightStyle ? { height: codeHeightStyle } : undefined}
         >
-          {(!initialHtml || activeTab === 'css' || activeTab === 'both') && (
+          {(!hasHtml || activeTab === 'css' || activeTab === 'both') && (
             <div className={`code-editor-wrapper ${activeTab === 'both' ? 'half-width' : ''}`}>
               <button
                 className="copy-btn"
@@ -247,7 +262,7 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, scopeId,
               />
             </div>
           )}
-          {initialHtml && (activeTab === 'html' || activeTab === 'both') && (
+          {hasHtml && (activeTab === 'html' || activeTab === 'both') && (
             <div className={`code-editor-wrapper ${activeTab === 'both' ? 'half-width' : ''}`}>
               <button
                 className="copy-btn"

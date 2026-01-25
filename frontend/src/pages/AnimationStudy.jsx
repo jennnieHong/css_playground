@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function AnimationStudy() {
   // --- 상태 관리 (State Management) ---
@@ -25,16 +26,14 @@ function AnimationStudy() {
 
       {/* Animation 기초 정의 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">CSS 애니메이션이란?</h2>
+      <CollapsibleSection title="CSS 애니메이션이란?">
         <p className="section-description">
           CSS 애니메이션을 사용하면 JavaScript 없이도 요소에 움직임을 부여할 수 있습니다.
         </p>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Transition (상태 변화 연출) */}
-      <section className="study-section">
-        <h2 className="section-title">Transition</h2>
+      <CollapsibleSection title="Transition">
         <div className="section-description">
           <p>상태 변화(예: Hover)를 부드럽게 연결해줍니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -98,11 +97,20 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Keyframe Animation (기본 바운스 효과) */}
-      <section className="study-section">
-        <h2 className="section-title">Keyframe Animation</h2>
+      <CollapsibleSection title="Keyframe Animation">
+        <div className="section-description">
+          <p>
+            <code>@keyframes</code>는 애니메이션의 흐름(프레임)을 정의합니다.
+          </p>
+          <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
+            <li><code>from</code> (0%): 시작 상태</li>
+            <li><code>to</code> (100%): 종료 상태</li>
+            <li><code>%</code>: 진행도에 따른 중간 상태 (예: 50%는 딱 중간 시점)</li>
+          </ul>
+        </div>
         <LiveCodeEditor
           scopeId="anim-bounce"
           previewHeight="200px"
@@ -125,11 +133,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Rotate Animation (회전 효과) */}
-      <section className="study-section">
-        <h2 className="section-title">Rotate Animation</h2>
+      <CollapsibleSection title="Rotate Animation">
         <LiveCodeEditor
           scopeId="anim-rotate"
           previewHeight="200px"
@@ -153,11 +160,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실습 섹션: Fade Animation (페이드 인/아웃) */}
-      <section className="study-section">
-        <h2 className="section-title">Fade Animation</h2>
+      <CollapsibleSection title="Fade Animation">
         <LiveCodeEditor
           scopeId="anim-fade"
           previewHeight="200px"
@@ -180,11 +186,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실습 섹션: Pulse Animation (심장 박동 강조 효과) */}
-      <section className="study-section">
-        <h2 className="section-title">Pulse Animation</h2>
+      <CollapsibleSection title="Pulse Animation">
         <p className="section-description">
           심장 박동처럼 커졌다 작아지는 효과입니다. 알림 아이콘, 버튼 강조 등에 사용됩니다.
         </p>
@@ -213,11 +218,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실습 섹션: Shake Animation (경고/에러 떨림 효과) */}
-      <section className="study-section">
-        <h2 className="section-title">Shake Animation</h2>
+      <CollapsibleSection title="Shake Animation">
         <p className="section-description">
           좌우로 떨리는 효과입니다. 에러 알림이나 주의 환기에 효과적입니다.
         </p>
@@ -241,14 +245,61 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실습 섹션: Slide Animation (슬라이드 인/아웃) */}
-      <section className="study-section">
-        <h2 className="section-title">Slide Animation</h2>
+      <CollapsibleSection title="Slide Animation">
         <p className="section-description">
           슬라이드 인/아웃 효과입니다. 모달, 드로어, 토스트 알림 등에 사용됩니다.
         </p>
+        <div style={{ marginBottom: '1rem', background: '#f0f9ff', padding: '1.2rem', borderRadius: '8px', borderLeft: '4px solid #0ea5e9' }}>
+          <h4 style={{ margin: '0 0 0.8rem 0', color: '#0369a1', fontSize: '1rem' }}>🤔 Deep Dive: 왜 토글은 Transition이 나을까요?</h4>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <strong style={{ color: '#ef4444', display: 'block', marginBottom: '0.5rem' }}>❌ Animation의 구조적 문제 (토글 시)</strong>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.9rem', color: '#334155', lineHeight: '1.6' }}>
+              <li><strong>되돌리기 어렵다</strong>: 닫기용 애니메이션(slideOut)을 따로 만들어 클래스로 교체해야 함</li>
+              <li><strong>상태 기반이 아님</strong>: 시간(Time) 기반이라 중간에 멈추거나 취소가 까다로움</li>
+              <li><strong>결론</strong>: "사용자가 수시로 열고 닫는 패널"에는 부적합!</li>
+            </ul>
+          </div>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <strong style={{ color: '#10b981', display: 'block', marginBottom: '0.5rem' }}>⭕ Animation이 딱 맞는 경우</strong>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.9rem', color: '#334155', lineHeight: '1.6', marginBottom: '0.8rem' }}>
+              <li>자동 캐러셀 / 배너가 주기적으로 흘러갈 때</li>
+              <li>튜토리얼 가이드 / 페이지 진입 시 Intro 연출 (1회성)</li>
+              <li>👉 <strong>사용자 입력과 무관하게 시스템이 보여줄 때</strong></li>
+            </ul>
+            <div style={{ background: 'white', padding: '0.8rem', borderRadius: '6px', fontSize: '0.8rem', border: '1px solid #e2e8f0' }}>
+              <code style={{ color: '#059669' }}>
+                .hero {'{'} animation: autoSlide 0.8s ease-out forwards; {'}'}
+              </code>
+            </div>
+          </div>
+
+          <div style={{ background: 'white', padding: '1rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+            <h5 style={{ margin: '0 0 0.5rem 0', fontSize: '0.95rem' }}>🧠 철학적 차이 (느낌)</h5>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem' }}>
+              <div>
+                <strong style={{ color: '#2563eb' }}>Transition (슬라이드)</strong>
+                <div style={{ marginTop: '0.3rem', color: '#475569' }}>
+                  "내가 눌렀다 → 바로 반응"<br />
+                  즉각성 / 신뢰감 / 조작 가능<br />
+                  <span style={{ fontSize: '0.8em', color: '#94a3b8' }}>👉 메뉴, 패널, 사이드바</span>
+                </div>
+              </div>
+              <div>
+                <strong style={{ color: '#db2777' }}>Animation (슬라이드)</strong>
+                <div style={{ marginTop: '0.3rem', color: '#475569' }}>
+                  "시스템이 보여준다"<br />
+                  연출 / 흐름 / 제어 불가<br />
+                  <span style={{ fontSize: '0.8em', color: '#94a3b8' }}>👉 인트로, 배너, 데모</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <LiveCodeEditor
           scopeId="anim-slide"
           previewHeight="250px"
@@ -294,11 +345,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실습 섹션: Loading Spinner (다양한 로딩 효과 구현) */}
-      <section className="study-section">
-        <h2 className="section-title">Loading Spinner</h2>
+      <CollapsibleSection title="Loading Spinner">
         <p className="section-description">
           다양한 로딩 스피너 스타일을 비교해보세요.
         </p>
@@ -387,11 +437,13 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실습 섹션: Animation 속성 조절 (반복 횟수 제어) */}
-      <section className="study-section">
-        <h2 className="section-title">Animation 속성 조절</h2>
+      <CollapsibleSection title="Animation 속성 조절">
+        <p className="section-description">
+          <code>animation-iteration-count</code>로 반복 횟수를 조절합니다.
+        </p>
         <p className="section-description">
           <code>animation-iteration-count</code>로 반복 횟수를 조절합니다.
         </p>
@@ -438,11 +490,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 갤러리 섹션: 애니메이션 비교 갤러리 */}
-      <section className="study-section">
-        <h2 className="section-title">🎬 애니메이션 비교 갤러리</h2>
+      <CollapsibleSection title="🎬 애니메이션 비교 갤러리">
         <p className="section-description">
           모든 애니메이션을 한눈에 비교해보세요. 각 카드에 마우스를 올려 효과를 확인할 수 있습니다.
         </p>
@@ -517,11 +568,10 @@ function AnimationStudy() {
   </div>
 </div>`}
         />
-      </section >
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 알림 배지 & 장바구니 애니메이션 (종합 예제) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 알림 배지 & 장바구니 애니메이션</h2>
+      <CollapsibleSection title="실전 예제: 알림 배지 & 장바구니 애니메이션">
         <p className="section-description">
           사용자의 시선을 끌어야 하는 알림 배지에 <code>pulse</code>와 <code>bounce</code>를 조합하여 생동감을 불어넣습니다.
         </p>
@@ -592,7 +642,7 @@ function AnimationStudy() {
   • <strong>호버(Hover)</strong>: 사용자가 아이콘에 마우스를 올렸을 때 <code>bounce</code> 효과를 주어 피드백을 강화합니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }
