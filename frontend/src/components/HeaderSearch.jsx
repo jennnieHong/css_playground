@@ -2,12 +2,21 @@
  * HeaderSearch.jsx
  * 상단 헤더에 배치되는 검색 input 컴포넌트
  */
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function HeaderSearch() {
+    const [searchParams] = useSearchParams();
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
+
+    // URL에서 검색어를 읽어와 input에 자동 입력
+    useEffect(() => {
+        const urlQuery = searchParams.get('q');
+        if (urlQuery) {
+            setQuery(urlQuery);
+        }
+    }, [searchParams]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

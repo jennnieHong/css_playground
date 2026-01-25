@@ -25,6 +25,7 @@ function SearchResults() {
                             <Link
                                 key={page.path}
                                 to={page.path}
+                                state={{ fromSearch: query }}
                                 className="search-result-card"
                             >
                                 <h3 className="search-result-title">{page.title}</h3>

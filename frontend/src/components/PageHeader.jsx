@@ -6,12 +6,15 @@
  * @param {string} props.title - 페이지 제목
  * @param {string} props.subtitle - 페이지 부제목
  */
+import BackToSearch from './BackToSearch';
+
 function PageHeader({ title, subtitle }) {
     return (
-        <div className="page-header">
+        <header className="page-header">
+            <BackToSearch />
             <h1 className="page-title">{title}</h1>
             {subtitle && <p className="page-subtitle">{subtitle}</p>}
-        </div>
+        </header>
     );
 }
 
