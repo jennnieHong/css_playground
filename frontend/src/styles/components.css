@@ -681,3 +681,69 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===================================
+   Scroll Buttons (맨 위/아래로)
+   =================================== */
+.scroll-buttons {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 999;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all var(--transition-base);
+}
+
+.scroll-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.scroll-btn:active {
+  transform: scale(0.95);
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .scroll-buttons {
+    bottom: 1.5rem; /* 조금 더 높게 */
+    left: 1rem;
+    right: auto;
+  }
+
+  .scroll-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+}

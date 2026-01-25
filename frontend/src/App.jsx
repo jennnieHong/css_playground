@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HeaderSearch from './components/HeaderSearch';
+import ScrollButtons from './components/ScrollButtons';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import FlexboxStudy from './pages/FlexboxStudy';
@@ -87,6 +88,7 @@ function App() {
             <Route path="/challenge" element={<PracticeChallenge />} />
           </Routes>
         </main>
+        <ScrollButtons />
       </div>
     </Router>
   );
