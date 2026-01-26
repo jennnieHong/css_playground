@@ -52,7 +52,7 @@ export const pageMetadata = [
         tags: [
             'position', '위치', 'relative', 'absolute', 'fixed', 'sticky', 'top', 'left', 'z-index',
             'static', '상대', '절대', '고정', '스티키', 'bottom', 'right', '위치지정',
-            '좌표', '겹침', '레이어', 'positioning'
+            '좌표', '겹침', '레이어', 'positioning', 'inset', 'shorthand', '단축속성'
         ],
         description: '요소의 위치 지정 방식과 좌표 시스템 이해'
     },
@@ -96,10 +96,18 @@ export const pageMetadata = [
         description: 'CSS에서 사용하는 다양한 크기 단위 이해'
     },
     {
+        path: '/viewport-units',
+        title: '현대적 뷰포트 단위',
+        tags: [
+            'viewport', 'dvh', 'svh', 'lvh', 'mobile', 'address bar', '모바일', '주소창', '반응형', '뷰포트', '100vh', '100dvh'
+        ],
+        description: '모바일 브라우저의 주소창 문제를 해결하는 현대적인 뷰포트 단위(dvh, svh, lvh) 학습'
+    },
+    {
         path: '/height',
         title: 'Height & Width',
         tags: [
-            'height', 'width', 'min-height', 'max-width', 'auto', '크기', '높이', '너비',
+            'inset', 'height', 'width', 'min-height', 'max-width', 'auto', '크기', '높이', '너비',
             'min-width', 'max-height', '최소', '최대', '사이즈', 'size', '가로', '세로'
         ],
         description: '요소의 크기를 제어하는 속성들 학습'
@@ -138,7 +146,7 @@ export const pageMetadata = [
         path: '/pseudo-elements',
         title: '가상 요소',
         tags: [
-            'pseudo-elements', '가상 요소', '::before', '::after', 'content', '클래스 토글', 'attr()', '리본', 'ribbon',
+            '전역변수', 'pseudo-elements', '가상 요소', '::before', '::after', 'content', '클래스 토글', 'attr()', '리본', 'ribbon',
             '::first-line', '::first-letter', '::selection', '::marker', 'before', 'after',
             '가상', '요소', '장식', 'decoration', '아이콘', 'icon', 'badge', '배지'
         ],

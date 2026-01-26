@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function ResponsiveStudy() {
   // --- 상태 관리 (State Management) ---
@@ -23,8 +24,7 @@ function ResponsiveStudy() {
 
       {/* 기초 섹션: 반응형 디자인의 역사와 진화 */}
 
-      <section className="study-section">
-        <h2 className="section-title">반응형 디자인 진화</h2>
+      <CollapsibleSection title="반응형 디자인 진화">
         <div className="section-description">
           <p>
             반응형 디자인은 단순히 Media Query를 넘어 더 정교한 기술로 진화했습니다:
@@ -36,10 +36,9 @@ function ResponsiveStudy() {
             <li><strong>Container Queries</strong>: 컨테이너 크기 기반 (현대적)</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
-      <section className="study-section">
-        <h2 className="section-title">Media Queries 기본</h2>
+      <CollapsibleSection title="Media Queries 기본">
         <p className="section-description">
           뷰포트 크기에 따라 스타일을 변경하는 가장 기본적인 방법입니다.
         </p>
@@ -86,11 +85,10 @@ function ResponsiveStudy() {
   • Desktop: 1024px+
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: clamp() (미디어 쿼리 없는 반응형 타이포그래피) */}
-      <section className="study-section">
-        <h2 className="section-title">clamp() - 반응형의 게임 체인저</h2>
+      <CollapsibleSection title="clamp() - 반응형의 게임 체인저">
         <div className="section-description">
           <p>
             <code>clamp(최소값, 선호값, 최대값)</code>은 반응형 타이포그래피의 혁명입니다.<br />
@@ -136,11 +134,10 @@ function ResponsiveStudy() {
   폰트 크기와 너비가 부드럽게 변경됩니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: min() & max() (조건부 레이아웃 제어) */}
-      <section className="study-section">
-        <h2 className="section-title">min() & max() - 조건부 크기 제어</h2>
+      <CollapsibleSection title="min() & max() - 조건부 크기 제어">
         <div className="section-description">
           <p>
             <code>min()</code>과 <code>max()</code>는 여러 값 중에서 자동으로 선택해주는 똑똑한 함수입니다.
@@ -211,11 +208,10 @@ function ResponsiveStudy() {
   • 큰 화면: 너비는 600px로 제한되고, 높이는 화면의 50%로 증가
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Fluid Units (뷰포트 기반 유동 단위) */}
-      <section className="study-section">
-        <h2 className="section-title">Fluid Units (%, vw, vh)</h2>
+      <CollapsibleSection title="Fluid Units (%, vw, vh)">
         <p className="section-description">
           뷰포트 단위로 진정한 유동적 레이아웃을 만듭니다.
         </p>
@@ -278,14 +274,62 @@ function ResponsiveStudy() {
   브라우저 크기를 변경하면서 차이를 확인하세요!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 반응형 카드 그리드 (실무 패턴) */}
-      <section className="study-section">
-        <h2 className="section-title">실전: 반응형 카드 그리드</h2>
-        <p className="section-description">
-          최신 기법들을 조합한 실용적인 예제입니다.
-        </p>
+      <CollapsibleSection title="실전: 반응형 카드 그리드">
+        <div className="section-description">
+          <p>
+            지금까지 배운 모든 기법을 조합하여 <strong>미디어 쿼리 없이</strong> 완벽한 반응형 카드 그리드를 만듭니다!
+          </p>
+          
+          <div style={{ 
+            marginTop: '1.5rem', padding: '1.5rem', background: '#f0f9ff', 
+            borderRadius: '12px', border: '1px solid #0ea5e9' 
+          }}>
+            <h4 style={{ marginTop: 0, color: '#0c4a6e' }}>🎯 사용된 현대적 기법</h4>
+            <ul style={{ marginBottom: 0, color: '#075985', lineHeight: '1.8' }}>
+              <li>
+                <strong>auto-fit</strong> - 화면 크기에 맞춰 자동으로 열 개수 조정<br />
+                <small style={{ color: '#0284c7' }}>
+                  예: 큰 화면은 3열, 중간 화면은 2열, 작은 화면은 1열
+                </small>
+              </li>
+              <li>
+                <strong>minmax(250px, 1fr)</strong> - 각 카드의 최소/최대 너비 지정<br />
+                <small style={{ color: '#0284c7' }}>
+                  예: 최소 250px 보장, 남는 공간은 균등 분배
+                </small>
+              </li>
+              <li>
+                <strong>clamp(1rem, 2vw, 2rem)</strong> - 카드 사이 간격을 유동적으로<br />
+                <small style={{ color: '#0284c7' }}>
+                  예: 작은 화면 1rem, 큰 화면 2rem, 중간은 부드럽게 증가
+                </small>
+              </li>
+              <li>
+                <strong>min(100%, 1200px)</strong> - 그리드 전체 너비 제한<br />
+                <small style={{ color: '#0284c7' }}>
+                  예: 작은 화면은 100%, 큰 화면은 최대 1200px
+                </small>
+              </li>
+            </ul>
+          </div>
+
+          <div style={{ 
+            marginTop: '1.5rem', padding: '1.2rem', background: '#fef3c7', 
+            borderRadius: '10px', border: '1px solid #f59e0b' 
+          }}>
+            <strong style={{ color: '#92400e' }}>💡 핵심 원리</strong>
+            <p style={{ marginTop: '0.5rem', marginBottom: 0, color: '#78350f', lineHeight: '1.7' }}>
+              <code>repeat(auto-fit, minmax(250px, 1fr))</code>의 의미:<br />
+              • <strong>repeat</strong>: 열을 반복 생성<br />
+              • <strong>auto-fit</strong>: 공간에 맞춰 자동으로 열 개수 결정 (1열, 2열, 3열...)<br />
+              • <strong>minmax(250px, 1fr)</strong>: 각 카드는 최소 250px, 남는 공간은 균등 분배<br />
+              → 결과: 화면 크기가 변해도 자동으로 최적의 레이아웃!
+            </p>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="responsive-grid"
@@ -339,7 +383,7 @@ function ResponsiveStudy() {
   <strong>Production-ready!</strong> 이 패턴을 실제 프로젝트에 바로 사용하세요.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

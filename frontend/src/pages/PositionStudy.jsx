@@ -7,13 +7,14 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function PositionStudy() {
   // --- 상태 관리 (State Management) ---
   // 포지셔닝 속성값의 변화를 실시간으로 관찰하기 위한 상태들입니다.
-  const [position, setPosition] = useState('static');
-  const [top, setTop] = useState('auto');
-  const [left, setLeft] = useState('auto');
+  const [position, setPosition] = useState('absolute');
+  const [top, setTop] = useState('10px');
+  const [left, setLeft] = useState('10px');
   const [parentTransform, setParentTransform] = useState('none');
 
   return (
@@ -26,8 +27,7 @@ function PositionStudy() {
 
       {/* Position 속성 기초 정의 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">Position 속성 이해하기</h2>
+      <CollapsibleSection title="Position 속성 이해하기">
         <div className="section-description">
           <p><code>position</code> 속성은 문서 상에서 요소가 배치되는 방식을 결정합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -38,11 +38,10 @@ function PositionStudy() {
             <li><code>sticky</code>: 스크롤에 따라 static과 fixed를 오갑니다.</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 부모-자식 관계 (Relative & Absolute 패턴) */}
-      <section className="study-section">
-        <h2 className="section-title">Parent-Child 관계 (Relative vs Absolute)</h2>
+      <CollapsibleSection title="Parent-Child 관계 (Relative vs Absolute)">
         <p className="section-description">
           가장 많이 사용하는 패턴입니다. 부모에게 <code>relative</code>를 주고, 자식에게 <code>absolute</code>를 주면
           자식은 <strong>부모 안에서</strong> 자유롭게 위치를 잡을 수 있습니다.
@@ -80,11 +79,88 @@ function PositionStudy() {
   <div class="child">Child (absolute)</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
+
+      {/* 새 섹션: 현대적인 위치 지정 shorthand - inset */}
+      <CollapsibleSection title="Modern Shorthand: inset">
+        <div className="section-description">
+          <p>
+            <code>inset</code>은 <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>를 한 줄로 선언할 수 있는 현대적인 단축 속성입니다.
+            단순히 코드가 짧아지는 것에 그치지 않고, <strong>"부모 영역을 정확히 덮는 자식"</strong>을 만들 때 표준처럼 사용됩니다.
+          </p>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
+            <div style={{ background: '#f8fafc', padding: '1.2rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+              <h4 style={{ marginTop: 0, color: '#0f172a', fontSize: '1rem' }}>🎯 주요 활용 사례</h4>
+              <ul style={{ paddingLeft: '1.2rem', fontSize: '0.9rem', color: '#475569', lineHeight: '1.7' }}>
+                <li><strong>모달 배경</strong>: 전체 화면을 어둡게 덮을 때</li>
+                <li><strong>카드 오버레이</strong>: 이미지 위에 호버 시 나타나는 텍스트 배경</li>
+                <li><strong>전체 클릭 레이어</strong>: 부모 전체를 클릭 가능하게 만들 때</li>
+                <li><strong>로딩 마스크</strong>: 특정 영역을 흐리게 덮고 로딩바를 띄울 때</li>
+              </ul>
+            </div>
+            <div style={{ background: '#fff7ed', padding: '1.2rem', borderRadius: '10px', border: '1px solid #fed7aa' }}>
+              <h4 style={{ marginTop: 0, color: '#9a3412', fontSize: '1rem' }}>⚠️ 필수 조건 & 꿀조합</h4>
+              <ul style={{ paddingLeft: '1.2rem', fontSize: '0.9rem', color: '#9a3412', lineHeight: '1.7' }}>
+                <li><strong>포지션 필수</strong>: <code>static</code>이 아닌 포지션(absolute, fixed 등)과 함께 써야 합니다.</li>
+                <li><strong>중앙 정렬 콤보</strong>: <code>inset: 0</code> + <code>margin: auto</code> (자식 크기가 정해져 있을 때)</li>
+                <li><strong>레이아웃 콤보</strong>: <code>inset: 0</code> + <code>display: flex</code> (내부 콘텐츠 정렬 시)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <LiveCodeEditor
+          scopeId="pos-inset"
+          previewHeight="350px"
+          codeHeight="400px"
+          initialCss={`.card {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400') center/cover;
+}
+
+/* 🖼️ 이미지 위에 씌우는 오버레이 */
+.card-overlay {
+  position: absolute;
+  /* 🔍 inset: 0 으로 부모 박스를 100% 덮습니다 */
+  inset: 0; 
+  
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  color: white;
+  opacity: 0; /* 평소엔 숨김 */
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  opacity: 1; /* 호버 시 나타남 */
+}
+
+.card-title { font-weight: 800; font-size: 1.2rem; margin: 0; }
+.card-desc { font-size: 0.8rem; margin-top: 0.5rem; color: #cbd5e1; }`}
+          initialHtml={`<div class="card">
+  <div class="card-overlay">
+    <h3 class="card-title">Nike Air Max</h3>
+    <p class="card-desc">격렬한 운동에도 견디는 극강의 쿠셔닝</p>
+  </div>
+</div>
+
+<div style="margin-top: 1.5rem; padding: 1rem; background: #f1f5f9; border-radius: 8px; font-size: 0.9rem; color: #475569;">
+  💡 <strong>실습:</strong> 위 이미지에 마우스를 올려보세요.<br/>
+  <code>inset: 0</code>으로 만든 오버레이가 부모 카드 영역을 빈틈없이 덮는 것을 확인할 수 있습니다.
+</div>`}
+        />
+      </CollapsibleSection>
 
       {/* 실습 섹션: Fixed Position (화면 고정) */}
-      <section className="study-section">
-        <h2 className="section-title">Fixed Position (고정 위치)</h2>
+      <CollapsibleSection title="Fixed Position (고정 위치)">
         <p className="section-description">
           스크롤을 해도 화면의 특정 위치에 고정되어 있는 요소입니다. (예: 네비게이션 바, '맨 위로' 버튼, 모달 등)
           <br />
@@ -153,25 +229,41 @@ function PositionStudy() {
   z-index: 1000;
   transition: all 0.3s ease;
 }`}
-          initialHtml={`<div style="min-height: 300px; padding: 20px; border: 1px solid #ddd; position: relative;">
-  <p>이 영역 내부 또는 뷰포트를 기준으로 배치됩니다.</p>
-  <p>스크롤을 하기 위해 내용을 길게 늘립니다...</p>
-  <div style="height: 600px; background: linear-gradient(to bottom, #f0f9ff, #e0f2fe);"></div>
+          initialHtml={`<div style="min-height: 300px; padding: 20px; border: 1px solid #ddd; background: #f8fafc; position: relative;">
+  <p style="margin-top: 0; color: #475569; font-size: 0.9rem;">
+    <strong>🎯 테스트 방법:</strong><br/>
+    1. Position을 <code>fixed</code>로 변경<br/>
+    2. 프리뷰 영역을 스크롤하면서 빨간 박스가 화면에 고정되는지 확인
+  </p>
+  <div style="height: 700px; background: linear-gradient(to bottom, #dbeafe, #bfdbfe, #93c5fd); padding: 20px; margin-top: 20px; border-radius: 8px;">
+    <p style="color: #1e40af; font-weight: 600;">⬇️ 아래로 스크롤하세요</p>
+    <div style="height: 100px;"></div>
+    <p style="color: #1e40af;">스크롤 중...</p>
+    <div style="height: 100px;"></div>
+    <p style="color: #1e40af;">계속 스크롤...</p>
+    <div style="height: 100px;"></div>
+    <p style="color: #1e40af; font-weight: 600;">🔥 fixed로 설정하면 빨간 박스가 스크롤해도 계속 같은 위치에!</p>
+  </div>
   <div class="fixed-demo-box">
-    Fixed Box
+    📍 Demo Box
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
 
       {/* 실무 응용 섹션: 모달 오버레이 (Fixed 활용) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: Modal Overlay (딤드 처리)</h2>
-        <p className="section-description">
-          <code>fixed</code>는 팝업창(모달) 뒤에 깔리는 <strong>어두운 배경(Overlay)</strong>을 만들 때 필수적입니다.<br />
-          <code>top: 0; left: 0; width: 100%; height: 100%</code>를 주면 스크롤과 무관하게 항상 화면 전체를 덮습니다.
-        </p>
+      <CollapsibleSection title="실전 예제: Modal Overlay (딤드 처리)">
+        <div className="section-description">
+          <p>
+            <code>fixed</code>는 팝업창(모달) 뒤에 깔리는 <strong>어두운 배경(Overlay)</strong>을 만들 때 필수적입니다.
+          </p>
+          <div className="info-box" style={{ marginTop: '1rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+            <strong>💡 Pro의 팁 (inset: 0):</strong><br />
+            과거에는 <code>top: 0; left: 0; width: 100%; height: 100%</code>를 썼지만,<br />
+            요즘은 <code>inset: 0</code> 하나로 화면 전체를 덮는 것이 정석입니다.
+          </div>
+        </div>
         <LiveCodeEditor
           scopeId="pos-modal"
           previewHeight="300px"
@@ -180,15 +272,13 @@ function PositionStudy() {
   padding: 20px;
   height: 600px; /* 스크롤 생성용 */
   background: linear-gradient(to bottom, #fff, #f0f0f0);
+  color: #1e293b; /* 텍스트 색상 추가 */
 }
 
 /* 검은색 반투명 오버레이 */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0; /* top/right/bottom/left: 0 과 동일 */
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 100; /* 콘텐츠보다 위에 배치 */
   
@@ -233,11 +323,10 @@ function PositionStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 플로팅 버튼 (Fixed 활용) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: Floating Action Button (FAB)</h2>
+      <CollapsibleSection title="실전 예제: Floating Action Button (FAB)">
         <p className="section-description">
           화면 우측 하단에 항상 떠 있는 <strong>채팅 버튼</strong>이나 <strong>맨 위로 가기</strong> 버튼도 <code>fixed</code>를 사용합니다.
         </p>
@@ -290,12 +379,11 @@ function PositionStudy() {
   <button class="fab">+</button>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
 
       {/* 주의 사항 센션: Fixed 포지션의 함정 (The Trap) */}
-      <section className="study-section">
-        <h2 className="section-title">주의: Fixed와 부모의 관계 (The Trap)</h2>
+      <CollapsibleSection title="주의: Fixed와 부모의 관계 (The Trap)">
         <div className="section-description">
           <p>
             보통 <code>fixed</code> 요소는 부모를 무시하고 <strong>뷰포트(브라우저 창)</strong>를 기준으로 배치됩니다.<br />
@@ -388,11 +476,10 @@ function PositionStudy() {
   - <strong>translate</strong>: 빨간 점선 박스(부모)의 우측 상단 끝에 붙음
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Sticky Position (하이브리드 배치) */}
-      <section className="study-section">
-        <h2 className="section-title">Sticky Position</h2>
+      <CollapsibleSection title="Sticky Position">
         <p className="section-description">
           <code>sticky</code>는 스크롤 위치에 따라 <code>relative</code>와 <code>fixed</code>의 특성을 오가는 하이브리드 포지션입니다.<br />
           <strong>임계점(예: top: 0)</strong>에 도달하기 전까지는 일반 요소처럼 동작하다가, 도달하면 화면에 고정됩니다.
@@ -462,11 +549,10 @@ function PositionStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 비교 섹션: 다양한 수평/수직 중앙 정렬 기법 */}
-      <section className="study-section">
-        <h2 className="section-title">🎯 센터링 방법 비교</h2>
+      <CollapsibleSection title="🎯 센터링 방법 비교">
         <p className="section-description">
           요소를 완벽하게 가운데 정렬하는 다양한 방법들을 비교해보세요.
         </p>
@@ -561,11 +647,10 @@ function PositionStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 툴팁 및 드롭다운 (Absolute 활용) */}
-      <section className="study-section">
-        <h2 className="section-title">Tooltip & Dropdown 예제</h2>
+      <CollapsibleSection title="Tooltip & Dropdown 예제">
         <p className="section-description">
           <code>position: absolute</code>를 활용한 툴팁과 드롭다운 메뉴 구현입니다. 부모에 <code>position: relative</code>가 필요합니다.
         </p>
@@ -695,11 +780,10 @@ function PositionStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 알림 뱃지 (Absolute 활용) */}
-      <section className="study-section">
-        <h2 className="section-title">Badge & Notification 예제</h2>
+      <CollapsibleSection title="Badge & Notification 예제">
         <p className="section-description">
           아이콘 우측 상단에 붙는 알림 뱃지 구현입니다. 부모-자식 position 패턴을 활용합니다.
         </p>
@@ -791,7 +875,7 @@ function PositionStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function LogicalPropertiesStudy() {
   // 상태 관리: 읽기 방향 (ltr: 왼쪽에서 오른쪽, rtl: 오른쪽에서 왼쪽)
@@ -19,8 +20,7 @@ function LogicalPropertiesStudy() {
       />
 
       {/* 섹션 1: 논리적 속성(Logical)과 물리적 속성(Physical)의 개념 차이 */}
-      <section className="study-section">
-        <h2 className="section-title">논리적 속성이란? (Logical vs Physical)</h2>
+      <CollapsibleSection title="논리적 속성이란? (Logical vs Physical)">
         <div className="section-description">
           <p>
             기존의 <code>top, right, bottom, left</code>는 물리적인 방향을 의미합니다.
@@ -31,11 +31,10 @@ function LogicalPropertiesStudy() {
             <li><strong>Logical</strong>: 글의 시작/끝, 블록의 시작/끝 (흐름 기반)</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 2: 흐름 기반의 여백 설정 (Margin & Padding) */}
-      <section className="study-section">
-        <h2 className="section-title">Margin & Padding (Logical)</h2>
+      <CollapsibleSection title="Margin & Padding (Logical)">
         <p className="section-description">
           <code>left / right</code> 대신 <code>inline-start / inline-end</code>를 사용하세요.
         </p>
@@ -138,11 +137,10 @@ function LogicalPropertiesStudy() {
   <strong>inline-end</strong>: 끝 방향 (오른쪽 또는 왼쪽)
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 3: 흐름 기반의 크기 설정 (inline-size & block-size) */}
-      <section className="study-section">
-        <h2 className="section-title">Size (Logical)</h2>
+      <CollapsibleSection title="Size (Logical)">
         <p className="section-description">
           <code>width / height</code> 대신 <code>inline-size / block-size</code>를 사용합니다.
         </p>
@@ -185,11 +183,10 @@ function LogicalPropertiesStudy() {
   글로벌 서비스를 준비한다면 이제 물리적 속성(width)보다 논리적 속성을 선호하세요.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 4: 논리적 위치 지정 (inset) */}
-      <section className="study-section">
-        <h2 className="section-title">Inset (Logical Position)</h2>
+      <CollapsibleSection title="Inset (Logical Position)">
         <p className="section-description">
           <code>top, right, bottom, left</code>를 한 번에 또는 논리적으로 제어합니다.
         </p>
@@ -216,7 +213,7 @@ function LogicalPropertiesStudy() {
 .container {
   position: relative;
   width: 200px;
-  height: 100px;
+  height: 300px;
   background: #f1f5f9;
   border: 2px dashed #cbd5e1;
   border-radius: 8px;
@@ -233,11 +230,10 @@ function LogicalPropertiesStudy() {
   <code>inset: 0</code>은 top, right, bottom, left를 모두 0으로 만드는 단축 속성이기도 합니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 5: 실전 예제 - RTL/LTR에 완벽히 대응하는 글로벌 디자인 카드 */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 다국어 지원 글로벌 카드</h2>
+      <CollapsibleSection title="실전 예제: 다국어 지원 글로벌 카드">
         <p className="section-description">
           물리적 속성(Left/Right) 대신 논리적 속성(Start/End)을 사용하여 LTR과 RTL 환경 모두에 완벽히 대응하는 카드입니다.
         </p>
@@ -310,7 +306,7 @@ function LogicalPropertiesStudy() {
   <code>inline-start / inline-end</code> 사용을 강력히 권장하고 있습니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

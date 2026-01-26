@@ -17,22 +17,32 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
   const [activeTab, setActiveTab] = useState('css'); // 'css' or 'html'
   const [renderKey, setRenderKey] = useState(0); // For forcing re-renders without using long strings
   const styleRef = useRef(null);
+  const lastSyncedCss = useRef(currentCss);
+  const lastSyncedHtml = useRef(currentHtml);
 
   // Sync with external CSS updates
   useEffect(() => {
-    if (currentCss !== undefined) {
-      setDraftCss(currentCss);
+    if (currentCss !== undefined && currentCss !== lastSyncedCss.current) {
+      // If user is currently typing (draft != applied), we don't touch the draft
+      // to avoid jumping or losing cursor position.
+      if (draftCss === appliedCss) {
+        setDraftCss(currentCss);
+      }
       setAppliedCss(currentCss);
+      lastSyncedCss.current = currentCss;
     }
-  }, [currentCss]);
+  }, [currentCss, draftCss, appliedCss]);
 
   // Sync with external HTML updates
   useEffect(() => {
-    if (currentHtml !== undefined) {
-      setDraftHtml(currentHtml);
+    if (currentHtml !== undefined && currentHtml !== lastSyncedHtml.current) {
+      if (draftHtml === appliedHtml) {
+        setDraftHtml(currentHtml);
+      }
       setAppliedHtml(currentHtml);
+      lastSyncedHtml.current = currentHtml;
     }
-  }, [currentHtml]);
+  }, [currentHtml, draftHtml, appliedHtml]);
 
   // Apply CSS to the preview area
   useEffect(() => {
@@ -67,10 +77,11 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
 
       // Use CSS Nesting for perfect scoping without breaking sibling/descendant selectors
       // But keep @keyframes at the top level
+      // Replace :root with & so it applies to the scope container itself (Local Root)
       const scopedCss = `
         ${keyframes}
         #${scopeId} {
-          ${other}
+          ${other.replace(/:root/g, '&')}
         }
       `;
       styleRef.current.textContent = scopedCss;
@@ -78,20 +89,22 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
   }, [appliedCss, scopeId]);
 
   const handleReset = () => {
-    const resetCss = currentCss !== undefined ? currentCss : initialCss;
+    const resetCss = initialCss || '';
+    const resetHtml = initialHtml || '';
+    
     setDraftCss(resetCss);
     setAppliedCss(resetCss);
-
-    if (initialHtml || currentHtml) {
-      const resetHtml = currentHtml !== undefined ? currentHtml : initialHtml;
-      setDraftHtml(resetHtml);
-      setAppliedHtml(resetHtml);
-    }
+    setDraftHtml(resetHtml);
+    setAppliedHtml(resetHtml);
+    
+    // Sync tracking reset
+    lastSyncedCss.current = resetCss;
+    lastSyncedHtml.current = resetHtml;
   };
 
   const handleApply = () => {
     setAppliedCss(draftCss);
-    if (initialHtml) {
+    if (hasHtml) {
       setAppliedHtml(draftHtml);
     }
     setRenderKey(prev => prev + 1); // Increment to force preview re-render
@@ -219,12 +232,12 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
             position: 'relative',
             overflow: 'hidden'
           }}>
-            {/* Scroll Container: Handles content scrolling */}
             <div className="preview-scroll" style={{
               width: '100%',
               height: '100%',
               overflow: 'auto',
-              padding: 'var(--spacing-lg)'
+              padding: 'var(--spacing-lg)',
+              background: '#ffffff' // 기본 밝은 배경 추가
             }}>
               <style ref={styleRef}></style>
               {hasHtml ? (

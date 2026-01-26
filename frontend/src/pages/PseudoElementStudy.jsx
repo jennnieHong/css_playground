@@ -21,7 +21,310 @@ function PseudoElementStudy() {
         title="Pseudo Elements"
         subtitle="HTML 수정 없이 CSS만으로 요소를 창조하는 마법"
       />
+      {/* 전역 컨트롤 타워: :root (CSS의 시작점) */}
+      <CollapsibleSection title="0. 전역 컨트롤 타워: :root (CSS의 시작점)">
+        <div className="section-description">
+          <p>
+            <code>:root</code>는 CSS에서 <strong>문서 전체를 대표하는 최상위 요소</strong>입니다.<br />
+            HTML 문서에서는 사실상 <code>&lt;html&gt;</code>과 동일하지만,
+            <strong>전역 변수와 전역 스타일을 선언하기 위한 공식적인 공간</strong>으로 사용됩니다.
+          </p>
 
+          <p style={{ marginTop: '1rem' }}>
+            가상 요소가 <em>요소 내부를 확장</em>하는 기술이라면,<br />
+            <code>:root</code>는 <em>문서 전체의 규칙과 기준을 정의</em>하는 출발점입니다.
+          </p>
+
+        </div>      
+        <div style={{
+          marginTop: '2rem',
+          padding: '1.5rem',
+          background: '#f8fafc',
+          borderRadius: '12px',
+          border: '1px solid #e2e8f0'
+        }}>
+          <h4 style={{ marginTop: 0, color: '#334155' }}>
+            🧠 멘탈 모델: :root는 "CSS의 전역 설정 파일"
+          </h4>
+
+          <p style={{ color: '#475569', lineHeight: '1.6' }}>
+            <code>:root</code>는 개별 컴포넌트나 요소가 아니라,
+            <strong>문서 전체가 공유하는 기본 규칙</strong>을 정의하는 장소입니다.
+          </p>
+          <p style={{ marginTop: '1rem', color: '#475569', lineHeight: '1.6' }}>
+            CSS 변수는 단순한 “전역 변수”가 아니라,
+            <strong>선언된 요소를 기준으로 아래로 전파되는 값</strong>입니다.<br />
+            따라서 <code>:root</code>에 선언하면 문서 전체에서 접근 가능하고,
+            특정 클래스 내부에 선언하면 <strong>그 클래스와 하위 요소에서만</strong> 사용할 수 있습니다.
+          </p>
+          <div style={{
+            marginTop: '1rem',
+            background: '#1e293b',
+            padding: '1.2rem',
+            borderRadius: '8px',
+            color: '#94a3b8',
+            fontFamily: 'monospace',
+            lineHeight: '1.7'
+          }}>
+            <div>:root {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--primary-color: #3b82f6;</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--radius: 8px;</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--transition-fast: 0.2s;</div>
+            <div>{'}'}</div>
+          </div>
+
+          <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#64748b' }}>
+            💡 이 값들은 <strong>모든 요소</strong>, <strong>모든 가상 요소</strong>,
+            <strong>모든 컴포넌트</strong>가 공통으로 참조할 수 있습니다.
+          </p>
+          <LiveCodeEditor
+            scopeId="root-and-pseudo"
+            previewHeight="350px"
+            codeHeight="400px"
+            initialCss={`:root {
+  /* [전역 컨트롤 타워] 여기서 색상 하나만 바꾸면 모든 요소가 바뀝니다! */
+  --brand-color: #3b82f6; /* 브랜드 메인 색상 */
+  --badge-text: #ffffff;
+  --roundness: 12px;
+}
+
+.card {
+  position: relative;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid var(--brand-color); /* 전역 변수 참조 */
+  border-radius: var(--roundness);
+  margin-bottom: 2rem;
+  color: #1e293b;
+}
+
+/* 가상 요소도 전역 변수를 공유합니다 */
+.card::after {
+  content: "OFFICIAL";
+  position: absolute;
+  top: -10px; right: 10px;
+  background: var(--brand-color); /* 전역 변수 참조 */
+  color: var(--badge-text);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.btn-primary {
+  background: var(--brand-color); /* 동일한 전역 변수 사용 */
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--roundness);
+  cursor: pointer;
+  font-weight: bold;
+}`}
+            initialHtml={`<div class="card">
+  <h3>전역 변수의 힘</h3>
+  <p>이 카드와 오른쪽 상단 배지, 그리고 아래 버튼은 모두 :root의 <code>--brand-color</code>를 공유합니다.</p>
+  <button class="btn-primary">확인 버튼</button>
+</div>
+
+<div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: #475569;">
+  💡 <strong>실습:</strong> 상단 CSS의 <code>--brand-color</code> 값을 <code>#ef4444</code>(빨강)로 바꿔보세요. 
+  한 번의 수정으로 카드 테두리, 배지, 버튼 색상이 동시에 바뀝니다!
+</div>`}
+          />
+<div style={{
+  marginTop: '1.5rem',
+  padding: '1.2rem',
+  background: '#fff7ed',
+  borderRadius: '10px',
+  border: '1px solid #fed7aa',
+  fontSize: '0.9rem',
+  color: '#9a3412',
+  lineHeight: '1.6'
+}}>
+  <strong>📌 중요한 차이점</strong><br />
+  <code>:root</code>에 선언된 변수는 모든 컴포넌트가 공유하지만,<br />
+  특정 클래스 안에서 동일한 이름의 변수를 다시 선언하면
+  <strong>그 영역에서는 지역 변수처럼 동작</strong>합니다.
+  <br />
+  <strong>“:root는 최상위 스코프, 클래스는 그 아래 스코프”</strong>
+</div>
+
+<div style={{
+  marginTop: '2rem',
+  padding: '1.5rem',
+  background: '#ecfeff',
+  borderRadius: '12px',
+  border: '1px solid #67e8f9'
+}}>
+  <h5 style={{ marginTop: 0, color: '#155e75' }}>
+    실무에서 :root는 언제 쓰나요?
+  </h5>
+
+  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#0e7490', lineHeight: '1.7' }}>
+    <li>디자인 토큰 (색상, 간격, 폰트 크기)</li>
+    <li>다크 모드 / 테마 전환</li>
+    <li>가상 요소와 공통 스타일 동기화</li>
+    <li>컴포넌트 간 디자인 일관성 유지</li>
+  </ul>
+
+  <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#0c4a6e' }}>
+    <strong>핵심:</strong>  
+    가상 요소는 <em>어디에 그릴지</em>를 해결하고,<br />
+    <code>:root</code>는 <em>무엇을 기준으로 그릴지</em>를 해결합니다.
+  </p>
+</div>
+<p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#64748b' }}>
+  💡 <strong>정리:</strong><br />
+  <code>:root</code>는 CSS 변수의 “전역 기준점”이고,<br />
+  클래스 내부에서 다시 선언된 변수는 해당 영역에서 전역 값을 덮어쓰는
+  <strong>지역 설정</strong>처럼 동작합니다.
+</p>
+
+        </div>
+      </CollapsibleSection>
+        
+      <CollapsibleSection title=":root">
+{/* :root가 정확히 무엇인지 & html과의 관계 */}
+<div style={{
+  marginTop: '2rem',
+  padding: '1.5rem',
+  background: '#ffffff',
+  borderRadius: '12px',
+  border: '1px solid #e5e7eb'
+}}>
+  <h4 style={{ marginTop: 0, color: '#111827' }}>
+    🔍 :root는 정확히 무엇을 가리키나요?
+  </h4>
+
+  <p style={{ color: '#374151', lineHeight: '1.7' }}>
+    <code>:root</code>는 <strong>문서 트리에서 가장 바깥(최상위)에 있는 요소</strong>를 가리키는
+    CSS 의사 클래스입니다.<br />
+    HTML 문서에서는 사실상 <code>&lt;html&gt;</code> 요소를 의미합니다.
+  </p>
+
+  <div style={{
+    marginTop: '1rem',
+    background: '#1f2937',
+    padding: '1rem',
+    borderRadius: '8px',
+    fontFamily: 'monospace',
+    color: '#9ca3af',
+    lineHeight: '1.6'
+  }}>
+    <div>:root {'{'}</div>
+    <div style={{ paddingLeft: '1.5rem' }}>font-size: 16px;</div>
+    <div>{'}'}</div>
+  </div>
+
+  <p style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: '#6b7280' }}>
+    ⬆️ 위 코드는 아래 코드와 <strong>동일한 의미</strong>입니다.
+  </p>
+
+  <div style={{
+    marginTop: '0.5rem',
+    background: '#1f2937',
+    padding: '1rem',
+    borderRadius: '8px',
+    fontFamily: 'monospace',
+    color: '#9ca3af',
+    lineHeight: '1.6'
+  }}>
+    <div>html {'{'}</div>
+    <div style={{ paddingLeft: '1.5rem' }}>font-size: 16px;</div>
+    <div>{'}'}</div>
+  </div>
+</div>
+{/* 왜 html 대신 :root를 쓰는가 */}
+<div style={{
+  marginTop: '1.5rem',
+  padding: '1.5rem',
+  background: '#f9fafb',
+  borderRadius: '12px',
+  border: '1px solid #e5e7eb'
+}}>
+  <h4 style={{ marginTop: 0, color: '#111827' }}>
+    ❓ 그런데 왜 <code>html</code> 대신 <code>:root</code>를 쓰나요?
+  </h4>
+
+  <p style={{ color: '#374151', lineHeight: '1.7' }}>
+    가장 큰 이유는 <strong>CSS 변수(CSS Custom Properties)를 위한 표준적인 위치</strong>이기 때문입니다.
+  </p>
+
+  <div style={{
+    marginTop: '1rem',
+    background: '#1f2937',
+    padding: '1rem',
+    borderRadius: '8px',
+    fontFamily: 'monospace',
+    color: '#9ca3af',
+    lineHeight: '1.6'
+  }}>
+    <div>:root {'{'}</div>
+    <div style={{ paddingLeft: '1.5rem' }}>--primary-color: #3b82f6;</div>
+    <div style={{ paddingLeft: '1.5rem' }}>--border-radius: 8px;</div>
+    <div>{'}'}</div>
+    <br />
+    <div>button {'{'}</div>
+    <div style={{ paddingLeft: '1.5rem' }}>
+      background-color: var(--primary-color);
+    </div>
+    <div style={{ paddingLeft: '1.5rem' }}>
+      border-radius: var(--border-radius);
+    </div>
+    <div>{'}'}</div>
+  </div>
+
+  <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#6b7280' }}>
+    👉 실무에서는<br />
+    <strong><code>:root</code> = 전역 설정 공간</strong><br />
+    <strong><code>--변수</code> = 디자인 계약서</strong><br />
+    로 생각하는 경우가 대부분입니다.
+  </p>
+</div>
+
+{/* html vs :root 차이 */}
+<div style={{
+  marginTop: '1.5rem',
+  padding: '1.5rem',
+  background: '#ecfeff',
+  borderRadius: '12px',
+  border: '1px solid #67e8f9'
+}}>
+  <h4 style={{ marginTop: 0, color: '#155e75' }}>
+    ⚠️ <code>html</code>과 <code>:root</code>의 중요한 차이
+  </h4>
+
+  <div style={{
+    marginTop: '0.75rem',
+    background: '#0f172a',
+    padding: '1rem',
+    borderRadius: '8px',
+    fontFamily: 'monospace',
+    color: '#bae6fd',
+    lineHeight: '1.6'
+  }}>
+    <div>html {'{'}</div>
+    <div style={{ paddingLeft: '1.5rem' }}>--color: red;</div>
+    <div>{'}'}</div>
+    <br />
+    <div>:root {'{'}</div>
+    <div style={{ paddingLeft: '1.5rem' }}>--color: blue;</div>
+    <div>{'}'}</div>
+  </div>
+
+  <p style={{ marginTop: '1rem', color: '#0c4a6e', lineHeight: '1.6' }}>
+    이 경우 최종 값은 <strong>blue</strong>입니다.<br />
+    이유는 <code>:root</code>가 <strong>의사 클래스</strong>이기 때문에
+    <code>html</code> 태그 선택자보다 <strong>특이성(specificity)</strong>이 더 높기 때문입니다.
+  </p>
+
+  <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#0c4a6e' }}>
+    👉 그래서 <strong>전역 CSS 변수는 관례적으로 <code>:root</code>에만 선언</strong>합니다.
+    이는 팀 개발에서 충돌을 줄이기 위한 사실상의 표준입니다.
+  </p>
+</div>
+
+      </CollapsibleSection>
       {/* 기초 섹션: 멘탈 모델 (중요!) */}
       <CollapsibleSection title="1. 가상 요소의 멘탈 모델 (Mental Model)">
         <div className="section-description">
@@ -99,7 +402,7 @@ function PseudoElementStudy() {
           scopeId="pseudo-hover-magic"
           previewHeight="400px"
           codeHeight="450px"
-          initialCss={`.magic-button {
+          currentCss={`.magic-button {
   position: relative;
   padding: 1rem 2.5rem;
   background: #1e293b;
@@ -158,7 +461,7 @@ function PseudoElementStudy() {
   width: 100%;
 }
 `}
-          initialHtml={`<div style="display: flex; flex-direction: column; align-items: center; padding: 2rem; background: white; border-radius: 12px;">
+          currentHtml={`<div style="display: flex; flex-direction: column; align-items: center; padding: 2rem; background: white; border-radius: 12px;">
   <button class="magic-button">Slide Hover Effect</button>
   
   <a href="#" class="fancy-link">Underline Animation</a>
@@ -246,6 +549,49 @@ function PseudoElementStudy() {
           scopeId="pseudo-dynamic-data"
           previewHeight="300px"
           codeHeight="350px"
+          initialCss={`.product-card {
+  position: relative;
+  width: 100%; height: 120px;
+  background: white; border: 2px solid #e2e8f0;
+  border-radius: 12px; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 600;
+  transition: all 0.3s;
+}
+
+/* 1. 클래스 기반 토글: is-new 클래스가 있을 때만 리본 생성 */
+.product-card.is-new::before {
+  content: "NEW";
+  position: absolute; top: 10px; right: 10px;
+  background: #ef4444; color: white;
+  padding: 2px 8px; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 800;
+}
+
+/* 2. 속성(attr) 기반 연동: data-label의 값을 그대로 가져옴 */
+.product-card::after {
+  content: attr(data-label); /* HTML의 data-label 속성값을 읽음 */
+  position: absolute; bottom: 10px; left: 10px;
+  background: #3b82f6; color: white;
+  padding: 2px 8px; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 800;
+}
+
+/* 클래스 유무에 따른 시각적 차이 */
+.product-card.is-new { border-color: #fca5a5; background: #fff1f1; }
+`}
+          initialHtml={`
+<div class="product-card ${isNew ? 'is-new' : ''}" data-label="${dynamicLabel}">
+  Product Item
+</div>
+
+<div style="margin-top: 2rem; padding: 1.2rem; background: #f0f9ff; border-radius: 10px; border: 1px solid #bae6fd;">
+  <h5 style="margin: 0 0 0.5rem 0; color: #0369a1;">어떻게 된 건가요?</h5>
+  <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem; color: #0c4a6e; line-height: 1.6;">
+    <li><strong>Class Toggle</strong>: 리액트 상태(<code>isNew</code>)에 따라 <code>.is-new</code> 클래스가 붙었다 떼어집니다.</li>
+    <li><strong>CSS attr()</strong>: 가상 요소가 HTML의 <code>data-label</code> 속성값을 실시간으로 읽어와서 화면에 출력합니다.</li>
+  </ul>
+</div>`}
           currentCss={`.product-card {
   position: relative;
   width: 100%; height: 120px;
@@ -289,8 +635,6 @@ function PseudoElementStudy() {
     <li><strong>CSS attr()</strong>: 가상 요소가 HTML의 <code>data-label</code> 속성값을 실시간으로 읽어와서 화면에 출력합니다.</li>
   </ul>
 </div>`}
-          initialHtml=""
-          initialCss=""
         />
       </CollapsibleSection>
 

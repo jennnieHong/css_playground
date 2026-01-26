@@ -31,6 +31,7 @@ import AnimationStudy from './pages/AnimationStudy';
 import AnimationsStudy2 from './pages/AnimationsStudy2';
 import UnitsStudy from './pages/UnitsStudy';
 import HidingMethodsStudy from './pages/HidingMethodsStudy';
+import ViewportUnitsStudy from './pages/ViewportUnitsStudy';
 import './styles/main.css';
 import './styles/navigation.css';
 import './styles/components.css';
@@ -72,6 +73,7 @@ function App() {
             <Route path="/colors" element={<ColorBackgroundStudy />} />
             <Route path="/typography" element={<TypographyStudy />} />
             <Route path="/units" element={<UnitsStudy />} />
+            <Route path="/viewport-units" element={<ViewportUnitsStudy />} />
             <Route path="/height" element={<HeightStudy />} />
             <Route path="/animations" element={<AnimationsStudy2 />} />
             <Route path="/hiding" element={<HidingMethodsStudy />} />

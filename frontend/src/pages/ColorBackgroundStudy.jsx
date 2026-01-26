@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function ColorBackgroundStudy() {
   // --- 상태 관리 (State Management) ---
@@ -33,8 +34,7 @@ function ColorBackgroundStudy() {
 
       {/* 색상 포맷 기초 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">색상 표현 방법</h2>
+      <CollapsibleSection title="색상 표현 방법">
         <div className="section-description">
           <p>CSS에서 색상을 표현하는 다양한 방법을 이해하고 상황에 맞게 사용할 수 있어야 합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -107,10 +107,9 @@ function ColorBackgroundStudy() {
   ${colorFormat === 'hsla' ? '• HSL + 투명도<br/>• 가장 직관적인 색상 조정 방법' : ''}
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 실습 섹션: Opacity vs Alpha 투명도 제어 */}
-      <section className="study-section">
-        <h2 className="section-title">Opacity (투명도)</h2>
+      <CollapsibleSection title="Opacity (투명도)">
         <p className="section-description">
           투명도를 조정하는 두 가지 방법: <code>opacity</code> 속성과 <code>rgba/hsla</code>의 alpha 채널.
         </p>
@@ -191,10 +190,9 @@ function ColorBackgroundStudy() {
   • <code>rgba/hsla</code>: 배경색만 투명, 텍스트는 선명
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 실습 섹션: Gradients (선형, 원형, 원뿔형 그라데이션) */}
-      <section className="study-section">
-        <h2 className="section-title">Gradients (그라데이션)</h2>
+      <CollapsibleSection title="Gradients (그라데이션)">
         <p className="section-description">
           Linear, Radial, Conic 그라데이션으로 부드러운 색상 전환을 만들 수 있습니다.
         </p>
@@ -266,10 +264,9 @@ function ColorBackgroundStudy() {
   • <strong>Conic</strong>: 원뿔형, 색상환 효과
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 실습 섹션: Background 세부 속성 (size, position, repeat) */}
-      <section className="study-section">
-        <h2 className="section-title">Background 속성들</h2>
+      <CollapsibleSection title="Background 속성들">
         <p className="section-description">
           배경 이미지의 크기, 위치, 반복 등을 세밀하게 제어할 수 있습니다.
         </p>
@@ -315,10 +312,9 @@ function ColorBackgroundStudy() {
   • <code>background-attachment</code>: scroll, fixed
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 디자인 트렌드 섹션: Glassmorphism (유리 효과 구현) */}
-      <section className="study-section">
-        <h2 className="section-title">실전: Glass Morphism</h2>
+      <CollapsibleSection title="실전: Glass Morphism">
         <p className="section-description">
           반투명 배경 + 블러 효과로 유리 같은 세련된 UI를 만들 수 있습니다.
         </p>
@@ -375,10 +371,9 @@ function ColorBackgroundStudy() {
   • <code>border: 1px solid rgba(255,255,255,0.3)</code>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 갤러리 섹션: 인기 그라데이션 조합 모음 */}
-      <section className="study-section">
-        <h2 className="section-title">🎨 그라데이션 갤러리</h2>
+      <CollapsibleSection title="🎨 그라데이션 갤러리">
         <p className="section-description">
           인기있는 그라데이션 스타일들을 한눈에 비교해보세요. 클릭하면 CSS 코드를 확인할 수 있습니다.
         </p>
@@ -458,10 +453,9 @@ function ColorBackgroundStudy() {
   <div class="gradient-card sunrise"><span class="gradient-name">Sunrise</span></div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 갤러리 섹션: 다양한 Box Shadow 스타일 비교 */}
-      <section className="study-section">
-        <h2 className="section-title">Box Shadow 비교</h2>
+      <CollapsibleSection title="Box Shadow 비교">
         <p className="section-description">
           다양한 그림자 스타일이 요소에 주는 느낌을 비교해보세요.
         </p>
@@ -547,10 +541,9 @@ function ColorBackgroundStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 비교 섹션: 여러 디자인 트렌드별 카드 스타일 (Flat, Neumorphism 등) */}
-      <section className="study-section">
-        <h2 className="section-title">카드 스타일 비교</h2>
+      <CollapsibleSection title="카드 스타일 비교">
         <p className="section-description">
           다양한 디자인 스타일의 카드들을 비교해보세요.
         </p>
@@ -662,10 +655,9 @@ function ColorBackgroundStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 실무 응용 섹션: 영감을 주는 히어로 섹션 디자인 */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 모바일 앱 히어로 섹션</h2>
+      <CollapsibleSection title="실전 예제: 모바일 앱 히어로 섹션">
         <p className="section-description">
           그라데이션, 글래스모피즘, 복합 배경 이미지를 활용한 트렌디한 히어로 섹션입니다.
         </p>
@@ -751,7 +743,7 @@ p {
   • <strong>drop-shadow</strong>: 로고 아이콘에 네온 효과 부여
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function UnitsStudy() {
   // --- 상태 관리 (State Management) ---
@@ -24,8 +25,7 @@ function UnitsStudy() {
 
       {/* 기초 섹션: CSS Units 전체 개요 및 분류 */}
 
-      <section className="study-section">
-        <h2 className="section-title">📏 CSS Units 개요</h2>
+      <CollapsibleSection title="📏 CSS Units 개요">
         <div className="section-description">
           <p>
             CSS에는 크기를 지정하는 다양한 단위가 있습니다. 올바른 단위 선택은 반응형 디자인과
@@ -38,11 +38,10 @@ function UnitsStudy() {
             <li><strong>퍼센트</strong>: % - 부모 요소 기준</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: px (절대 단위의 특징과 한계) */}
-      <section className="study-section">
-        <h2 className="section-title">Absolute Units: px (픽셀)</h2>
+      <CollapsibleSection title="Absolute Units: px (픽셀)">
         <p className="section-description">
           <code>px</code>는 가장 많이 사용되는 절대 단위입니다. 화면의 물리적 픽셀에 대응하며,
           정확한 크기 제어가 필요할 때 사용합니다.
@@ -118,12 +117,23 @@ function UnitsStudy() {
   • 테두리(border), 그림자(shadow)<br/>
   ⚠️ 단점: 사용자 접근성 설정 무시, 반응형 대응 어려움
 </div>`}
+          currentHtml={`<div class="px-demo">
+  <strong>현재 font-size: ${fontSize}</strong><br/>
+  px는 절대 단위로, 브라우저 설정이나 부모 요소에 영향받지 않습니다.
+  <div class="px-box">200px × 100px</div>
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #fef3c7; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
+  <strong>px 사용처:</strong><br/>
+  • 정확한 크기가 필요한 아이콘, 버튼<br/>
+  • 테두리(border), 그림자(shadow)<br/>
+  ⚠️ 단점: 사용자 접근성 설정 무시, 반응형 대응 어려움
+</div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: rem (루트 기준 상대 단위 - 권장 방식) */}
-      <section className="study-section">
-        <h2 className="section-title">Relative Units: rem (Root EM)</h2>
+      <CollapsibleSection title="Relative Units: rem (Root EM)">
         <p className="section-description">
           <code>rem</code>은 루트 요소(html)의 font-size를 기준으로 한 상대 단위입니다.
           브라우저 기본값은 보통 16px이므로, <strong>1rem = 16px</strong>입니다.
@@ -182,11 +192,10 @@ function UnitsStudy() {
   💡 <strong>Best Practice: font-size는 rem 사용 권장</strong>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: em (부모 기준 상대 단위 - 중첩 주의) */}
-      <section className="study-section">
-        <h2 className="section-title">Relative Units: em</h2>
+      <CollapsibleSection title="Relative Units: em">
         <p className="section-description">
           <code>em</code>은 부모 요소의 font-size를 기준으로 하는 상대 단위입니다.
           중첩되면 값이 곱해져서 예상과 다른 결과가 나올 수 있으니 주의가 필요합니다.
@@ -261,11 +270,10 @@ function UnitsStudy() {
   💡 <strong>em 적합한 경우:</strong> 버튼의 padding처럼 폰트 크기에 비례하여 조정되어야 할 때
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: vh & vw (뷰포트 환경 기준 단위) */}
-      <section className="study-section">
-        <h2 className="section-title">Viewport Units: vh, vw (뷰포트)</h2>
+      <CollapsibleSection title="Viewport Units: vh, vw (뷰포트)">
         <p className="section-description">
           <code>vh</code>와 <code>vw</code>는 뷰포트(브라우저 창)의 크기를 기준으로 합니다.
           <strong>1vh = 뷰포트 높이의 1%</strong>, <strong>1vw = 뷰포트 너비의 1%</strong>
@@ -334,11 +342,10 @@ function UnitsStudy() {
   💡 풀스크린 섹션, 큰 텍스트에 유용
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: % (부모 요소 비례 가변 단위) */}
-      <section className="study-section">
-        <h2 className="section-title">Percentage: % (퍼센트)</h2>
+      <CollapsibleSection title="Percentage: % (퍼센트)">
         <p className="section-description">
           <code>%</code>는 부모 요소를 기준으로 하는 상대 단위입니다.
           속성에 따라 기준이 달라지므로 주의가 필요합니다.
@@ -406,11 +413,10 @@ function UnitsStudy() {
   💡 유연한 레이아웃 구성에 필수
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 갤러리 섹션: 단위 비교 종합 및 실무 모범 사례 (Best Practices) */}
-      <section className="study-section">
-        <h2 className="section-title">🎯 실전: 단위 비교 및 Best Practices</h2>
+      <CollapsibleSection title="🎯 실전: 단위 비교 및 Best Practices">
         <p className="section-description">
           각 단위를 직접 비교하고 적절한 사용 사례를 확인해보세요.
         </p>
@@ -435,7 +441,7 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="comparison-demo"
-          previewHeight="350px"
+          previewHeight="550px"
           codeHeight="450px"
           initialCss={`.comparison-container {
   padding: 2rem;
@@ -498,12 +504,30 @@ function UnitsStudy() {
   <strong>✅ 큰 제목:</strong> clamp(2rem, 5vw, 4rem) - 유동적<br/>
   <strong>✅ 풀스크린:</strong> vh, vw
 </div>`}
+          currentHtml={`<div class="comparison-container">
+  <div class="unit-box">
+    현재 단위: ${unitType}<br/>
+    브라우저 창 크기를 조절하거나<br/>
+    단위를 바꿔보세요!
+  </div>
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #d1fae5; padding: 1rem; border-radius: 6px; font-size: 0.9rem; line-height: 1.8;">
+  <strong>📋 Best Practices:</strong><br/><br/>
+  
+  <strong>✅ font-size:</strong> rem 사용 (접근성, 일관성)<br/>
+  <strong>✅ padding/margin:</strong> rem 또는 em (스케일링)<br/>
+  <strong>✅ border/shadow:</strong> px (정밀 제어)<br/>
+  <strong>✅ width (컨테이너):</strong> %, max-width: rem<br/>
+  <strong>✅ media queries:</strong> rem 또는 em<br/>
+  <strong>✅ 큰 제목:</strong> clamp(2rem, 5vw, 4rem) - 유동적<br/>
+  <strong>✅ 풀스크린:</strong> vh, vw
+</div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Modern CSS - clamp()를 활용한 가변 타이포그래피 */}
-      <section className="study-section">
-        <h2 className="section-title">Modern: clamp() 함수</h2>
+      <CollapsibleSection title="Modern: clamp() 함수">
         <p className="section-description">
           <code>clamp(최소값, 선호값, 최대값)</code>는 반응형 타이포그래피의 핵심 기술입니다.
           min, max 없이 부드럽게 크기가 조정됩니다.
@@ -511,7 +535,7 @@ function UnitsStudy() {
 
         <LiveCodeEditor
           scopeId="clamp-demo"
-          previewHeight="300px"
+          previewHeight="650px"
           codeHeight="350px"
           initialCss={`.clamp-container {
   padding: 2rem;
@@ -569,18 +593,17 @@ function UnitsStudy() {
   💡 미디어 쿼리 없이 유동적 반응형 구현!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 반응형 컨텐츠 카드 (종합 단위 활용 예제) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 반응형 컨텐츠 카드</h2>
+      <CollapsibleSection title="실전 예제: 반응형 컨텐츠 카드">
         <p className="section-description">
           <code>clamp()</code>를 활용하여 미디어 쿼리 없이도 브라우저 너비에 따라 폰트와 여백이 유동적으로 변하는 카드입니다.
         </p>
 
         <LiveCodeEditor
           scopeId="units-practical-card"
-          previewHeight="400px"
+          previewHeight="600px"
           codeHeight="450px"
           initialCss={`.responsive-card {
   /* 너비: 300px ~ 100% ~ 500px */
@@ -639,7 +662,7 @@ function UnitsStudy() {
   • <strong>aspect-ratio</strong>: 이미지 영역의 비율 고정
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

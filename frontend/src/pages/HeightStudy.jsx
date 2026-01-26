@@ -4,6 +4,7 @@
  */
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function HeightStudy() {
   return (
@@ -14,8 +15,7 @@ function HeightStudy() {
       />
 
       {/* 섹션 1: 다양한 높이 단위(px, %, vh, auto)의 특성 이해 */}
-      <section className="study-section">
-        <h2 className="section-title">높이 단위 기본</h2>
+      <CollapsibleSection title="높이 단위 기본">
         <div className="section-description">
           <p>
             CSS에서 높이를 설정하는 방법은 여러 가지가 있으며, 각각 다르게 동작합니다.
@@ -85,11 +85,10 @@ function HeightStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 2: 퍼센트(%) 높이가 적용되지 않는 이유와 조건 */}
-      <section className="study-section">
-        <h2 className="section-title">퍼센트 높이의 함정</h2>
+      <CollapsibleSection title="퍼센트 높이의 함정">
         <div className="section-description">
           <p>
             <strong>중요:</strong> <code>height: 50%</code>가 작동하려면 <strong>부모 요소에 명시적인 높이</strong>가 있어야 합니다!
@@ -124,6 +123,7 @@ function HeightStudy() {
   border: 3px solid #27ae60;
   background: #e8f8f5;
   margin-bottom: 2rem;
+  box-sizing: content-box;
 }
 
 .child-percent-success {
@@ -149,11 +149,10 @@ function HeightStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 3: 콘텐츠에 따라 결정되는 자동(Auto) 높이 계산 원리 */}
-      <section className="study-section">
-        <h2 className="section-title">Auto 높이: 자식 요소의 합</h2>
+      <CollapsibleSection title="Auto 높이: 자식 요소의 합">
         <div className="section-description">
           <p>
             <code>height: auto</code>인 컨테이너는 <strong>자식 요소들의 높이 합</strong>으로 자동 계산됩니다.
@@ -199,6 +198,36 @@ function HeightStudy() {
   border-left: 4px solid #ffc107;
   border-radius: 4px;
 }`}
+currentCss={`.auto-container {
+  height: auto;
+  border: 3px solid #3498db;
+  background: #ebf5fb;
+  padding: 1rem;
+}
+
+.child-box {
+  height: 80px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.child-box:last-child {
+  margin-bottom: 0;
+}
+
+.info-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+}`}
           initialHtml={`<div class="auto-container">
   <div class="child-box">Box 1 (80px)</div>
   <div class="child-box">Box 2 (80px)</div>
@@ -209,12 +238,21 @@ function HeightStudy() {
   <strong>컨테이너 높이 계산:</strong><br/>
   80px + 1rem(margin) + 80px + 1rem + 80px + 2rem(padding) = 자동 계산
 </div>`}
+currentHtml={`<div class="auto-container">
+  <div class="child-box">Box 1 (80px)</div>
+  <div class="child-box">Box 2 (80px)</div>
+  <div class="child-box">Box 3 (80px)</div>
+</div>
+
+<div class="info-box">
+  <strong>컨테이너 높이 계산:</strong><br/>
+  80px + 1rem(margin) + 80px + 1rem + 80px + 2rem(padding) = 자동 계산
+</div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 4: 유연한 레이아웃 환경(Flexbox)에서의 높이 동작 */}
-      <section className="study-section">
-        <h2 className="section-title">Flexbox에서의 높이</h2>
+      <CollapsibleSection title="Flexbox에서의 높이">
         <div className="section-description">
           <p>
             Flexbox는 높이 계산 방식이 다릅니다. <code>flex-grow</code>와 <code>flex-shrink</code>로 유연하게 조절됩니다.
@@ -269,11 +307,10 @@ function HeightStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 5: 전체 높이(Full Height) 구현 시 발생하는 일반적인 문제와 해결책 */}
-      <section className="study-section">
-        <h2 className="section-title">100% 높이가 안 될 때</h2>
+      <CollapsibleSection title="100% 높이가 안 될 때">
         <div className="section-description">
           <p>
             가장 흔한 실수: <code>height: 100%</code>를 사용했는데 작동하지 않는 경우
@@ -283,11 +320,11 @@ function HeightStudy() {
           </p>
         </div>
 
-        <LiveCodeEditor
-          scopeId="full-height"
-          previewHeight="600px"
-          codeHeight="500px"
-          initialCss={`/* ❌ 작동 안 함 */
+<LiveCodeEditor
+  scopeId="full-height"
+  previewHeight="700px"
+  codeHeight="650px"
+  initialCss={`/* ❌ 작동 안 함 */
 .wrong-full-height {
   height: 100%;
   background: #e74c3c;
@@ -301,7 +338,7 @@ function HeightStudy() {
 
 /* ✅ 해결책 1: vh 사용 */
 .correct-vh {
-  height: 50vh;
+  height: 30vh;
   background: linear-gradient(135deg, #27ae60, #229954);
   color: white;
   display: flex;
@@ -314,9 +351,10 @@ function HeightStudy() {
 
 /* ✅ 해결책 2: 부모에 명시적 높이 */
 .parent-explicit {
-  height: 300px;
+  height: 200px;
   border: 3px solid #3498db;
   background: #ebf5fb;
+  margin-bottom: 1rem;
 }
 
 .child-100-percent {
@@ -327,26 +365,118 @@ function HeightStudy() {
   align-items: center;
   justify-content: center;
   font-weight: 600;
+}
+
+/* ✅ 실무 패턴 1: flex 기반 전체 높이 레이아웃 */
+.flex-layout {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #8e44ad;
+  margin-bottom: 1rem;
+}
+
+.flex-header {
+  background: #9b59b6;
+  color: white;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+.flex-body {
+  flex: 1;
+  background: #f5eef8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ✅ 실무 패턴 2: position absolute + inset */
+.absolute-parent {
+  position: relative;
+  height: 200px;
+  border: 3px solid #f39c12;
+  margin-bottom: 1rem;
+}
+
+.absolute-child {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f39c12, #d68910);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* ✅ 실무 패턴 3: min-height 활용 */
+.min-height-box {
+  min-height: 150px;
+  background: linear-gradient(135deg, #16a085, #138d75);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* ✅ 실무 패턴 4: 모바일 대응 dvh */
+.viewport-safe {
+  height: 20dvh;
+  background: linear-gradient(135deg, #34495e, #2c3e50);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 1rem;
 }`}
-          initialHtml={`<div class="wrong-full-height">
-  ❌ height: 100% (작동 안 함)
+  initialHtml={`<div class="wrong-full-height">
+  ❌ height: 100%
 </div>
 
 <div class="correct-vh">
-  ✅ height: 50vh (뷰포트의 50%)
+  ✅ height: 30vh
 </div>
 
 <div class="parent-explicit">
   <div class="child-100-percent">
-    ✅ height: 100% (부모가 300px)
+    ✅ 부모 height + 자식 100%
   </div>
+</div>
+
+<div class="flex-layout">
+  <div class="flex-header">Header</div>
+  <div class="flex-body">
+    ✅ flex: 1 전체 채우기
+  </div>
+</div>
+
+<div class="absolute-parent">
+  <div class="absolute-child">
+    ✅ position: absolute + inset: 0
+  </div>
+</div>
+
+<div class="min-height-box">
+  ✅ min-height 기반 안전한 높이
+</div>
+
+<div class="viewport-safe">
+  ✅ height: dvh (모바일 안전)
 </div>`}
-        />
-      </section>
+/>
+
+
+      </CollapsibleSection>
 
       {/* 섹션 6: 실전 예제 - vh 단위를 활용한 화면 가득 찬 히어로 섹션 */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 풀스크린 히어로 섹션</h2>
+      <CollapsibleSection title="실전 예제: 풀스크린 히어로 섹션">
         <p className="section-description">
           <code>100vh</code>(또는 최신 <code>100dvh</code>)를 활용하여 화면을 가득 채우는 첫 화면 레이아웃입니다.
         </p>
@@ -402,7 +532,7 @@ function HeightStudy() {
   • <strong>dvh (Dynamic Viewport Height)</strong>: 모바일 브라우저의 주소창 유무에 따라 동적으로 변하는 높이 단위입니다. 
 </p>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

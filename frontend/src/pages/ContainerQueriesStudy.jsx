@@ -6,6 +6,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function ContainerQueriesStudy() {
   // 상태 관리: 컨테이너 박스의 너비 전환 (column, row)
@@ -19,8 +20,7 @@ function ContainerQueriesStudy() {
       />
 
       {/* 섹션 1: 컨테이너 쿼리의 등장 배경과 필요성 */}
-      <section className="study-section">
-        <h2 className="section-title">미디어 쿼리의 한계를 극복하다</h2>
+      <CollapsibleSection title="미디어 쿼리의 한계를 극복하다">
         <div className="section-description">
           <p>
             과거에는 라우저 창(Viewport) 크기만 알 수 있었지만, 이제는 <strong>특정 부모 요소의 크기</strong>를 기준으로 스타일을 바꿀 수 있습니다.
@@ -32,11 +32,10 @@ function ContainerQueriesStudy() {
             <li><strong>정교함</strong>: 뷰포트와 상관없이 실제 공간에 최적화된 스타일 적용</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 2: 컨테이너 기준점 선언 및 탐색 메커니즘 */}
-      <section className="study-section">
-        <h2 className="section-title">기본 메커니즘: Containment</h2>
+      <CollapsibleSection title="기본 메커니즘: Containment">
         <div className="section-description">
           <p>컨테이너 쿼리를 쓰려면 부모를 <strong>기준점(Container)</strong>으로 정의해야 하며, 브라우저는 다음과 같은 규칙으로 기준을 찾습니다.</p>
           <div className="info-box" style={{ background: '#f8fafc', borderLeft: '4px solid #3b82f6', marginTop: '1rem' }}>
@@ -170,11 +169,10 @@ function ContainerQueriesStudy() {
   브라우저 전체 창을 줄이지 않아도 <strong>요소 내부적으로</strong> 반응형이 작동합니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 3: 컨테이너 크기에 비례하는 상대 단위 (CQ Units) */}
-      <section className="study-section">
-        <h2 className="section-title">CQ Units: 컨테이너 전용 단위</h2>
+      <CollapsibleSection title="CQ Units: 컨테이너 전용 단위">
         <div className="section-description">
           <p>뷰포트 단위(vw) 대신 컨테이너 너비에 비례하는 <code>cqw</code> 단위를 쓰면 폰트 크기까지 완벽하게 스케일링됩니다.</p>
         </div>
@@ -219,11 +217,10 @@ function ContainerQueriesStudy() {
   (일부 브라우저에서는 Resize 핸들이 보이지 않을 수 있습니다. 뷰포트 크기를 조절해도 컨테이너가 가변적이라면 변화를 확인할 수 있습니다.)
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 섹션 4: 그리드 시스템 내에서의 컴포넌트 독립성 확보 */}
-      <section className="study-section">
-        <h2 className="section-title">실전 활용: 그리드와의 시너지</h2>
+      <CollapsibleSection title="실전 활용: 그리드와의 시너지">
         <div className="section-description">
           <p>
             동일한 카드가 그리드의 너비에 따라 각기 다른 스타일로 보여야 할 때
@@ -286,7 +283,7 @@ function ContainerQueriesStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

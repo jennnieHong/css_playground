@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function FlexboxStudy() {
   // --- 상태 관리 (State Management) ---
@@ -28,16 +29,14 @@ function FlexboxStudy() {
 
       {/* Flexbox 정의 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">Flexbox란?</h2>
+      <CollapsibleSection title="Flexbox란?">
         <p className="section-description">
           Flexbox는 1차원 레이아웃 시스템으로, 요소들을 행 또는 열로 배치할 수 있습니다.
         </p>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 기본 예제 */}
-      <section className="study-section">
-        <h2 className="section-title">기본 예제</h2>
+      <CollapsibleSection title="기본 예제">
         <LiveCodeEditor
           scopeId="flexbox-basic"
           codeHeight="300px"
@@ -51,11 +50,10 @@ function FlexboxStudy() {
   <div class="flex-item">Item 3</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Justify Content (수평 정렬) */}
-      <section className="study-section">
-        <h2 className="section-title">Justify Content</h2>
+      <CollapsibleSection title="Justify Content">
         <div className="section-description">
           <p><strong>주축(Main Axis)</strong>을 따라 아이템을 어떻게 배치할지 결정합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -115,11 +113,10 @@ function FlexboxStudy() {
   <div class="flex-item">3</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Align Items (수직 정렬) */}
-      <section className="study-section">
-        <h2 className="section-title">Align Items</h2>
+      <CollapsibleSection title="Align Items">
         <div className="section-description">
           <p><strong>교차축(Cross Axis)</strong>을 따라 아이템을 어떻게 배치할지 결정합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -177,11 +174,10 @@ function FlexboxStudy() {
   <div class="flex-item" style="height: 40px">40px</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Baseline 정렬 (심화) */}
-      <section className="study-section">
-        <h2 className="section-title">Baseline 정렬: 텍스트 기준선 맞추기</h2>
+      <CollapsibleSection title="Baseline 정렬: 텍스트 기준선 맞추기">
         <div className="section-description">
           <p>
             <code>align-items: baseline</code>은 아이템들의 <strong>텍스트 기준선(baseline)</strong>을 맞춰 정렬합니다.
@@ -293,11 +289,10 @@ function FlexboxStudy() {
   다양한 폰트 크기가 섞인 텍스트를 자연스럽게 정렬할 때 유용합니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Flex Direction (축 방향) */}
-      <section className="study-section">
-        <h2 className="section-title">Flex Direction</h2>
+      <CollapsibleSection title="Flex Direction">
         <div className="section-description">
           <p>아이템이 배치되는 <strong>축의 방향</strong>을 결정합니다.</p>
         </div>
@@ -347,11 +342,10 @@ function FlexboxStudy() {
   <div class="flex-item">Three</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Flex Wrap (줄바꿈) */}
-      <section className="study-section">
-        <h2 className="section-title">Flex Wrap</h2>
+      <CollapsibleSection title="Flex Wrap">
         <div className="section-description">
           <p>아이템이 컨테이너를 넘어갈 때 <strong>줄바꿈 여부</strong>를 결정합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -412,11 +406,10 @@ function FlexboxStudy() {
   <div class="flex-item">Item 6</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Gap (간격) */}
-      <section className="study-section">
-        <h2 className="section-title">Gap (간격)</h2>
+      <CollapsibleSection title="Gap (간격)">
         <div className="section-description">
           <p>아이템들 사이의 <strong>간격</strong>을 설정합니다. <code>margin</code> 보다 간결하고 직관적입니다.</p>
         </div>
@@ -460,11 +453,10 @@ function FlexboxStudy() {
   <div class="flex-item">D</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Align Content (여러 줄 정렬) */}
-      <section className="study-section">
-        <h2 className="section-title">Align Content</h2>
+      <CollapsibleSection title="Align Content">
         <div className="section-description">
           <p><strong>여러 줄</strong>이 있을 때 줄 사이의 간격을 조정합니다. <code>flex-wrap: wrap</code>이 필요합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -534,11 +526,10 @@ function FlexboxStudy() {
   <div class="flex-item">8</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Flex 축약 속성 */}
-      <section className="study-section">
-        <h2 className="section-title">flex 축약 속성: 1 1 200px의 의미</h2>
+      <CollapsibleSection title="Flex 축약 속성">
         <div className="section-description">
           <p>
             <code>flex</code>는 세 가지 속성을 한 번에 설정하는 축약형입니다.
@@ -666,11 +657,10 @@ function FlexboxStudy() {
   4. <code>flex-basis: 200px</code>로 시작, 공간에 따라 조절
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Flex-grow vs Flex-shrink */}
-      <section className="study-section">
-        <h2 className="section-title">flex-grow vs flex-shrink: 공간 차지의 비밀</h2>
+      <CollapsibleSection title="Flex-grow vs Flex-shrink: 공간 차지의 비밀">
         <div className="section-description">
           <p>
             <code>flex-grow</code>와 <code>flex-shrink</code>는 Flexbox의 핵심입니다.
@@ -805,10 +795,9 @@ function FlexboxStudy() {
   • shrink: 0인 아이템은 200px 유지 (넘쳐도 OK)
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
-      <section className="study-section">
-        <h2 className="section-title">빈 요소도 공간 차지하기</h2>
+      <CollapsibleSection title="빈 요소도 공간 차지하기">
         <div className="section-description">
           <p>
             <code>flex-grow: 1</code>의 가장 큰 장점: <strong>내용물이 거의 없거나 없어도 공간을 차지</strong>합니다!
@@ -896,10 +885,9 @@ function FlexboxStudy() {
   메인 영역이 내용물과 관계없이 남는 공간을 모두 채웁니다!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 네비게이션 바</h2>
+      <CollapsibleSection title="실전 예제: 네비게이션 바">
         <p className="section-description">
           Flexbox를 사용한 실제 네비게이션 바 레이아웃입니다. 로고는 왼쪽, 메뉴는 오른쪽에 배치합니다.
         </p>
@@ -951,10 +939,9 @@ function FlexboxStudy() {
   </ul>
 </nav>`}
         />
-      </section>
+      </CollapsibleSection>
 
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 카드 레이아웃</h2>
+      <CollapsibleSection title="실전 예제: 카드 레이아웃">
         <div className="section-description">
           <p>
             Flexbox로 반응형 카드 그리드를 만듭니다. <code>flex-wrap: wrap</code>과 <code>flex-basis</code>를 활용합니다.
@@ -1037,10 +1024,9 @@ function FlexboxStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 센터링 마스터</h2>
+      <CollapsibleSection title="실전 예제: 센터링 마스터">
         <p className="section-description">
           Flexbox로 요소를 완벽하게 가운데 정렬하는 가장 쉬운 방법입니다.
         </p>
@@ -1082,7 +1068,7 @@ function FlexboxStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function GridStudy() {
   // --- 상태 관리 (State Management) ---
@@ -28,16 +29,14 @@ function GridStudy() {
 
       {/* Grid 정의 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">CSS Grid란?</h2>
+      <CollapsibleSection title="CSS Grid란?">
         <p className="section-description">
           CSS Grid는 2차원 레이아웃 시스템으로, 행과 열을 동시에 제어할 수 있습니다.
         </p>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 기본 그리드 설정 */}
-      <section className="study-section">
-        <h2 className="section-title">기본 그리드</h2>
+      <CollapsibleSection title="기본 그리드">
         <div className="section-description">
           <p><code>grid-template-columns</code>로 열(Column)의 크기와 개수를 정의합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -101,11 +100,10 @@ function GridStudy() {
   <div class="grid-item">6</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 그리드 아이템 정렬 (Alignment) */}
-      <section className="study-section">
-        <h2 className="section-title">Alignment</h2>
+      <CollapsibleSection title="Alignment">
         <div className="section-description">
           <p>그리드 셀 내부에서 아이템의 정렬 방식을 지정합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -170,11 +168,10 @@ function GridStudy() {
   <div class="grid-item">4</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Grid Areas (시각적 레이아웃 정의) */}
-      <section className="study-section">
-        <h2 className="section-title">Grid Template Areas (영역 레이아웃)</h2>
+      <CollapsibleSection title="Grid Template Areas (영역 레이아웃)">
         <div className="section-description">
           <p>
             <code>grid-template-areas</code>는 그리드 레이아웃을 <strong>시각적으로 정의</strong>하는 강력한 방법입니다.
@@ -279,11 +276,10 @@ function GridStudy() {
   <strong>⚠️ 중요:</strong> areas의 행 개수와 rows의 개수가 일치해야 합니다!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Grid Areas 요소를 활용한 자동 높이 계산 */}
-      <section className="study-section">
-        <h2 className="section-title">Grid Areas: 높이 자동 계산 (auto)</h2>
+      <CollapsibleSection title="Grid Areas: 높이 자동 계산 (auto)">
         <p className="section-description">
           <code>grid-template-rows: auto</code>를 사용하면 <strong>콘텐츠 크기에 맞춰 높이가 자동으로 결정</strong>됩니다.
         </p>
@@ -377,11 +373,10 @@ function GridStudy() {
   → 헤더/푸터는 콘텐츠만큼, 메인은 남은 공간 전부!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Grid Areas 빈 공간 정의 (.) */}
-      <section className="study-section">
-        <h2 className="section-title">Grid Areas: 빈 공간 (.) 사용하기</h2>
+      <CollapsibleSection title="Grid Areas: 빈 공간 (.) 사용하기">
         <p className="section-description">
           점(.)을 사용하여 <strong>빈 셀</strong>을 만들 수 있습니다. 불규칙한 레이아웃 구성에 유용합니다.
         </p>
@@ -473,11 +468,10 @@ function GridStudy() {
   <strong>💡 Tip:</strong> 점(.)으로 레이아웃에 여백을 만들 수 있습니다!
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: 그리드 자동 흐름 (Auto Flow) */}
-      <section className="study-section">
-        <h2 className="section-title">Grid Auto Flow</h2>
+      <CollapsibleSection title="Grid Auto Flow">
         <div className="section-description">
           <p>아이템이 <strong>자동으로 배치되는 방향</strong>을 결정합니다.</p>
           <ul style={{ marginTop: '0.5rem', lineHeight: '1.6' }}>
@@ -553,11 +547,10 @@ function GridStudy() {
   <div class="grid-item">7</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Display: Contents (레이아웃 트리 최적화) */}
-      <section className="study-section">
-        <h2 className="section-title">Display: Contents</h2>
+      <CollapsibleSection title="Display: Contents">
         <div className="section-description">
           <p>
             <code>display: contents</code>를 사용하면 해당 요소를 <strong>레이아웃 트리에서 제거</strong>한 것처럼 동작하게 합니다.<br />
@@ -641,11 +634,10 @@ function GridStudy() {
   <div class="item">6</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: Photo Gallery (복합 배치) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: Photo Gallery</h2>
+      <CollapsibleSection title="실전 예제: Photo Gallery">
         <p className="section-description">
           <code>grid-column</code>과 <code>grid-row</code>로 다양한 크기의 이미지를 배치하는 Masonry 스타일 갤러리입니다.
         </p>
@@ -719,11 +711,10 @@ function GridStudy() {
   <div class="gallery-item">✨</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: Dashboard Layout (영역 활용) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: Dashboard Layout</h2>
+      <CollapsibleSection title="실전 예제: Dashboard Layout">
         <p className="section-description">
           <code>grid-template-areas</code>를 활용한 대시보드 레이아웃입니다. 직관적인 영역 이름으로 배치합니다.
         </p>
@@ -813,11 +804,10 @@ function GridStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: Card Grid (반응형 패턴) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: Card Grid</h2>
+      <CollapsibleSection title="실전 예제: Card Grid">
         <p className="section-description">
           <code>auto-fit</code>과 <code>minmax</code>를 활용한 완벽한 반응형 카드 그리드입니다.
         </p>
@@ -899,7 +889,7 @@ function GridStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }
