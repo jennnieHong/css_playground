@@ -52,18 +52,25 @@ export const pageMetadata = [
         tags: [
             'position', '위치', 'relative', 'absolute', 'fixed', 'sticky', 'top', 'left', 'z-index',
             'static', '상대', '절대', '고정', '스티키', 'bottom', 'right', '위치지정',
-            '좌표', '겹침', '레이어', 'positioning', 'inset', 'shorthand', '단축속성'
+            '좌표', '겹침', '레이어', 'positioning', 'inset', 'shorthand', '단축속성',
+            '모달', 'modal', 'tooltip', '툴팁', 'dropdown', '드롭다운', 'badge', '뱃지',
+            'overlay', '오버레이', 'FAB', 'floating button', '플로팅 버튼', '채팅 버튼',
+            'parent-child', '부모-자식', 'positioned ancestor', '기준점', 'containing block',
+            'transform trap', 'filter trap', 'stacking context', '맨 위로', 'scroll to top'
         ],
-        description: '요소의 위치 지정 방식과 좌표 시스템 이해'
+        description: '요소의 위치 지정 방식과 좌표 시스템 이해 - 모달, 툴팁, 드롭다운, 뱃지 등 실무 패턴 포함'
     },
     {
         path: '/float',
         title: 'Float & Clear',
         tags: [
             'float', 'clear', 'clearfix', '레거시', '레이아웃', '플로트', 'left', 'right',
-            '클리어', '그림 감싸기', '텍스트 감싸기', '구식', 'both'
+            '클리어', '그림 감싸기', '텍스트 감싸기', '구식', 'both',
+            '부모 높이', 'parent height', 'overflow hidden', '높이 붕괴', 'height collapse',
+            '::after', 'display table', '이미지 래핑', 'text wrapping', '블로그', '기사',
+            '위키피디아', 'HTML 이메일', 'email template', '레거시 코드'
         ],
-        description: '플로트 속성과 클리어픽스 기법 학습'
+        description: '플로트 속성과 클리어픽스 기법 학습 - 부모 높이 문제 해결과 실무 활용 사례'
     },
     {
         path: '/colors',
@@ -148,9 +155,19 @@ export const pageMetadata = [
         tags: [
             '전역변수', 'pseudo-elements', '가상 요소', '::before', '::after', 'content', '클래스 토글', 'attr()', '리본', 'ribbon',
             '::first-line', '::first-letter', '::selection', '::marker', 'before', 'after',
-            '가상', '요소', '장식', 'decoration', '아이콘', 'icon', 'badge', '배지'
+            '가상', '요소', '장식', 'decoration', '아이콘', 'icon', 'badge', '배지',
+            'content 속성', 'content property', '필수 조건', 'data attribute', 'data-label',
+            '체크리스트', 'custom bullet', '커스텀 불렛', '호버 효과', 'hover magic',
+            '슬라이드 배경', 'slide background', '밑줄 애니메이션', 'underline animation',
+            '동적 데이터', 'dynamic data', 'HTML 수정 없이', 'clean code', 'Pro 방식',
+            '레이아웃 흐름', 'layout flow', 'normal flow', 'position absolute', 'absolute positioning',
+            '공간 차지', 'space', '영향', 'affect', '높이 변화', 'height change',
+            'flex 자식', 'flex child', 'flexbox', 'display flex', 'flex-shrink',
+            '체크박스', 'checkbox', '중앙 정렬', 'centering', 'transform translate',
+            '레이아웃 영향', 'layout impact', '흐름 제거', 'removed from flow',
+            'position relative', '기준점', 'containing block', '실전 예제'
         ],
-        description: '::before, ::after 등 가상 요소 활용법'
+        description: '::before, ::after 등 가상 요소 활용법 - content 속성 필수, 레이아웃 흐름 이해, position absolute vs normal flow'
     },
     {
         path: '/hiding',
@@ -168,9 +185,14 @@ export const pageMetadata = [
         tags: [
             'stacking', 'z-index', '쌓임 맥락', 'layer', '레이어', '겹침',
             'stacking context', 'positioning', 'transform', 'opacity', 'filter',
-            '계층', '순서', '위아래', '앞뒤', '깊이', 'depth', 'order'
+            '계층', '순서', '위아래', '앞뒤', '깊이', 'depth', 'order',
+            'isolation isolate', 'will-change', 'contain', '새로운 레이어',
+            'transform trap', 'filter trap', 'fixed position trap', '함정',
+            'Stacking Context 생성', '생성 조건', 'CSS 속성', '자동 생성',
+            '@layer', 'cascading layers', '명시도', 'specificity', 'CSS 변수',
+            'z-index 관리', 'z-index system', '시스템화', '상수화'
         ],
-        description: 'z-index와 쌓임 맥락 개념 이해'
+        description: 'z-index와 쌓임 맥락 개념 이해 - transform/filter가 생성하는 새 레이어, 실무 함정과 해결책'
     },
     {
         path: '/responsive',
@@ -188,9 +210,13 @@ export const pageMetadata = [
         tags: [
             'container queries', '컨테이너 쿼리', 'cqw', 'cqh', '컴포넌트 기반',
             '@container', 'container-type', 'container-name', '컨테이너',
-            '컴포넌트', '모듈', '재사용', 'responsive components'
+            '컴포넌트', '모듈', '재사용', 'responsive components',
+            'resize', 'resize handle', 'resize property', '크기 조절',
+            'overflow hidden', 'overflow 필수', 'horizontal', 'vertical', 'both',
+            'min-width', 'max-width', '핸들', 'drag', '드래그', '인터랙티브',
+            'CQ Units', '컨테이너 전용 단위', 'inline-size', '독립성', '재사용성'
         ],
-        description: '컨테이너 쿼리를 이용한 컴포넌트 기반 반응형'
+        description: '컨테이너 쿼리를 이용한 컴포넌트 기반 반응형 - resize 핸들 구현 원리와 CQ Units'
     },
     {
         path: '/custom-properties',
@@ -211,6 +237,19 @@ export const pageMetadata = [
             '명시도', '선택', 'modern css', '최신'
         ],
         description: '최신 CSS 선택자와 네스팅 문법'
+    },
+    {
+        path: '/selectors-basics',
+        title: 'CSS 선택자 기초',
+        tags: [
+            'selectors', '선택자', 'combinator', '조합자', '.class.class', 'descendant', 'child',
+            '자손 선택자', '직계 자식', 'adjacent sibling', 'general sibling', '인접 형제', '일반 형제',
+            'specificity', '우선순위', '명시도', '!important', 'inline style',
+            'BEM', 'OOCSS', 'SMACSS', 'Utility-First', 'naming convention', '네이밍 컨벤션',
+            'kebab-case', 'camelCase', '클래스 이름', 'class naming', '실무 가이드',
+            '.container.item', '.container .item', '띄어쓰기', '차이', '패턴'
+        ],
+        description: 'CSS 선택자 조합 방법과 네이밍 컨벤션 - BEM, OOCSS 등 실무 방법론 포함'
     },
     {
         path: '/architecture',
@@ -251,6 +290,61 @@ export const pageMetadata = [
             '쓰기 방향', '방향성', 'direction', 'margin-inline', 'padding-block'
         ],
         description: '논리적 속성을 이용한 다국어 지원'
+    },
+    {
+        path: '/specificity',
+        title: 'CSS 명시도',
+        tags: [
+            'specificity', '명시도', '우선순위', 'priority', 'cascade', '캐스케이드',
+            'inline', 'id', 'class', 'element', '!important', '중요도',
+            'selector weight', '선택자 가중치', 'ABC 점수', '계산', '충돌', '덮어쓰기',
+            '상속', 'inheritance', '상속되는 속성', 'inherited properties',
+            'color', 'font', 'text', 'list-style', 'border-collapse', 'cursor', 'visibility',
+            'inherit 키워드', 'initial', 'unset', 'revert', '기본값',
+            '디버깅', 'debugging', '스타일 적용 안됨', 'DevTools'
+        ],
+        description: 'CSS 명시도 계산 방법과 캐스케이드 원리 - 상속되는 속성 전체 목록 포함'
+    },
+    {
+        path: '/color-inheritance',
+        title: 'Color 상속 원리',
+        tags: [
+            'color', 'inheritance', '상속', 'inherit', 'currentColor', '색상 상속',
+            'SVG fill', 'SVG stroke', 'border-color', 'outline-color', '투명도',
+            'transparent', 'button color', '폼 요소', 'form elements',
+            '브라우저 기본값', 'user agent stylesheet', 'color: inherit',
+            '테마', 'theme', '일관성', 'consistency', '디자인 시스템',
+            '해결책', 'solution', '패턴', 'pattern', 'best practice'
+        ],
+        description: 'color 속성의 상속 원리와 버튼/SVG에서 색상이 안 먹히는 문제 해결'
+    },
+    {
+        path: '/relative-absolute',
+        title: 'Relative & Absolute 조합',
+        tags: [
+            'relative', 'absolute', 'position', '부모-자식', 'parent-child',
+            'containing block', '기준점', '좌표', 'top', 'left', 'right', 'bottom',
+            'inset', 'transform', 'translate', '중앙 정렬', 'centering',
+            '모달', 'modal', '툴팁', 'tooltip', '배지', 'badge', '오버레이', 'overlay',
+            '레이아웃 흐름', 'layout flow', '공간 차지', 'space', '겹치기', 'overlap',
+            '실전', 'practical', '패턴', 'pattern', '사용 예시', 'use cases'
+        ],
+        description: 'position: relative와 absolute의 조합 패턴과 실전 활용법'
+    },
+    {
+        path: '/modal-pattern',
+        title: 'Modal 구현 패턴',
+        tags: [
+            'modal', '모달', 'dialog', '다이얼로그', 'overlay', '오버레이',
+            'position fixed', 'z-index', '중앙 정렬', 'centering',
+            'backdrop', '배경 어둡게', 'dimmed', 'body scroll lock', '스크롤 방지',
+            'inert', 'focus trap', '포커스 트랩', 'keyboard navigation', 'ESC',
+            'accessibility', '접근성', 'ARIA', 'aria-modal', 'role="dialog"',
+            'animation', 'fade in', 'scale', '애니메이션', 'transition',
+            '닫기 버튼', 'close button', '외부 클릭', 'click outside', 'backdrop click',
+            'React', 'Vue', 'JavaScript', '프레임워크', '실무', 'production'
+        ],
+        description: '접근성을 고려한 모달 다이얼로그 구현 패턴 - CSS와 JavaScript 조합'
     }
 ];
 

@@ -7,9 +7,9 @@ import React from 'react';
  * @param {Array} props.properties - List of property definitions
  * @param {string} props.properties[].name - CSS property name (e.g., 'justify-content')
  * @param {string} props.properties[].label - Display label (optional, defaults to name)
- * @param {string} props.properties[].type - 'radio' | 'select'
+ * @param {string} props.properties[].type - 'radio' | 'select' | 'checkbox'
  * @param {Array} props.properties[].options - List of options. Can be strings or objects { value, label }
- * @param {string} props.properties[].value - Current value
+ * @param {string|boolean} props.properties[].value - Current value
  * @param {Function} props.properties[].onChange - Callback when value changes
  */
 function CssPropertyControls({ properties }) {
@@ -33,6 +33,17 @@ function CssPropertyControls({ properties }) {
                 return <option key={value} value={value}>{label}</option>;
               })}
             </select>
+          ) : prop.type === 'checkbox' ? (
+            <label className={`checkbox-label ${prop.value ? 'selected' : ''}`}>
+              <input
+                type="checkbox"
+                checked={prop.value}
+                onChange={(e) => prop.onChange(e.target.checked)}
+              />
+              <span className="checkbox-text">
+                {prop.value ? 'ON' : 'OFF'}
+              </span>
+            </label>
           ) : (
             <div className="radio-group">
               {prop.options.map((opt) => {

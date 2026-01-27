@@ -15,6 +15,12 @@ function ColorBackgroundStudy() {
   const [colorFormat, setColorFormat] = useState('hex');
   const [opacity, setOpacity] = useState('1');
   const [gradientType, setGradientType] = useState('linear-gradient');
+  
+  // 레이어 빌더 상태
+  const [layer1, setLayer1] = useState(true);
+  const [layer2, setLayer2] = useState(true);
+  const [layer3, setLayer3] = useState(false);
+  const [baseColor, setBaseColor] = useState('#667eea');
 
   const colorExamples = {
     hex: '#3b82f6',
@@ -267,9 +273,44 @@ function ColorBackgroundStudy() {
       </CollapsibleSection>
       {/* 실습 섹션: Background 세부 속성 (size, position, repeat) */}
       <CollapsibleSection title="Background 속성들">
-        <p className="section-description">
-          배경 이미지의 크기, 위치, 반복 등을 세밀하게 제어할 수 있습니다.
-        </p>
+        <div className="section-description">
+          <p>
+            배경 이미지의 크기, 위치, 반복 등을 세밀하게 제어할 수 있습니다.
+          </p>
+          
+          <div style={{ 
+            marginTop: '1.5rem', padding: '1.5rem', background: '#fff7ed', 
+            borderRadius: '12px', border: '1px solid #fb923c' 
+          }}>
+            <h4 style={{ marginTop: 0, color: '#9a3412' }}>🤔 체크무늬는 왜 4개의 그라데이션이 필요한가요?</h4>
+            <p style={{ color: '#c2410c', lineHeight: '1.7', marginBottom: '1rem' }}>
+              체크무늬 패턴은 <strong>4개의 그라데이션이 함께 작동</strong>해서 만들어집니다. 
+              하나씩 제거하면 "순차적"으로 보이지 않는 이유는:
+            </p>
+            <ul style={{ marginBottom: 0, color: '#c2410c', lineHeight: '1.8' }}>
+              <li><strong>각 그라데이션은 독립적인 삼각형을 만듭니다</strong> (25% 또는 75% 지점에서 색이 바뀜)</li>
+              <li><strong>4개의 삼각형이 서로 다른 각도(45deg, -45deg)와 위치</strong>에 배치됩니다</li>
+              <li><strong>이 4개가 겹쳤을 때만 완벽한 정사각형 체크무늬</strong>가 완성됩니다</li>
+              <li>하나만 제거해도 패턴이 깨지고, 두 개 제거하면 스트라이프가 되고, 세 개 제거하면 단순 삼각형만 남습니다</li>
+            </ul>
+          </div>
+
+          <div style={{ 
+            marginTop: '1rem', padding: '1.2rem', background: '#f0f9ff', 
+            borderRadius: '10px', border: '1px solid #0ea5e9' 
+          }}>
+            <strong style={{ color: '#0c4a6e' }}>📐 4개 그라데이션의 역할</strong>
+            <ol style={{ marginTop: '0.5rem', marginBottom: 0, color: '#075985', fontSize: '0.9rem', lineHeight: '1.8' }}>
+              <li><strong>첫 번째:</strong> 45deg 방향, 왼쪽 위 삼각형 (0-25%)</li>
+              <li><strong>두 번째:</strong> -45deg 방향, 오른쪽 위 삼각형 (0-25%)</li>
+              <li><strong>세 번째:</strong> 45deg 방향, 오른쪽 아래 삼각형 (75-100%)</li>
+              <li><strong>네 번째:</strong> -45deg 방향, 왼쪽 아래 삼각형 (75-100%)</li>
+            </ol>
+            <p style={{ marginTop: '0.5rem', marginBottom: 0, color: '#0e7490', fontSize: '0.9rem' }}>
+              → 이 4개의 삼각형이 <code>background-position</code>으로 위치를 조정하면서 겹쳐져 체크무늬를 만듭니다!
+            </p>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="background-props"
@@ -279,7 +320,7 @@ function ColorBackgroundStudy() {
   width: 100%;
   height: 300px;
   
-  /* 그라데이션을 이미지처럼 사용 */
+  /* 그라데이션을 이미지처럼 사용 - 4개가 모두 필요! */
   background-image: 
     linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
     linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
@@ -301,10 +342,14 @@ function ColorBackgroundStudy() {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }`}
           initialHtml={`<div class="bg-demo">
-  Patterned Background
+  Checkerboard Pattern
 </div>
 
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
+<div style="margin-top: 1rem; color: #1e293b; background: #fef3c7; padding: 1rem; border-radius: 6px; font-size: 0.9rem; line-height: 1.7;">
+  <strong>🧪 실험해보기:</strong><br/>
+  코드 에디터에서 4개의 linear-gradient 중 하나씩 주석처리(/* */)해보세요!<br/>
+  → 순차적으로 보이지 않는 이유는 4개가 <strong>협력해서</strong> 체크무늬를 만들기 때문입니다.<br/><br/>
+  
   <strong>주요 background 속성:</strong><br/>
   • <code>background-size</code>: cover, contain, 50% 등<br/>
   • <code>background-position</code>: center, top right 등<br/>
@@ -313,6 +358,436 @@ function ColorBackgroundStudy() {
 </div>`}
         />
       </CollapsibleSection>
+
+      {/* 새 섹션: 그라데이션으로 만드는 다양한 패턴 */}
+      <CollapsibleSection title="🎨 그라데이션 패턴 갤러리">
+        <div className="section-description">
+          <p>
+            그라데이션을 이미지처럼 사용하여 <strong>다양한 기하학적 패턴</strong>을 만들 수 있습니다!<br />
+            이미지 파일 없이 순수 CSS만으로 멋진 배경 패턴을 구현할 수 있습니다.
+          </p>
+        </div>
+
+        <LiveCodeEditor
+          scopeId="gradient-patterns"
+          previewHeight="600px"
+          codeHeight="700px"
+          initialCss={`.pattern-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #1e293b;
+  border-radius: 16px;
+}
+
+.pattern-box {
+  height: 150px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.pattern-label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* 1. 스트라이프 (세로 줄무늬) */
+.stripes {
+  background: repeating-linear-gradient(
+    90deg,
+    #667eea 0px,
+    #667eea 20px,
+    #764ba2 20px,
+    #764ba2 40px
+  );
+}
+
+/* 2. 대각선 스트라이프 */
+.diagonal-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #f093fb 0px,
+    #f093fb 15px,
+    #f5576c 15px,
+    #f5576c 30px
+  );
+}
+
+/* 3. 체크무늬 (Checkerboard) */
+.checkerboard {
+  background-image: 
+    linear-gradient(45deg, #3b82f6 25%, transparent 25%),
+    linear-gradient(-45deg, #3b82f6 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #3b82f6 75%),
+    linear-gradient(-45deg, transparent 75%, #3b82f6 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+  background-color: #60a5fa;
+}
+
+/* 4. 도트 패턴 (Polka Dots) */
+.dots {
+  background-color: #10b981;
+  background-image: radial-gradient(circle, #fff 20%, transparent 20%);
+  background-size: 30px 30px;
+}
+
+/* 5. 격자무늬 (Grid) */
+.grid {
+  background-color: #f59e0b;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.3) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255,255,255,0.3) 2px, transparent 2px);
+  background-size: 40px 40px;
+}
+
+/* 6. 지그재그 (Zigzag) */
+.zigzag {
+  background: 
+    linear-gradient(135deg, #ec4899 25%, transparent 25%) -20px 0,
+    linear-gradient(225deg, #ec4899 25%, transparent 25%) -20px 0,
+    linear-gradient(315deg, #ec4899 25%, transparent 25%),
+    linear-gradient(45deg, #ec4899 25%, transparent 25%);
+  background-size: 40px 40px;
+  background-color: #f472b6;
+}
+
+/* 7. 다이아몬드 */
+.diamonds {
+  background-color: #8b5cf6;
+  background-image: 
+    linear-gradient(45deg, rgba(255,255,255,0.3) 50%, transparent 50%),
+    linear-gradient(-45deg, rgba(255,255,255,0.3) 50%, transparent 50%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 0;
+}
+
+/* 8. 벌집 (Hexagon) 패턴 */
+.hexagons {
+  background-color: #14b8a6;
+  background-image: 
+    radial-gradient(circle at 0% 50%, rgba(255,255,255,0.2) 20%, transparent 20%),
+    radial-gradient(circle at 100% 50%, rgba(255,255,255,0.2) 20%, transparent 20%);
+  background-size: 40px 70px;
+  background-position: 0 0, 0 35px;
+}
+
+/* 9. 크로스 해치 (Cross Hatch) */
+.crosshatch {
+  background-color: #475569;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.15) 10px, rgba(255,255,255,0.15) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.15) 10px, rgba(255,255,255,0.15) 20px);
+}
+
+/* 10. 타탄 체크 (Tartan) */
+.tartan {
+  background-color: #dc2626;
+  background-image: 
+    repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,0.4) 50px, rgba(0,0,0,0.4) 53px, transparent 53px),
+    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,0,0,0.4) 50px, rgba(0,0,0,0.4) 53px, transparent 53px);
+}
+
+/* 11. 물방울 (Bubbles) */
+.bubbles {
+  background-color: #0ea5e9;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.3) 15%, transparent 15%),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.2) 20%, transparent 20%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 10%, transparent 10%);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px, 15px 45px;
+}
+
+/* 12. 모자이크 */
+.mosaic {
+  background: 
+    linear-gradient(45deg, #fbbf24 25%, transparent 25%, transparent 75%, #fbbf24 75%, #fbbf24),
+    linear-gradient(45deg, #fbbf24 25%, #f59e0b 25%, #f59e0b 75%, #fbbf24 75%, #fbbf24);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}`}
+          initialHtml={`<div class="pattern-gallery">
+  <div class="pattern-box stripes">
+    <span class="pattern-label">세로 줄무늬</span>
+  </div>
+  <div class="pattern-box diagonal-stripes">
+    <span class="pattern-label">대각선 줄무늬</span>
+  </div>
+  <div class="pattern-box checkerboard">
+    <span class="pattern-label">체크무늬</span>
+  </div>
+  <div class="pattern-box dots">
+    <span class="pattern-label">도트 패턴</span>
+  </div>
+  <div class="pattern-box grid">
+    <span class="pattern-label">격자무늬</span>
+  </div>
+  <div class="pattern-box zigzag">
+    <span class="pattern-label">지그재그</span>
+  </div>
+  <div class="pattern-box diamonds">
+    <span class="pattern-label">다이아몬드</span>
+  </div>
+  <div class="pattern-box hexagons">
+    <span class="pattern-label">벌집 패턴</span>
+  </div>
+  <div class="pattern-box crosshatch">
+    <span class="pattern-label">크로스 해치</span>
+  </div>
+  <div class="pattern-box tartan">
+    <span class="pattern-label">타탄 체크</span>
+  </div>
+  <div class="pattern-box bubbles">
+    <span class="pattern-label">물방울</span>
+  </div>
+  <div class="pattern-box mosaic">
+    <span class="pattern-label">모자이크</span>
+  </div>
+</div>
+
+<div style="margin-top: 1.5rem; padding: 1.2rem; background: #f0f9ff; border-radius: 12px; border: '1px solid #0ea5e9';">
+  <strong style="color: #0c4a6e;">💡 핵심 기법</strong>
+  <ul style="margin-top: 0.5rem; color: #075985; font-size: 0.9rem; line-height: 1.8;">
+    <li><strong>repeating-linear-gradient:</strong> 반복되는 줄무늬 패턴</li>
+    <li><strong>radial-gradient:</strong> 원형 도트/물방울 패턴</li>
+    <li><strong>여러 gradient 레이어:</strong> 복잡한 기하학 패턴 조합</li>
+    <li><strong>background-size & position:</strong> 패턴 크기와 배치 조절</li>
+  </ul>
+  <p style="margin-top: 1rem; margin-bottom: 0; color: #0e7490; font-size: 0.9rem;">
+    <strong>장점:</strong> 이미지 파일이 필요 없어 로딩이 빠르고, 색상/크기를 CSS로 즉시 변경 가능!
+  </p>
+</div>`}
+        />
+      </CollapsibleSection>
+
+      {/* 새 섹션: 인터랙티브 레이어 빌더 */}
+      <CollapsibleSection title="🎛️ 레이어 빌더: 그라데이션 레이어 조합하기">
+        <div className="section-description">
+          <p>
+            여러 개의 그라데이션 레이어를 <strong>쌓아서</strong> 복잡하고 멋진 배경을 만들어보세요!<br />
+            각 레이어를 켜고 끄면서 어떻게 조합되는지 실시간으로 확인할 수 있습니다.
+          </p>
+          
+          <div style={{ 
+            marginTop: '1.5rem', padding: '1.2rem', background: '#fef3c7', 
+            borderRadius: '12px', border: '1px solid #f59e0b' 
+          }}>
+            <strong style={{ color: '#92400e' }}>💡 레이어 순서의 비밀</strong>
+            <p style={{ marginTop: '0.5rem', marginBottom: 0, color: '#78350f', fontSize: '0.9rem', lineHeight: '1.7' }}>
+              CSS에서 background-image의 레이어는 <strong>먼저 선언한 것이 위에</strong> 표시됩니다.<br />
+              Layer 1 (맨 위) → Layer 2 (중간) → Layer 3 (아래) → Base Color (배경)
+            </p>
+          </div>
+        </div>
+
+        <CssPropertyControls
+          properties={[
+            {
+              name: 'Layer 1 (도트)',
+              type: 'checkbox',
+              value: layer1,
+              onChange: setLayer1
+            },
+            {
+              name: 'Layer 2 (대각선)',
+              type: 'checkbox',
+              value: layer2,
+              onChange: setLayer2
+            },
+            {
+              name: 'Layer 3 (그리드)',
+              type: 'checkbox',
+              value: layer3,
+              onChange: setLayer3
+            },
+            {
+              name: 'Base Color',
+              type: 'radio',
+              value: baseColor,
+              onChange: setBaseColor,
+              options: [
+                { value: '#667eea', label: 'Purple' },
+                { value: '#10b981', label: 'Green' },
+                { value: '#f59e0b', label: 'Orange' },
+                { value: '#ef4444', label: 'Red' }
+              ]
+            }
+          ]}
+        />
+
+        <LiveCodeEditor
+          scopeId="layer-builder"
+          previewHeight="400px"
+          codeHeight="550px"
+          initialCss={`.layer-demo {
+  width: 100%;
+  height: 350px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  
+  /* 레이어들을 아래에서 위로 쌓음 */
+  background-color: ${baseColor};
+  ${(() => {
+    const layers = [];
+    const sizes = [];
+    const positions = [];
+    
+    if (layer1) {
+      layers.push(`radial-gradient(circle, rgba(255,255,255,0.15) 15%, transparent 15%)`);
+      sizes.push('30px 30px');
+      positions.push('0 0');
+    }
+    if (layer2) {
+      layers.push(`repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.1) 20px, rgba(255,255,255,0.1) 40px)`);
+      sizes.push('40px 40px');
+      positions.push('0 0');
+    }
+    if (layer3) {
+      layers.push(`linear-gradient(rgba(255,255,255,0.05) 2px, transparent 2px)`);
+      layers.push(`linear-gradient(90deg, rgba(255,255,255,0.05) 2px, transparent 2px)`);
+      sizes.push('40px 40px', '40px 40px');
+      positions.push('0 0', '0 0');
+    }
+    
+    if (layers.length > 0) {
+      return `background-image: ${layers.join(', ')};
+  background-size: ${sizes.join(', ')};
+  background-position: ${positions.join(', ')};`;
+    }
+    return '';
+  })()}
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.layer-info {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.layer-list {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: left;
+  line-height: 2;
+  color: rgba(255,255,255,0.9);
+}`}
+          currentCss={`.layer-demo {
+  width: 100%;
+  height: 350px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  
+  /* 레이어들을 아래에서 위로 쌓음 */
+  background-color: ${baseColor};
+  ${(() => {
+    const layers = [];
+    const sizes = [];
+    const positions = [];
+    
+    if (layer1) {
+      layers.push(`radial-gradient(circle, rgba(255,255,255,0.15) 15%, transparent 15%)`);
+      sizes.push('30px 30px');
+      positions.push('0 0');
+    }
+    if (layer2) {
+      layers.push(`repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.1) 20px, rgba(255,255,255,0.1) 40px)`);
+      sizes.push('40px 40px');
+      positions.push('0 0');
+    }
+    if (layer3) {
+      layers.push(`linear-gradient(rgba(255,255,255,0.05) 2px, transparent 2px)`);
+      layers.push(`linear-gradient(90deg, rgba(255,255,255,0.05) 2px, transparent 2px)`);
+      sizes.push('40px 40px', '40px 40px');
+      positions.push('0 0', '0 0');
+    }
+    
+    if (layers.length > 0) {
+      return `background-image: ${layers.join(', ')};
+  background-size: ${sizes.join(', ')};
+  background-position: ${positions.join(', ')};`;
+    }
+    return '';
+  })()}
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.layer-info {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.layer-list {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: left;
+  line-height: 2;
+  color: rgba(255,255,255,0.9);
+}`}
+          initialHtml={`<div class="layer-demo">
+  <div class="layer-info">
+    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎨 활성 레이어</div>
+    <div class="layer-list">
+      ${layer1 ? '✅ Layer 1: 도트 패턴 (맨 위)<br/>' : '❌ Layer 1: OFF<br/>'}
+      ${layer2 ? '✅ Layer 2: 대각선 스트라이프 (중간)<br/>' : '❌ Layer 2: OFF<br/>'}
+      ${layer3 ? '✅ Layer 3: 그리드 (아래)<br/>' : '❌ Layer 3: OFF<br/>'}
+      🎨 Base Color: ${baseColor === '#667eea' ? 'Purple' : baseColor === '#10b981' ? 'Green' : baseColor === '#f59e0b' ? 'Orange' : 'Red'}
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 1.5rem; padding: 1.2rem; background: #f0f9ff; border-radius: 12px; border: '1px solid #0ea5e9';">
+  <strong style="color: #0c4a6e;">🔍 작동 원리</strong>
+  <ul style="margin-top: 0.5rem; margin-bottom: 0; color: #075985; font-size: 0.9rem; line-height: 1.8;">
+    <li><strong>Layer 1 (도트):</strong> 맨 위에 표시되는 흰색 반투명 도트</li>
+    <li><strong>Layer 2 (대각선):</strong> 그 아래에 대각선 패턴이 겹침</li>
+    <li><strong>Layer 3 (그리드):</strong> 가장 아래 격자무늬 (미묘한 효과)</li>
+    <li><strong>Base Color:</strong> 모든 레이어의 배경색 (가장 아래)</li>
+    <li style="margin-top: 0.5rem; color: #0e7490;"><strong>💡 Tip:</strong> 레이어를 하나씩 켜고 끄면서 각 레이어가 전체 디자인에 어떤 영향을 주는지 확인해보세요!</li>
+  </ul>
+</div>`}
+        />
+      </CollapsibleSection>
+
       {/* 디자인 트렌드 섹션: Glassmorphism (유리 효과 구현) */}
       <CollapsibleSection title="실전: Glass Morphism">
         <p className="section-description">

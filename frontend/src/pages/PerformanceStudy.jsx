@@ -155,15 +155,46 @@ function PerformanceStudy() {
 
         <LiveCodeEditor
           scopeId="will-change"
-          previewHeight="250px"
-          codeHeight="300px"
-          initialCss={`.accelerated-box {
-  width: 100px;
-  height: 100px;
-  background: #3b82f6;
+          previewHeight="350px"
+          codeHeight="400px"
+          initialCss={`.demo-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.box {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 일반 박스 (will-change 없음) */
+.normal-box {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.normal-box:hover {
+  transform: scale(1.5) rotate(45deg);
+}
+
+/* GPU 가속 박스 (will-change 사용) */
+.accelerated-box {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   
   /* 브라우저가 미리 GPU 메모리에 레이어를 준비함 */
   will-change: transform;
@@ -172,15 +203,55 @@ function PerformanceStudy() {
 .accelerated-box:hover {
   transform: scale(1.5) rotate(45deg);
 }`}
-          initialHtml={`<div style="background: white; padding: 3rem; border-radius: 8px; display: flex; justify-content: center;">
-  <div class="accelerated-box"></div>
+          initialHtml={`<div class="demo-container">
+  <div class="demo">
+    <div class="box normal-box">
+      <div style="position: relative; width: 100%; height: 100%;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem;">➤</div>
+        <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
+          ❌<br/>일반<br/>박스
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: #991b1b;">
+      <strong>will-change 없음</strong>
+    </div>
+  </div>
+  
+  <div class="demo">
+    <div class="box accelerated-box">
+      <div style="position: relative; width: 100%; height: 100%;">
+        <div style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem;">➤</div>
+        <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
+          ✅<br/>GPU<br/>가속
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: #1e40af;">
+      <strong>will-change: transform</strong>
+    </div>
+  </div>
 </div>
 
-<div style="margin-top: 1rem; color: #1e293b; background: #f1f5f9; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>골든 룰 (Gold Rule):</strong><br/>
-  1. 평소에는 쓰지 마세요. 브라우저는 이미 똑똑합니다.<br/>
-  2. 성능 문제가 확실히 발생할 때 최후의 수단으로 쓰세요.<br/>
-  3. 애니메이션이 끝나면 제거해주는 것이 좋습니다.
+<div style="margin-top: 1.5rem; color: #1e293b; background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px; font-size: 0.9rem;">
+  <strong>🎯 실습 가이드:</strong><br/>
+  각 원에 마우스를 올려보세요! <strong>오른쪽 위 화살표(➤)가 회전</strong>하는 것을 보세요.<br/>
+  둘 다 같은 애니메이션이지만, 오른쪽(GPU 가속)이 더 부드럽게 느껴질 수 있습니다.
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #fee2e2; padding: 1rem; border-radius: 6px; font-size: 0.9rem;">
+  <strong>⚠️ 골든 룰 (Gold Rule):</strong><br/>
+  1. <strong>평소에는 쓰지 마세요.</strong> 브라우저는 이미 똑똑합니다.<br/>
+  2. <strong>성능 문제가 확실히 발생할 때</strong> 최후의 수단으로 쓰세요.<br/>
+  3. 애니메이션이 끝나면 제거해주는 것이 좋습니다.<br/>
+  4. 남용하면 오히려 메모리 낭비로 성능이 나빠집니다!
+</div>
+
+<div style="margin-top: 1rem; color: #1e293b; background: #d1fae5; padding: 1rem; border-radius: 6px; font-size: 0.9rem;">
+  <strong>💡 어떻게 작동하나요?</strong><br/>
+  • <code>will-change: transform</code>을 선언하면 브라우저가 미리 GPU에 레이어를 생성<br/>
+  • 실제 애니메이션이 시작될 때 이미 준비된 레이어를 사용 → 빠름<br/>
+  • 하지만 메모리를 미리 차지하므로 <strong>꼭 필요한 경우만</strong> 사용!
 </div>`}
         />
       </section>

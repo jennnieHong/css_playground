@@ -65,6 +65,7 @@ function HidingMethodsStudy() {
   padding: 1.5rem;
   background: #f8f9fa;
   border-radius: 12px;
+  color: #484d52;
 }
 
 .item-group {
@@ -244,6 +245,10 @@ function HidingMethodsStudy() {
 }
 
 /* 체크박스가 체크되지 않았을 때 (기본 상태) 숨김 */
+/* ~ 물결: 일반 형제 선택자 (General Sibling Selector) 
+   - input[id="toggle"] 이후에 등장하는 모든 형제 요소 중 .magic-box를 선택
+   - + (인접 형제)와 달리 바로 다음이 아니어도 됨
+   - 자세한 설명: /selectors-basics 페이지 참고 */
 input[id="toggle"]:not(:checked) ~ .magic-box {
   opacity: 0;
   visibility: hidden;

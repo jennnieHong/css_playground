@@ -25,6 +25,7 @@ import AccessibilityStudy from './pages/AccessibilityStudy';
 import PerformanceStudy from './pages/PerformanceStudy';
 import LogicalPropertiesStudy from './pages/LogicalPropertiesStudy';
 import ModernSelectorsStudy from './pages/ModernSelectorsStudy';
+import SelectorsBasicsStudy from './pages/SelectorsBasicsStudy';
 import PracticeChallenge from './pages/PracticeChallenge';
 import HeightStudy from './pages/HeightStudy';
 import AnimationStudy from './pages/AnimationStudy';
@@ -32,6 +33,10 @@ import AnimationsStudy2 from './pages/AnimationsStudy2';
 import UnitsStudy from './pages/UnitsStudy';
 import HidingMethodsStudy from './pages/HidingMethodsStudy';
 import ViewportUnitsStudy from './pages/ViewportUnitsStudy';
+import RelativeAbsoluteStudy from './pages/RelativeAbsoluteStudy';
+import ModalPatternStudy from './pages/ModalPatternStudy';
+import SpecificityStudy from './pages/SpecificityStudy';
+import ColorInheritanceStudy from './pages/ColorInheritanceStudy';
 import './styles/main.css';
 import './styles/navigation.css';
 import './styles/components.css';
@@ -64,6 +69,7 @@ function App() {
             <Route path="/custom-properties" element={<CustomPropertiesStudy />} />
             <Route path="/architecture" element={<CssArchitectureStudy />} />
             <Route path="/position" element={<PositionStudy />} />
+            <Route path="/relative-absolute" element={<RelativeAbsoluteStudy />} />
             {/* Foundations */}
             <Route path="/display" element={<DisplayStudy />} />
             <Route path="/box-model" element={<BoxModelStudy />} />
@@ -79,6 +85,7 @@ function App() {
             <Route path="/hiding" element={<HidingMethodsStudy />} />
             {/* Interaction */}
             <Route path="/interaction" element={<InteractionStudy />} />
+            <Route path="/modal-pattern" element={<ModalPatternStudy />} />
             <Route path="/forms" element={<FormStudy />} />
             <Route path="/accessibility" element={<AccessibilityStudy />} />
             {/* Advanced */}
@@ -87,6 +94,9 @@ function App() {
             <Route path="/pseudo-elements" element={<PseudoElementStudy />} />
             <Route path="/performance" element={<PerformanceStudy />} />
             <Route path="/selectors" element={<ModernSelectorsStudy />} />
+            <Route path="/selectors-basics" element={<SelectorsBasicsStudy />} />
+            <Route path="/specificity" element={<SpecificityStudy />} />
+            <Route path="/color-inheritance" element={<ColorInheritanceStudy />} />
             <Route path="/challenge" element={<PracticeChallenge />} />
           </Routes>
         </main>

@@ -13,6 +13,92 @@ function ModernSelectorsStudy() {
         subtitle="Writing cleaner, more descriptive selectors with :is(), :where(), and :not()"
       />
 
+      {/* 섹션 0: 핵심 개념 한눈에 보기 */}
+      <section className="study-section">
+        <h2 className="section-title">🎯 Modern Selectors 한눈에 보기</h2>
+        <div className="section-description">
+          <p>
+            현대 CSS 선택자는 <strong>코드를 짧게</strong> 쓰고, <strong>JavaScript 없이</strong> 동적인 스타일링을 가능하게 합니다.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+            <div style={{ padding: '1.5rem', background: '#ecfeff', borderRadius: '12px', border: '2px solid #06b6d4' }}>
+              <h4 style={{ marginTop: 0, color: '#0891b2' }}>:is() - 그룹화</h4>
+              <p style={{ fontSize: '0.9rem', color: '#0e7490', marginBottom: '0.5rem' }}>
+                <strong>역할:</strong> 여러 선택자를 하나로 묶기
+              </p>
+              <pre style={{ background: '#0f172a', color: '#e2e8f0', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', overflow: 'auto' }}>
+{`/* 기존: 길고 반복적 */
+.header a:hover,
+.footer a:hover,
+.sidebar a:hover { }
+
+/* :is(): 짧고 깔끔 */
+:is(.header, .footer, .sidebar) a:hover { }`}
+              </pre>
+            </div>
+
+            <div style={{ padding: '1.5rem', background: '#fef3c7', borderRadius: '12px', border: '2px solid #f59e0b' }}>
+              <h4 style={{ marginTop: 0, color: '#b45309' }}>:where() - 제로 우선순위</h4>
+              <p style={{ fontSize: '0.9rem', color: '#92400e', marginBottom: '0.5rem' }}>
+                <strong>역할:</strong> 쉽게 덮어쓸 수 있는 기본 스타일
+              </p>
+              <pre style={{ background: '#0f172a', color: '#e2e8f0', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', overflow: 'auto' }}>
+{`/* 우선순위 0: 누구든 이길 수 있음 */
+:where(.card, .box) p {
+  color: gray;  /* 기본값 */
+}
+
+/* 쉽게 덮어쓰기 가능 */
+.card p { color: blue; }`}
+              </pre>
+            </div>
+
+            <div style={{ padding: '1.5rem', background: '#fce7f3', borderRadius: '12px', border: '2px solid #ec4899' }}>
+              <h4 style={{ marginTop: 0, color: '#be185d' }}>:not() - 제외하기</h4>
+              <p style={{ fontSize: '0.9rem', color: '#9d174d', marginBottom: '0.5rem' }}>
+                <strong>역할:</strong> 특정 조건 제외한 모든 요소 선택
+              </p>
+              <pre style={{ background: '#0f172a', color: '#e2e8f0', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', overflow: 'auto' }}>
+{`/* 마지막 제외한 모든 아이템에 마진 */
+.item:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/* disabled 아닌 버튼만 호버 효과 */
+button:not(:disabled):hover { }`}
+              </pre>
+            </div>
+
+            <div style={{ padding: '1.5rem', background: '#d1fae5', borderRadius: '12px', border: '2px solid #10b981' }}>
+              <h4 style={{ marginTop: 0, color: '#059669' }}>:has() - 부모 선택자 🔥</h4>
+              <p style={{ fontSize: '0.9rem', color: '#047857', marginBottom: '0.5rem' }}>
+                <strong>역할:</strong> 특정 자식을 가진 부모 선택 (혁명적!)
+              </p>
+              <pre style={{ background: '#0f172a', color: '#e2e8f0', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', overflow: 'auto' }}>
+{`/* 체크박스가 체크된 폼 그룹 */
+.form-group:has(input:checked) {
+  background: lightblue;
+}
+
+/* 이미지가 있는 카드만 강조 */
+.card:has(img) { border: 2px solid blue; }`}
+              </pre>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#f0f9ff', borderRadius: '10px', border: '1px solid #0ea5e9' }}>
+            <strong style={{ color: '#0c4a6e' }}>🤔 언제 어떤 걸 쓰나요?</strong>
+            <ul style={{ marginTop: '0.5rem', marginBottom: 0, color: '#075985', lineHeight: '1.8' }}>
+              <li><code>:is()</code> → 반복되는 선택자를 줄이고 싶을 때</li>
+              <li><code>:where()</code> → 라이브러리/기본 스타일 만들 때 (사용자가 쉽게 커스텀 가능)</li>
+              <li><code>:not()</code> → "이것 빼고 전부"라고 말하고 싶을 때</li>
+              <li><code>:has()</code> → 자식 상태에 따라 부모 스타일을 바꾸고 싶을 때 (JS 없이!)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* 섹션 1: 현대적 선택자를 이용한 가독성 및 유지보수 개선 */}
       <section className="study-section">
         <h2 className="section-title">가독성과 유지보수</h2>
@@ -26,9 +112,21 @@ function ModernSelectorsStudy() {
       {/* 섹션 2: 중복 제거를 위한 :is() 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:is() - 선택자 그룹화</h2>
-        <p className="section-description">
-          공통 스타일을 가진 여러 선택자를 하나로 묶어 가독성을 높입니다.
-        </p>
+        <div className="section-description">
+          <p>
+            공통 스타일을 가진 여러 선택자를 하나로 묶어 가독성을 높입니다.
+          </p>
+
+          <div style={{ marginTop: '1rem', padding: '1.2rem', background: '#ecfdf5', borderRadius: '10px', border: '1px solid #10b981' }}>
+            <strong style={{ color: '#065f46' }}>🔥 실무에서 이럴 때 씁니다</strong>
+            <ul style={{ marginTop: '0.5rem', marginBottom: 0, color: '#047857', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <li><strong>네비게이션 링크:</strong> <code>:is(header, footer, nav) a:hover</code> - 모든 영역의 링크 호버 스타일을 한번에</li>
+              <li><strong>폼 상태:</strong> <code>input:is(:hover, :focus, :active)</code> - 인터랙션 상태 그룹화</li>
+              <li><strong>제목 태그:</strong> <code>article :is(h1, h2, h3, h4)</code> - 모든 제목에 동일 스타일</li>
+              <li><strong>버튼 변형:</strong> <code>button:is(.primary, .secondary, .danger)</code> - 공통 버튼 속성</li>
+            </ul>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="selector-is"
@@ -80,23 +178,53 @@ section h3 {
       {/* 섹션 3: 명시도 영향을 주지 않는 :where() 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:where() - 제로 명시도 (Zero Specificity)</h2>
-        <p className="section-description">
-          <code>:is()</code>와 같지만, 우선순위가 **항상 0**입니다. 라이브러리 제작 시 오버라이딩을 쉽게 하기 위해 필수적입니다.
-        </p>
+        <div className="section-description">
+          <p>
+            <code>:is()</code>와 기능은 같지만, <strong>우선순위가 항상 0</strong>입니다. 
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
+            <div style={{ padding: '1rem', background: '#ecfeff', borderRadius: '8px', border: '1px solid #06b6d4' }}>
+              <strong style={{ color: '#0891b2' }}>:is()</strong>
+              <p style={{ marginBottom: 0, fontSize: '0.9rem', color: '#0e7490' }}>
+                우선순위 = 목록 중 가장 높은 것<br/>
+                → 덮어쓰기 어려움
+              </p>
+            </div>
+            <div style={{ padding: '1rem', background: '#fef3c7', borderRadius: '8px', border: '1px solid #f59e0b' }}>
+              <strong style={{ color: '#b45309' }}>:where()</strong>
+              <p style={{ marginBottom: 0, fontSize: '0.9rem', color: '#92400e' }}>
+                우선순위 = 항상 0<br/>
+                → 누구든 쉽게 덮어쓰기 가능
+              </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '1rem', padding: '1.2rem', background: '#fef3c7', borderRadius: '10px', border: '1px solid #f59e0b' }}>
+            <strong style={{ color: '#92400e' }}>🔥 실무에서 이럴 때 씁니다</strong>
+            <ul style={{ marginTop: '0.5rem', marginBottom: 0, color: '#78350f', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <li><strong>UI 라이브러리 제작:</strong> 기본 스타일을 제공하되, 사용자가 쉽게 커스텀 가능하게</li>
+              <li><strong>Reset/Normalize CSS:</strong> 기본값을 설정하되, 프로젝트 스타일이 우선되게</li>
+              <li><strong>컴포넌트 기본 스타일:</strong> 컴포넌트의 기본 모양은 정의하되, prop으로 전달된 스타일이 이기게</li>
+            </ul>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="selector-where"
-          previewHeight="250px"
-          codeHeight="300px"
-          initialCss={`/* 우선순위 0: 누구나 쉽게 이길 수 있음 */
+          previewHeight="400px"
+          codeHeight="380px"
+          initialCss={`/* ✅ :where()는 명시도가 0! */
 :where(.header, .footer) p {
   color: #94a3b8;
   font-style: italic;
 }
 
-/* 쉽게 덮어쓰기 가능 */
+/* .footer p의 명시도: (0,0,1,1) */
+/* :where()의 명시도: (0,0,0,1) ← 클래스가 무시됨! */
+/* 따라서 .footer p가 "명시도"로 이김 */
 .footer p {
-  color: #ef4444; /* 이 선택자가 명시도에서 무조건 이깁니다 */
+  color: #ef4444;
   font-style: normal;
 }
 
@@ -105,19 +233,23 @@ section h3 {
   padding: 1rem;
   border-radius: 8px;
   background: white;
+  margin-bottom: 0.5rem;
 }`}
           initialHtml={`<div class="header card">
-  <p>Header text (Matches :where but can be easily overridden)</p>
+  <p>Header: :where() 스타일 적용 (회색)</p>
 </div>
-
-<br/>
 
 <div class="footer card">
-  <p>Footer text (Overridden by .footer p)</p>
+  <p>Footer: .footer p가 명시도로 이김 (빨간색)</p>
 </div>
 
-<div style="margin-top: 1rem; color: #1e293b; background: #fef3c7; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;">
-  <strong>:where()</strong>는 기본 스타일을 제공하되, 사용자가 쉽게 변경할 수 있게 하고 싶을 때 완벽합니다.
+<div style="margin-top: 1rem; padding: 1rem; background: #d1fae5; border-radius: 8px; font-size: 0.9rem; color: #065f46; line-height: 1.7;">
+  <strong>💡 :where() vs :is() 핵심 차이</strong><br/>
+  • <code>:is(.header, .footer) p</code> → 명시도 <strong>(0,0,1,1)</strong> (클래스 포함)<br/>
+  • <code>:where(.header, .footer) p</code> → 명시도 <strong>(0,0,0,1)</strong> (클래스 무시!)<br/><br/>
+  
+  <strong>⚠️ 명시도가 같으면?</strong><br/>
+  명시도가 동일할 경우, <strong>나중에 선언된 규칙</strong>이 적용됩니다!
 </div>`}
         />
       </section>
@@ -125,9 +257,41 @@ section h3 {
       {/* 섹션 4: 특정 요소를 제외하는 :not() 부정 선택자 */}
       <section className="study-section">
         <h2 className="section-title">:not() - 부정 선택자</h2>
-        <p className="section-description">
-          특정 조건을 제외한 모든 요소를 선택합니다.
-        </p>
+        <div className="section-description">
+          <p>
+            "이것 <strong>빼고</strong> 전부"라고 말하고 싶을 때 사용합니다. 특정 조건을 제외한 모든 요소를 선택합니다.
+          </p>
+
+          <div style={{ marginTop: '1rem', padding: '1.2rem', background: '#fce7f3', borderRadius: '10px', border: '1px solid #ec4899' }}>
+            <strong style={{ color: '#be185d' }}>🔥 자주 쓰는 :not() 패턴</strong>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginTop: '0.75rem' }}>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#9d174d' }}>.item:not(:last-child)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#831843' }}>
+                  마지막 요소 제외 → 구분선이나 마진 넣을 때
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#9d174d' }}>button:not(:disabled)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#831843' }}>
+                  비활성화 아닌 버튼만 → 호버 효과 적용
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#9d174d' }}>input:not([type="checkbox"])</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#831843' }}>
+                  체크박스 제외한 입력 필드 → 공통 스타일링
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#9d174d' }}>:not(:placeholder-shown)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#831843' }}>
+                  값이 입력된 필드 → 입력 완료 표시
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="selector-not"
@@ -178,17 +342,100 @@ section h3 {
 
       {/* 섹션 5: 관계 기반 선택의 혁명, :has() 선택자 */}
       <section className="study-section">
-        <h2 className="section-title">:has() - 부모 선택자의 혁명</h2>
+        <h2 className="section-title">:has() - 부모 선택자의 혁명 🔥</h2>
         <div className="section-description">
           <p>
-            <code>:has()</code>는 오랫동안 기다려온 <strong>부모 선택자</strong>입니다.
-            특정 자식이나 요소를 포함하고 있는 부모를 선택할 수 있게 해줍니다.
+            <code>:has()</code>는 CSS 역사상 가장 혁명적인 선택자입니다.
+            <strong>자식의 상태에 따라 부모를 선택</strong>할 수 있게 해주며, 이전에는 JavaScript로만 가능했던 많은 것들을 CSS로 할 수 있게 됩니다!
           </p>
-          <div className="info-box">
-            💡 <strong>주요 활용 처:</strong><br />
-            • 이미지 캡션이 있는 피드 아이템만 스타일 변경<br />
-            • 체크박스가 체크된 폼 그룹의 배경색 변경<br />
-            • 특정 버튼이 포함된 내비게이션 바 높이 조절
+
+          <div style={{ marginTop: '1rem', padding: '1.2rem', background: '#d1fae5', borderRadius: '10px', border: '1px solid #10b981' }}>
+            <strong style={{ color: '#065f46' }}>🔥 :has()로 할 수 있는 것들 (JavaScript 없이!)</strong>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginTop: '0.75rem' }}>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#047857' }}>.form-group:has(input:checked)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#065f46' }}>
+                  체크박스가 체크되면 → 부모 배경색 변경
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#047857' }}>.card:has(img)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#065f46' }}>
+                  이미지가 있는 카드만 → 다른 레이아웃 적용
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#047857' }}>.form:has(input:invalid)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#065f46' }}>
+                  유효하지 않은 입력이 있으면 → 제출 버튼 비활성화
+                </p>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.5)', padding: '0.75rem', borderRadius: '6px' }}>
+                <code style={{ color: '#047857' }}>.article:has(+ .article:hover)</code>
+                <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#065f46' }}>
+                  다음 요소가 호버되면 → 이전 요소 스타일 변경
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '1rem', padding: '1rem', background: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
+            <strong style={{ color: '#b91c1c' }}>⚠️ 주의사항</strong>
+            <p style={{ marginTop: '0.25rem', marginBottom: 0, fontSize: '0.9rem', color: '#991b1b' }}>
+              <code>:has()</code>는 비교적 최신 기능입니다. IE는 지원하지 않으며, 2023년 이전 브라우저에서는 작동하지 않을 수 있습니다.
+              하지만 최신 Chrome, Firefox, Safari, Edge에서는 모두 지원됩니다!
+            </p>
+          </div>
+
+          <h4 style={{ marginTop: '2rem', color: '#1e293b' }}>🕰️ :has() 이전에는 어떻게 했나요?</h4>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem' }}>
+            <div style={{ padding: '1.5rem', background: '#fef2f2', borderRadius: '12px', border: '2px solid #fecaca' }}>
+              <h5 style={{ marginTop: 0, color: '#b91c1c' }}>❌ 이전: JavaScript 필수!</h5>
+              <pre style={{ background: '#0f172a', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', fontSize: '0.75rem', overflow: 'auto' }}>
+{`// "체크박스 체크 시 부모 배경 변경"
+const checkbox = document.querySelector('input');
+const formGroup = document.querySelector('.form-group');
+
+checkbox.addEventListener('change', (e) => {
+  if (e.target.checked) {
+    formGroup.classList.add('is-checked');
+  } else {
+    formGroup.classList.remove('is-checked');
+  }
+});
+
+// CSS
+.form-group.is-checked {
+  background: lightblue;
+}`}
+              </pre>
+              <p style={{ margin: '0.75rem 0 0', fontSize: '0.85rem', color: '#991b1b' }}>
+                JavaScript 코드, 이벤트 리스너, 상태 관리 필요
+              </p>
+            </div>
+
+            <div style={{ padding: '1.5rem', background: '#d1fae5', borderRadius: '12px', border: '2px solid #10b981' }}>
+              <h5 style={{ marginTop: 0, color: '#065f46' }}>✅ 지금: CSS 한 줄!</h5>
+              <pre style={{ background: '#0f172a', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', fontSize: '0.85rem', overflow: 'auto' }}>
+{`/* JavaScript 전혀 불필요! */
+.form-group:has(input:checked) {
+  background: lightblue;
+}`}
+              </pre>
+              <p style={{ margin: '0.75rem 0 0', fontSize: '0.85rem', color: '#047857' }}>
+                브라우저가 알아서 상태를 감시하고 스타일 적용!
+              </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0f9ff', borderRadius: '8px', border: '1px solid #0ea5e9' }}>
+            <strong style={{ color: '#0c4a6e' }}>💡 왜 20년이나 걸렸나요?</strong>
+            <p style={{ marginTop: '0.25rem', marginBottom: 0, fontSize: '0.9rem', color: '#075985', lineHeight: '1.7' }}>
+              CSS 선택자는 항상 <strong>부모→자식</strong> 방향으로 탐색합니다 (빠름).<br/>
+              하지만 <code>:has()</code>는 <strong>자식→부모</strong> 역방향 탐색이 필요합니다 (느림).<br/>
+              브라우저가 이를 효율적으로 처리하는 방법을 개발하기까지 오랜 시간이 걸렸습니다!
+            </p>
           </div>
         </div>
 
@@ -317,9 +564,47 @@ section h3 {
       {/* 섹션 7: 실전 활용 - CSS만으로 구현하는 지능형 폼 레이아웃 */}
       <section className="study-section">
         <h2 className="section-title">실전 예제: 스마트 폼 레이아웃</h2>
-        <p className="section-description">
-          <code>:has()</code>와 <code>:not()</code>을 조합하여 자바스크립트 없이도 입력 상태에 반응하는 인터랙티브 폼입니다.
-        </p>
+        <div className="section-description">
+          <p>
+            <code>:has()</code>와 <code>:not()</code>을 조합하여 자바스크립트 없이도 입력 상태에 반응하는 인터랙티브 폼입니다.
+          </p>
+
+          <div style={{ marginTop: '1rem', padding: '1.2rem', background: '#f0f9ff', borderRadius: '10px', border: '1px solid #0ea5e9' }}>
+            <strong style={{ color: '#0c4a6e' }}>📝 :invalid는 어떻게 설정하나요?</strong>
+            <p style={{ marginTop: '0.5rem', marginBottom: 0, fontSize: '0.9rem', color: '#075985', lineHeight: '1.7' }}>
+              <code>:invalid</code>는 <strong>HTML5 내장 폼 유효성 검사</strong>와 연동됩니다. HTML 속성으로 규칙을 정의하면 됩니다!
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+            <div style={{ padding: '1rem', background: '#fef3c7', borderRadius: '8px', border: '1px solid #f59e0b' }}>
+              <code style={{ color: '#92400e' }}>required</code>
+              <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#78350f' }}>값이 비어있으면 invalid</p>
+            </div>
+            <div style={{ padding: '1rem', background: '#fef3c7', borderRadius: '8px', border: '1px solid #f59e0b' }}>
+              <code style={{ color: '#92400e' }}>type="email"</code>
+              <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#78350f' }}>이메일 형식 아니면 invalid</p>
+            </div>
+            <div style={{ padding: '1rem', background: '#fef3c7', borderRadius: '8px', border: '1px solid #f59e0b' }}>
+              <code style={{ color: '#92400e' }}>minlength="3"</code>
+              <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#78350f' }}>3글자 미만이면 invalid</p>
+            </div>
+            <div style={{ padding: '1rem', background: '#fef3c7', borderRadius: '8px', border: '1px solid #f59e0b' }}>
+              <code style={{ color: '#92400e' }}>pattern="..."</code>
+              <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#78350f' }}>정규식 불일치시 invalid</p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '1rem', padding: '1rem', background: '#d1fae5', borderRadius: '8px', border: '1px solid #10b981' }}>
+            <strong style={{ color: '#065f46' }}>💡 팁: 빈 필드에서 빨간색 방지</strong>
+            <pre style={{ marginTop: '0.5rem', marginBottom: 0, background: '#0f172a', color: '#e2e8f0', padding: '0.75rem', borderRadius: '6px', fontSize: '0.8rem', overflow: 'auto' }}>
+{`/* 값이 입력된 후에만 invalid 스타일 적용 */
+input:invalid:not(:placeholder-shown) {
+  border-color: red;
+}`}
+            </pre>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="modern-practical-form"

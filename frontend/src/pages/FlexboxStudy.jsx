@@ -548,6 +548,16 @@ function FlexboxStudy() {
               <span className="example-text">
                 → 0이면 절대 안 줄어듦, 1이면 공간 부족 시 축소
               </span>
+              <br />
+              <div style={{ marginTop: '0.5rem', padding: '0.75rem', background: '#fef3c7', borderRadius: '8px', fontSize: '0.9rem' }}>
+                <strong>💡 언제 중요한가?</strong><br />
+                • 체크박스나 아이콘 같은 <strong>고정 크기 요소</strong>를 절대 찌그러뜨리지 않고 싶을 때<br />
+                • 사이드바의 너비를 반응형에서도 유지하고 싶을 때<br />
+                • 폼 레이아웃에서 라벨이나 버튼이 줄어들지 않게 할 때<br />
+                <br />
+                <code style={{ background: '#fff', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>flex-shrink: 0</code>을 설정하면 
+                <strong>컨테이너가 좁아져도 원래 크기 유지!</strong>
+              </div>
             </li>
             <li>
               <strong>세 번째 값</strong> = <code>flex-basis</code> (기본 크기)

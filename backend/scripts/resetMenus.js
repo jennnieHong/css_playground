@@ -39,10 +39,12 @@ db.serialize(() => {
         { title: 'Display Study', path: '/display', icon: '📐', order: 1 },
         { title: 'Box Model Study', path: '/box-model', icon: '📦', order: 2 },
         { title: 'Units & Sizing', path: '/units', icon: '📏', order: 3 },
-        { title: 'Height & Sizing', path: '/height', icon: '📐', order: 4 },
+        { title: 'Viewport Units', path: '/viewport-units', icon: '📱', order: 4 },
+        { title: 'Height & Sizing', path: '/height', icon: '📐', order: 5 },
         { title: 'Position Study', path: '/position', icon: '📍', order: 5 },
-        { title: 'Float & Clear Study', path: '/float', icon: '🌊', order: 6 },
-        { title: 'Logical Properties', path: '/logical-properties', icon: '🌐', order: 7 },
+        { title: 'Relative & Absolute', path: '/relative-absolute', icon: '🎯', order: 6 },
+        { title: 'Float & Clear Study', path: '/float', icon: '🌊', order: 7 },
+        { title: 'Logical Properties', path: '/logical-properties', icon: '🌐', order: 8 },
       ]
     },
     {
@@ -72,9 +74,13 @@ db.serialize(() => {
       icon: '🎯',
       order: 4,
       children: [
-        { title: 'States & Pseudo-classes', path: '/interaction', icon: '🔄', order: 1 },
-        { title: 'Pseudo Elements', path: '/pseudo-elements', icon: '::', order: 2 },
-        { title: 'Modern Selectors', path: '/selectors', icon: '🎯', order: 3 },
+        { title: 'CSS Selectors & Naming', path: '/selectors-basics', icon: '🔤', order: 1 },
+        { title: 'States & Pseudo-classes', path: '/interaction', icon: '🔄', order: 2 },
+        { title: 'Modal & Popup 패턴', path: '/modal-pattern', icon: '🪟', order: 3 },
+        { title: 'Pseudo Elements', path: '/pseudo-elements', icon: '::', order: 4 },
+        { title: 'Modern Selectors', path: '/selectors', icon: '🎯', order: 5 },
+        { title: 'Specificity (명시도)', path: '/specificity', icon: '⚖️', order: 6 },
+        { title: 'Color 상속과 적용', path: '/color-inheritance', icon: '🎨', order: 7 },
       ]
     },
     {

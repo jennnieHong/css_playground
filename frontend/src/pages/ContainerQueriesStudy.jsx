@@ -219,6 +219,224 @@ function ContainerQueriesStudy() {
         />
       </CollapsibleSection>
 
+      {/* 섹션 3-1: Resize 핸들 상세 설명 */}
+      <CollapsibleSection title="Resize 핸들 구현 원리">
+        <div className="section-description">
+          <p>
+            위 예제에서 사용한 <code>resize</code> 속성은 CSS만으로 사용자가 요소 크기를 조절할 수 있게 만듭니다.
+            JavaScript 없이 순수 CSS 기능으로 작동합니다.
+          </p>
+          <div className="info-box" style={{ background: '#fef3c7', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
+            <p style={{ margin: 0, lineHeight: '1.8' }}>
+              <strong>⚡ 핵심 조건:</strong> <code>resize</code>가 작동하려면 <code>overflow</code>가 <code>visible</code>이 아니어야 합니다!<br />
+              → <code>overflow: hidden</code>, <code>auto</code>, 또는 <code>scroll</code> 필수
+            </p>
+          </div>
+        </div>
+
+        <LiveCodeEditor
+          scopeId="resize-property-demo"
+          previewHeight="550px"
+          codeHeight="600px"
+          initialCss={`/* Resize 속성의 모든 옵션 */
+
+/* 1. resize: both - 가로/세로 모두 조절 */
+.resize-both {
+  width: 200px;
+  height: 150px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  resize: both;          /* 핵심: both */
+  overflow: hidden;      /* 필수 조건! */
+  margin: 1rem;
+  
+  /* 크기 제한 */
+  min-width: 150px;
+  max-width: 400px;
+  min-height: 100px;
+  max-height: 300px;
+}
+
+/* 2. resize: horizontal - 가로만 조절 */
+.resize-horizontal {
+  width: 250px;
+  height: 100px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+  color: white;
+  border-radius: 8px;
+  resize: horizontal;    /* 가로만 */
+  overflow: auto;        /* auto도 가능 */
+  margin: 1rem;
+  min-width: 150px;
+  max-width: 450px;
+}
+
+/* 3. resize: vertical - 세로만 조절 */
+.resize-vertical {
+  width: 250px;
+  height: 100px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border-radius: 8px;
+  resize: vertical;      /* 세로만 */
+  overflow: scroll;      /* scroll도 가능 */
+  margin: 1rem;
+  min-height: 80px;
+  max-height: 250px;
+}
+
+/* 4. resize: none - 조절 불가 (기본값) */
+.resize-none {
+  width: 250px;
+  height: 100px;
+  padding: 1rem;
+  background: #94a3b8;
+  color: white;
+  border-radius: 8px;
+  resize: none;          /* 핸들 없음 */
+  overflow: hidden;
+  margin: 1rem;
+}
+
+/* ❌ 작동 안하는 예시 */
+.resize-broken {
+  width: 250px;
+  height: 100px;
+  padding: 1rem;
+  background: #ef4444;
+  color: white;
+  border-radius: 8px;
+  resize: both;
+  overflow: visible;     /* visible이면 작동 안함! */
+  margin: 1rem;
+  border: 2px dashed #fca5a5;
+}
+
+/* 실무 활용: 컨테이너 쿼리와 조합 */
+.resize-with-cq {
+  container-type: inline-size;
+  width: 300px;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  resize: horizontal;
+  overflow: hidden;
+  margin: 1rem;
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.responsive-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.responsive-title {
+  font-size: 6cqw;  /* 컨테이너 너비의 6% */
+  font-weight: bold;
+  color: #1e293b;
+  margin: 0;
+}
+
+.responsive-desc {
+  font-size: 3cqw;  /* 컨테이너 너비의 3% */
+  color: #64748b;
+  margin: 0.5rem 0 0;
+}
+
+@container (max-width: 300px) {
+  .responsive-content {
+    background: #fef3c7;
+  }
+  .responsive-title {
+    color: #78350f;
+  }
+}
+
+@container (min-width: 400px) {
+  .responsive-content {
+    background: #dbeafe;
+  }
+  .responsive-title {
+    color: #1e40af;
+  }
+}
+`}
+          initialHtml={`<div style="color: #1d1f22ff;background: white; padding: 1.5rem; border-radius: 12px;">
+  <h4 style="margin-top: 0;">🎯 Resize 속성 전체 옵션</h4>
+  <p style=" font-size: 0.9rem; margin-bottom: 1.5rem;">
+    우측 하단 핸들(⋰)을 드래그하여 크기를 조절해보세요!
+  </p>
+  
+  <div class="resize-both">
+    <strong>resize: both</strong><br/>
+    가로/세로 모두 조절 가능<br/>
+    (핸들이 보이면 드래그해보세요!)
+  </div>
+  
+  <div class="resize-horizontal">
+    <strong>resize: horizontal</strong><br/>
+    가로만 조절 가능
+  </div>
+  
+  <div class="resize-vertical">
+    <strong>resize: vertical</strong><br/>
+    세로만 조절 가능
+  </div>
+  
+  <div class="resize-none">
+    <strong>resize: none</strong><br/>
+    조절 불가 (핸들 없음)
+  </div>
+  
+  <div class="resize-broken">
+    <strong>❌ resize: both + overflow: visible</strong><br/>
+    작동 안함! (overflow가 visible이라 핸들이 안 보임)
+  </div>
+
+  <hr style="margin: 2rem 0; border: 1px solid #e5e7eb;">
+
+  <h4 style="color: #1d1f22ff; ">🔥 실무 활용: Resize + Container Queries</h4>
+  <p style="font-size: 0.9rem;">
+    크기를 조절하면 텍스트와 배경색이 자동으로 변합니다!
+  </p>
+  
+  <div class="resize-with-cq">
+    <div class="responsive-content">
+      <h3 class="responsive-title">RESIZE ME!</h3>
+      <p class="responsive-desc">Container Query Units (cqw) 적용</p>
+    </div>
+  </div>
+</div>
+
+<div style="color: #1d1f22ff; background: #dbeafe; padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #3b82f6;">
+  <strong>📐 Resize 속성 요약:</strong><br/><br/>
+  
+  • <code>resize: both</code> → 가로/세로 모두<br/>
+  • <code>resize: horizontal</code> → 가로만<br/>
+  • <code>resize: vertical</code> → 세로만<br/>
+  • <code>resize: none</code> → 조절 불가 (기본값)<br/><br/>
+  
+  <strong>⚠️ 필수 조건:</strong> <code>overflow</code>가 <code>visible</code>이 아니어야 함!<br/>
+  <strong>💡 실무 팁:</strong> <code>min-width/max-width</code>로 크기 범위 제한 가능
+</div>
+
+<div style="color: #1d1f22ff; background: #fef3c7; padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #f59e0b;">
+  <strong>📱 브라우저 호환성:</strong><br/>
+  • ✅ 모든 모던 브라우저 지원<br/>
+  • ⚠️ 모바일에서는 핸들이 보이지 않거나 작동하지 않을 수 있음 (터치 인터페이스 한계)<br/>
+  • 💡 데스크톱에서 테스트하면 가장 잘 보입니다!
+</div>`}
+        />
+      </CollapsibleSection>
+
       {/* 섹션 4: 그리드 시스템 내에서의 컴포넌트 독립성 확보 */}
       <CollapsibleSection title="실전 활용: 그리드와의 시너지">
         <div className="section-description">
@@ -229,7 +447,7 @@ function ContainerQueriesStudy() {
         </div>
         <LiveCodeEditor
           scopeId="cq-grid-synergy"
-          previewHeight="450px"
+          previewHeight="250px"
           codeHeight="550px"
           initialCss={`.grid-layout {
   display: grid;
@@ -238,7 +456,7 @@ function ContainerQueriesStudy() {
 }
 
 /* 모든 그리드 아이템을 컨테이너로 설정 */
-.grid-item {
+.grid-item {color: #1d1f22ff;
   container-type: inline-size;
 }
 

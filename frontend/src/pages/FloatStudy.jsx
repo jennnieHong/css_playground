@@ -38,9 +38,9 @@ function FloatStudy() {
       {/* 섹션 1.5: 언제 쓰고 언제 안 쓰는가? */}
       <CollapsibleSection title="Float를 언제 사용하나요?">
         <div className="section-description">
-          <div style={{ 
-            padding: '1.5rem', background: '#ecfdf5', borderRadius: '12px', 
-            border: '1px solid #10b981', marginBottom: '1.5rem' 
+          <div style={{
+            padding: '1.5rem', background: '#ecfdf5', borderRadius: '12px',
+            border: '1px solid #10b981', marginBottom: '1.5rem'
           }}>
             <h4 style={{ marginTop: 0, color: '#065f46' }}>✅ Float를 사용해야 하는 경우</h4>
             <ul style={{ marginBottom: 0, color: '#047857', lineHeight: '1.8' }}>
@@ -71,9 +71,9 @@ function FloatStudy() {
             </ul>
           </div>
 
-          <div style={{ 
-            padding: '1.5rem', background: '#fef2f2', borderRadius: '12px', 
-            border: '1px solid #ef4444' 
+          <div style={{
+            padding: '1.5rem', background: '#fef2f2', borderRadius: '12px',
+            border: '1px solid #ef4444'
           }}>
             <h4 style={{ marginTop: 0, color: '#991b1b' }}>❌ Float를 사용하면 안 되는 경우</h4>
             <ul style={{ marginBottom: 0, color: '#b91c1c', lineHeight: '1.8' }}>
@@ -104,8 +104,8 @@ function FloatStudy() {
             </ul>
           </div>
 
-          <div style={{ 
-            marginTop: '1.5rem', padding: '1.2rem', background: '#fef3c7', 
+          <div style={{
+            marginTop: '1.5rem', padding: '1.2rem', background: '#fef3c7',
             borderRadius: '10px', border: '1px solid #f59e0b'
           }}>
             <strong style={{ color: '#92400e' }}>💡 핵심 요약</strong>
@@ -122,6 +122,15 @@ function FloatStudy() {
         <p className="section-description">
           Float된 요소는 일반 흐름에서 벗어나 떠 있게 되고, 주변 콘텐츠가 그것을 감쌉니다.
         </p>
+
+        <div className="info-box" style={{ background: '#fef3c7', borderLeft: '4px solid #f59e0b', marginTop: '1rem', marginBottom: '1rem' }}>
+          <p style={{ margin: 0, lineHeight: '1.8' }}>
+            <strong>⚡ 핵심 문제:</strong> Float된 요소는 <strong>부모의 높이에 포함되지 않습니다!</strong><br />
+            → Float를 사용하면 부모가 자식을 "없는 것"처럼 취급하여 높이가 0이 됩니다<br />
+            → 해결책: <code>Clearfix</code> (부모::after에 clear: both) 또는 <code>overflow: hidden</code> 사용 필수<br />
+            → 더 나은 방법: Flexbox/Grid 사용하면 이 문제 자체가 발생하지 않음!
+          </p>
+        </div>
 
         <CssPropertyControls
           properties={[
@@ -193,10 +202,10 @@ function FloatStudy() {
           <p>
             Float 요소 다음에 오는 요소가 Float의 영향을 받지 않고 <strong>아래에 위치</strong>하도록 합니다.
           </p>
-          
-          <div style={{ 
-            marginTop: '1.5rem', padding: '1.2rem', background: '#f0f9ff', 
-            borderRadius: '10px', border: '1px solid #0ea5e9' 
+
+          <div style={{
+            marginTop: '1.5rem', padding: '1.2rem', background: '#f0f9ff',
+            borderRadius: '10px', border: '1px solid #0ea5e9'
           }}>
             <h4 style={{ marginTop: 0, color: '#0c4a6e' }}>🎯 실무에서 언제 사용하나요?</h4>
             <ul style={{ marginBottom: 0, color: '#075985', lineHeight: '1.8', fontSize: '0.95rem' }}>
@@ -362,9 +371,9 @@ function FloatStudy() {
       {/* 섹션 4: 부모 요소의 높이 붕괴 방지 기법 (Clearfix) */}
       <CollapsibleSection title="Clearfix - 부모 높이 문제 해결">
         <div className="section-description">
-          <div style={{ 
-            padding: '1.5rem', background: '#fff7ed', borderRadius: '12px', 
-            border: '1px solid #fb923c', marginBottom: '1.5rem' 
+          <div style={{
+            padding: '1.5rem', background: '#fff7ed', borderRadius: '12px',
+            border: '1px solid #fb923c', marginBottom: '1.5rem'
           }}>
             <h4 style={{ marginTop: 0, color: '#9a3412' }}>🤔 Clearfix가 필요한 이유</h4>
             <p style={{ marginBottom: '1rem', color: '#c2410c', lineHeight: '1.7' }}>
@@ -384,9 +393,9 @@ function FloatStudy() {
             </ul>
           </div>
 
-          <div style={{ 
-            padding: '1.5rem', background: '#f0f9ff', borderRadius: '12px', 
-            border: '1px solid #0ea5e9', marginBottom: '1.5rem' 
+          <div style={{
+            padding: '1.5rem', background: '#f0f9ff', borderRadius: '12px',
+            border: '1px solid #0ea5e9', marginBottom: '1.5rem'
           }}>
             <h4 style={{ marginTop: 0, color: '#0c4a6e' }}>🔧 Clearfix 작동 원리</h4>
             <p style={{ marginBottom: '0.5rem', color: '#075985', fontWeight: 'bold' }}>
@@ -411,9 +420,9 @@ function FloatStudy() {
             </ol>
           </div>
 
-          <div style={{ 
-            padding: '1.2rem', background: '#fef3c7', borderRadius: '10px', 
-            border: '1px solid #f59e0b' 
+          <div style={{
+            padding: '1.2rem', background: '#fef3c7', borderRadius: '10px',
+            border: '1px solid #f59e0b'
           }}>
             <strong style={{ color: '#92400e' }}>💡 간단 요약</strong>
             <p style={{ marginTop: '0.5rem', marginBottom: 0, color: '#78350f', lineHeight: '1.7' }}>

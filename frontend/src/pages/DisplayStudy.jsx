@@ -157,6 +157,343 @@ function DisplayStudy() {
         />
       </CollapsibleSection>
 
+      {/* 실전 예제: Inline 요소 언제 쓸까? */}
+      <CollapsibleSection title="Inline 요소 언제 쓸까? (실사용 예제)">
+        <p className="section-description">
+          Inline 요소는 텍스트 흐름 안에서 스타일을 적용할 때 사용합니다. 실제로 자주 사용하는 패턴들을 확인해보세요.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="inline-use-cases"
+          previewHeight="400px"
+          codeHeight="500px"
+          initialCss={`.text-content {
+  max-width: 700px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #1e293b;
+}
+
+/* 1. 텍스트 강조 (가장 흔한 용도) */
+.highlight {
+  display: inline;
+  background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.code-inline {
+  display: inline;
+  background: #f1f5f9;
+  color: #e11d48;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', monospace;
+  font-size: 0.9em;
+}
+
+/* 2. 링크와 아이콘 */
+.link-with-icon {
+  display: inline;
+  color: #3b82f6;
+  text-decoration: none;
+  border-bottom: 1px solid #93c5fd;
+  transition: all 0.2s;
+}
+
+.link-with-icon:hover {
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
+}
+
+.icon {
+  display: inline;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+/* 3. 배지 (Badge) - inline-block 사용 */
+.badge {
+  display: inline-block; /* width/height 조절 위해 inline-block */
+  background: #10b981;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.badge.new {
+  background: #ef4444;
+}
+
+/* 4. 작은 아이콘 이미지 */
+.emoji-icon {
+  display: inline;
+  width: 20px;
+  height: 20px;
+  vertical-align: text-bottom;
+  margin: 0 2px;
+}
+
+/* 5. 폼 라벨 안의 필수 표시 */
+.required {
+  display: inline;
+  color: #ef4444;
+  margin-left: 2px;
+}
+`}
+          initialHtml={`<div class="text-content">
+  <h3 style="margin-top: 0;">📝 텍스트 강조 예제</h3>
+  <p>
+    CSS에서 <span class="highlight">inline 요소</span>는 
+    <span class="code-inline">display: inline</span> 속성을 가진 요소로, 
+    텍스트 흐름을 깨지 않고 스타일을 적용할 수 있습니다.
+  </p>
+
+  <h3>🔗 링크와 아이콘</h3>
+  <p>
+    더 알아보려면 
+    <a href="#" class="link-with-icon">
+      문서를 확인하세요
+      <span class="icon">🔗</span>
+    </a>
+  </p>
+
+  <h3>🏷️ 배지 활용</h3>
+  <p>
+    새로운 기능<span class="badge new">NEW</span>이 추가되었습니다. 
+    프리미엄 플랜<span class="badge">PRO</span>에서 사용 가능합니다.
+  </p>
+
+  <h3>😀 이모지 아이콘</h3>
+  <p>
+    사용자 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234ade80'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E" class="emoji-icon" alt="user"> 홍길동님이 
+    댓글 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2360a5fa'%3E%3Cpath d='M2 4a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2h-4l-4 4-4-4H4a2 2 0 01-2-2V4z'/%3E%3C/svg%3E" class="emoji-icon" alt="comment"> 3개를 남겼습니다.
+  </p>
+
+  <h3>📋 폼 라벨</h3>
+  <p style="margin: 0;">
+    <label style="font-weight: 600;">
+      이름<span class="required">*</span>
+    </label>
+  </p>
+</div>
+
+<div style="margin-top: 1.5rem; background: #dbeafe; color: #1e3a8a; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+  <strong>💡 핵심 포인트:</strong><br/>
+  • <strong>텍스트와 함께</strong> 사용할 때 inline<br/>
+  • <strong>크기 조절이 필요하면</strong> inline-block (배지, 버튼 등)<br/>
+  • <strong>전체 줄을 차지해야 하면</strong> block
+</div>`}
+        />
+      </CollapsibleSection>
+
+      {/* 의사결정 가이드: Inline vs Inline-Block vs Block */}
+      <CollapsibleSection title="선택 가이드: Inline vs Inline-Block vs Block">
+        <p className="section-description">
+          어떤 display 값을 선택해야 할지 고민될 때 이 가이드를 참고하세요.
+        </p>
+
+        <LiveCodeEditor
+          scopeId="display-decision-guide"
+          previewHeight="450px"
+          codeHeight="550px"
+          initialCss={`.decision-container {
+  max-width: 800px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  color: #1e293b;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.display-card {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.display-card h4 {
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+
+.display-card.inline {
+  border-color: #f59e0b;
+  background: #fef3c7;
+}
+
+.display-card.inline-block {
+  border-color: #8b5cf6;
+  background: #ede9fe;
+}
+
+.display-card.block {
+  border-color: #10b981;
+  background: #d1fae5;
+}
+
+.feature-list {
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.feature-list li {
+  margin-bottom: 0.5rem;
+}
+
+.checkmark {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.xmark {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* 실제 예제 섹션 */
+.example-section {
+  background: #f1f5f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.example-section h4 {
+  margin-top: 0;
+  color: #1e293b;
+}
+
+/* 예제 요소들 */
+.demo-inline {
+  display: inline;
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  padding: 4px 8px;
+  margin: 4px;
+}
+
+.demo-inline-block {
+  display: inline-block;
+  background: #ede9fe;
+  border: 2px solid #8b5cf6;
+  padding: 8px 16px;
+  margin: 4px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+}
+
+.demo-block {
+  display: block;
+  background: #d1fae5;
+  border: 2px solid #10b981;
+  padding: 8px 16px;
+  margin: 8px 0;
+  width: 200px;
+  text-align: center;
+}
+`}
+          initialHtml={`<div class="decision-container">
+  <h3 style="margin-top: 0; text-align: center;">🤔 어떤 Display를 선택할까?</h3>
+  
+  <div class="comparison-grid">
+    <div class="display-card inline">
+      <h4>Inline</h4>
+      <ul class="feature-list">
+        <li><span class="checkmark">✓</span> 텍스트 흐름 유지</li>
+        <li><span class="xmark">✗</span> width/height 무시</li>
+        <li><span class="xmark">✗</span> 상하 margin 무시</li>
+        <li><span class="checkmark">✓</span> 좌우 margin OK</li>
+      </ul>
+      <p style="font-size: 0.8rem; color: #92400e; margin-top: 1rem; font-weight: 600;">
+        📍 사용: 텍스트 강조, 링크
+      </p>
+    </div>
+
+    <div class="display-card inline-block">
+      <h4>Inline-Block</h4>
+      <ul class="feature-list">
+        <li><span class="checkmark">✓</span> 한 줄에 배치</li>
+        <li><span class="checkmark">✓</span> width/height 적용</li>
+        <li><span class="checkmark">✓</span> 모든 margin 적용</li>
+        <li><span class="checkmark">✓</span> 모든 padding 적용</li>
+      </ul>
+      <p style="font-size: 0.8rem; color: #5b21b6; margin-top: 1rem; font-weight: 600;">
+        📍 사용: 버튼, 배지, 카드
+      </p>
+    </div>
+
+    <div class="display-card block">
+      <h4>Block</h4>
+      <ul class="feature-list">
+        <li><span class="checkmark">✓</span> 전체 너비 차지</li>
+        <li><span class="checkmark">✓</span> 새 줄에서 시작</li>
+        <li><span class="checkmark">✓</span> 모든 박스 모델 적용</li>
+        <li><span class="checkmark">✓</span> 레이아웃 컨테이너</li>
+      </ul>
+      <p style="font-size: 0.8rem; color: #065f46; margin-top: 1rem; font-weight: 600;">
+        📍 사용: 섹션, 컨테이너
+      </p>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h4>👀 시각적 비교</h4>
+    <p style="margin: 0.5rem 0; font-size: 0.9rem; color: #64748b;">
+      동일한 스타일을 적용했을 때의 차이:
+    </p>
+    
+    <div style="border: 2px dashed #cbd5e1; padding: 1rem; background: white; border-radius: 6px;">
+      <span class="demo-inline">inline</span>
+      <span class="demo-inline">inline</span>
+      <span class="demo-inline">width/height 무시됨</span>
+      
+      <div style="margin: 1rem 0; border-top: 1px solid #e2e8f0;"></div>
+      
+      <div class="demo-inline-block">inline-block</div>
+      <div class="demo-inline-block">크기 적용</div>
+      
+      <div style="margin: 1rem 0; border-top: 1px solid #e2e8f0;"></div>
+      
+      <div class="demo-block">block</div>
+      <div class="demo-block">전체 줄 차지</div>
+    </div>
+  </div>
+
+  <div style="background: #fef3c7; padding: 1rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #f59e0b;">
+    <strong style="color: #92400e;">🎯 빠른 선택 팁:</strong>
+    <ul style="margin: 0.5rem 0 0 0; color: #92400e; font-size: 0.9rem;">
+      <li>문장 안에 들어갈 거면 → <strong>inline</strong></li>
+      <li>한 줄에 여러 개 + 크기 조절 필요 → <strong>inline-block</strong></li>
+      <li>섹션/컨테이너/레이아웃 → <strong>block</strong></li>
+    </ul>
+  </div>
+</div>`}
+        />
+      </CollapsibleSection>
+
       {/* 실습 섹션: 요소 숨기기 방식 비교 (차지하는 공간 중심) */}
       <CollapsibleSection title="Display: None vs Visibility: Hidden">
         <p className="section-description">
@@ -235,7 +572,7 @@ function DisplayStudy() {
         </p>
         <LiveCodeEditor
           scopeId="hiding-methods-comparison"
-          previewHeight="300px"
+          previewHeight="400px"
           codeHeight="450px"
           initialCss={`.grid-hiding {
   display: grid;
@@ -313,8 +650,8 @@ function DisplayStudy() {
 
         <LiveCodeEditor
           scopeId="display-contents-practical"
-          previewHeight="300px"
-          codeHeight="400px"
+          previewHeight="400px"
+          codeHeight="450px"
           initialCss={`.grid-form {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -327,6 +664,11 @@ function DisplayStudy() {
 }
 
 /* 이 래퍼들이 display: contents가 없으면 그리드 1:1 대응이 깨집니다 */
+/* 
+  이유: Grid는 직계 자식만 grid item으로 인식합니다.
+  - display: contents 없이: .field-group이 grid item이 되어 1개 셀만 차지 → 2열 구조 깨짐
+  - display: contents 사용: .field-group은 무시되고, .label과 .input-container가 직접 grid item이 됨 → 2열 구조 유지
+*/
 .field-group {
   display: contents; /* 이 줄을 주석처리하면 레이아웃이 깨집니다 */
 }

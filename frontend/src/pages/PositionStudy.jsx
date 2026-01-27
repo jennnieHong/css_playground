@@ -42,10 +42,42 @@ function PositionStudy() {
 
       {/* 실습 섹션: 부모-자식 관계 (Relative & Absolute 패턴) */}
       <CollapsibleSection title="Parent-Child 관계 (Relative vs Absolute)">
-        <p className="section-description">
-          가장 많이 사용하는 패턴입니다. 부모에게 <code>relative</code>를 주고, 자식에게 <code>absolute</code>를 주면
-          자식은 <strong>부모 안에서</strong> 자유롭게 위치를 잡을 수 있습니다.
-        </p>
+        <div className="section-description">
+          <p>
+            가장 많이 사용하는 패턴입니다. 부모에게 <code>relative</code>를 주고, 자식에게 <code>absolute</code>를 주면
+            자식은 <strong>부모 안에서</strong> 자유롭게 위치를 잡을 수 있습니다.
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#f0f9ff', borderRadius: '10px', border: '1px solid #0ea5e9' }}>
+            <h4 style={{ marginTop: 0, color: '#0c4a6e' }}>📍 실무에서 이 패턴을 언제 쓰나요?</h4>
+            <ul style={{ marginBottom: 0, color: '#075985', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <li>
+                <strong>뱃지/라벨</strong> - 상품 카드 우측 상단에 "SALE", "NEW" 표시<br />
+                <small style={{ color: '#0284c7' }}>예: 쇼핑몰 상품 썸네일에 할인율 표시</small>
+              </li>
+              <li>
+                <strong>닫기 버튼</strong> - 모달이나 팝업 우측 상단 X 버튼<br />
+                <small style={{ color: '#0284c7' }}>예: 이미지 갤러리, 알림 메시지</small>
+              </li>
+              <li>
+                <strong>툴팁</strong> - 버튼/아이콘 위에 떠있는 설명<br />
+                <small style={{ color: '#0284c7' }}>예: 아이콘에 마우스 오버 시 "저장하기" 텍스트 표시</small>
+              </li>
+              <li>
+                <strong>오버레이 콘텐츠</strong> - 이미지 위에 텍스트나 버튼 배치<br />
+                <small style={{ color: '#0284c7' }}>예: 카드 호버 시 "자세히 보기" 버튼</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="info-box" style={{ background: '#fef3c7', borderLeft: '4px solid #f59e0b', marginTop: '1rem', marginBottom: '1rem' }}>
+          <p style={{ margin: 0, lineHeight: '1.8' }}>
+            <strong>⚡ 핵심 조건:</strong> <code>position: absolute</code>는 가장 가까운 <strong>positioned 조상</strong>(static이 아닌)을 기준으로 배치됩니다!<br />
+            → 부모에 <code>position: relative</code>가 없으면 계속 위로 올라가 <code>body</code>까지 갑니다<br />
+            → 의도한 부모를 기준으로 하려면 반드시 부모에 <code>position: relative</code> (또는 absolute, fixed) 설정 필수
+          </p>
+        </div>
 
         <LiveCodeEditor
           scopeId="pos-parent-child"
@@ -88,7 +120,7 @@ function PositionStudy() {
             <code>inset</code>은 <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>를 한 줄로 선언할 수 있는 현대적인 단축 속성입니다.
             단순히 코드가 짧아지는 것에 그치지 않고, <strong>"부모 영역을 정확히 덮는 자식"</strong>을 만들 때 표준처럼 사용됩니다.
           </p>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
             <div style={{ background: '#f8fafc', padding: '1.2rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
               <h4 style={{ marginTop: 0, color: '#0f172a', fontSize: '1rem' }}>🎯 주요 활용 사례</h4>
@@ -161,11 +193,31 @@ function PositionStudy() {
 
       {/* 실습 섹션: Fixed Position (화면 고정) */}
       <CollapsibleSection title="Fixed Position (고정 위치)">
-        <p className="section-description">
-          스크롤을 해도 화면의 특정 위치에 고정되어 있는 요소입니다. (예: 네비게이션 바, '맨 위로' 버튼, 모달 등)
-          <br />
-          아래 예제에서 <strong>Position</strong>을 <code>fixed</code>로 바꾸고 화면을 스크롤해보세요!
-        </p>
+        <div className="section-description">
+          <p>
+            스크롤을 해도 화면의 특정 위치에 고정되어 있는 요소입니다. (예: 네비게이션 바, '맨 위로' 버튼, 모달 등)
+            <br />
+            아래 예제에서 <strong>Position</strong>을 <code>fixed</code>로 바꾸고 화면을 스크롤해보세요!
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#ecfdf5', borderRadius: '10px', border: '1px solid #10b981' }}>
+            <h4 style={{ marginTop: 0, color: '#065f46' }}>💡 Fixed vs Absolute 차이점</h4>
+            <div style={{ color: '#047857', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <strong style={{ display: 'block', marginBottom: '0.5rem' }}>absolute:</strong>
+              • 가장 가까운 positioned 부모를 기준으로 배치<br />
+              • 부모와 함께 스크롤됨<br />
+              • 부모 영역 안에서만 움직임<br /><br />
+
+              <strong style={{ display: 'block', marginBottom: '0.5rem' }}>fixed:</strong>
+              • 항상 뷰포트(브라우저 창)를 기준으로 배치<br />
+              • 스크롤해도 화면의 같은 위치에 고정<br />
+              • 부모와 무관하게 항상 보임<br />
+            </div>
+            <p style={{ marginTop: '1rem', marginBottom: 0, color: '#059669', fontSize: '0.9rem' }}>
+              <strong>실무 팁:</strong> Fixed는 헤더, 채팅 버튼, 쿠키 동의 배너처럼 "항상 보여야 하는" 요소에 사용합니다.
+            </p>
+          </div>
+        </div>
 
         <CssPropertyControls
           properties={[
@@ -258,6 +310,20 @@ function PositionStudy() {
           <p>
             <code>fixed</code>는 팝업창(모달) 뒤에 깔리는 <strong>어두운 배경(Overlay)</strong>을 만들 때 필수적입니다.
           </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#ecfdf5', borderRadius: '10px', border: '1px solid #10b981' }}>
+            <h4 style={{ marginTop: 0, color: '#065f46' }}>🎨 모달의 구조 이해하기</h4>
+            <div style={{ color: '#047857', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <strong>1층 (Overlay):</strong> 전체 화면을 덮는 반투명 검은 배경<br />
+              → <code>position: fixed</code> + <code>inset: 0</code> + <code>z-index: 100</code><br />
+              → 클릭하면 모달 닫기 (배경 클릭 감지)<br /><br />
+
+              <strong>2층 (Modal Content):</strong> 실제 팝업 내용<br />
+              → Overlay 위에 <code>z-index</code>로 쌓임<br />
+              → 중앙 정렬은 Overlay에 <code>display: flex</code> 사용
+            </div>
+          </div>
+
           <div className="info-box" style={{ marginTop: '1rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
             <strong>💡 Pro의 팁 (inset: 0):</strong><br />
             과거에는 <code>top: 0; left: 0; width: 100%; height: 100%</code>를 썼지만,<br />
@@ -327,9 +393,24 @@ function PositionStudy() {
 
       {/* 실무 응용 섹션: 플로팅 버튼 (Fixed 활용) */}
       <CollapsibleSection title="실전 예제: Floating Action Button (FAB)">
-        <p className="section-description">
-          화면 우측 하단에 항상 떠 있는 <strong>채팅 버튼</strong>이나 <strong>맨 위로 가기</strong> 버튼도 <code>fixed</code>를 사용합니다.
-        </p>
+        <div className="section-description">
+          <p>
+            화면 우측 하단에 항상 떠 있는 <strong>채팅 버튼</strong>이나 <strong>맨 위로 가기</strong> 버튼도 <code>fixed</code>를 사용합니다.
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#fef3c7', borderRadius: '10px', border: '1px solid #f59e0b' }}>
+            <h4 style={{ marginTop: 0, color: '#92400e' }}>📍 FAB 배치 공식</h4>
+            <div style={{ color: '#78350f', lineHeight: '1.8', fontSize: '0.95rem', fontFamily: 'monospace' }}>
+              position: fixed;<br />
+              bottom: 2rem;  <small style={{ fontFamily: 'sans-serif', color: '#a16207' }}>← 하단에서 얼마나 띄울지</small><br />
+              right: 2rem;   <small style={{ fontFamily: 'sans-serif', color: '#a16207' }}>← 우측에서 얼마나 띄울지</small><br />
+              z-index: 50;   <small style={{ fontFamily: 'sans-serif', color: '#a16207' }}>← 다른 요소 위에 표시</small>
+            </div>
+            <p style={{ marginTop: '1rem', marginBottom: 0, color: '#92400e', fontSize: '0.9rem' }}>
+              <strong>실전 팁:</strong> 모바일에서는 <code>bottom: 20px</code> 정도로 조금만 띄워서 엄지손가락이 닿기 쉽게 만듭니다!
+            </p>
+          </div>
+        </div>
         <LiveCodeEditor
           scopeId="pos-fab"
           previewHeight="300px"
@@ -339,6 +420,7 @@ function PositionStudy() {
   padding: 20px;
   background-color: #f8f9fa;
   position: relative;
+  color: #3b82f6;
 }
 
 .fab {
@@ -390,6 +472,24 @@ function PositionStudy() {
             하지만 <strong>예외</strong>가 있습니다! 부모 요소에 <code>transform</code>, <code>perspective</code>, <code>filter</code> 속성이 하나라도 적용되면,
             <strong>그 부모가 새로운 기준점(Containing Block)</strong>이 되어버립니다.
           </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#fff7ed', borderRadius: '10px', border: '1px solid #fed7aa' }}>
+            <h4 style={{ marginTop: 0, color: '#9a3412' }}>⚠️ 왜 이런 함정이 생겼을까?</h4>
+            <p style={{ color: '#c2410c', lineHeight: '1.7', marginBottom: '1rem' }}>
+              <code>transform</code>, <code>filter</code> 같은 속성들은 <strong>새로운 레이어(Stacking Context)</strong>를 만들어냅니다.
+              이 레이어 안에서는 fixed 요소도 "독립된 세계"에 갇히게 되어 전체 화면이 아닌 부모 기준으로 동작합니다.
+            </p>
+            <ul style={{ marginBottom: 0, color: '#c2410c', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <li>
+                <strong>문제 상황:</strong> 애니메이션으로 <code>transform</code>을 쓰는 부모 안에 fixed 모달이 있으면 전체 화면을 덮지 못함<br />
+                <small style={{ color: '#ea580c' }}>→ 모달이 부모 박스 안에만 갇혀버림</small>
+              </li>
+              <li>
+                <strong>해결 방법:</strong> Fixed 요소는 부모 바깥(예: body 직계 자식)으로 빼거나, 부모의 transform을 제거<br />
+                <small style={{ color: '#ea580c' }}>→ React Portal을 쓰면 DOM 구조를 벗어날 수 있음</small>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <CssPropertyControls
@@ -480,11 +580,38 @@ function PositionStudy() {
 
       {/* 실습 섹션: Sticky Position (하이브리드 배치) */}
       <CollapsibleSection title="Sticky Position">
-        <p className="section-description">
-          <code>sticky</code>는 스크롤 위치에 따라 <code>relative</code>와 <code>fixed</code>의 특성을 오가는 하이브리드 포지션입니다.<br />
-          <strong>임계점(예: top: 0)</strong>에 도달하기 전까지는 일반 요소처럼 동작하다가, 도달하면 화면에 고정됩니다.
-          부모 컨테이너(여기서는 에디터 프리뷰 영역) 안에서만 고정된다는 점이 <code>fixed</code>와 다릅니다.
-        </p>
+        <div className="section-description">
+          <p>
+            <code>sticky</code>는 스크롤 위치에 따라 <code>relative</code>와 <code>fixed</code>의 특성을 오가는 하이브리드 포지션입니다.<br />
+            <strong>임계점(예: top: 0)</strong>에 도달하기 전까지는 일반 요소처럼 동작하다가, 도달하면 화면에 고정됩니다.
+            부모 컨테이너(여기서는 에디터 프리뷰 영역) 안에서만 고정된다는 점이 <code>fixed</code>와 다릅니다.
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#f0f9ff', borderRadius: '10px', border: '1px solid #0ea5e9' }}>
+            <h4 style={{ marginTop: 0, color: '#0c4a6e' }}>🎯 Sticky의 실무 활용</h4>
+            <ul style={{ marginBottom: 0, color: '#075985', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <li>
+                <strong>테이블 헤더</strong> - 긴 데이터 테이블에서 컬럼 이름이 항상 보이도록<br />
+                <small style={{ color: '#0284c7' }}>예: 엑셀처럼 스크롤해도 헤더가 상단에 고정</small>
+              </li>
+              <li>
+                <strong>섹션 제목</strong> - 뉴스/블로그에서 현재 읽는 섹션 표시<br />
+                <small style={{ color: '#0284c7' }}>예: 스크롤하면서 "1장 서론", "2장 본론" 제목이 상단에 붙음</small>
+              </li>
+              <li>
+                <strong>사이드바 네비게이션</strong> - 스크롤해도 메뉴가 사라지지 않도록<br />
+                <small style={{ color: '#0284c7' }}>예: 문서 사이트의 좌측 메뉴</small>
+              </li>
+              <li>
+                <strong>버튼 그룹</strong> - 특정 영역에서만 고정되는 액션 버튼<br />
+                <small style={{ color: '#0284c7' }}>예: 게시글 하단의 "좋아요", "공유" 버튼</small>
+              </li>
+            </ul>
+            <p style={{ marginTop: '1rem', marginBottom: 0, color: '#0c4a6e', fontSize: '0.9rem' }}>
+              <strong>💡 핵심 차이:</strong> Fixed는 부모를 벗어나지만, Sticky는 <strong>부모 영역 안에서만</strong> 고정됩니다!
+            </p>
+          </div>
+        </div>
 
         <LiveCodeEditor
           scopeId="pos-sticky"
@@ -651,9 +778,32 @@ function PositionStudy() {
 
       {/* 실무 응용 섹션: 툴팁 및 드롭다운 (Absolute 활용) */}
       <CollapsibleSection title="Tooltip & Dropdown 예제">
-        <p className="section-description">
-          <code>position: absolute</code>를 활용한 툴팁과 드롭다운 메뉴 구현입니다. 부모에 <code>position: relative</code>가 필요합니다.
-        </p>
+        <div className="section-description">
+          <p>
+            <code>position: absolute</code>를 활용한 툴팁과 드롭다운 메뉴 구현입니다. 부모에 <code>position: relative</code>가 필요합니다.
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#f0f9ff', borderRadius: '10px', border: '1px solid #0ea5e9' }}>
+            <h4 style={{ marginTop: 0, color: '#0c4a6e' }}>🎯 툴팁/드롭다운의 핵심 공식</h4>
+            <div style={{ color: '#075985', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <strong>1. 부모 설정:</strong><br />
+              → <code>position: relative</code> (기준점 역할)<br />
+              → <code>display: inline-block</code> 또는 적절한 크기 설정<br /><br />
+
+              <strong>2. 툴팁/드롭다운 배치:</strong><br />
+              → <code>position: absolute</code><br />
+              → 위치: <code>top: calc(100% + 8px)</code> (부모 바로 아래)<br />
+              → 또는: <code>bottom: calc(100% + 8px)</code> (부모 바로 위)<br /><br />
+
+              <strong>3. 보이기/숨기기:</strong><br />
+              → <code>opacity: 0</code> + <code>visibility: hidden</code> (숨김)<br />
+              → <code>:hover</code> 시 → <code>opacity: 1</code> + <code>visibility: visible</code>
+            </div>
+            <p style={{ marginTop: '1rem', marginBottom: 0, color: '#0c4a6e', fontSize: '0.9rem' }}>
+              <strong>💡 왜 opacity와 visibility 둘 다?</strong> visibility만 쓰면 애니메이션이 안 되고, opacity만 쓰면 투명해도 클릭이 됩니다!
+            </p>
+          </div>
+        </div>
         <LiveCodeEditor
           scopeId="pos-tooltip"
           previewHeight="300px"
@@ -784,9 +934,26 @@ function PositionStudy() {
 
       {/* 실무 응용 섹션: 알림 뱃지 (Absolute 활용) */}
       <CollapsibleSection title="Badge & Notification 예제">
-        <p className="section-description">
-          아이콘 우측 상단에 붙는 알림 뱃지 구현입니다. 부모-자식 position 패턴을 활용합니다.
-        </p>
+        <div className="section-description">
+          <p>
+            아이콘 우측 상단에 붙는 알림 뱃지 구현입니다. 부모-자식 position 패턴을 활용합니다.
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.2rem', background: '#fef2f2', borderRadius: '10px', border: '1px solid #fca5a5' }}>
+            <h4 style={{ marginTop: 0, color: '#991b1b' }}>🔔 뱃지 배치의 핵심</h4>
+            <div style={{ color: '#b91c1c', lineHeight: '1.8', fontSize: '0.95rem' }}>
+              <strong>뱃지 위치 공식:</strong><br />
+              → <code>top: -8px</code> (부모 위로 삐져나가게)<br />
+              → <code>right: -8px</code> (부모 오른쪽으로 삐져나가게)<br />
+              → 음수 값을 써서 부모 밖으로 약간 튀어나오게 만드는 게 포인트!<br /><br />
+
+              <strong>실전 팁:</strong><br />
+              • 뱃지가 너무 길면(예: "99+") 원형 대신 둥근 사각형 사용<br />
+              • <code>min-width</code>로 최소 너비를 보장해서 "1" 같은 짧은 숫자도 예쁘게<br />
+              • <code>transform: scale()</code>로 호버 시 살짝 커지는 효과 추가
+            </div>
+          </div>
+        </div>
         <LiveCodeEditor
           scopeId="pos-badge"
           previewHeight="250px"

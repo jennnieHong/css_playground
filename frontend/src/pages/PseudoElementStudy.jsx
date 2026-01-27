@@ -35,7 +35,7 @@ function PseudoElementStudy() {
             <code>:root</code>는 <em>문서 전체의 규칙과 기준을 정의</em>하는 출발점입니다.
           </p>
 
-        </div>      
+        </div>
         <div style={{
           marginTop: '2rem',
           padding: '1.5rem',
@@ -131,198 +131,198 @@ function PseudoElementStudy() {
   한 번의 수정으로 카드 테두리, 배지, 버튼 색상이 동시에 바뀝니다!
 </div>`}
           />
-<div style={{
-  marginTop: '1.5rem',
-  padding: '1.2rem',
-  background: '#fff7ed',
-  borderRadius: '10px',
-  border: '1px solid #fed7aa',
-  fontSize: '0.9rem',
-  color: '#9a3412',
-  lineHeight: '1.6'
-}}>
-  <strong>📌 중요한 차이점</strong><br />
-  <code>:root</code>에 선언된 변수는 모든 컴포넌트가 공유하지만,<br />
-  특정 클래스 안에서 동일한 이름의 변수를 다시 선언하면
-  <strong>그 영역에서는 지역 변수처럼 동작</strong>합니다.
-  <br />
-  <strong>“:root는 최상위 스코프, 클래스는 그 아래 스코프”</strong>
-</div>
+          <div style={{
+            marginTop: '1.5rem',
+            padding: '1.2rem',
+            background: '#fff7ed',
+            borderRadius: '10px',
+            border: '1px solid #fed7aa',
+            fontSize: '0.9rem',
+            color: '#9a3412',
+            lineHeight: '1.6'
+          }}>
+            <strong>📌 중요한 차이점</strong><br />
+            <code>:root</code>에 선언된 변수는 모든 컴포넌트가 공유하지만,<br />
+            특정 클래스 안에서 동일한 이름의 변수를 다시 선언하면
+            <strong>그 영역에서는 지역 변수처럼 동작</strong>합니다.
+            <br />
+            <strong>“:root는 최상위 스코프, 클래스는 그 아래 스코프”</strong>
+          </div>
 
-<div style={{
-  marginTop: '2rem',
-  padding: '1.5rem',
-  background: '#ecfeff',
-  borderRadius: '12px',
-  border: '1px solid #67e8f9'
-}}>
-  <h5 style={{ marginTop: 0, color: '#155e75' }}>
-    실무에서 :root는 언제 쓰나요?
-  </h5>
+          <div style={{
+            marginTop: '2rem',
+            padding: '1.5rem',
+            background: '#ecfeff',
+            borderRadius: '12px',
+            border: '1px solid #67e8f9'
+          }}>
+            <h5 style={{ marginTop: 0, color: '#155e75' }}>
+              실무에서 :root는 언제 쓰나요?
+            </h5>
 
-  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#0e7490', lineHeight: '1.7' }}>
-    <li>디자인 토큰 (색상, 간격, 폰트 크기)</li>
-    <li>다크 모드 / 테마 전환</li>
-    <li>가상 요소와 공통 스타일 동기화</li>
-    <li>컴포넌트 간 디자인 일관성 유지</li>
-  </ul>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#0e7490', lineHeight: '1.7' }}>
+              <li>디자인 토큰 (색상, 간격, 폰트 크기)</li>
+              <li>다크 모드 / 테마 전환</li>
+              <li>가상 요소와 공통 스타일 동기화</li>
+              <li>컴포넌트 간 디자인 일관성 유지</li>
+            </ul>
 
-  <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#0c4a6e' }}>
-    <strong>핵심:</strong>  
-    가상 요소는 <em>어디에 그릴지</em>를 해결하고,<br />
-    <code>:root</code>는 <em>무엇을 기준으로 그릴지</em>를 해결합니다.
-  </p>
-</div>
-<p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#64748b' }}>
-  💡 <strong>정리:</strong><br />
-  <code>:root</code>는 CSS 변수의 “전역 기준점”이고,<br />
-  클래스 내부에서 다시 선언된 변수는 해당 영역에서 전역 값을 덮어쓰는
-  <strong>지역 설정</strong>처럼 동작합니다.
-</p>
+            <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#0c4a6e' }}>
+              <strong>핵심:</strong>
+              가상 요소는 <em>어디에 그릴지</em>를 해결하고,<br />
+              <code>:root</code>는 <em>무엇을 기준으로 그릴지</em>를 해결합니다.
+            </p>
+          </div>
+          <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#64748b' }}>
+            💡 <strong>정리:</strong><br />
+            <code>:root</code>는 CSS 변수의 “전역 기준점”이고,<br />
+            클래스 내부에서 다시 선언된 변수는 해당 영역에서 전역 값을 덮어쓰는
+            <strong>지역 설정</strong>처럼 동작합니다.
+          </p>
 
         </div>
       </CollapsibleSection>
-        
+
       <CollapsibleSection title=":root">
-{/* :root가 정확히 무엇인지 & html과의 관계 */}
-<div style={{
-  marginTop: '2rem',
-  padding: '1.5rem',
-  background: '#ffffff',
-  borderRadius: '12px',
-  border: '1px solid #e5e7eb'
-}}>
-  <h4 style={{ marginTop: 0, color: '#111827' }}>
-    🔍 :root는 정확히 무엇을 가리키나요?
-  </h4>
+        {/* :root가 정확히 무엇인지 & html과의 관계 */}
+        <div style={{
+          marginTop: '2rem',
+          padding: '1.5rem',
+          background: '#ffffff',
+          borderRadius: '12px',
+          border: '1px solid #e5e7eb'
+        }}>
+          <h4 style={{ marginTop: 0, color: '#111827' }}>
+            🔍 :root는 정확히 무엇을 가리키나요?
+          </h4>
 
-  <p style={{ color: '#374151', lineHeight: '1.7' }}>
-    <code>:root</code>는 <strong>문서 트리에서 가장 바깥(최상위)에 있는 요소</strong>를 가리키는
-    CSS 의사 클래스입니다.<br />
-    HTML 문서에서는 사실상 <code>&lt;html&gt;</code> 요소를 의미합니다.
-  </p>
+          <p style={{ color: '#374151', lineHeight: '1.7' }}>
+            <code>:root</code>는 <strong>문서 트리에서 가장 바깥(최상위)에 있는 요소</strong>를 가리키는
+            CSS 의사 클래스입니다.<br />
+            HTML 문서에서는 사실상 <code>&lt;html&gt;</code> 요소를 의미합니다.
+          </p>
 
-  <div style={{
-    marginTop: '1rem',
-    background: '#1f2937',
-    padding: '1rem',
-    borderRadius: '8px',
-    fontFamily: 'monospace',
-    color: '#9ca3af',
-    lineHeight: '1.6'
-  }}>
-    <div>:root {'{'}</div>
-    <div style={{ paddingLeft: '1.5rem' }}>font-size: 16px;</div>
-    <div>{'}'}</div>
-  </div>
+          <div style={{
+            marginTop: '1rem',
+            background: '#1f2937',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontFamily: 'monospace',
+            color: '#9ca3af',
+            lineHeight: '1.6'
+          }}>
+            <div>:root {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>font-size: 16px;</div>
+            <div>{'}'}</div>
+          </div>
 
-  <p style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: '#6b7280' }}>
-    ⬆️ 위 코드는 아래 코드와 <strong>동일한 의미</strong>입니다.
-  </p>
+          <p style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: '#6b7280' }}>
+            ⬆️ 위 코드는 아래 코드와 <strong>동일한 의미</strong>입니다.
+          </p>
 
-  <div style={{
-    marginTop: '0.5rem',
-    background: '#1f2937',
-    padding: '1rem',
-    borderRadius: '8px',
-    fontFamily: 'monospace',
-    color: '#9ca3af',
-    lineHeight: '1.6'
-  }}>
-    <div>html {'{'}</div>
-    <div style={{ paddingLeft: '1.5rem' }}>font-size: 16px;</div>
-    <div>{'}'}</div>
-  </div>
-</div>
-{/* 왜 html 대신 :root를 쓰는가 */}
-<div style={{
-  marginTop: '1.5rem',
-  padding: '1.5rem',
-  background: '#f9fafb',
-  borderRadius: '12px',
-  border: '1px solid #e5e7eb'
-}}>
-  <h4 style={{ marginTop: 0, color: '#111827' }}>
-    ❓ 그런데 왜 <code>html</code> 대신 <code>:root</code>를 쓰나요?
-  </h4>
+          <div style={{
+            marginTop: '0.5rem',
+            background: '#1f2937',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontFamily: 'monospace',
+            color: '#9ca3af',
+            lineHeight: '1.6'
+          }}>
+            <div>html {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>font-size: 16px;</div>
+            <div>{'}'}</div>
+          </div>
+        </div>
+        {/* 왜 html 대신 :root를 쓰는가 */}
+        <div style={{
+          marginTop: '1.5rem',
+          padding: '1.5rem',
+          background: '#f9fafb',
+          borderRadius: '12px',
+          border: '1px solid #e5e7eb'
+        }}>
+          <h4 style={{ marginTop: 0, color: '#111827' }}>
+            ❓ 그런데 왜 <code>html</code> 대신 <code>:root</code>를 쓰나요?
+          </h4>
 
-  <p style={{ color: '#374151', lineHeight: '1.7' }}>
-    가장 큰 이유는 <strong>CSS 변수(CSS Custom Properties)를 위한 표준적인 위치</strong>이기 때문입니다.
-  </p>
+          <p style={{ color: '#374151', lineHeight: '1.7' }}>
+            가장 큰 이유는 <strong>CSS 변수(CSS Custom Properties)를 위한 표준적인 위치</strong>이기 때문입니다.
+          </p>
 
-  <div style={{
-    marginTop: '1rem',
-    background: '#1f2937',
-    padding: '1rem',
-    borderRadius: '8px',
-    fontFamily: 'monospace',
-    color: '#9ca3af',
-    lineHeight: '1.6'
-  }}>
-    <div>:root {'{'}</div>
-    <div style={{ paddingLeft: '1.5rem' }}>--primary-color: #3b82f6;</div>
-    <div style={{ paddingLeft: '1.5rem' }}>--border-radius: 8px;</div>
-    <div>{'}'}</div>
-    <br />
-    <div>button {'{'}</div>
-    <div style={{ paddingLeft: '1.5rem' }}>
-      background-color: var(--primary-color);
-    </div>
-    <div style={{ paddingLeft: '1.5rem' }}>
-      border-radius: var(--border-radius);
-    </div>
-    <div>{'}'}</div>
-  </div>
+          <div style={{
+            marginTop: '1rem',
+            background: '#1f2937',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontFamily: 'monospace',
+            color: '#9ca3af',
+            lineHeight: '1.6'
+          }}>
+            <div>:root {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--primary-color: #3b82f6;</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--border-radius: 8px;</div>
+            <div>{'}'}</div>
+            <br />
+            <div>button {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>
+              background-color: var(--primary-color);
+            </div>
+            <div style={{ paddingLeft: '1.5rem' }}>
+              border-radius: var(--border-radius);
+            </div>
+            <div>{'}'}</div>
+          </div>
 
-  <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#6b7280' }}>
-    👉 실무에서는<br />
-    <strong><code>:root</code> = 전역 설정 공간</strong><br />
-    <strong><code>--변수</code> = 디자인 계약서</strong><br />
-    로 생각하는 경우가 대부분입니다.
-  </p>
-</div>
+          <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#6b7280' }}>
+            👉 실무에서는<br />
+            <strong><code>:root</code> = 전역 설정 공간</strong><br />
+            <strong><code>--변수</code> = 디자인 계약서</strong><br />
+            로 생각하는 경우가 대부분입니다.
+          </p>
+        </div>
 
-{/* html vs :root 차이 */}
-<div style={{
-  marginTop: '1.5rem',
-  padding: '1.5rem',
-  background: '#ecfeff',
-  borderRadius: '12px',
-  border: '1px solid #67e8f9'
-}}>
-  <h4 style={{ marginTop: 0, color: '#155e75' }}>
-    ⚠️ <code>html</code>과 <code>:root</code>의 중요한 차이
-  </h4>
+        {/* html vs :root 차이 */}
+        <div style={{
+          marginTop: '1.5rem',
+          padding: '1.5rem',
+          background: '#ecfeff',
+          borderRadius: '12px',
+          border: '1px solid #67e8f9'
+        }}>
+          <h4 style={{ marginTop: 0, color: '#155e75' }}>
+            ⚠️ <code>html</code>과 <code>:root</code>의 중요한 차이
+          </h4>
 
-  <div style={{
-    marginTop: '0.75rem',
-    background: '#0f172a',
-    padding: '1rem',
-    borderRadius: '8px',
-    fontFamily: 'monospace',
-    color: '#bae6fd',
-    lineHeight: '1.6'
-  }}>
-    <div>html {'{'}</div>
-    <div style={{ paddingLeft: '1.5rem' }}>--color: red;</div>
-    <div>{'}'}</div>
-    <br />
-    <div>:root {'{'}</div>
-    <div style={{ paddingLeft: '1.5rem' }}>--color: blue;</div>
-    <div>{'}'}</div>
-  </div>
+          <div style={{
+            marginTop: '0.75rem',
+            background: '#0f172a',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontFamily: 'monospace',
+            color: '#bae6fd',
+            lineHeight: '1.6'
+          }}>
+            <div>html {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--color: red;</div>
+            <div>{'}'}</div>
+            <br />
+            <div>:root {'{'}</div>
+            <div style={{ paddingLeft: '1.5rem' }}>--color: blue;</div>
+            <div>{'}'}</div>
+          </div>
 
-  <p style={{ marginTop: '1rem', color: '#0c4a6e', lineHeight: '1.6' }}>
-    이 경우 최종 값은 <strong>blue</strong>입니다.<br />
-    이유는 <code>:root</code>가 <strong>의사 클래스</strong>이기 때문에
-    <code>html</code> 태그 선택자보다 <strong>특이성(specificity)</strong>이 더 높기 때문입니다.
-  </p>
+          <p style={{ marginTop: '1rem', color: '#0c4a6e', lineHeight: '1.6' }}>
+            이 경우 최종 값은 <strong>blue</strong>입니다.<br />
+            이유는 <code>:root</code>가 <strong>의사 클래스</strong>이기 때문에
+            <code>html</code> 태그 선택자보다 <strong>특이성(specificity)</strong>이 더 높기 때문입니다.
+          </p>
 
-  <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#0c4a6e' }}>
-    👉 그래서 <strong>전역 CSS 변수는 관례적으로 <code>:root</code>에만 선언</strong>합니다.
-    이는 팀 개발에서 충돌을 줄이기 위한 사실상의 표준입니다.
-  </p>
-</div>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#0c4a6e' }}>
+            👉 그래서 <strong>전역 CSS 변수는 관례적으로 <code>:root</code>에만 선언</strong>합니다.
+            이는 팀 개발에서 충돌을 줄이기 위한 사실상의 표준입니다.
+          </p>
+        </div>
 
       </CollapsibleSection>
       {/* 기초 섹션: 멘탈 모델 (중요!) */}
@@ -385,6 +385,15 @@ function PseudoElementStudy() {
             <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: '#64748b', lineHeight: '1.6' }}>
               💡 <strong>핵심 포인트:</strong> <code>::before</code>와 <code>::after</code>는 마치 부모 요소 안에 첫 번째, 마지막 자식으로 <strong>새로운 태그를 하나씩 더 넣는 것</strong>과 똑같은 효과를 냅니다. 단지 HTML 소스에는 존재하지 않을 뿐이죠!
             </p>
+
+            <div className="info-box" style={{ background: '#fef3c7', borderLeft: '4px solid #f59e0b', marginTop: '1.5rem' }}>
+              <p style={{ margin: 0, lineHeight: '1.8' }}>
+                <strong>⚡ 핵심 조건:</strong> <code>::before</code>와 <code>::after</code>는 <strong><code>content</code> 속성이 필수</strong>입니다!<br />
+                → <code>content</code>가 없으면 가상 요소가 생성되지 않습니다 (아예 보이지 않음)<br />
+                → 빈 내용이라도 <code>content: "";</code>로 명시해야 합니다<br />
+                → <code>content: "텍스트"</code>, <code>content: attr(data-name)</code>, <code>content: ""</code> 모두 가능
+              </p>
+            </div>
           </div>
         </div>
       </CollapsibleSection>
@@ -402,7 +411,7 @@ function PseudoElementStudy() {
           scopeId="pseudo-hover-magic"
           previewHeight="400px"
           codeHeight="450px"
-          currentCss={`.magic-button {
+          initialCss={`.magic-button {
   position: relative;
   padding: 1rem 2.5rem;
   background: #1e293b;
@@ -461,7 +470,7 @@ function PseudoElementStudy() {
   width: 100%;
 }
 `}
-          currentHtml={`<div style="display: flex; flex-direction: column; align-items: center; padding: 2rem; background: white; border-radius: 12px;">
+          initialHtml={`<div style="display: flex; flex-direction: column; align-items: center; padding: 2rem; background: white; border-radius: 12px;">
   <button class="magic-button">Slide Hover Effect</button>
   
   <a href="#" class="fancy-link">Underline Animation</a>
@@ -474,6 +483,212 @@ function PseudoElementStudy() {
     2. 처음엔 <code>left: -100%</code>로 숨겨둡니다.<br/>
     3. <code>:hover</code> 상태일 때 <code>::before</code>의 위치를 <code>left: 0</code>으로 옮깁니다.
   </p>
+</div>`}
+        />
+
+        <h4 style={{ marginTop: '2rem', color: '#1e293b' }}>🎨 더 많은 호버 효과 샘플</h4>
+
+        <LiveCodeEditor
+          scopeId="pseudo-hover-samples"
+          previewHeight="500px"
+          codeHeight="550px"
+          initialCss={`/* 샘플 컨테이너 */
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+/* 1. 카드 호버 - 이미지 오버레이 */
+.image-card {
+  position: relative;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  cursor: pointer;
+}
+
+.image-card::after {
+  content: "VIEW";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-card:hover::after {
+  opacity: 1;
+}
+
+/* 2. 버튼 - 테두리 채우기 효과 */
+.border-fill-btn {
+  position: relative;
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.3s;
+  z-index: 1;
+}
+
+.border-fill-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #3b82f6;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.border-fill-btn:hover {
+  color: white;
+}
+
+.border-fill-btn:hover::before {
+  transform: scaleX(1);
+}
+
+/* 3. 아이콘 버튼 - 원형 물결 */
+.ripple-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #10b981;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ripple-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  transition: transform 0.4s ease;
+}
+
+.ripple-btn:hover::before {
+  transform: scale(1);
+}
+
+/* 4. 텍스트 - 양쪽에서 밑줄 */
+.center-underline {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.center-underline::before,
+.center-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: #f59e0b;
+  transition: width 0.3s ease;
+}
+
+.center-underline::before {
+  left: 50%;
+}
+
+.center-underline::after {
+  right: 50%;
+}
+
+.center-underline:hover::before,
+.center-underline:hover::after {
+  width: 50%;
+}
+
+/* 5. 메뉴 아이템 - 화살표 등장 */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: color 0.2s, padding-left 0.3s;
+}
+
+.menu-item::before {
+  content: "→";
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.menu-item:hover {
+  color: #3b82f6;
+  padding-left: 1.5rem;
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}`}
+          initialHtml={`<div class="samples-grid">
+  <!-- 1. 이미지 카드 오버레이 -->
+  <div class="image-card">
+    <div style="padding: 1rem; color: white;">
+      <div style="font-size: 2rem;">🖼️</div>
+      <p style="margin: 0.5rem 0 0; font-size: 0.9rem;">Image Card</p>
+    </div>
+  </div>
+
+  <!-- 2. 테두리 채우기 버튼 -->
+  <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: center;">
+    <button class="border-fill-btn">Hover Me</button>
+    <button class="ripple-btn">✨</button>
+  </div>
+
+  <!-- 3. 메뉴 아이템 -->
+  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+    <div class="menu-item">Dashboard</div>
+    <div class="menu-item">Settings</div>
+    <div class="menu-item">Profile</div>
+  </div>
+</div>
+
+<!-- 텍스트 효과 -->
+<div style="text-align: center; margin-top: 1.5rem;">
+  <a href="#" class="center-underline">Center Underline Effect</a>
+</div>
+
+<div style="margin-top: 1.5rem; padding: 1rem; background: #ecfdf5; border-radius: 8px; font-size: 0.9rem; color: #065f46;">
+  <strong>🎯 핵심 패턴:</strong> 모두 <code>::before</code> 또는 <code>::after</code>를 사용하여 JavaScript 없이 순수 CSS로 구현했습니다!
 </div>`}
         />
       </CollapsibleSection>
@@ -636,6 +851,304 @@ function PseudoElementStudy() {
   </ul>
 </div>`}
         />
+      </CollapsibleSection>
+
+      {/* 새 섹션: 레이아웃 흐름 이해 */}
+      <CollapsibleSection title="4.5 핵심 개념: ::after가 레이아웃에 영향을 준다는 것의 의미">
+        <div className="section-description">
+          <p>
+            <strong>"::after가 레이아웃에 영향을 준다"</strong>는 것은 무엇을 의미할까요?<br />
+            이것은 CSS의 <code>position</code> 속성과 <strong>레이아웃 흐름(Layout Flow)</strong>을 이해하는 핵심입니다.
+          </p>
+
+          <div style={{ marginTop: '1.5rem', padding: '1.5rem', background: '#fef3c7', borderRadius: '12px', border: '2px solid #f59e0b' }}>
+            <h4 style={{ marginTop: 0, color: '#92400e' }}>🎯 핵심 개념</h4>
+            <ul style={{ margin: '0.5rem 0 0', paddingLeft: '1.2rem', color: '#78350f', lineHeight: ' 1.8' }}>
+              <li><strong>레이아웃 흐름 안에 있다</strong> = 그 요소가 공간을 차지하고, 다른 요소의 위치에 영향을 줌</li>
+              <li><strong>레이아웃 흐름 밖에 있다</strong> = 그 요소가 공간을 차지하지 않고, 다른 요소가 무시함</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4 style={{ marginTop: '2rem', color: '#1e293b' }}>📊 시각적 비교: Normal Flow vs Absolute</h4>
+        
+        <LiveCodeEditor
+          scopeId="layout-flow-comparison"
+          previewHeight="600px"
+          codeHeight="650px"
+          initialCss={`/* 예제 1: Normal Flow (레이아웃에 영향 O) */
+.box-normal {
+  width: 200px;
+  padding: 1rem;
+  background: white;
+  border: 3px solid #3b82f6;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.box-normal .content {
+  padding: 1rem;
+  background: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  border-radius: 8px;
+}
+
+/* ::after가 FLEX 자식으로 존재 (레이아웃 흐름 안에) */
+.box-normal .content::after {
+  content: "✓";
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e40af;
+  margin-left: 0.5rem;
+}
+
+/* 예제 2: Absolute Positioning (레이아웃에 영향 X) */
+.box-absolute {
+  width: 200px;
+  padding: 1rem;
+  background: white;
+  border: 3px solid #10b981;
+  border-radius: 12px;
+}
+
+.box-absolute .content {
+  position: relative;  /* ::after의 기준점 */
+  padding: 1rem;
+  background: #d1fae5;
+  min-height: 60px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ::after가 절대 위치 (레이아웃 흐름 밖에) */
+.box-absolute .content::after {
+  content: "✓";
+  position: absolute;  /* 🔑 핵심! */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #065f46;
+}
+
+.demo-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.label {
+  text-align: center;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}`}
+          initialHtml={`<div class="demo-container">
+  <!-- Normal Flow 예제 -->
+  <div>
+    <div class="label">❌ Normal Flow (영향 있음)</div>
+    <div class="box-normal">
+      <div class="content">텍스트</div>
+    </div>
+  </div>
+
+  <!-- Absolute 예제 -->
+  <div>
+    <div class="label">✅ Absolute (영향 없음)</div>
+    <div class="box-absolute">
+      <div class="content">텍스트</div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 1.5rem; padding: 1.5rem; background: #fff; border-radius: 12px; border: 1px solid #e2e8f0;">
+  <h4 style="margin: 0 0 1rem 0; color: #1e293b;">🔍 차이점 관찰</h4>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 0.9rem;">
+    <div>
+      <strong style="color: #3b82f6;">왼쪽 (Normal Flow)</strong>
+      <ul style="margin: 0.5rem 0 0; padding-left: 1.2rem; line-height: 1.8; color: #475569;">
+        <li>::after가 <strong>flexbox의 자식</strong>이 됨</li>
+        <li>::after가 <strong>공간을 차지</strong>함</li>
+        <li>체크 표시가 생기면 <strong>높이가 늘어남</strong></li>
+      </ul>
+    </div>
+    <div>
+      <strong style="color: #10b981;">오른쪽 (Absolute)</strong>
+      <ul style="margin: 0.5rem 0 0; padding-left: 1.2rem; line-height: 1.8; color: #475569;">
+        <li>::after가 <strong>흐름에서 제거</strong>됨</li>
+        <li>::after가 <strong>공간을 안 차지</strong>함</li>
+        <li>체크 표시와 무관하게 <strong>높이 유지</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>`}
+        />
+
+        <h4 style={{ marginTop: '2rem', color: '#1e293b' }}>✅ 실전 예제: 커스텀 체크박스</h4>
+        <p className="section-description">
+          FormStudy에서 본 체크박스가 바로 이 원리를 활용한 것입니다!
+        </p>
+
+        <LiveCodeEditor
+          scopeId="checkbox-layout-demo"
+          previewHeight="500px"
+          codeHeight="550px"
+          initialCss={`/* ❌ 문제 있는 방식: Flex 중앙 정렬 */
+.checkbox-flex {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-flex .checkmark {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;          /* ::after가 flex 자식이 됨 */
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.checkbox-flex input {
+  position: absolute;
+  opacity: 0;
+}
+
+/* 체크 시 아이콘 생성 - 레이아웃에 영향! */
+.checkbox-flex input:checked ~ .checkmark::after {
+  content: "✓";
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.checkbox-flex input:checked ~ .checkmark {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* ✅ 올바른 방식: Absolute 중앙 정렬 */
+.checkbox-absolute {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkbox-absolute .checkmark {
+  position: relative; /* ::after의 기준점 */
+  width: 24px;
+  height: 24px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  flex-shrink: 0;     /* 크기 고정 */
+  transition: all 0.2s;
+}
+
+.checkbox-absolute input {
+  position: absolute;
+  opacity: 0;
+}
+
+/* 체크 시 아이콘 생성 - 레이아웃에 무영향! */
+.checkbox-absolute input:checked ~ .checkmark::after {
+  content: "✓";
+  position: absolute;  /* 🔑 핵심! */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.checkbox-absolute input:checked ~ .checkmark {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}`}
+          initialHtml={`<div style="padding: 2rem; background: white; border-radius: 12px;">
+  <h3 style="margin: 0 0 1.5rem 0; color: #1e293b;">❌ 문제: Flex로 중앙 정렬</h3>
+  
+  <label class="checkbox-flex">
+    <input type="checkbox" />
+    <span class="checkmark"></span>
+    <span>체크 안 함</span>
+  </label>
+  
+  <label class="checkbox-flex">
+    <input type="checkbox" checked />
+    <span class="checkmark"></span>
+    <span>체크함 (높이 차이 확인!)</span>
+  </label>
+
+  <div style="margin: 2rem 0 1.5rem; border-top: 2px dashed #e2e8f0; padding-top: 2rem;">
+    <h3 style="margin: 0 0 1.5rem 0; color: #1e293b;">✅ 해결: Absolute로 중앙 정렬</h3>
+  </div>
+
+  <label class="checkbox-absolute">
+    <input type="checkbox" />
+    <span class="checkmark"></span>
+    <span>체크 안 함</span>
+  </label>
+  
+  <label class="checkbox-absolute">
+    <input type="checkbox" checked />
+    <span class="checkmark"></span>
+    <span>체크함 (높이 동일!)</span>
+  </label>
+</div>
+
+<div style="margin-top: 1.5rem; padding: 1.5rem; background: #ecfdf5; border-radius: 12px; border: 1px solid #10b981;">
+  <h4 style="margin: 0 0 0.5rem 0; color: #065f46;">💡 왜 이렇게 하나요?</h4>
+  <p style="margin: 0; color: #047857; line-height: 1.8; font-size: 0.95rem;">
+    <strong>Flex 방식:</strong> ::after가 flexbox의 자식이 되어 공간을 차지 → 체크 시 높이 변화<br/>
+    <strong>Absolute 방식:</strong> ::after가 레이아웃 흐름에서 제거 → 체크 여부와 무관하게 높이 유지
+  </p>
+</div>`}
+        />
+
+        <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#1e293b', borderRadius: '12px', color: '#e2e8f0' }}>
+          <h4 style={{ marginTop: 0, color: '#fbbf24' }}>📝 정리</h4>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem', marginTop: '1rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid #475569' }}>
+                <th style={{ padding: '0.75rem', textAlign: 'left' }}>방식</th>
+                <th style={{ padding: '0.75rem', textAlign: 'left' }}>::after 상태</th>
+                <th style={{ padding: '0.75rem', textAlign: 'left' }}>레이아웃 영향</th>
+                <th style={{ padding: '0.75rem', textAlign: 'left' }}>사용 케이스</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderBottom: '1px solid #475569' }}>
+                <td style={{ padding: '0.75rem' }}><code>Normal Flow</code></td>
+                <td style={{ padding: '0.75rem' }}>흐름 안에 존재</td>
+                <td style={{ padding: '0.75rem', color: '#fca5a5' }}>공간 차지 ❌</td>
+                <td style={{ padding: '0.75rem' }}>텍스트 앞뒤 아이콘</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '0.75rem' }}><code>position: absolute</code></td>
+                <td style={{ padding: '0.75rem' }}>흐름에서 제거됨</td>
+                <td style={{ padding: '0.75rem', color: '#86efac' }}>무시됨 ✅</td>
+                <td style={{ padding: '0.75rem' }}>오버레이, 배지, 체크박스</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </CollapsibleSection>
 
       {/* 실습 섹션: ::selection (사용자 선택 영역 스타일링) */}

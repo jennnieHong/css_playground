@@ -47,39 +47,121 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
   // Apply CSS to the preview area
   useEffect(() => {
     if (styleRef.current) {
-      // Helper to extract at-rules (like @keyframes) that cannot be nested
+      // Helper to extract at-rules (like @keyframes, @layer) that cannot be nested
       const extractAtRules = (css) => {
-        if (!css) return { keyframes: '', other: '' };
-        let keyframes = '';
-        let other = '';
-        let remaining = css;
+        if (!css) return { atRules: '', other: '' };
+        let atRules = '';
+        let other = css;
+        
+        // Extract @keyframes
         const keyframeRegex = /@keyframes\s+[\w-]+\s*\{/g;
         let match;
+        let processedCss = '';
         let lastIndex = 0;
-
-        while ((match = keyframeRegex.exec(remaining)) !== null) {
-          other += remaining.substring(lastIndex, match.index);
+        let tempCss = css;
+        
+        while ((match = keyframeRegex.exec(tempCss)) !== null) {
+          processedCss += tempCss.substring(lastIndex, match.index);
           let braceCount = 1;
           let i = match.index + match[0].length;
-          while (i < remaining.length && braceCount > 0) {
-            if (remaining[i] === '{') braceCount++;
-            else if (remaining[i] === '}') braceCount--;
+          while (i < tempCss.length && braceCount > 0) {
+            if (tempCss[i] === '{') braceCount++;
+            else if (tempCss[i] === '}') braceCount--;
             i++;
           }
-          keyframes += remaining.substring(match.index, i) + '\n';
+          atRules += tempCss.substring(match.index, i) + '\n';
           lastIndex = i;
         }
-        other += remaining.substring(lastIndex);
-        return { keyframes, other };
+        processedCss += tempCss.substring(lastIndex);
+        other = processedCss;
+        
+        // Extract @layer order declaration (e.g., @layer base, theme, custom;)
+        const layerOrderRegex = /@layer\s+[\w-]+(?:\s*,\s*[\w-]+)*\s*;/g;
+        other = other.replace(layerOrderRegex, (match) => {
+          atRules += match + '\n';
+          return '';
+        });
+        
+        // Extract @layer blocks and scope the selectors inside
+        const layerBlockRegex = /@layer\s+[\w-]+\s*\{/g;
+        processedCss = '';
+        lastIndex = 0;
+        tempCss = other;
+        
+        // Helper to prefix selectors with scope ID
+        const prefixSelectors = (cssContent, scopeId) => {
+          // First, strip all CSS comments
+          let cleanCss = cssContent.replace(/\/\*[\s\S]*?\*\//g, '');
+          
+          // Split by rule blocks and prefix each selector
+          let result = '';
+          
+          // Match selector { properties } patterns
+          const ruleRegex = /([^{}]+)\{([^{}]*)\}/g;
+          let ruleMatch;
+          
+          while ((ruleMatch = ruleRegex.exec(cleanCss)) !== null) {
+            const selector = ruleMatch[1].trim();
+            const properties = ruleMatch[2];
+            
+            // Skip empty selectors
+            if (!selector) continue;
+            
+            // Prefix each selector in comma-separated list
+            const prefixedSelector = selector
+              .split(',')
+              .map(s => {
+                s = s.trim();
+                if (!s) return s;
+                // Handle :root
+                if (s === ':root') return `#${scopeId}`;
+                // Handle pseudo-elements/classes on element itself
+                if (s.startsWith(':')) return `#${scopeId}${s}`;
+                // Normal selectors
+                return `#${scopeId} ${s}`;
+              })
+              .filter(s => s)
+              .join(', ');
+            
+            if (prefixedSelector) {
+              result += `${prefixedSelector} { ${properties} }\n`;
+            }
+          }
+          
+          return result || cssContent;
+        };
+        
+        while ((match = layerBlockRegex.exec(tempCss)) !== null) {
+          processedCss += tempCss.substring(lastIndex, match.index);
+          let braceCount = 1;
+          let i = match.index + match[0].length;
+          while (i < tempCss.length && braceCount > 0) {
+            if (tempCss[i] === '{') braceCount++;
+            else if (tempCss[i] === '}') braceCount--;
+            i++;
+          }
+          // For @layer blocks, we need to scope the content inside
+          const layerMatch = tempCss.substring(match.index, i);
+          const layerName = layerMatch.match(/@layer\s+([\w-]+)/)[1];
+          const layerContent = layerMatch.substring(layerMatch.indexOf('{') + 1, layerMatch.lastIndexOf('}'));
+          // Scope each selector inside the layer
+          const scopedLayerContent = prefixSelectors(layerContent, scopeId);
+          atRules += `@layer ${layerName} {\n${scopedLayerContent}}\n`;
+          lastIndex = i;
+        }
+        processedCss += tempCss.substring(lastIndex);
+        other = processedCss;
+        
+        return { atRules, other };
       };
 
-      const { keyframes, other } = extractAtRules(appliedCss);
+      const { atRules, other } = extractAtRules(appliedCss);
 
       // Use CSS Nesting for perfect scoping without breaking sibling/descendant selectors
-      // But keep @keyframes at the top level
+      // But keep @keyframes and @layer at the top level
       // Replace :root with & so it applies to the scope container itself (Local Root)
       const scopedCss = `
-        ${keyframes}
+        ${atRules}
         #${scopeId} {
           ${other.replace(/:root/g, '&')}
         }

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LiveCodeEditor from '../components/LiveCodeEditor';
 import CssPropertyControls from '../components/CssPropertyControls';
 import PageHeader from '../components/PageHeader';
+import CollapsibleSection from '../components/CollapsibleSection';
 
 function TypographyStudy() {
   // --- 상태 관리 (State Management) ---
@@ -27,8 +28,7 @@ function TypographyStudy() {
 
       {/* Typography 기초 정의 섹션 */}
 
-      <section className="study-section">
-        <h2 className="section-title">Typography의 중요성</h2>
+      <CollapsibleSection title="Typography의 중요성">
         <div className="section-description">
           <p>
             웹사이트 콘텐츠의 95%는 텍스트입니다. 좋은 타이포그래피는 가독성, 접근성, 사용자 경험에 직접적인 영향을 미칩니다.
@@ -39,11 +39,10 @@ function TypographyStudy() {
             <li><strong>계층 구조</strong>: 제목, 본문, 캡션 등의 시각적 우선순위</li>
           </ul>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Font Family (글꼴 선택 및 폴백) */}
-      <section className="study-section">
-        <h2 className="section-title">Font Family (글꼴)</h2>
+      <CollapsibleSection title="Font Family (글꼴)">
         <p className="section-description">
           적절한 글꼴 선택은 브랜드와 가독성에 큰 영향을 미칩니다. 항상 폴백(fallback) 글꼴을 지정하세요.
         </p>
@@ -104,11 +103,10 @@ function TypographyStudy() {
   • <strong>Monospace</strong>: 코드, 고정폭
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Font Weight & Size (시각적 위계 설정) */}
-      <section className="study-section">
-        <h2 className="section-title">Font Weight & Size</h2>
+      <CollapsibleSection title="Font Weight & Size">
         <p className="section-description">
           글꼴 두께와 크기로 시각적 계층을 만들 수 있습니다.
         </p>
@@ -173,11 +171,10 @@ function TypographyStudy() {
   px, rem, em, %, vw 등
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Line Height (가독성의 핵심, 줄 간격) */}
-      <section className="study-section">
-        <h2 className="section-title">Line Height (줄 간격)</h2>
+      <CollapsibleSection title="Line Height (줄 간격)">
         <div className="section-description">
           <p>
             <code>line-height</code>는 가독성에 가장 큰 영향을 미치는 속성 중 하나입니다.
@@ -238,11 +235,10 @@ function TypographyStudy() {
   <strong>2.5</strong>: 줄 간격이 너무 넓음
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Text Align & Transform (정렬 및 대소문자) */}
-      <section className="study-section">
-        <h2 className="section-title">Text Align & Transform</h2>
+      <CollapsibleSection title="Text Align & Transform">
         <p className="section-description">
           텍스트 정렬과 대소문자 변환으로 레이아웃과 강조를 조정합니다.
         </p>
@@ -302,11 +298,10 @@ function TypographyStudy() {
   uppercase, lowercase, capitalize, none
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 패턴 섹션: Text Overflow (말줄임표 처리 기법) */}
-      <section className="study-section">
-        <h2 className="section-title">Text Overflow (Ellipsis)</h2>
+      <CollapsibleSection title="Text Overflow (Ellipsis)">
         <p className="section-description">
           긴 텍스트를 말줄임표(...)로 표시하는 중요한 패턴입니다.
         </p>
@@ -362,11 +357,10 @@ function TypographyStudy() {
   display: -webkit-box; -webkit-line-clamp: 2;
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 디자인 가이드 섹션: 타이포그래피 시스템 (Best Practice) */}
-      <section className="study-section">
-        <h2 className="section-title">실전: 타이포그래피 시스템</h2>
+      <CollapsibleSection title="실전: 타이포그래피 시스템">
         <p className="section-description">
           일관된 타이포그래피 스케일을 사용하면 전문적이고 통일감 있는 디자인을 만들 수 있습니다.
         </p>
@@ -412,10 +406,9 @@ function TypographyStudy() {
   일관성 있는 디자인 시스템을 구축하세요.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
       {/* 실습 섹션: Text Shadow (텍스트 특수 효과 갤러리) */}
-      <section className="study-section">
-        <h2 className="section-title">Text Shadow Gallery</h2>
+      <CollapsibleSection title="Text Shadow Gallery">
         <p className="section-description">
           <code>text-shadow</code>를 활용하여 텍스트에 깊이감과 특수 효과를 더합니다.
         </p>
@@ -482,11 +475,10 @@ function TypographyStudy() {
   <div class="shadow-item outline">Outline</div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Advanced Decoration (밑줄 offset 등 최신 속성) */}
-      <section className="study-section">
-        <h2 className="section-title">Advanced Decoration</h2>
+      <CollapsibleSection title="Advanced Decoration">
         <p className="section-description">
           현대적인 CSS 속성을 사용하여 밑줄의 위치와 두께를 정밀하게 조절합니다.
         </p>
@@ -527,11 +519,10 @@ function TypographyStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Word Break & Wrap (긴 단어 및 언어별 줄바꿈 대응) */}
-      <section className="study-section">
-        <h2 className="section-title">Word Break & Wrap</h2>
+      <CollapsibleSection title="Word Break & Wrap">
         <p className="section-description">
           넘치는 텍스트를 어떻게 처리할지 결정합니다. 특히 한국어/영어 혼용 시 중요합니다.
         </p>
@@ -587,11 +578,10 @@ function TypographyStudy() {
   </div>
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실습 섹션: Writing Mode (동아시아 세로쓰기 대응) */}
-      <section className="study-section">
-        <h2 className="section-title">writing-mode (텍스트 방향)</h2>
+      <CollapsibleSection title="writing-mode (텍스트 방향)">
         <p className="section-description">
           텍스트의 흐름을 가로 또는 세로로 변경합니다. 동아시아 언어의 세로 쓰기나 독특한 디자인 레이아웃에 사용됩니다.
         </p>
@@ -636,11 +626,10 @@ function TypographyStudy() {
   <strong>vertical-rl</strong>: 세로 방향으로 글자가 흐르며, 줄 바꿈은 오른쪽에서 왼쪽으로 일어납니다.
 </div>`}
         />
-      </section>
+      </CollapsibleSection>
 
       {/* 실무 응용 섹션: 뉴스 기사 레이아웃 (종합 실습) */}
-      <section className="study-section">
-        <h2 className="section-title">실전 예제: 뉴스 기사 레이아웃</h2>
+      <CollapsibleSection title="실전 예제: 뉴스 기사 레이아웃">
         <p className="section-description">
           제목 계층 구조, 줄 간격, 자간, 그리고 말줄임 효과를 조합한 실용적인 기사 레이아웃입니다.
         </p>
@@ -739,7 +728,7 @@ function TypographyStudy() {
   • <strong>line-height</strong>: 본문은 1.6~1.8배가 가장 가독성이 좋으며, 제목은 1.2배 정도로 좁히는 것이 강렬합니다.
 </p>`}
         />
-      </section >
+      </CollapsibleSection>
     </div >
   );
 }
