@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HeaderSearch from './components/HeaderSearch';
@@ -44,11 +44,11 @@ import './styles/pages.css';
 
 
 function App() {
-  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true); // 기본 닫힘 상태
 
-  const toggleNav = () => {
+  const toggleNav = useCallback(() => {
     setIsNavCollapsed(prev => !prev);
-  };
+  }, []);
 
   return (
     <Router>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { api } from '../services/api';
 
@@ -7,9 +7,26 @@ function Navigation({ isCollapsed, onToggle }) {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
+  const activeItemRef = useRef(null);
+  const navRef = useRef(null);
+
   useEffect(() => {
     fetchMenus();
   }, []);
+
+  // 활성화된 메뉴 항목이 화면에 보이도록 자동 스크롤
+  useEffect(() => {
+    if (!isCollapsed && activeItemRef.current) {
+      // 약간의 지연을 주어 트랜지션 이후에 스크롤 수행
+      const timer = setTimeout(() => {
+        activeItemRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isCollapsed, location.pathname]);
 
   const fetchMenus = async () => {
     try {
@@ -29,7 +46,11 @@ function Navigation({ isCollapsed, onToggle }) {
     const hasChildren = menu.children && menu.children.length > 0;
 
     return (
-      <li key={menu.id} className="nav-item">
+      <li 
+        key={menu.id} 
+        className="nav-item" 
+        ref={isActive ? activeItemRef : null}
+      >
         {menu.path ? (
           <Link
             to={menu.path}
@@ -72,8 +93,13 @@ function Navigation({ isCollapsed, onToggle }) {
     <>
       {/* 모바일 메뉴 버튼 */}
       <button
+        type="button"
         className="mobile-menu-btn"
-        onClick={onToggle}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onToggle();
+        }}
         aria-label="Open Menu"
       >
         ☰
@@ -82,14 +108,37 @@ function Navigation({ isCollapsed, onToggle }) {
       {/* 오버레이 (모바일에서 메뉴 열렸을 때) */}
       <div
         className={`nav-overlay ${!isCollapsed ? 'active' : ''}`}
-        onClick={onToggle}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onToggle();
+        }}
       />
 
-      <nav className={`navigation ${isCollapsed ? 'collapsed' : 'open'}`}>
+      <nav 
+        ref={navRef}
+        className={`navigation ${isCollapsed ? 'collapsed' : 'open'}`}
+        onMouseEnter={() => {
+          // 데스크톱 호버 시에도 스크롤 로직 트리거를 위해 isCollapsed 체크와 별개로 동작할 수 있게 지원
+          if (activeItemRef.current) {
+            activeItemRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }}
+      >
         <div className="nav-header">
-          {!isCollapsed && <h1 className="nav-logo">CSS Study</h1>}
-          <button className="nav-toggle-btn" onClick={onToggle} aria-label="Toggle Navigation">
-            {isCollapsed ? '☰' : '×'}
+          <h1 className="nav-logo">CSS Study</h1>
+          {/* 모바일 전용 닫기 버튼 */}
+          <button 
+            type="button"
+            className="nav-toggle-btn mobile-only" 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggle();
+            }} 
+            aria-label="Toggle Navigation"
+          >
+            ×
           </button>
         </div>
         <ul className="nav-menu">
@@ -100,4 +149,4 @@ function Navigation({ isCollapsed, onToggle }) {
   );
 }
 
-export default Navigation;
+export default memo(Navigation);
