@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './PageProgressDots.css';
 
 /**
@@ -9,6 +9,12 @@ import './PageProgressDots.css';
 function PageProgressDots() {
     const [sections, setSections] = useState([]);
     const [activeId, setActiveId] = useState('');
+    
+    // 드래그 상태 관리
+    const [isDragging, setIsDragging] = useState(false);
+    const [position, setPosition] = useState({ x: null, y: null });
+    const dragOffset = useRef({ x: 0, y: 0 });
+    const navRef = useRef(null);
 
     // 페이지 내의 모든 CollapsibleSection(data-section 속성 보유)을 찾습니다.
     const findSections = useCallback(() => {
@@ -21,16 +27,12 @@ function PageProgressDots() {
     }, []);
 
     useEffect(() => {
-        // 컴포넌트 마운트 시 및 DOM 변화 시 섹션 탐색
         findSections();
-        
-        // 동적으로 추가되는 경우를 위해 약간의 지연 후 재탐색 (React 렌더링 동기화)
         const timer = setTimeout(findSections, 100);
 
-        // IntersectionObserver 설정
         const observerOptions = {
             root: null,
-            rootMargin: '-10% 0px -80% 0px', // 화면 상단 부근에 왔을 때 감지
+            rootMargin: '-10% 0px -80% 0px',
             threshold: 0
         };
 
@@ -52,7 +54,74 @@ function PageProgressDots() {
         };
     }, [findSections]);
 
-    const scrollToSection = (id) => {
+    // --- 드래그 핸들러 ---
+    const handleStart = (e) => {
+        if (e.target.closest('.dot-button')) return; // 점 클릭 시에는 이동 안 함
+        
+        setIsDragging(true);
+        const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+        
+        const rect = navRef.current.getBoundingClientRect();
+        dragOffset.current = {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
+    };
+
+    const handleMove = useCallback((e) => {
+        if (!isDragging) return;
+        
+        const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+        
+        setPosition({
+            x: clientX - dragOffset.current.x,
+            y: clientY - dragOffset.current.y
+        });
+    }, [isDragging]);
+
+    const handleEnd = useCallback(() => {
+        setIsDragging(false);
+    }, []);
+
+    // 화면 리사이즈 시 위치 보정 (화면 바깥으로 나가지 않게)
+    const handleResize = useCallback(() => {
+        if (position.x === null) return;
+        
+        const rect = navRef.current?.getBoundingClientRect();
+        if (!rect) return;
+
+        const maxX = window.innerWidth - rect.width - 20;
+        const maxY = window.innerHeight - rect.height - 20;
+
+        setPosition(prev => ({
+            x: Math.min(Math.max(20, prev.x), maxX),
+            y: Math.min(Math.max(20, prev.y), maxY)
+        }));
+    }, [position]);
+
+    useEffect(() => {
+        if (isDragging) {
+            window.addEventListener('mousemove', handleMove);
+            window.addEventListener('mouseup', handleEnd);
+            window.addEventListener('touchmove', handleMove);
+            window.addEventListener('touchend', handleEnd);
+        }
+        
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMove);
+            window.removeEventListener('mouseup', handleEnd);
+            window.removeEventListener('touchmove', handleMove);
+            window.removeEventListener('touchend', handleEnd);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [isDragging, handleMove, handleEnd, handleResize]);
+
+    const scrollToSection = (e, id) => {
+        e.stopPropagation(); // 드래그 이벤트 방지
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -61,14 +130,29 @@ function PageProgressDots() {
 
     if (sections.length === 0) return null;
 
+    const dragStyle = position.x !== null ? {
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'none'
+    } : {};
+
     return (
-        <nav className="page-progress-dots" aria-label="Page navigation">
+        <nav 
+            ref={navRef}
+            className={`page-progress-dots ${isDragging ? 'is-dragging' : ''}`} 
+            style={dragStyle}
+            onMouseDown={handleStart}
+            onTouchStart={handleStart}
+            aria-label="Page navigation"
+        >
             <div className="dots-container">
                 {sections.map(section => (
                     <div 
                         key={section.id}
                         className={`dot-wrapper ${activeId === section.id ? 'active' : ''}`}
-                        onClick={() => scrollToSection(section.id)}
+                        onClick={(e) => scrollToSection(e, section.id)}
                     >
                         <span className="dot-tooltip">{section.title}</span>
                         <button 
