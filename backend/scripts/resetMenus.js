@@ -40,11 +40,11 @@ db.serialize(() => {
         { title: 'Box Model Study', path: '/box-model', icon: '📦', order: 2 },
         { title: 'Units & Sizing', path: '/units', icon: '📏', order: 3 },
         { title: 'Viewport Units', path: '/viewport-units', icon: '📱', order: 4 },
-        { title: 'Height & Sizing', path: '/height', icon: '📐', order: 5 },
         { title: 'Position Study', path: '/position', icon: '📍', order: 5 },
         { title: 'Relative & Absolute', path: '/relative-absolute', icon: '🎯', order: 6 },
-        { title: 'Float & Clear Study', path: '/float', icon: '🌊', order: 7 },
-        { title: 'Logical Properties', path: '/logical-properties', icon: '🌐', order: 8 },
+        { title: 'Height & Sizing', path: '/height', icon: '📐', order: 7 },
+        { title: 'Float & Clear Study', path: '/float', icon: '🌊', order: 8 },
+        { title: 'Logical Properties', path: '/logical-properties', icon: '🌐', order: 9 },
       ]
     },
     {
@@ -102,6 +102,7 @@ db.serialize(() => {
         { title: 'Accessibility (A11y)', path: '/accessibility', icon: '♿', order: 2 },
         { title: 'Performance & Rendering', path: '/performance', icon: '⚡', order: 3 },
         { title: 'CSS Architecture', path: '/architecture', icon: '🏗️', order: 4 },
+        { title: 'Attributes & JS', path: '/attributes-js', icon: '⚙️', order: 5 },
       ]
     },
     {

@@ -44,21 +44,97 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
     }
   }, [currentHtml, draftHtml, appliedHtml]);
 
+
   // Apply CSS to the preview area
   useEffect(() => {
     if (styleRef.current) {
-      // Helper to extract at-rules (like @keyframes, @layer) that cannot be nested
-      const extractAtRules = (css) => {
+      // Improved scoping engine that handles balanced braces for @media/@supports
+      const scoper = (css, prefix) => {
+        if (!css) return '';
+        
+        let processedCss = css;
+        const tempPrefix = `__AT_BLOCK_${Math.random().toString(36).substr(2, 9)}__`;
+        const blocks = [];
+
+        // 1. Extract @at-blocks properly by finding balanced braces
+        let atIndex;
+        while ((atIndex = processedCss.search(/@(?:media|supports)/)) !== -1) {
+          let braceCount = 0;
+          let i = atIndex;
+          let blockStart = -1;
+          let blockEnd = -1;
+          
+          while (i < processedCss.length) {
+            if (processedCss[i] === '{') {
+              if (braceCount === 0) blockStart = i;
+              braceCount++;
+            } else if (processedCss[i] === '}') {
+              braceCount--;
+              if (braceCount === 0) {
+                blockEnd = i;
+                break;
+              }
+            }
+            i++;
+          }
+          
+          if (blockStart !== -1 && blockEnd !== -1) {
+            const fullBlock = processedCss.substring(atIndex, blockEnd + 1);
+            const header = processedCss.substring(atIndex, blockStart);
+            const content = processedCss.substring(blockStart + 1, blockEnd);
+            
+            // Recursively scope content inside @media
+            const scopedContent = scoper(content, prefix);
+            const fullyScopedBlock = `${header}{${scopedContent}}`;
+            
+            blocks.push(fullyScopedBlock);
+            const placeholder = `${tempPrefix}_${blocks.length - 1}`;
+            processedCss = processedCss.substring(0, atIndex) + placeholder + processedCss.substring(blockEnd + 1);
+          } else {
+            // Unclosed brace or malformed @block, stop to prevent infinite loop
+            break;
+          }
+        }
+
+        // 2. Scope regular rules in the remaining CSS
+        const ruleRegex = /([^{}]+)\{([^{}]*)\}/g;
+        processedCss = processedCss.replace(ruleRegex, (match, selector, props) => {
+          const trimmed = selector.trim();
+          if (!trimmed || trimmed.startsWith(tempPrefix)) return match;
+          
+          const prefixed = trimmed
+            .split(',')
+            .map(s => {
+              const part = s.trim();
+              if (!part || part.startsWith('@')) return part;
+              if (part === ':root') return prefix;
+              if (part.startsWith(':')) return `${prefix}${part}`;
+              if (part.startsWith(prefix)) return part;
+              return `${prefix} ${part}`;
+            })
+            .join(', ');
+          
+          return `${prefixed} { ${props} }`;
+        });
+        
+        // 3. Put @blocks back
+        blocks.forEach((block, i) => {
+          processedCss = processedCss.split(`${tempPrefix}_${i}`).join(block);
+        });
+        
+        return processedCss;
+      };
+
+      const extractTopLevelAtRules = (css) => {
         if (!css) return { atRules: '', other: '' };
         let atRules = '';
         let other = css;
         
-        // Extract @keyframes
         const keyframeRegex = /@keyframes\s+[\w-]+\s*\{/g;
         let match;
+        let tempCss = css;
         let processedCss = '';
         let lastIndex = 0;
-        let tempCss = css;
         
         while ((match = keyframeRegex.exec(tempCss)) !== null) {
           processedCss += tempCss.substring(lastIndex, match.index);
@@ -75,100 +151,94 @@ function LiveCodeEditor({ preview, initialCss, initialHtml, currentCss, currentH
         processedCss += tempCss.substring(lastIndex);
         other = processedCss;
         
-        // Extract @layer order declaration (e.g., @layer base, theme, custom;)
-        const layerOrderRegex = /@layer\s+[\w-]+(?:\s*,\s*[\w-]+)*\s*;/g;
-        other = other.replace(layerOrderRegex, (match) => {
-          atRules += match + '\n';
+        const topLevelRegex = /@(font-face|import)[^;{]*[{;]/g;
+        other = other.replace(topLevelRegex, (m) => {
+          atRules += m + (m.endsWith('{') ? '}' : '') + '\n';
           return '';
         });
-        
-        // Extract @layer blocks and scope the selectors inside
-        const layerBlockRegex = /@layer\s+[\w-]+\s*\{/g;
-        processedCss = '';
-        lastIndex = 0;
-        tempCss = other;
-        
-        // Helper to prefix selectors with scope ID
-        const prefixSelectors = (cssContent, scopeId) => {
-          // First, strip all CSS comments
-          let cleanCss = cssContent.replace(/\/\*[\s\S]*?\*\//g, '');
-          
-          // Split by rule blocks and prefix each selector
-          let result = '';
-          
-          // Match selector { properties } patterns
-          const ruleRegex = /([^{}]+)\{([^{}]*)\}/g;
-          let ruleMatch;
-          
-          while ((ruleMatch = ruleRegex.exec(cleanCss)) !== null) {
-            const selector = ruleMatch[1].trim();
-            const properties = ruleMatch[2];
-            
-            // Skip empty selectors
-            if (!selector) continue;
-            
-            // Prefix each selector in comma-separated list
-            const prefixedSelector = selector
-              .split(',')
-              .map(s => {
-                s = s.trim();
-                if (!s) return s;
-                // Handle :root
-                if (s === ':root') return `#${scopeId}`;
-                // Handle pseudo-elements/classes on element itself
-                if (s.startsWith(':')) return `#${scopeId}${s}`;
-                // Normal selectors
-                return `#${scopeId} ${s}`;
-              })
-              .filter(s => s)
-              .join(', ');
-            
-            if (prefixedSelector) {
-              result += `${prefixedSelector} { ${properties} }\n`;
-            }
-          }
-          
-          return result || cssContent;
-        };
-        
-        while ((match = layerBlockRegex.exec(tempCss)) !== null) {
-          processedCss += tempCss.substring(lastIndex, match.index);
-          let braceCount = 1;
-          let i = match.index + match[0].length;
-          while (i < tempCss.length && braceCount > 0) {
-            if (tempCss[i] === '{') braceCount++;
-            else if (tempCss[i] === '}') braceCount--;
-            i++;
-          }
-          // For @layer blocks, we need to scope the content inside
-          const layerMatch = tempCss.substring(match.index, i);
-          const layerName = layerMatch.match(/@layer\s+([\w-]+)/)[1];
-          const layerContent = layerMatch.substring(layerMatch.indexOf('{') + 1, layerMatch.lastIndexOf('}'));
-          // Scope each selector inside the layer
-          const scopedLayerContent = prefixSelectors(layerContent, scopeId);
-          atRules += `@layer ${layerName} {\n${scopedLayerContent}}\n`;
-          lastIndex = i;
-        }
-        processedCss += tempCss.substring(lastIndex);
-        other = processedCss;
         
         return { atRules, other };
       };
 
-      const { atRules, other } = extractAtRules(appliedCss);
-
-      // Use CSS Nesting for perfect scoping without breaking sibling/descendant selectors
-      // But keep @keyframes and @layer at the top level
-      // Replace :root with & so it applies to the scope container itself (Local Root)
-      const scopedCss = `
-        ${atRules}
-        #${scopeId} {
-          ${other.replace(/:root/g, '&')}
-        }
-      `;
-      styleRef.current.textContent = scopedCss;
+      const { atRules, other } = extractTopLevelAtRules(appliedCss);
+      const scopedBody = scoper(other, `#${scopeId}`);
+      
+      styleRef.current.textContent = `${atRules}\n${scopedBody}`;
     }
   }, [appliedCss, scopeId]);
+
+  // Support script execution in preview
+  useEffect(() => {
+    if (appliedHtml) {
+      const timer = setTimeout(() => {
+        const container = document.getElementById(scopeId);
+        if (!container) return;
+
+        const oldInjected = container.querySelectorAll('.injected-script');
+        oldInjected.forEach(s => s.remove());
+
+        const scripts = Array.from(container.querySelectorAll('script'));
+        scripts.forEach((oldScript) => {
+          if (!oldScript.parentNode) return;
+          
+          const newScript = document.createElement('script');
+          newScript.className = 'injected-script';
+          
+          Array.from(oldScript.attributes).forEach(attr => {
+            newScript.setAttribute(attr.name, attr.value);
+          });
+
+          // Ultra-robust execution wrapper with enhanced diagnostics
+          const runner = `
+            try {
+              (function(containerId) {
+                const _ctx = document.getElementById(containerId);
+                if (!_ctx) return;
+                
+                const pick = (s) => _ctx.querySelector(s);
+                const pickAll = (s) => Array.from(_ctx.querySelectorAll(s));
+                
+                // Expose to the element itself as a fallback
+                _ctx.__pick = pick;
+                _ctx.__pickAll = pickAll;
+                
+                // Visible console for the user
+                const log = (msg, isErr = false) => {
+                  const content = _ctx.querySelector('[data-ref="logContent"]');
+                  const led = _ctx.querySelector('[data-ref="diagnosticLed"]');
+                  if (content) {
+                    content.innerText = '> ' + msg;
+                    content.style.color = isErr ? '#f87171' : '#4ade80';
+                  }
+                  if (led) {
+                    led.style.background = isErr ? '#ef4444' : '#fde047';
+                    setTimeout(() => led.style.background = '#22c55e', 200);
+                  }
+                };
+
+                ${oldScript.textContent}
+                
+                if (window.onLiveEditorReady) window.onLiveEditorReady(containerId);
+              })("${scopeId}");
+            } catch (err) {
+              console.error("[LiveEditor Runtime Error]:", err);
+              const container = document.getElementById("${scopeId}");
+              const content = container ? container.querySelector('[data-ref="logContent"]') : null;
+              if (content) {
+                content.innerText = "> Script Error: " + err.message;
+                content.style.color = "#f87171";
+              }
+            }
+          `;
+          
+          newScript.textContent = runner;
+          oldScript.parentNode.appendChild(newScript);
+          oldScript.remove();
+        });
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [appliedHtml, scopeId, renderKey]);
 
   const handleReset = () => {
     const resetCss = initialCss || '';

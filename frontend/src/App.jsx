@@ -21,6 +21,7 @@ import InteractionStudy from './pages/InteractionStudy';
 import FormStudy from './pages/FormStudy';
 import ContainerQueriesStudy from './pages/ContainerQueriesStudy';
 import StackingStudy from './pages/StackingStudy';
+import AttributesAndJSStudy from './pages/AttributesAndJSStudy';
 import PseudoElementStudy from './pages/PseudoElementStudy';
 import AccessibilityStudy from './pages/AccessibilityStudy';
 import PerformanceStudy from './pages/PerformanceStudy';
@@ -82,7 +83,6 @@ function App() {
             <Route path="/units" element={<UnitsStudy />} />
             <Route path="/viewport-units" element={<ViewportUnitsStudy />} />
             <Route path="/height" element={<HeightStudy />} />
-            <Route path="/animations" element={<AnimationsStudy2 />} />
             <Route path="/hiding" element={<HidingMethodsStudy />} />
             {/* Interaction */}
             <Route path="/interaction" element={<InteractionStudy />} />
@@ -92,6 +92,7 @@ function App() {
             {/* Advanced */}
             <Route path="/container-queries" element={<ContainerQueriesStudy />} />
             <Route path="/stacking" element={<StackingStudy />} />
+            <Route path="/attributes-js" element={<AttributesAndJSStudy />} />
             <Route path="/pseudo-elements" element={<PseudoElementStudy />} />
             <Route path="/performance" element={<PerformanceStudy />} />
             <Route path="/selectors" element={<ModernSelectorsStudy />} />
