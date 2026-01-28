@@ -366,6 +366,37 @@
   background: var(--bg-secondary);
 }
 
+.js-editor {
+  color: #4ade80 !important;
+}
+
+.html-editor {
+  color: #fb923c !important;
+}
+
+.css-editor {
+  color: #60a5fa !important;
+}
+
+.code-editor-split {
+  display: flex;
+  flex: 1;
+  gap: 1px;
+  background: var(--bg-primary);
+  height: 100%;
+}
+
+.code-editor-wrapper.half {
+  flex: 1;
+  width: 50%;
+  position: relative;
+}
+
+.code-editor-wrapper.half .code-textarea {
+  height: 100% !important;
+  resize: none;
+}
+
 .live-editor-content.vertical-layout {
   grid-template-columns: 1fr;
 }

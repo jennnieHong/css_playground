@@ -1,6 +1,6 @@
 /**
  * Home 페이지 컴포넌트
- * CSS Study 애플리케이션의 메인 랜딩 페이지입니다.
+ * JavaScript Study 애플리케이션의 메인 랜딩 페이지입니다.
  * 프로젝트 소개, 학습 가이드, 그리고 주요 공용 컴포넌트(Alert, Confirm, SearchPopup)의 데모를 제공합니다.
  */
 import { useState } from 'react';
@@ -12,15 +12,10 @@ import PageHeader from '../components/PageHeader';
 
 function Home() {
   // --- 상태 관리 (State Management) ---
-  // 공용 UI 컴포넌트들의 표시 여부를 제어하는 상태들입니다.
   const [showAlert, setShowAlert] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  /**
-   * Confirm 창에서 '확인'을 눌렀을 때의 핸들러
-   * Confirm 창을 닫고 Alert 창을 띄웁니다.
-   */
   const handleConfirm = () => {
     setShowConfirm(false);
     setShowAlert(true);
@@ -28,7 +23,6 @@ function Home() {
 
   /**
    * 탭 구성을 정의하는 배열
-   * 각 객체는 id, label(탭 이름), content(렌더링될 JSX)를 포함합니다.
    */
   const tabs = [
     {
@@ -36,13 +30,13 @@ function Home() {
       label: '소개',
       content: (
         <div className="content-section">
-          <h2>CSS Study에 오신 것을 환영합니다!</h2>
-          <p>이 웹사이트는 CSS를 체계적으로 학습할 수 있도록 설계되었습니다.</p>
+          <h2>JavaScript Study에 오신 것을 환영합니다!</h2>
+          <p>이 웹사이트는 모던 자바스크립트를 체계적으로 학습할 수 있도록 설계되었습니다.</p>
           <ul className="feature-list">
-            <li>✨ 인터랙티브한 예제</li>
-            <li>📚 체계적인 학습 구조</li>
-            <li>🎯 실전 중심의 내용</li>
-            <li>💡 최신 CSS 기술</li>
+            <li>✨ 라이브 코드 에디터</li>
+            <li>📚 핵심 개념 중심 커리큘럼</li>
+            <li>🎯 실전 예제와 인터랙티브 예제</li>
+            <li>💡 최신 ES6+ 문법 완벽 대응</li>
           </ul>
         </div>
       )
@@ -55,16 +49,16 @@ function Home() {
           <h2>학습 가이드</h2>
           <ol className="guide-list">
             <li>
-              <strong>CSS Basics</strong>
-              <p>Flexbox, Grid, Animation 등 기본 개념을 학습합니다.</p>
+              <strong>JS Basics</strong>
+              <p>변수, 데이터 타입, 연산자 및 기분 제어문을 학습합니다.</p>
             </li>
             <li>
-              <strong>Advanced Topics</strong>
-              <p>Custom Properties, CSS Architecture 등 고급 주제를 다룹니다.</p>
+              <strong>Core Logic</strong>
+              <p>함수, 스코프, 객체 및 배열의 심화 활용 방법을 다룹니다.</p>
             </li>
             <li>
-              <strong>실습</strong>
-              <p>각 섹션의 예제를 직접 실습해보세요.</p>
+              <strong>Web & Async</strong>
+              <p>DOM 조작, 이벤트 핸들링, 비동기 프로그래밍을 마스터합니다.</p>
             </li>
           </ol>
         </div>
@@ -75,8 +69,8 @@ function Home() {
       label: '컴포넌트 데모',
       content: (
         <div className="content-section">
-          <h2>재사용 가능한 컴포넌트</h2>
-          <p>이 페이지에서 사용된 컴포넌트들을 테스트해보세요:</p>
+          <h2>UI 컴포넌트 테스트</h2>
+          <p>애플리케이션 내에서 공용으로 사용되는 팝업 컴포넌트들입니다:</p>
           <div className="demo-buttons">
             <button className="btn btn-primary" onClick={() => setShowAlert(true)}>
               Alert 열기
@@ -97,8 +91,8 @@ function Home() {
     <div className="page-container">
       {/* 페이지 헤더 영역 */}
       <PageHeader
-        title="CSS Study"
-        subtitle="모던 CSS를 마스터하세요"
+        title="JavaScript Study"
+        subtitle="원리부터 실전까지, JS를 완벽하게 정복하세요"
       />
 
       {/* 탭 기반 컨텐츠 영역 */}
@@ -135,4 +129,5 @@ function Home() {
 }
 
 export default Home;
+
 

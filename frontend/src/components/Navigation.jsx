@@ -79,7 +79,7 @@ function Navigation({ isCollapsed, onToggle }) {
     return (
       <nav className="navigation">
         <div className="nav-header">
-          <h1 className="nav-logo">CSS Study</h1>
+          <h1 className="nav-logo">JS Study</h1>
         </div>
         <div className="nav-loading">
           <div className="spinner"></div>
@@ -126,7 +126,7 @@ function Navigation({ isCollapsed, onToggle }) {
         }}
       >
         <div className="nav-header">
-          <h1 className="nav-logo">CSS Study</h1>
+          <h1 className="nav-logo">JS Study</h1>
           {/* 모바일 전용 닫기 버튼 */}
           <button 
             type="button"
