@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
 
 /**
  * CollapsibleSection
@@ -8,11 +8,18 @@ import { useState } from 'react';
  * @param {Object} props
  * @param {string|React.ReactNode} props.title - Section title
  * @param {React.ReactNode} props.children - Section content
+ * @param {string} [props.id] - Unique ID for the section
  * @param {boolean} [props.initiallyOpen=false] - Whether the section is open by default
  * @param {string} [props.className=""] - Additional classes
  */
-function CollapsibleSection({ title, children, initiallyOpen = false, className = "" }) {
+function CollapsibleSection({ id, title, children, initiallyOpen = false, className = "" }) {
     const [isOpen, setIsOpen] = useState(initiallyOpen);
+    const reactId = useId().replace(/:/g, ''); // : 기호 제거 (ID 호환성)
+
+    // title이 문자열인 경우 + 유니크 ID 접미사 추가
+    const sectionId = id || (typeof title === 'string' 
+        ? `${title.replace(/\s+/g, '-').toLowerCase()}-${reactId}` 
+        : `section-${reactId}`);
 
     const toggleSection = (e) => {
         // 텍스트 선택 중이라면 토글하지 않음
@@ -24,7 +31,11 @@ function CollapsibleSection({ title, children, initiallyOpen = false, className 
     };
 
     return (
-        <section className={`study-section ${className}`}>
+        <section 
+            id={sectionId} 
+            className={`study-section ${className}`}
+            data-section
+        >
             <h2
                 className="section-title"
                 onClick={toggleSection}
