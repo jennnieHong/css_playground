@@ -14,6 +14,10 @@ import JsTypeConversionStudy from './pages/JsTypeConversionStudy';
 import JsOperatorsStudy from './pages/JsOperatorsStudy';
 import JsConditionalsStudy from './pages/JsConditionalsStudy';
 import JsLoopsStudy from './pages/JsLoopsStudy';
+import JsIterablesStudy from './pages/JsIterablesStudy';
+import JsSpreadStudy from './pages/JsSpreadStudy';
+import JsReferenceTypesStudy from './pages/JsReferenceTypesStudy';
+import JsArrayLikeStudy from './pages/JsArrayLikeStudy';
 import JsFunctionsStudy from './pages/JsFunctionsStudy';
 import JsArraysStudy from './pages/JsArraysStudy';
 import JsObjectsStudy from './pages/JsObjectsStudy';
@@ -23,6 +27,8 @@ import JsAsyncBasicsStudy from './pages/JsAsyncBasicsStudy';
 import JsAsyncFetchStudy from './pages/JsAsyncFetchStudy';
 import JsModernStudy from './pages/JsModernStudy';
 import JsNumberPrecisionStudy from './pages/JsNumberPrecisionStudy';
+import JsTypeCheckingStudy from './pages/JsTypeCheckingStudy';
+import JsPrototypesStudy from './pages/JsPrototypesStudy';
 
 import './styles/main.css';
 import './styles/navigation.css';
@@ -55,6 +61,10 @@ function App() {
             <Route path="/js/operators" element={<JsOperatorsStudy />} />
             <Route path="/js/conditionals" element={<JsConditionalsStudy />} />
             <Route path="/js/loops" element={<JsLoopsStudy />} />
+            <Route path="/js/iterables" element={<JsIterablesStudy />} />
+            <Route path="/js/spread-destructuring" element={<JsSpreadStudy />} />
+            <Route path="/js/reference-types" element={<JsReferenceTypesStudy />} />
+            <Route path="/js/array-like" element={<JsArrayLikeStudy />} />
             <Route path="/js/functions" element={<JsFunctionsStudy />} />
             <Route path="/js/arrays" element={<JsArraysStudy />} />
             <Route path="/js/objects" element={<JsObjectsStudy />} />
@@ -64,6 +74,8 @@ function App() {
             <Route path="/js/async-fetch" element={<JsAsyncFetchStudy />} />
             <Route path="/js/modern" element={<JsModernStudy />} />
             <Route path="/js/precision" element={<JsNumberPrecisionStudy />} />
+            <Route path="/js/type-checking" element={<JsTypeCheckingStudy />} />
+            <Route path="/js/prototypes" element={<JsPrototypesStudy />} />
           </Routes>
         </main>
         <ScrollButtons />
