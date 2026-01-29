@@ -190,6 +190,30 @@ export const pageMetadata = [
             'shadowing', '상속', '프로토타입', '유전자', 'Object.create'
         ],
         description: '자바스크립트의 핵심 원리인 프로토타입과 상속 체계, 유연한 코드 공유 방식을 학습합니다.'
+    },
+    {
+        path: '/js-css/dom-styling',
+        title: 'CSS+JS: Styling & ClassList',
+        tags: ['dom styling', 'classList', 'inline style', 'className', 'add', 'remove', 'toggle', '스타일 제어', '클래스 조작'],
+        description: '자바스크립트로 HTML 요소의 스타일을 인라인으로 조작하거나 클래스 단위로 제어하는 법을 배웁니다.'
+    },
+    {
+        path: '/js-css/variables',
+        title: 'CSS+JS: CSS Variables',
+        tags: ['css variables', 'custom properties', 'setProperty', 'getPropertyValue', 'dynamic theme', '변수 제어', '동적 테마'],
+        description: 'JS를 이용해 CSS 변수를 실시간으로 조작하여 강력한 테마 및 인터랙션을 구현하는 방법을 학습합니다.'
+    },
+    {
+        path: '/js-css/computed',
+        title: 'CSS+JS: Computed Styles & Rects',
+        tags: ['getComputedStyle', 'getBoundingClientRect', 'rect', 'layout', 'styling measurement', '스타일 측정', '위치 계산'],
+        description: '브라우저가 렌더링한 최종 스타일과 요소의 정밀한 위치 정보를 JavaScript로 읽어오는 법을 배웁니다.'
+    },
+    {
+        path: '/js-css/animation-events',
+        title: 'CSS+JS: Animation Events',
+        tags: ['transitionend', 'animationstart', 'animationend', 'animationiteration', 'events', '이벤트 감지', '애니메이션 종료'],
+        description: 'CSS 트랜지션과 애니메이션의 시점을 JS로 포착하여 연속적인 로직을 구현하는 법을 학습합니다.'
     }
 ];
 

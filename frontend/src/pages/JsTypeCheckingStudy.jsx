@@ -162,6 +162,22 @@ cases.forEach(c => {
                       </tbody>
                     </table>
                   </div>
+
+                  <div className="info-box success" style={{ marginTop: '20px' }}>
+                    <strong>🧠 암기 꿀팁: 타입 판별 3단계 전략</strong>
+                    <p>복잡하게 생각하지 말고 딱 이 순서대로만 검사하세요!</p>
+                    <ol>
+                      <li><strong>일단 null부터 치우자</strong>: <code>if (v === null)</code></li>
+                      <li><strong>가장 흔한 놈들(원시값)은?</strong>: <code>typeof</code></li>
+                      <li><strong>배열이냐?</strong>: <code>Array.isArray()</code></li>
+                      <li><strong>끝까지 정체를 숨긴다면?</strong>: <code>Object.prototype.toString.call()</code></li>
+                    </ol>
+                  </div>
+
+                  <div className="info-box" style={{ background: 'var(--bg-secondary)', borderLeft: '4px solid var(--accent-secondary)' }}>
+                    <strong>💡 한 줄 요약 (Mnemonic)</strong>
+                    <p>"원시값은 <strong>typeof</strong>, 배열은 <strong>isArray</strong>, null은 <strong>===</strong>, 나머지는 <strong>toString</strong>!"</p>
+                  </div>
                 </div>
             </CollapsibleSection>
 

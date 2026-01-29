@@ -29,6 +29,10 @@ import JsModernStudy from './pages/JsModernStudy';
 import JsNumberPrecisionStudy from './pages/JsNumberPrecisionStudy';
 import JsTypeCheckingStudy from './pages/JsTypeCheckingStudy';
 import JsPrototypesStudy from './pages/JsPrototypesStudy';
+import JsCssDomStudy from './pages/JsCssDomStudy';
+import JsCssVariablesStudy from './pages/JsCssVariablesStudy';
+import JsCssComputedStudy from './pages/JsCssComputedStudy';
+import JsCssAnimationsStudy from './pages/JsCssAnimationsStudy';
 
 import './styles/main.css';
 import './styles/navigation.css';
@@ -76,6 +80,11 @@ function App() {
             <Route path="/js/precision" element={<JsNumberPrecisionStudy />} />
             <Route path="/js/type-checking" element={<JsTypeCheckingStudy />} />
             <Route path="/js/prototypes" element={<JsPrototypesStudy />} />
+            
+            <Route path="/js-css/dom-styling" element={<JsCssDomStudy />} />
+            <Route path="/js-css/variables" element={<JsCssVariablesStudy />} />
+            <Route path="/js-css/computed" element={<JsCssComputedStudy />} />
+            <Route path="/js-css/animation-events" element={<JsCssAnimationsStudy />} />
           </Routes>
         </main>
         <ScrollButtons />
